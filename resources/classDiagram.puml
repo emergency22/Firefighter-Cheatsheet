@@ -1,0 +1,76 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+abstract class AbstractList
+abstract AbstractCollection
+interface List
+interface Collection
+
+List <|-- AbstractList
+Collection <|-- AbstractCollection
+
+Collection <|- List
+AbstractCollection <|- AbstractList
+AbstractList <|-- ArrayList
+
+class CoefficientModel {
+Double hoseDiameter[primary key]
+Double coefficient
+}
+
+class ApparatusModel {
+String username[primary key]
+String apparatusTypeAndNumber[sort key]
+String fireDept
+List<Hose>
+}
+
+class HoseModel {
+String uuid[primary key]
+String name
+String color
+int length
+Double hoseDiameter
+int waterQuantityInGallons
+int pumpDischargePressure
+}
+
+enum HoseDiameter {
+INCH_AND_HALF(1.5)
+INCH_THREE_QUARTER(1.75)
+TWO_INCH(2)
+TWO_AND_HALF(2.5)
+THREE_INCH(3)
+}
+
+enum Colors {
+WHITE
+GREEN
+RED
+YELLOW
+ORANGE
+BLUE
+PURPLE
+BLACK
+BROWN
+}
+
+enum Nozzles {
+FOG(100)
+SMOOTH_BORE(50)
+}
+
+enum HoseLengths {
+FIFTY(50)
+ONE_HUNDRED(100)
+ONE_FIFTY(150)
+TWO_HUNDRED(200)
+TWO_FIFTY(250)
+THREE_HUNDRED(300)
+THREE_FIFTY(350)
+FOUR_HUNDRED(400)
+FOUR_FIFTY(450)
+FIVE_HUNDRED(500)
+}
+
+@enduml
