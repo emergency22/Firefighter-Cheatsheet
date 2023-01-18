@@ -66,7 +66,7 @@ _The design will include a front end created with HTML, CSS, and Javascript and 
 
 `ApparatusModel` (String userName[primary key], String apparatusTypeAndNumber[sort key], String fireDept, List<Hose>)
 
-`HoseModel` (String uuid[primary key], String name, String color, int length, Double hoseDiameter, int waterQuantityInGallons, int pumpDischargePressure)
+`HoseModel` (~~String uuid[primary key]~~, String name, String color, int length, Double hoseDiameter, int waterQuantityInGallons, int pumpDischargePressure)
 
 ## 6.2. _First Endpoint_
 
@@ -93,7 +93,7 @@ Errors: "ERROR. Cannot obtain apparatus."
 
 # 7. Tables
 
-_The service will be initially populated with a Coefficient table that will have coefficient data for each hose diameter. Additionally, two other tables will be created: An Apparatus table and a Hose table._
+_The service will be initially populated with a Coefficient table that will have coefficient data for each hose diameter. Additionally, one other table ~~two other tables~~ will be created: An Apparatus table ~~and a Hose table~~._
 
 _A GlobalSecondaryIndex will also be utilized, based on the Apparatus Table, to allow a user to view all Apparatus for a particular Fire Department. This will utilize the String 'fire dept' in the Apparatus table as a Sort Key._
 
