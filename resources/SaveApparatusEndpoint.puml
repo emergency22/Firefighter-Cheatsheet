@@ -1,0 +1,16 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+User -> EditApparatus.html: User enters and saves apparatus data
+EditApparatus.html -> FirefighterCheatsheetClient: Save apparatus data
+FirefighterCheatsheetClient -> SaveApparatusLambda: POST request (body:apparatus data)
+SaveApparatusLambda -> SaveApparatusActivity: handleRequest()
+SaveApparatusActivity -> SaveApparatusDAO: handleRequest()
+SaveApparatusDAO -> SaveApparatusActivity: Apparatus returned and converted to response
+SaveApparatusActivity -> SaveApparatusLambda: SaveApparatusResponse
+SaveApparatusLambda -> EditApparatus.html: Response error if needed
+
+
+@enduml
