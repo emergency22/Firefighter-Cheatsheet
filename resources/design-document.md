@@ -30,7 +30,7 @@ U5. _As a Firefighter Cheatsheet customer, I want to `be able to calculate pump 
 
 U6. _As a Firefighter Cheatsheet customer, I want to `save each pump discharge pressure for each hose to my account for later viewing` when I `click a button`._
 
-U7. _As a Firefighter Cheatsheet customer, I want to ` be able to adjust and save pump discharge pressures beyond the recommendations` when I `logged in`._
+U7. _As a Firefighter Cheatsheet customer, I want to ` be able to adjust and save pump discharge pressures beyond the recommendations` when I `am logged in`._
 
 U8. _As a Firefighter Cheatsheet customer, I want to `be shown fog nozzle and smooth bore pump discharge pressures` when I `click calculate`._
 
