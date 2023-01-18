@@ -66,17 +66,28 @@ _The design will include a front end created with HTML, CSS, and Javascript and 
 
 `ApparatusModel` (String userName[primary key], String apparatusTypeAndNumber[sort key], String fireDept, List<Hose>)
 
-`Hose` (String uuid[primary key], String name, String color, int length, Double hoseDiameter, int waterQuantityInGallons, int pumpDischargePressure)
+`HoseModel` (String uuid[primary key], String name, String color, int length, Double hoseDiameter, int waterQuantityInGallons, int pumpDischargePressure)
 
 ## 6.2. _First Endpoint_
 
-_While logged in and on an Edit Apparatus page, the user will be able to enter in Apparatus and save those items to the database. This will be accomplished via a POST request to an Apparatus Table._
+Name: SaveApparatus
+Description: While logged in and on an Edit Apparatus page, the user will be able to enter in Apparatus and save those items to the database. This will be accomplished via a POST request to an Apparatus Table._
+HTTP Method: POST
+Path: /apparatus/save
+Request Body: userName, apparatusTypeAndNumber, fireDept
+Errors: "ERROR: Cannot save apparatus."
+
 
 <img src="../resources/images/postSaveApparatus.PNG">
 
 ## 6.3 _Second Endpoint_
 
-_After saving the Apparatus, the user should then be able to see the saved Apparatus in their account. This will be accomplished via a GET request to the apparatus table based on userName._
+Name: GetApparatus
+Description: _After saving the Apparatus, the user should then be able to see the saved Apparatus in their account. This will be accomplished via a GET request to the apparatus table based on userName._
+HTTP Method: GET
+Path: /apparatus/get
+Request Body: empty
+Errors: "ERROR. Cannot obtain apparatus."
 
 <img src="../resources/images/getApparatusData.PNG">
 
