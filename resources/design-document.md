@@ -74,12 +74,18 @@ _Define the data models your service will expose in its responses via your *`-Mo
 
 _While logged in and on an Edit Apparatus page, the user will be able to enter in Apparatus and save those items to the database. This will be accomplished via a POST request to an Apparatus Table._
 
+<img src="../resources/images/postSaveApparatus.PNG">
+
 ## 6.3 _Second Endpoint_
 
 _After saving the Apparatus, the user should then be able to see the saved Apparatus in their account. This will be accomplished via a GET request to the apparatus table based on userName._
+
+<img src="../resources/images/getApparatusData.PNG">
 
 # 7. Tables
 
 _The service will be initially populated with a Coefficient table that will have coefficient data for each hose diameter. Additionally, two other tables will be created: An Apparatus table and a Hose table._
 
 # 8. Pages
+
+<img src="../resources/images/webpages.PNG">
