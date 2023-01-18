@@ -83,4 +83,3 @@ _After saving the Apparatus, the user should then be able to see the saved Appar
 _The service will be initially populated with a Coefficient table that will have coefficient data for each hose diameter. Additionally, two other tables will be created: An Apparatus table and a Hose table._
 
 # 8. Pages
-
