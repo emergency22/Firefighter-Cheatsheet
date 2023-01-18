@@ -95,6 +95,8 @@ Errors: "ERROR. Cannot obtain apparatus."
 
 _The service will be initially populated with a Coefficient table that will have coefficient data for each hose diameter. Additionally, two other tables will be created: An Apparatus table and a Hose table._
 
+_A GlobalSecondaryIndex will also be utilized, based on the Apparatus Table, to allow a user to view all Apparatus for a particular Fire Department. This will utilize the String 'fire dept' in the Apparatus table as a Sort Key._
+
 # 8. Pages
 
 <img src="../resources/images/webpages.PNG">
