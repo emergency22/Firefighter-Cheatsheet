@@ -99,4 +99,16 @@ _A GlobalSecondaryIndex will also be utilized, based on the Apparatus Table, to 
 
 # 8. Pages
 
-<img src="../resources/images/webpages.PNG">
+<img src="../resources/images/webpages.png">
+
+Index.html
+<img src="../resources/images/index.png">
+
+EditApparatus.html
+<img src="../resources/images/editApparatus.png">
+
+EditHoses.html
+<img src="../resources/images/editHoses.png">
+
+Cheatsheet.html
+<img src="../resources/images/cheatSheet.png">
