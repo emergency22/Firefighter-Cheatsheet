@@ -81,56 +81,56 @@ _The design will include a front end created with HTML, CSS, and Javascript and 
 
 ## 6.2. _GetApparatus Endpoint_
 
-_Name: GetApparatus_
-_Description: _After saving the Apparatus, the user should then be able to see the saved Apparatus in their account. This will be accomplished via a GET request to the apparatus table based on userName._
-_HTTP Method: GET_
-_Path: /apparatus/get_
-_Request Body: empty_
-_Errors: "ERROR. Cannot obtain apparatus."_
+_Name: GetApparatus_ <br>
+_Description: After saving the Apparatus, the user should then be able to see the saved Apparatus in their account. This will be accomplished via a GET request to the apparatus table based on userName._  <br>
+_HTTP Method: GET_  <br>
+_Path: /apparatus/get_ <br>
+_Request Body: empty_ <br>
+_Errors: "ERROR. Cannot obtain apparatus."_ <br>
 
 <img src="../resources/images/getApparatusData.PNG">
 
 ## 6.3 _SaveApparatus Endpoint_
 
-_Name: SaveApparatus_
-_Description: While logged in and on an Edit Apparatus page, the user will be able to enter in Apparatus and save those items to the database. This will be accomplished via a POST request to an Apparatus Table._
-_HTTP Method: POST_
-_Path: /apparatus/save_
-_Request Body: userName, apparatusTypeAndNumber, fireDept_
-_Errors: "ERROR: Cannot save apparatus."_
+_Name: SaveApparatus_ <br>
+_Description: While logged in and on an Edit Apparatus page, the user will be able to enter in Apparatus and save those items to the database. This will be accomplished via a POST request to an Apparatus Table._ <br>
+_HTTP Method: POST_ <br>
+_Path: /apparatus/save_ <br>
+_Request Body: userName, apparatusTypeAndNumber, fireDept_ <br>
+_Errors: "ERROR: Cannot save apparatus."_ <br>
 
 <img src="../resources/images/postSaveApparatus.PNG">
 
 ## 6.4 _GetHoses Endpoint_
 
-_Name: GetHoses_
-_Description: While logged in and on an Edit Hoses page, the user will be able to see the saved Hoses on a particular Apparatus. This will be accomplished via a GET request to the apparatus table based on userName and apparatusTypeAndNumber._
-_HTTP Method: GET_
-_Path: /hoses/get/userName/apparatusTypeAndNumber_
-_Request Body: 
-_Errors: "ERROR: Cannot obtain hoses."_
+_Name: GetHoses_ <br>
+_Description: While logged in and on an Edit Hoses page, the user will be able to see the saved Hoses on a particular Apparatus. This will be accomplished via a GET request to the apparatus table based on userName and apparatusTypeAndNumber._ <br>
+_HTTP Method: GET_ <br>
+_Path: /hoses/get/userName/apparatusTypeAndNumber_ <br>
+_Request Body: empty_  <br>
+_Errors: "ERROR: Cannot obtain hoses."_ <br>
 
 ## 6.5 _SaveHose Endpoint_
 
-_Name: SaveHose_
-_Description: While logged in and on an Edit Hoses page, the user will be able to enter in Hoses and save those items to the database. This will be accomplished via a POST request to an Apparatus Table, based on userName and apparatusTypeAndNumber._
-_HTTP Method: POST_
-_Path: /hoses/save_
-_Request Body: userName, apparatusTypeAndNumber, name, color, length, hoseDiameter, waterQuantityInGallons
-_Errors: "ERROR: Cannot save apparatus."_
+_Name: SaveHose_ <br>
+_Description: While logged in and on an Edit Hoses page, the user will be able to enter in Hoses and save those items to the database. This will be accomplished via a POST request to an Apparatus Table, based on userName and apparatusTypeAndNumber._ <br>
+_HTTP Method: POST_ <br>
+_Path: /hoses/save_ <br>
+_Request Body: userName, apparatusTypeAndNumber, name, color, length, hoseDiameter, waterQuantityInGallons_ <br>
+_Errors: "ERROR: Cannot save apparatus."_ <br>
 
 ## 6.6 _UpdateHose Endpoint_
 
-_Name: UpdateHose_
-_Description: While logged in and on an Edit Hoses page, the user will be able to enter hose values and save those items to the database. This will be accomplished via a PUT request to an Apparatus Table, based on userName and apparatusTypeAndNumber._
-_HTTP Method: PUT_
-_Path: /hoses/save_
-_Request Body: userName, apparatusTypeAndNumber, name, color, length, hoseDiameter, waterQuantityInGallons
-_Errors: "ERROR: Cannot update apparatus."_
+_Name: UpdateHose_ <br>
+_Description: While logged in and on an Edit Hoses page, the user will be able to enter hose values and save those items to the database. This will be accomplished via a PUT request to an Apparatus Table, based on userName and apparatusTypeAndNumber._ <br>
+_HTTP Method: PUT_ <br>
+_Path: /hoses/save_ <br>
+_Request Body: userName, apparatusTypeAndNumber, name, color, length, hoseDiameter, waterQuantityInGallons_ <br>
+_Errors: "ERROR: Cannot update apparatus."_ <br>
 
 # 7. Tables
 
-_The service will be initially populated with a Coefficient table that will have coefficient data for each hose diameter. Additionally, an Apparatus table will also be utilized._
+_The service will be initially populated with a Coefficient table that will have coefficient data for each hose diameter. Additionally, an Apparatus table will also be utilized._ <br>
 
 **Coefficient Table:** Hose diameter will be the Primary Key.<br>
 [Hose diameter in inches (Coefficient)] <br>
@@ -140,8 +140,8 @@ _2 (8)_<br>
 _2.5 (2)_<br>
 _3 (0.8)_<br>
 
-**Apparatus Table:** userName will be the Primary Key and apparatusTypeAndNumber will be the Sort Key.
-Additional data:
+**Apparatus Table:** userName will be the Primary Key and apparatusTypeAndNumber will be the Sort Key. <br>
+Additional data: <br>
 _fireDept_ <br> 
 _List<Hose>_ <br>
 
