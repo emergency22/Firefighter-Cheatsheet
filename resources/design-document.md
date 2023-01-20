@@ -2,6 +2,18 @@
 
 ## _Firefighter Cheatsheet_ Design
 
+## 0. Glossary
+
+_Apparatus: A land-mobile fire department vehicle such as an Engine, Tanker/Tender, Ladder Truck, Tower, or Quint._
+_Appliance: A special device through which flows water, such as valves and wye-sections._
+_Coefficient: A numerical value associated with a particular diameter hose that is used to calculate pump discharge pressures as part of a formula._
+_Driver/Engineer: A firefighter that is tasked with driving an apparatus and operating the apparatus' pump panel._
+_Deck Gun: A large device on the top of an apparatus that flows water without the use of hoses._
+_Nozzle: The device at the end of a hose which flows water. Often two types: Fog and smooth bore._
+_Pump Discharge Pressure: The PSI (pounds per square inch) pressure at which to set an individual hose on an apparatus' pump panel. Term is often interchangeable with "PSI"._
+_Pump Panel: The area of an apparatus which a driver/engineer controls the flow of water._
+
+
 ## 1. Problem Statement
 
 _Firefighters need to pump hoses at certain pump pressures in order to deliver an optimal amount of water to fight fires. Often, firefighters may not know or have forgotten the correct pump discharge pressure to utilize for each hose. This service will allow firefighters to enter apparatus and hoses and calculate the correct pump discharge pressure for each hose, thus making a “cheat sheet” to utilize when they need it most._
@@ -70,24 +82,24 @@ _The design will include a front end created with HTML, CSS, and Javascript and 
 
 ## 6.2. _First Endpoint_
 
-Name: SaveApparatus
-Description: While logged in and on an Edit Apparatus page, the user will be able to enter in Apparatus and save those items to the database. This will be accomplished via a POST request to an Apparatus Table._
-HTTP Method: POST
-Path: /apparatus/save
-Request Body: userName, apparatusTypeAndNumber, fireDept
-Errors: "ERROR: Cannot save apparatus."
+_Name: SaveApparatus_
+_Description: While logged in and on an Edit Apparatus page, the user will be able to enter in Apparatus and save those items to the database. This will be accomplished via a POST request to an Apparatus Table._
+_HTTP Method: POST_
+_Path: /apparatus/save_
+_Request Body: userName, apparatusTypeAndNumber, fireDept_
+_Errors: "ERROR: Cannot save apparatus."_
 
 
 <img src="../resources/images/postSaveApparatus.PNG">
 
 ## 6.3 _Second Endpoint_
 
-Name: GetApparatus
-Description: _After saving the Apparatus, the user should then be able to see the saved Apparatus in their account. This will be accomplished via a GET request to the apparatus table based on userName._
-HTTP Method: GET
-Path: /apparatus/get
-Request Body: empty
-Errors: "ERROR. Cannot obtain apparatus."
+_Name: GetApparatus_
+_Description: _After saving the Apparatus, the user should then be able to see the saved Apparatus in their account. This will be accomplished via a GET request to the apparatus table based on userName._
+_HTTP Method: GET_
+_Path: /apparatus/get_
+_Request Body: empty_
+_Errors: "ERROR. Cannot obtain apparatus."_
 
 <img src="../resources/images/getApparatusData.PNG">
 
@@ -99,7 +111,7 @@ _A GlobalSecondaryIndex will also be utilized, based on the Apparatus Table, to 
 
 # 8. Pages
 
-<img src="../resources/images/webpages.png">
+<img src="../resources/images/webpages.PNG">
 
 Index.html
 <img src="../resources/images/index.png">
