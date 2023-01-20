@@ -4,15 +4,14 @@
 
 ## 0. Glossary
 
-_Apparatus: A land-mobile fire department vehicle such as an Engine, Tanker/Tender, Ladder Truck, Tower, or Quint._
-_Appliance: A special device through which flows water, such as valves and wye-sections._
-_Coefficient: A numerical value associated with a particular diameter hose that is used to calculate pump discharge pressures as part of a formula._
-_Driver/Engineer: A firefighter that is tasked with driving an apparatus and operating the apparatus' pump panel._
-_Deck Gun: A large device on the top of an apparatus that flows water without the use of hoses._
-_Nozzle: The device at the end of a hose which flows water. Often two types: Fog and smooth bore._
-_Pump Discharge Pressure: The PSI (pounds per square inch) pressure at which to set an individual hose on an apparatus' pump panel. Term is often interchangeable with "PSI"._
-_Pump Panel: The area of an apparatus which a driver/engineer controls the flow of water._
-
+_**Apparatus:** A land-mobile fire department vehicle such as an Engine, Tanker/Tender, Ladder Truck, Tower, or Quint._<br>
+_**Appliance:** A special device through which flows water, such as valves and wye-sections._<br>
+_**Coefficient:** A numerical value associated with a particular diameter hose that is used to calculate pump discharge pressures as part of a formula._<br>
+_**Driver/Engineer:** A firefighter that is tasked with driving an apparatus and operating the apparatus' pump panel._<br>
+_**Deck Gun:** A large device on the top of an apparatus that flows water without the use of hoses._<br>
+_**Nozzle:** The device at the end of a hose which flows water. Often two types: Fog and smooth bore._<br>
+_**Pump Discharge Pressure:** The PSI (pounds per square inch) pressure at which to set an individual hose on an apparatus' pump panel. Term is often interchangeable with "PSI"._<br>
+_**Pump Panel:** The area of an apparatus which a driver/engineer controls the flow of water._<br>
 
 ## 1. Problem Statement
 
@@ -131,7 +130,20 @@ _Errors: "ERROR: Cannot update apparatus."_
 
 # 7. Tables
 
-_The service will be initially populated with a Coefficient table that will have coefficient data for each hose diameter. Additionally, one other table ~~two other tables~~ will be created: An Apparatus table ~~and a Hose table~~._
+_The service will be initially populated with a Coefficient table that will have coefficient data for each hose diameter. Additionally, an Apparatus table will also be utilized._
+
+**Coefficient Table:** Hose diameter will be the Primary Key.<br>
+[Hose diameter in inches (Coefficient)] <br>
+_1.5 (24)_<br>
+_1.75 (15)_<br>
+_2 (8)_<br>
+_2.5 (2)_<br>
+_3 (0.8)_<br>
+
+**Apparatus Table:** userName will be the Primary Key and apparatusTypeAndNumber will be the Sort Key.
+Additional data:
+_fireDept_ <br> 
+_List<Hose>_ <br>
 
 _A GlobalSecondaryIndex will also be utilized, based on the Apparatus Table, to allow a user to view all Apparatus for a particular Fire Department. This will utilize the String 'fire dept' in the Apparatus table as a Sort Key._
 
