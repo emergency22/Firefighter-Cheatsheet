@@ -40,9 +40,9 @@ U4. _As a Firefighter Cheatsheet customer, I want to `delete apparatus and corre
 
 U5. _As a Firefighter Cheatsheet customer, I want to `be able to calculate pump discharge pressures` when I `click a button`._
 
-U6. _As a Firefighter Cheatsheet customer, I want to `save each pump discharge pressure for each hose to my account for later viewing` when I `click a button`._
+U6. _As a Firefighter Cheatsheet customer, I want to `be able to edit the values on hoses` when I `click a button`._
 
-U7. _As a Firefighter Cheatsheet customer, I want to ` be able to adjust and save pump discharge pressures beyond the recommendations` when I `am logged in`._
+U7. _As a Firefighter Cheatsheet customer, I want to `save each pump discharge pressure for each hose to my account for later viewing` when I `click a button`._
 
 U8. _As a Firefighter Cheatsheet customer, I want to `be shown fog nozzle and smooth bore pump discharge pressures` when I `see my cheat sheet`._
 
@@ -80,19 +80,7 @@ _The design will include a front end created with HTML, CSS, and Javascript and 
 
 `HoseModel` (~~String uuid[primary key]~~, String name, String color, int length, Double hoseDiameter, int waterQuantityInGallons, int pumpDischargePressure)
 
-## 6.2. _First Endpoint_
-
-_Name: SaveApparatus_
-_Description: While logged in and on an Edit Apparatus page, the user will be able to enter in Apparatus and save those items to the database. This will be accomplished via a POST request to an Apparatus Table._
-_HTTP Method: POST_
-_Path: /apparatus/save_
-_Request Body: userName, apparatusTypeAndNumber, fireDept_
-_Errors: "ERROR: Cannot save apparatus."_
-
-
-<img src="../resources/images/postSaveApparatus.PNG">
-
-## 6.3 _Second Endpoint_
+## 6.2. _GetApparatus Endpoint_
 
 _Name: GetApparatus_
 _Description: _After saving the Apparatus, the user should then be able to see the saved Apparatus in their account. This will be accomplished via a GET request to the apparatus table based on userName._
@@ -102,6 +90,44 @@ _Request Body: empty_
 _Errors: "ERROR. Cannot obtain apparatus."_
 
 <img src="../resources/images/getApparatusData.PNG">
+
+## 6.3 _SaveApparatus Endpoint_
+
+_Name: SaveApparatus_
+_Description: While logged in and on an Edit Apparatus page, the user will be able to enter in Apparatus and save those items to the database. This will be accomplished via a POST request to an Apparatus Table._
+_HTTP Method: POST_
+_Path: /apparatus/save_
+_Request Body: userName, apparatusTypeAndNumber, fireDept_
+_Errors: "ERROR: Cannot save apparatus."_
+
+<img src="../resources/images/postSaveApparatus.PNG">
+
+## 6.4 _GetHoses Endpoint_
+
+_Name: GetHoses_
+_Description: While logged in and on an Edit Hoses page, the user will be able to see the saved Hoses on a particular Apparatus. This will be accomplished via a GET request to the apparatus table based on userName and apparatusTypeAndNumber._
+_HTTP Method: GET_
+_Path: /hoses/get/userName/apparatusTypeAndNumber_
+_Request Body: 
+_Errors: "ERROR: Cannot obtain hoses."_
+
+## 6.5 _SaveHose Endpoint_
+
+_Name: SaveHose_
+_Description: While logged in and on an Edit Hoses page, the user will be able to enter in Hoses and save those items to the database. This will be accomplished via a POST request to an Apparatus Table, based on userName and apparatusTypeAndNumber._
+_HTTP Method: POST_
+_Path: /hoses/save_
+_Request Body: userName, apparatusTypeAndNumber, name, color, length, hoseDiameter, waterQuantityInGallons
+_Errors: "ERROR: Cannot save apparatus."_
+
+## 6.6 _UpdateHose Endpoint_
+
+_Name: UpdateHose_
+_Description: While logged in and on an Edit Hoses page, the user will be able to enter hose values and save those items to the database. This will be accomplished via a PUT request to an Apparatus Table, based on userName and apparatusTypeAndNumber._
+_HTTP Method: PUT_
+_Path: /hoses/save_
+_Request Body: userName, apparatusTypeAndNumber, name, color, length, hoseDiameter, waterQuantityInGallons
+_Errors: "ERROR: Cannot update apparatus."_
 
 # 7. Tables
 
