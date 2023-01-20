@@ -77,7 +77,7 @@ _The design will include a front end created with HTML, CSS, and Javascript and 
 
 `ApparatusModel` (String userName[primary key], String apparatusTypeAndNumber[sort key], String fireDept, List<Hose>)
 
-`HoseModel` (~~String uuid[primary key]~~, String name, String color, int length, Double hoseDiameter, int waterQuantityInGallons, int pumpDischargePressure)
+`HoseModel` (String name, String color, int length, Double hoseDiameter, int waterQuantityInGallons, int pumpDischargePressure)
 
 ## 6.2. _GetApparatus Endpoint_
 
