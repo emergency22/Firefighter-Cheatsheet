@@ -27,7 +27,7 @@ body {
 
   .backgroundGradient {
     background: rgb(0,0,0);
-    background: linear-gradient(180deg, rgba(0,0,0,4) 20%, rgba(252,16,4,1) 100%);
+    background: linear-gradient(180deg, rgba(0,0,0,4) 15%, rgba(252,16,4,1) 100%);
 }
 
 .header {
@@ -35,18 +35,25 @@ body {
     background-color: #000000;
 }
 
-.navbar {
+#navbar {
     margin-top: 0px;
     width: 100%;
     padding: 0px;
     background-color: #000000;
-    text-align: right;
+    text-align: left;
 }
 
-.navigationBar {
+.logo {
+    float: left;
+}
+
+
+
+.textBar {
+    float: right;
+    text-align: right;
     display: inline-block;
 }
-
 
 .navbar-ul {
     display: inline-block;
