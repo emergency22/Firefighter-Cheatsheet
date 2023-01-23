@@ -1,13 +1,18 @@
 html {
     height: 100%;
+    background: url(../images/helmet.PNG) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
-body {
+
+/* body {
     height: 100%;
     margin: 0;
     background-repeat: no-repeat;
     background-attachment: fixed;
-}
-
+} */
 
 .backgroundStripey {
     background-image: repeating-linear-gradient(
@@ -40,14 +45,12 @@ body {
     width: 100%;
     padding: 0px;
     background-color: #000000;
-    text-align: left;
+    /* text-align: left; */
 }
 
 .logo {
     float: left;
 }
-
-
 
 .textBar {
     float: right;
