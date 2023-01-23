@@ -27,7 +27,7 @@ body {
 
   .backgroundGradient {
     background: rgb(0,0,0);
-    background: linear-gradient(180deg, rgba(0,0,0,4) 10%, rgba(252,16,4,1) 100%);
+    background: linear-gradient(180deg, rgba(0,0,0,4) 20%, rgba(252,16,4,1) 100%);
 }
 
 .header {
@@ -36,29 +36,27 @@ body {
 }
 
 .navbar {
-    margin-top: px;
+    margin-top: 0px;
     width: 100%;
     padding: 0px;
     background-color: #000000;
+    text-align: right;
 }
 
 .navigationBar {
     display: inline-block;
 }
 
+
 .navbar-ul {
     display: inline-block;
 }
 
 .nav-spacing {
-    margin-right: 2em;
+    margin-right: 1em;
 }
 
-.nav-font {
-    text-align: right;
-    vertical-align: middle;
+.nav-link {
+    color: white;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
 }
-
-  
-use class for multiple items   (uses a .dot)
-use id for a single element
