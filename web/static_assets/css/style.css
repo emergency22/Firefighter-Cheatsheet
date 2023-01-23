@@ -1,4 +1,31 @@
-.background {
+html {
+    height: 100%;
+}
+body {
+    height: 100%;
+    margin: 0;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+
+.backgroundStripey {
+    background-image: repeating-linear-gradient(
+        -45deg,
+        transparent,
+        transparent 20px,
+        black 20px,
+        black 40px
+      );
+      /* with multiple color stop lengths */
+      background-image: repeating-linear-gradient(
+        -45deg,
+        transparent 0 20px,
+        rgb(201, 250, 6) 20px 40px
+      );
+  }
+
+  .backgroundGradient {
     background: rgb(0,0,0);
     background: linear-gradient(180deg, rgba(0,0,0,4) 10%, rgba(252,16,4,1) 100%);
 }
@@ -9,11 +36,10 @@
 }
 
 .navbar {
-    margin-top: 0px;
+    margin-top: px;
     width: 100%;
     padding: 0px;
     background-color: #000000;
-    white-space: nowrap;
 }
 
 .navigationBar {
@@ -27,11 +53,12 @@
 .nav-spacing {
     margin-right: 2em;
 }
+
 .nav-font {
-    text-align: center;
+    text-align: right;
     vertical-align: middle;
 }
 
-
+  
 use class for multiple items   (uses a .dot)
 use id for a single element
