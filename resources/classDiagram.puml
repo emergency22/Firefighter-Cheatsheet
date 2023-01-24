@@ -10,7 +10,11 @@ SaveApparatusActivity -- SaveApparatusDAO
 GetHosesLambda -- GetHosesActivity
 GetHosesActivity -- GetHosesDAO
 
+SaveHoseLambda -- SaveHoseActivity
+SaveHoseActivity -- SaveHoseDAO
 
+UpdateHoseLambda -- UpdateHoseActivity
+UpdateHoseActivity -- UpdateHoseDAO
 
 class GetApparatusLambda {
 String username[primary key]
@@ -85,13 +89,70 @@ String response
 class GetHosesActivity {
 GetHosesDao
 
-GetApparatusResult handleRequest(GetHosesRequest)
+GetHosesResult handleRequest(GetHosesRequest)
 }
 
 class GetHosesDAO {
 DynamoDBMapper
 
 List<Hoses> getHoses(userName, ApparatusTypeAndNumber)
+}
+
+
+
+class SaveHoseLambda {
+String userName[primary key]
+String apparatusTypeAndNumber[sort key]
+Hose
+
+LambdaResponse handleRequest(AuthenticatedLambdaRequest<SaveHoseRequest>, Context)
+}
+
+class SaveHoseRequest {}
+
+class SaveHoseResponse {
+String response
+}
+
+class SaveHoseActivity {
+SaveHosesDao
+
+SaveHoseResult handleRequest(SaveHoseRequest)
+}
+
+class SaveHoseDAO {
+DynamoDBMapper
+
+Hose saveHose(userName, ApparatusTypeAndNumber, Hose)
+}
+
+
+
+
+class UpdateHoseLambda {
+String userName[primary key]
+String apparatusTypeAndNumber[sort key]
+Hose
+
+LambdaResponse handleRequest(AuthenticatedLambdaRequest<UpdateHoseRequest>, Context)
+}
+
+class UpdateHoseRequest {}
+
+class UpdateHoseResponse {
+String response
+}
+
+class UpdateHoseActivity {
+UpdateHosesDao
+
+UpdateHoseResult handleRequest(UpdateHoseRequest)
+}
+
+class UpdateHoseDAO {
+DynamoDBMapper
+
+Hose UpdateHose(userName, ApparatusTypeAndNumber, Hose)
 }
 
 
