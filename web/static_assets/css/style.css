@@ -88,8 +88,25 @@ body {
 #toggle {
     display: none;
   }
+
+  .loginArea {
+    /* float: right; */
+    font-size: 1.5em;
+    color: rgb(201, 250, 6);
+    float: right;
+    position: absolute;
+    top: 4.5em;
+    right: 25%;
+    margin-left: -2em;
+    margin-top: -45px;
+    width: 2em;
+    height: 45px;
+    z-index: 5;
+
+  }
   
   .hamburger {
+    float: right;
     position: absolute;
     top: 7em;
     right: 5%;
