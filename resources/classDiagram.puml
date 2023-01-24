@@ -1,8 +1,44 @@
 @startuml
 'https://plantuml.com/class-diagram
 
+GetApparatusLambda -- GetApparatusActivity
+GetApparatusActivity -- GetApparatusDAO
+
 SaveApparatusLambda -- SaveApparatusActivity
 SaveApparatusActivity -- SaveApparatusDAO
+
+GetHosesLambda -- GetHosesActivity
+GetHosesActivity -- GetHosesDAO
+
+
+
+class GetApparatusLambda {
+String username[primary key]
+String apparatusTypeAndNumber[sort key]
+
+LambdaResponse handleRequest(AuthenticatedLambdaRequest<GetApparatusRequest>, Context)
+}
+
+class GetApparatusRequest {}
+
+class GetApparatusResponse {
+String response
+}
+
+class GetApparatusActivity {
+GetApparatusDao
+
+GetApparatusResult handleRequest(GetApparatusRequest)
+}
+
+class GetApparatusDAO {
+DynamoDBMapper
+
+List<Apparatus> getApparatus(userName, ApparatusTypeAndNumber)
+}
+
+
+
 
 class SaveApparatusLambda {
 String username[primary key]
@@ -29,6 +65,37 @@ DynamoDBMapper
 
 Apparatus saveApparatus(Apparatus)
 }
+
+
+
+
+class GetHosesLambda {
+String userName[primary key]
+String apparatusTypeAndNumber[sort key]
+
+LambdaResponse handleRequest(AuthenticatedLambdaRequest<GetHosesRequest>, Context)
+}
+
+class GetHosesRequest {}
+
+class GetHosesResponse {
+String response
+}
+
+class GetHosesActivity {
+GetHosesDao
+
+GetApparatusResult handleRequest(GetHosesRequest)
+}
+
+class GetHosesDAO {
+DynamoDBMapper
+
+List<Hoses> getHoses(userName, ApparatusTypeAndNumber)
+}
+
+
+
 
 class Apparatus {
 String username[primary key]
