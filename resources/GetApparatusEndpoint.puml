@@ -1,0 +1,15 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+User -> EditApparatus.html: User requests apparatus data (userName)
+EditApparatus.html -> FirefighterCheatsheetClient: GET request (userName)
+FirefighterCheatsheetClient -> GetApparatusLambda: GET request (userName)
+GetApparatusLambda -> GetApparatusActivity: handleRequest(userName)
+GetApparatusActivity -> GetApparatusDAO: handleRequest(userName)
+GetApparatusDAO -> GetApparatusActivity: Apparatus list returned
+GetApparatusActivity -> EditApparatus.html: Response error if needed
+
+
+@enduml

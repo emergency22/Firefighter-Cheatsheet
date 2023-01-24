@@ -18,7 +18,6 @@ UpdateHoseActivity -- UpdateHoseDAO
 
 class GetApparatusLambda {
 String username[primary key]
-String apparatusTypeAndNumber[sort key]
 
 LambdaResponse handleRequest(AuthenticatedLambdaRequest<GetApparatusRequest>, Context)
 }
