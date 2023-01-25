@@ -1,8 +1,7 @@
 package com.nashss.se.firefightercheatsheetservice.Lambda;
-package com.nashss.se.musicplaylistservice.lambda;
 
-import com.nashss.se.musicplaylistservice.activity.requests.GetPlaylistRequest;
-import com.nashss.se.musicplaylistservice.activity.results.GetPlaylistResult;
+import com.nashss.se.firefightercheatsheetservice.Activity.Requests.GetApparatusRequest;
+import com.nashss.se.firefightercheatsheetservice.Activity.Results.GetApparatusResult;
 
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;

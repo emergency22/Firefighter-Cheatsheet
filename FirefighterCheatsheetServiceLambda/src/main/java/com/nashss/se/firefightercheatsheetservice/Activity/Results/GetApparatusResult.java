@@ -1,0 +1,4 @@
+package com.nashss.se.firefightercheatsheetservice.Activity.Results;
+
+public class GetApparatusResult {
+}

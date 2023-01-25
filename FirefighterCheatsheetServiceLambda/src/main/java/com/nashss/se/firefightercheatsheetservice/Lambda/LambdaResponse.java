@@ -1,5 +1,4 @@
 package com.nashss.se.firefightercheatsheetservice.Lambda;
-package com.nashss.se.musicplaylistservice.lambda;
 
 import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyResponseEvent;
 import com.fasterxml.jackson.core.JsonProcessingException;
