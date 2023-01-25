@@ -1,5 +1,5 @@
-import MusicPlaylistClient from '../api/musicPlaylistClient';
-import Header from '../components/header';
+import FirefighterCheatsheetClient from '../api/firefighterCheatsheetClient';
+import LoginArea from '../components/LoginArea';
 import BindingClass from "../util/bindingClass";
 import DataStore from "../util/DataStore";
 
@@ -33,7 +33,7 @@ class SearchPlaylists extends BindingClass {
 
         // Create a enw datastore with an initial "empty" state.
         this.dataStore = new DataStore(EMPTY_DATASTORE_STATE);
-        this.header = new Header(this.dataStore);
+        this.loginArea = new LoginArea(this.dataStore);
         this.dataStore.addChangeListener(this.displaySearchResults);
         console.log("searchPlaylists constructor");
     }
@@ -46,9 +46,9 @@ class SearchPlaylists extends BindingClass {
         document.getElementById('search-playlists-form').addEventListener('submit', this.search);
         document.getElementById('search-btn').addEventListener('click', this.search);
 
-        this.header.addHeaderToPage();
+        this.loginArea.addLoginAreaToPage();
 
-        this.client = new MusicPlaylistClient();
+        this.client = new FirefighterCheatsheetClient();
     }
 
     /**

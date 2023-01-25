@@ -1,39 +1,39 @@
-import MusicPlaylistClient from '../api/musicPlaylistClient';
+import FirefighterCheatsheetClient from '../api/firefigherCheatsheetClient';
 import BindingClass from "../util/bindingClass";
 
 /**
  * The header component for the website.
  */
-export default class Header extends BindingClass {
+export default class LoginArea extends BindingClass {
     constructor() {
         super();
 
         const methodsToBind = [
-            'addHeaderToPage', 'createSiteTitle', 'createUserInfoForHeader',
+            'addLoginAreaToPage', 'createSiteTitle', 'createUserInfoForLoginArea',
             'createLoginButton', 'createLoginButton', 'createLogoutButton'
         ];
         this.bindClassMethods(methodsToBind, this);
 
-        this.client = new MusicPlaylistClient();
+        this.client = new FirefighterCheatsheetClient();
     }
 
     /**
      * Add the header to the page.
      */
-    async addHeaderToPage() {
+    async addLoginAreaToPage() {
         const currentUser = await this.client.getIdentity();
 
         const siteTitle = this.createSiteTitle();
-        const userInfo = this.createUserInfoForHeader(currentUser);
+        const userInfo = this.createUserInfoForLoginArea(currentUser);
 
-        const header = document.getElementById('header');
-        header.appendChild(siteTitle);
-        header.appendChild(userInfo);
+        const loginArea = document.getElementById('loginArea');
+        loginArea.appendChild(siteTitle);
+        loginArea.appendChild(userInfo);
     }
 
     createSiteTitle() {
         const homeButton = document.createElement('a');
-        homeButton.classList.add('header_home');
+        homeButton.classList.add('loginArea_home');
         homeButton.href = 'index.html';
         homeButton.innerText = 'Playlists';
 
@@ -44,7 +44,7 @@ export default class Header extends BindingClass {
         return siteTitle;
     }
 
-    createUserInfoForHeader(currentUser) {
+    createUserInfoForHeaderLoginArea(currentUser) {
         const userInfo = document.createElement('div');
         userInfo.classList.add('user');
 
