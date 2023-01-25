@@ -1,6 +1,6 @@
 package com.nashss.se.firefightercheatsheetservice.Utils;
 
-public enum HOSELENGTHS {
+public enum HOSE_LENGTHS {
 
     FIFTY(50),
     ONE_HUNDRED(100),
@@ -13,13 +13,13 @@ public enum HOSELENGTHS {
     FOUR_FIFTY(450),
     FIVE_HUNDRED(500);
 
-    private int id;
+    private int length;
 
-    HOSELENGTHS(int id) {
-        this.id = id;
+    HOSE_LENGTHS(int length) {
+        this.length = length;
     }
 
-    public int getId() {
-        return id;
+    public int getLength() {
+        return length;
     }
 }
