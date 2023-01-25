@@ -96,7 +96,7 @@ body {
     /* float: right; */
     position: absolute;
     top: 4.5em;
-    right: 25%;
+    right: 5%;
     /* margin-left: -2em; */
     margin-top: -45px;
     /* width: 2em; */
@@ -200,6 +200,9 @@ body {
   }
 
 
+
+
+
   .button {
     background-color: blue;
     border: none;
@@ -221,5 +224,5 @@ body {
     line-height: 40px;
     height: 100px;
     text-decoration: none;
-    color: blue);
+    color: blue;
 }
