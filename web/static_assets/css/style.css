@@ -102,6 +102,23 @@ body {
     /* height: 45px; */
     /* z-index: 5; */
   }
+
+  .welcomeParent {
+    padding: 175px;
+    /* height: 200px; */
+    /* margin: auto; */
+  }
+
+  .welcomeChild {
+    border-radius: 5px;
+    background: #e0e0e0;
+
+    box-shadow:  50px 50px 75px #bcbcbc,
+             -40px -40px 75px #ffffff;
+
+    font-size: 1.5em;
+    color: black;
+  }
   
   .hamburger {
     float: right;
