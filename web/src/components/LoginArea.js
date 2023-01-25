@@ -1,4 +1,4 @@
-import FirefighterCheatsheetClient from '../api/firefigherCheatsheetClient';
+import FirefighterCheatsheetClient from '../api/firefighterCheatsheetClient';
 import BindingClass from "../util/bindingClass";
 
 /**
