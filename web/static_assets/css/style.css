@@ -1,6 +1,7 @@
 html {
     height: 100%;
     background: url(../images/helmet.PNG) no-repeat center center fixed;
+    /* background: url(../images/altBackground.JPG) no-repeat center center fixed; */
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -103,22 +104,6 @@ body {
     /* z-index: 5; */
   }
 
-  .welcomeParent {
-    padding: 175px;
-    /* height: 200px; */
-    /* margin: auto; */
-  }
-
-  .welcomeChild {
-    border-radius: 5px;
-    background: #e0e0e0;
-
-    box-shadow:  50px 50px 75px #bcbcbc,
-             -40px -40px 75px #ffffff;
-
-    font-size: 1.5em;
-    color: black;
-  }
   
   .hamburger {
     float: right;
