@@ -1,4 +1,4 @@
-import FirefighterCheatsheetClient from '../api/firefighterCheatsheetClient';
+import FirefighterCheatsheetClient from '../api/FirefighterCheatsheetClient';
 import BindingClass from "../util/bindingClass";
 
 /**
@@ -27,7 +27,7 @@ export default class LoginArea extends BindingClass {
         const userInfo = this.createUserInfoForLoginArea(currentUser);
 
         const loginArea = document.getElementById('loginArea');
-        loginArea.appendChild(siteTitle);
+        loginArea.appendChild(siteTitle);  
         loginArea.appendChild(userInfo);
     }
 
@@ -44,7 +44,7 @@ export default class LoginArea extends BindingClass {
         return siteTitle;
     }
 
-    createUserInfoForHeaderLoginArea(currentUser) {
+    createUserInfoForLoginArea(currentUser) {
         const userInfo = document.createElement('div');
         userInfo.classList.add('user');
 

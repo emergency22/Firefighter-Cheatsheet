@@ -70,7 +70,7 @@ body {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
 } */
 
-.footer {
+  .footer {
     position: fixed;
     bottom: 0;
     height: 50px;
@@ -80,13 +80,13 @@ body {
         transparent 0 20px,
         rgb(201, 250, 6) 20px 40px
       );
-}
+  }
 
 
   /**
   The hamburger
   **/
-#toggle {
+  #toggle {
     display: none;
   }
 
@@ -198,3 +198,28 @@ body {
     top: 0;
     transform: scale(1);
   }
+
+
+  .button {
+    background-color: blue;
+    border: none;
+    color: blue;
+    padding: 6px 8px 4px 8px;
+    text-align: center;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+  .button-group {
+      display: flex;
+      justify-content: space-between;
+  }
+
+  .loginArea_home {
+    font-size: 36px;
+    line-height: 40px;
+    height: 100px;
+    text-decoration: none;
+    color: blue);
+}

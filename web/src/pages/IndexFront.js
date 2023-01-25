@@ -1,4 +1,4 @@
-import FirefighterCheatsheetClient from '../api/firefighterCheatsheetClient';
+import FirefighterCheatsheetClient from '../api/FirefighterCheatsheetClient';
 import LoginArea from '../components/LoginArea';
 import BindingClass from "../util/bindingClass";
 import DataStore from "../util/DataStore";
@@ -25,7 +25,7 @@ const EMPTY_DATASTORE_STATE = {
 /**
  * Logic needed for the view playlist page of the website.
  */
-class SearchPlaylists extends BindingClass {
+class IndexFront extends BindingClass {
     constructor() {
         super();
 
