@@ -236,7 +236,7 @@ Resources:
         MusicPlaylistService:
           Type: Api
           Properties:
-            Path: /apparatus/get/userName
+            Path: /apparatus/get/
             Method: get
             Auth:
               Authorizer: 'NONE'
