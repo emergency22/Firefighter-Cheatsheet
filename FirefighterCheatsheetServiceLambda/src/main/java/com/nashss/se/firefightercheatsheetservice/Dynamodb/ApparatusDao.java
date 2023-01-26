@@ -52,7 +52,7 @@ public class ApparatusDao {
 
         if (apparatusList == null) {
             metricsPublisher.addCount(MetricsConstants.GETAPPARATUS_APPARTATUSLISTNOTFOUND_COUNT, 1);
-            throw new PlaylistNotFoundException("Could not find playlist with id " + id);
+            throw new ApparatusListNotFoundException("Could not find apparatus with id " + userName);
         }
         metricsPublisher.addCount(MetricsConstants.GETPLAYLIST_PLAYLISTNOTFOUND_COUNT, 0);
         return playlist;
