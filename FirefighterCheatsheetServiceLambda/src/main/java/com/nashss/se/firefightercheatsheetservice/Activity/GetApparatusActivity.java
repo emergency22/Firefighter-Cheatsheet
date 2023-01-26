@@ -46,9 +46,11 @@ public class GetApparatusActivity {
         log.info("Received GetApparatusRequest {}", getApparatusRequest);
         String userName = getApparatusRequest.getUserName();
         List<Apparatus> apparatusList = apparatusDao.getApparatus(userName);     // <-- come back to this
-        for (Apparatus apparatus : apparatusList) {
-            ApparatusModel apparatusModel = new ModelConverter().toApparatusModel(apparatus);
-        }
+//        for (Apparatus apparatus : apparatusList) {
+//            ApparatusModel apparatusModel = new ModelConverter().toApparatusModel(apparatus);
+//        }
+
+        List<ApparatusModel> apparatusModels = new ModelConverter().toApparatusModelList(apparatusList);
 
         return GetApparatusResult.builder()
                 .withApparatus(apparatus)    <-- probably needs to be a list of apparatus?

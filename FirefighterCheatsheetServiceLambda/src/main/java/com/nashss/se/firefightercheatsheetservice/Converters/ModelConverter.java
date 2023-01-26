@@ -2,6 +2,10 @@ package com.nashss.se.firefightercheatsheetservice.Converters;
 
 
 
+import com.nashss.se.firefightercheatsheetservice.Dynamodb.models.Apparatus;
+import com.nashss.se.firefightercheatsheetservice.Dynamodb.models.Hose;
+import com.nashss.se.firefightercheatsheetservice.Models.ApparatusModel;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,24 +14,22 @@ import java.util.List;
  */
 public class ModelConverter {
     /**
-     * Converts a provided {@link Playlist} into a {@link PlaylistModel} representation.
+     * Converts a provided {@link Apparatus} into an {@link ApparatusModel} representation.
      *
-     * @param playlist the playlist to convert
+     * @param apparatus the playlist to convert
      * @return the converted playlist
      */
-    public PlaylistModel toPlaylistModel(Playlist playlist) {
-        List<String> tags = null;
-        if (playlist.getTags() != null) {
-            tags = new ArrayList<>(playlist.getTags());
+    public ApparatusModel toApparatusModel(Apparatus apparatus) {
+        List<Hose> hoseList = null;
+        if (apparatus.getHoseList() != null) {
+            hoseList = new ArrayList<>(apparatus.getHoseList());
         }
 
-        return PlaylistModel.builder()
-                .withId(playlist.getId())
-                .withName(playlist.getName())
-                .withCustomerId(playlist.getCustomerId())
-                .withCustomerName(playlist.getCustomerName())
-                .withSongCount(playlist.getSongCount())
-                .withTags(tags)
+        return ApparatusModel.builder()
+                .withId(apparatus.getUserName())
+                .withName(apparatus.getApparatusTypeAndNumber())
+                .withCustomerId(apparatus.getFireDept())
+                .withTags(hoseList)
                 .build();
     }
 
@@ -63,18 +65,18 @@ public class ModelConverter {
 //    }
 
     /**
-     * Converts a list of Playlists to a list of PlaylistModels.
+     * Converts a list of Apparatus to a list of ApparatusModels.
      *
-     * @param playlists The Playlists to convert to PlaylistModels
-     * @return The converted list of PlaylistModels
+     * @param apparatusList The Apparatus to convert to ApparatusModels
+     * @return The converted list of ApparatusModels
      */
-    public List<PlaylistModel> toPlaylistModelList(List<Playlist> playlists) {
-        List<PlaylistModel> playlistModels = new ArrayList<>();
+    public List<ApparatusModel> toApparatusModelList(List<Apparatus> apparatusList) {
+        List<ApparatusModel> apparatusModels = new ArrayList<>();
 
-        for (Playlist playlist : playlists) {
-            playlistModels.add(toPlaylistModel(playlist));
+        for (Apparatus apparatus : apparatusList) {
+            apparatusModels.add(toApparatusModel(apparatus));
         }
 
-        return playlistModels;
+        return apparatusModels;
     }
 }

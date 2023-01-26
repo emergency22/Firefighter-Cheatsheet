@@ -59,8 +59,9 @@ import static com.nashss.se.firefightercheatsheetservice.Utils.CollectionUtils.c
             return Objects.hash(userName, apparatusTypeAndNumber, fireDept, hoseList);
         }
 
-        public static class Builder {
 
+        //CHECKSTYLE:OFF:Builder
+        public static class Builder {
             private String userName;
             private String apparatusTypeAndNumber;
             private String fireDept;
