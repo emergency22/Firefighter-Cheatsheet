@@ -26,10 +26,10 @@ public class ModelConverter {
         }
 
         return ApparatusModel.builder()
-                .withId(apparatus.getUserName())
-                .withName(apparatus.getApparatusTypeAndNumber())
-                .withCustomerId(apparatus.getFireDept())
-                .withTags(hoseList)
+                .withUserName(apparatus.getUserName())
+                .withApparatusTypeAndNumber(apparatus.getApparatusTypeAndNumber())
+                .withFireDept(apparatus.getFireDept())
+                .withHoseList(hoseList)
                 .build();
     }
 

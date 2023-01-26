@@ -14,14 +14,14 @@ import static com.nashss.se.firefightercheatsheetservice.Utils.CollectionUtils.c
         private final String fireDept;
         private List<Hose> hoseList;
 
-        public ApparatusModel(String userName, String apparatusTypeAndNumber, String fireDept, List<Hose> hoseList) {
+        private ApparatusModel(String userName, String apparatusTypeAndNumber, String fireDept, List<Hose> hoseList) {
             this.userName = userName;
             this.apparatusTypeAndNumber = apparatusTypeAndNumber;
             this.fireDept = fireDept;
             this.hoseList = new ArrayList<>(hoseList);
         }
 
-        public ApparatusModel(String userName, String apparatusTypeAndNumber, String fireDept) {
+        private ApparatusModel(String userName, String apparatusTypeAndNumber, String fireDept) {
             this.userName = userName;
             this.apparatusTypeAndNumber = apparatusTypeAndNumber;
             this.fireDept = fireDept;
@@ -61,6 +61,10 @@ import static com.nashss.se.firefightercheatsheetservice.Utils.CollectionUtils.c
 
 
         //CHECKSTYLE:OFF:Builder
+        public static Builder builder() {
+            return new Builder();
+        }
+
         public static class Builder {
             private String userName;
             private String apparatusTypeAndNumber;
