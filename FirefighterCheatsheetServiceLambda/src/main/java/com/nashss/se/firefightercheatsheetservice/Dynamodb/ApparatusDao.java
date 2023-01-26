@@ -45,13 +45,15 @@ public class ApparatusDao {
      * @return the List of Apparatus, or null if none was found.
      */
     public List<Apparatus> getApparatus(String userName) {
+        Apparatus apparatus = new Apparatus();
+        apparatus.setUserName(userName);
         DynamoDBQueryExpression<Apparatus> queryExpression = new DynamoDBQueryExpression<Apparatus>()
-                .withKeyConditionExpression("userName = :userName");
+                .withHashKeyValues(apparatus);
         PaginatedQueryList<Apparatus> apparatusList = this.dynamoDbMapper.query(Apparatus.class, queryExpression);
 
         if (apparatusList == null) {
             metricsPublisher.addCount(MetricsConstants.GETAPPARATUS_APPARTATUSLISTNOTFOUND_COUNT, 1);
-            throw new ApparatusListNotFoundException("Could not find apparatus with id " + userName);
+            throw new ApparatusListNotFoundException("Could not find apparatus for user name: " + userName);
         }
         metricsPublisher.addCount(MetricsConstants.GETAPPARATUS_APPARTATUSLISTNOTFOUND_COUNT, 0);
         return apparatusList;

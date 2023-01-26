@@ -17,6 +17,8 @@ public class Apparatus {
     private String fireDept;
     private List<Hose> hoseList;
 
+    public Apparatus() {}
+
     public Apparatus(String userName, String apparatusTypeAndNumber, String fireDept, List<Hose> hoseList) {
         this.userName = userName;
         this.apparatusTypeAndNumber = apparatusTypeAndNumber;
