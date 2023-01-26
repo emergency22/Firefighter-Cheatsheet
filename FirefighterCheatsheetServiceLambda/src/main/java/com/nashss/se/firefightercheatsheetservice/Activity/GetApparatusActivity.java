@@ -1,17 +1,17 @@
 package com.nashss.se.firefightercheatsheetservice.Activity;
 
-
 import com.nashss.se.firefightercheatsheetservice.Activity.Requests.GetApparatusRequest;
 import com.nashss.se.firefightercheatsheetservice.Activity.Results.GetApparatusResult;
-import com.nashss.se.musicplaylistservice.converters.ModelConverter;
-import com.nashss.se.musicplaylistservice.dynamodb.PlaylistDao;
-import com.nashss.se.musicplaylistservice.dynamodb.models.Playlist;
-import com.nashss.se.musicplaylistservice.models.PlaylistModel;
+import com.nashss.se.firefightercheatsheetservice.Dynamodb.ApparatusDao;
+import com.nashss.se.firefightercheatsheetservice.Dynamodb.models.Apparatus;
+import com.nashss.se.firefightercheatsheetservice.Models.ApparatusModel;
+import com.nashss.se.firefightercheatsheetservice.Converters.ModelConverter;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.inject.Inject;
+import java.util.List;
 
 /**
  * Implementation of the GetPlaylistActivity for the MusicPlaylistService's GetPlaylist API.
@@ -44,12 +44,14 @@ public class GetApparatusActivity {
      */
     public GetApparatusResult handleRequest(final GetApparatusRequest getApparatusRequest) {
         log.info("Received GetApparatusRequest {}", getApparatusRequest);
-        String requestedId = getApparatusRequest.getUserName();
-        Playlist playlist = apparatusDao.getApparatus(requestedId);     // <-- come back to this
-        PlaylistModel playlistModel = new ModelConverter().toPlaylistModel(playlist);
+        String userName = getApparatusRequest.getUserName();
+        List<Apparatus> apparatusList = apparatusDao.getApparatus(userName);     // <-- come back to this
+        for (Apparatus apparatus : apparatusList) {
+            ApparatusModel apparatusModel = new ModelConverter().toApparatusModel(apparatus);
+        }
 
         return GetApparatusResult.builder()
-                .withApparatus(apparatus)
+                .withApparatus(apparatus)    <-- probably needs to be a list of apparatus?
                 .build();
     }
 }
