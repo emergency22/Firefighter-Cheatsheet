@@ -1,5 +1,8 @@
 package com.nashss.se.firefightercheatsheetservice.Dynamodb;
 
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBQueryExpression;
+import com.amazonaws.services.dynamodbv2.datamodeling.PaginatedQueryList;
+import com.nashss.se.firefightercheatsheetservice.Dynamodb.models.Apparatus;
 import com.nashss.se.musicplaylistservice.dynamodb.models.Playlist;
 import com.nashss.se.musicplaylistservice.exceptions.PlaylistNotFoundException;
 import com.nashss.se.firefightercheatsheetservice.Metrics.MetricsConstants;
@@ -42,11 +45,13 @@ public class ApparatusDao {
      * @param id the Playlist ID
      * @return the stored Playlist, or null if none was found.
      */
-    public Playlist getPlaylist(String id) {
-        Playlist playlist = this.dynamoDbMapper.load(Playlist.class, id);
+    public Playlist getApparatus(String userName) {
+        DynamoDBQueryExpression<Apparatus> queryExpression = new DynamoDBQueryExpression<Apparatus>()
+                .withKeyConditionExpression("userName = :userName");
+        PaginatedQueryList<Apparatus> apparatusList = this.dynamoDbMapper.query(Apparatus.class, queryExpression);
 
-        if (playlist == null) {
-            metricsPublisher.addCount(MetricsConstants.GETPLAYLIST_PLAYLISTNOTFOUND_COUNT, 1);
+        if (apparatusList == null) {
+            metricsPublisher.addCount(MetricsConstants.GETAPPARATUS_APPARTATUSLISTNOTFOUND_COUNT, 1);
             throw new PlaylistNotFoundException("Could not find playlist with id " + id);
         }
         metricsPublisher.addCount(MetricsConstants.GETPLAYLIST_PLAYLISTNOTFOUND_COUNT, 0);

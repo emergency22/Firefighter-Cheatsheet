@@ -4,7 +4,7 @@ package com.nashss.se.firefightercheatsheetservice.Metrics;
  * Constant values for use with metrics.
  */
 public class MetricsConstants {
-    public static final String GETPLAYLIST_PLAYLISTNOTFOUND_COUNT = "GetPlaylist.PlaylistNotFoundException.Count";
+    public static final String GETAPPARATUS_APPARTATUSLISTNOTFOUND_COUNT = "GetApparatus.ApparatusListNotFoundException.Count";
     public static final String UPDATEPLAYLIST_INVALIDATTRIBUTEVALUE_COUNT =
             "UpdatePlaylist.InvalidAttributeValueException.Count";
     public static final String UPDATEPLAYLIST_INVALIDATTRIBUTECHANGE_COUNT =

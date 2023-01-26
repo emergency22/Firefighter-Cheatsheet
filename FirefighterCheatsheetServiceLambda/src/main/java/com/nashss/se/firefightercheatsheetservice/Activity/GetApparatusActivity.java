@@ -45,7 +45,7 @@ public class GetApparatusActivity {
     public GetApparatusResult handleRequest(final GetApparatusRequest getApparatusRequest) {
         log.info("Received GetApparatusRequest {}", getApparatusRequest);
         String requestedId = getApparatusRequest.getUserName();
-        Playlist playlist = apparatusDao.getPlaylist(requestedId);     // <-- come back to this
+        Playlist playlist = apparatusDao.getApparatus(requestedId);     // <-- come back to this
         PlaylistModel playlistModel = new ModelConverter().toPlaylistModel(playlist);
 
         return GetApparatusResult.builder()

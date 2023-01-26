@@ -77,9 +77,9 @@ _The design will include a front end created with HTML, CSS, and Javascript and 
 
 `CoefficientModel` (Double hoseDiameter[primary key], Double coefficient) [will be used to populate initial Coefficient table]
 
-`ApparatusModel` (String userName[primary key], String apparatusTypeAndNumber[sort key], String fireDept, List<Hose>)
+`ApparatusModel` (String userName[primary key], String apparatusTypeAndNumber[sort key], String fireDept, List of Hose)
 
-`HoseModel` (String name, String color, int length, Double hoseDiameter, int waterQuantityInGallons, int pumpDischargePressure)
+`HoseModel` (String name[primary key], String color, int length, Double hoseDiameter, int waterQuantityInGallons, int pumpDischargePressure)
 
 ## 6.2. _GetApparatus Endpoint_
 
@@ -145,7 +145,7 @@ _3 (0.8)_<br>
 **Apparatus Table:** userName will be the Primary Key and apparatusTypeAndNumber will be the Sort Key. <br>
 Additional data: <br>
 _fireDept: The fire department associated with this particular apparatus._ <br> 
-_List<Hose>: A list of hoses associated with this particular apparatus._ <br>
+_List of Hose: A list of hoses associated with this particular apparatus._ <br>
 
 _A GlobalSecondaryIndex will also be utilized, based on the Apparatus Table, to allow a user to view all Apparatus for a particular Fire Department. This will utilize the String 'fire dept' in the Apparatus table as a Sort Key._
 
