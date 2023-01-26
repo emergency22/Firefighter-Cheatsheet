@@ -3,8 +3,7 @@ package com.nashss.se.firefightercheatsheetservice.Dynamodb;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBQueryExpression;
 import com.amazonaws.services.dynamodbv2.datamodeling.PaginatedQueryList;
 import com.nashss.se.firefightercheatsheetservice.Dynamodb.models.Apparatus;
-import com.nashss.se.musicplaylistservice.dynamodb.models.Playlist;
-import com.nashss.se.musicplaylistservice.exceptions.PlaylistNotFoundException;
+import com.nashss.se.firefightercheatsheetservice.Exceptions.ApparatusListNotFoundException;
 import com.nashss.se.firefightercheatsheetservice.Metrics.MetricsConstants;
 import com.nashss.se.firefightercheatsheetservice.Metrics.MetricsPublisher;
 
@@ -20,7 +19,7 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 
 /**
- * Accesses data for a playlist using {@link Playlist} to represent the model in DynamoDB.
+ * Accesses data for a List of Apparatus using {@link Apparatus} to represent the model in DynamoDB.
  */
 @Singleton
 public class ApparatusDao {
@@ -28,9 +27,9 @@ public class ApparatusDao {
     private final MetricsPublisher metricsPublisher;
 
     /**
-     * Instantiates a PlaylistDao object.
+     * Instantiates a ApparatusDao object.
      *
-     * @param dynamoDbMapper   the {@link DynamoDBMapper} used to interact with the playlists table
+     * @param dynamoDbMapper   the {@link DynamoDBMapper} used to interact with the Apparatus table
      * @param metricsPublisher the {@link MetricsPublisher} used to record metrics.
      */
     @Inject
@@ -40,12 +39,12 @@ public class ApparatusDao {
     }
 
     /**
-     * Returns the {@link Playlist} corresponding to the specified id.
+     * Returns the {@link List<Apparatus>} corresponding to the specified userName.
      *
-     * @param id the Playlist ID
-     * @return the stored Playlist, or null if none was found.
+     * @param userName the userName associated with the logged in account.
+     * @return the List of Apparatus, or null if none was found.
      */
-    public Playlist getApparatus(String userName) {
+    public List<Apparatus> getApparatus(String userName) {
         DynamoDBQueryExpression<Apparatus> queryExpression = new DynamoDBQueryExpression<Apparatus>()
                 .withKeyConditionExpression("userName = :userName");
         PaginatedQueryList<Apparatus> apparatusList = this.dynamoDbMapper.query(Apparatus.class, queryExpression);
@@ -54,8 +53,8 @@ public class ApparatusDao {
             metricsPublisher.addCount(MetricsConstants.GETAPPARATUS_APPARTATUSLISTNOTFOUND_COUNT, 1);
             throw new ApparatusListNotFoundException("Could not find apparatus with id " + userName);
         }
-        metricsPublisher.addCount(MetricsConstants.GETPLAYLIST_PLAYLISTNOTFOUND_COUNT, 0);
-        return playlist;
+        metricsPublisher.addCount(MetricsConstants.GETAPPARATUS_APPARTATUSLISTNOTFOUND_COUNT, 0);
+        return apparatusList;
     }
 
     /**

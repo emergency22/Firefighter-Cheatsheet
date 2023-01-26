@@ -90,7 +90,9 @@ public class Hose {
         if (this == o) return true;
         if (!(o instanceof Hose)) return false;
         Hose hose = (Hose) o;
-        return length == hose.length && waterQuantityInGallons == hose.waterQuantityInGallons &&
+        return length == hose.length &&
+                waterQuantityInGallons == hose.waterQuantityInGallons &&
+                pumpDischargePressure == hose.pumpDischargePressure &&
                 Objects.equals(name, hose.name) &&
                 Objects.equals(color, hose.color) &&
                 Objects.equals(hoseDiameter, hose.hoseDiameter);
@@ -98,6 +100,6 @@ public class Hose {
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, color, length, hoseDiameter);
+        return Objects.hash(name, color, length, hoseDiameter, waterQuantityInGallons, pumpDischargePressure);
     }
 }

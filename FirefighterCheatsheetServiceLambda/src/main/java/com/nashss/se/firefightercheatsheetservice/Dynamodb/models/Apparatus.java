@@ -5,6 +5,7 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBRangeKey;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -20,7 +21,13 @@ public class Apparatus {
         this.userName = userName;
         this.apparatusTypeAndNumber = apparatusTypeAndNumber;
         this.fireDept = fireDept;
-        this.hoseList = hoseList;
+        this.hoseList = new ArrayList<>(hoseList);
+    }
+
+    public Apparatus(String userName, String apparatusTypeAndNumber, String fireDept) {
+        this.userName = userName;
+        this.apparatusTypeAndNumber = apparatusTypeAndNumber;
+        this.fireDept = fireDept;
     }
 
     @DynamoDBHashKey(attributeName = "userName")
@@ -52,11 +59,11 @@ public class Apparatus {
 
     @DynamoDBAttribute(attributeName = "fireDept")
     public List<Hose> getHoseList() {
-        return hoseList;
+        return new ArrayList<>(hoseList);
     }
 
     public void setHoseList(List<Hose> hoseList) {
-        this.hoseList = hoseList;
+        this.hoseList = new ArrayList<>(hoseList);
     }
 
     @Override
@@ -64,12 +71,11 @@ public class Apparatus {
         if (this == o) return true;
         if (!(o instanceof Apparatus)) return false;
         Apparatus apparatus = (Apparatus) o;
-        return Objects.equals(userName, apparatus.userName) && Objects.equals(apparatusTypeAndNumber,
-                apparatus.apparatusTypeAndNumber) && Objects.equals(fireDept, apparatus.fireDept);
+        return Objects.equals(userName, apparatus.userName) && Objects.equals(apparatusTypeAndNumber, apparatus.apparatusTypeAndNumber) && Objects.equals(fireDept, apparatus.fireDept) && Objects.equals(hoseList, apparatus.hoseList);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(userName, apparatusTypeAndNumber, fireDept);
+        return Objects.hash(userName, apparatusTypeAndNumber, fireDept, hoseList);
     }
 }

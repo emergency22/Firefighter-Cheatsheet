@@ -3,7 +3,7 @@ package com.nashss.se.firefightercheatsheetservice.Activity.Results;
 import com.nashss.se.firefightercheatsheetservice.Models.ApparatusModel;
 
 public class GetApparatusResult {
-    private final ApparatusModel apparatus;   // <--- probably a List<ApparatusModel>
+    private final ApparatusModel apparatus;
 
     private GetApparatusResult(ApparatusModel apparatus) {
         this.apparatus = apparatus;
