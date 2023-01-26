@@ -86,7 +86,7 @@ _The design will include a front end created with HTML, CSS, and Javascript and 
 _Name: GetApparatus_ <br>
 _Description: After saving the Apparatus, the user should then be able to see the saved Apparatus in their account. This will be accomplished via a GET request to the apparatus table based on userName. This endpoint will additionally used to generate the cheat sheet on the CheatSheet.html webpage._  <br>
 _HTTP Method: GET_  <br>
-_Path: /apparatus/get_ <br>
+_Path: /apparatus/get/userName_ <br>
 _Request Body: empty_ <br>
 _Errors: "ERROR. Cannot obtain apparatus."_ <br>
 

@@ -20,7 +20,7 @@ import javax.inject.Inject;
  */
 public class GetApparatusActivity {
     private final Logger log = LogManager.getLogger();
-    private final GetApparatusDao getApparatusDao;
+    private final ApparatusDao apparatusDao;
 
     /**
      * Instantiates a new GetPlaylistActivity object.
@@ -28,8 +28,8 @@ public class GetApparatusActivity {
      * @param playlistDao PlaylistDao to access the playlist table.
      */
     @Inject
-    public GetApparatusActivity(GetApparatusDao getApparatusDao) {
-        this.getApparatusDao = getApparatusDao;
+    public GetApparatusActivity(ApparatusDao apparatusDao) {
+        this.apparatusDao = apparatusDao;
     }
 
     /**
@@ -42,10 +42,10 @@ public class GetApparatusActivity {
      * @param getPlaylistRequest request object containing the playlist ID
      * @return getPlaylistResult result object containing the API defined {@link PlaylistModel}
      */
-    public GetApparatusResult handleRequest(final GetPlaylistRequest getPlaylistRequest) {
-        log.info("Received GetPlaylistRequest {}", getPlaylistRequest);
-        String requestedId = getPlaylistRequest.getId();
-        Playlist playlist = playlistDao.getPlaylist(requestedId);
+    public GetApparatusResult handleRequest(final GetApparatusRequest getApparatusRequest) {
+        log.info("Received GetApparatusRequest {}", getApparatusRequest);
+        String requestedId = getApparatusRequest.getUserName();
+        Playlist playlist = apparatusDao.getPlaylist(requestedId);     // <-- come back to this
         PlaylistModel playlistModel = new ModelConverter().toPlaylistModel(playlist);
 
         return GetApparatusResult.builder()
