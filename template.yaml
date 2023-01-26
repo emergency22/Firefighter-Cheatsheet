@@ -1,7 +1,7 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
 Description: >
-  Music Playlist Service
+  Firefighter Cheatsheet Service
 
 Parameters:
 
@@ -199,21 +199,21 @@ Resources:
                   - logs:PutLogEvents
                   - cloudwatch:PutMetricData
                 Resource: '*'
-        - PolicyName: 'AccessPlaylistsTable'
+        - PolicyName: 'AccessApparatusTable'
           PolicyDocument:
             Version: '2012-10-17'
             Statement:
               - Effect: Allow
                 Action: dynamodb:*
-                Resource: !Sub "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/playlists"
+                Resource: !Sub "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/apparatus"
 
-        - PolicyName: 'AccessAlbumTracksTable'
-          PolicyDocument:
-            Version: '2012-10-17'
-            Statement:
-              - Effect: Allow
-                Action: dynamodb:*
-                Resource: !Sub "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/album_tracks"
+#        - PolicyName: 'AccessAlbumTracksTable'
+#          PolicyDocument:
+#            Version: '2012-10-17'
+#            Statement:
+#              - Effect: Allow
+#                Action: dynamodb:*
+#                Resource: !Sub "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/album_tracks"
 
   #-----------------------------------------------------
   # Lambda Functions Configuration
@@ -372,33 +372,49 @@ Resources:
   # DynamoDB Configuration
   #-----------------------------------------------------
 
-  PlaylistsTable:
+  ApparatusTable:
     Type: AWS::DynamoDB::Table
     Properties:
       AttributeDefinitions:
-        - AttributeName: "id"
+        - AttributeName: "userName"
+          AttributeType: "S"
+        - AttributeName: "apparatusTypeAndNumber"
           AttributeType: "S"
       KeySchema:
-        - AttributeName: "id"
+        - AttributeName: "userName"
           KeyType: "HASH"
-      BillingMode: "PAY_PER_REQUEST"
-      TableName: "playlists"
-
-  AlbumTracksTable:
-    Type: AWS::DynamoDB::Table
-    Properties:
-      AttributeDefinitions:
-        - AttributeName: "asin"
-          AttributeType: "S"
-        - AttributeName: "track_number"
-          AttributeType: "N"
-      KeySchema:
-        - AttributeName: "asin"
-          KeyType: "HASH"
-        - AttributeName: "track_number"
+        - AttributeName: "apparatusTypeAndNumber"
           KeyType: "RANGE"
       BillingMode: "PAY_PER_REQUEST"
-      TableName: "album_tracks"
+      TableName: "apparatus"
+
+#  PlaylistsTable:
+#    Type: AWS::DynamoDB::Table
+#    Properties:
+#      AttributeDefinitions:
+#        - AttributeName: "id"
+#          AttributeType: "S"
+#      KeySchema:
+#        - AttributeName: "id"
+#          KeyType: "HASH"
+#      BillingMode: "PAY_PER_REQUEST"
+#      TableName: "playlists"
+
+#  AlbumTracksTable:
+#    Type: AWS::DynamoDB::Table
+#    Properties:
+#      AttributeDefinitions:
+#        - AttributeName: "asin"
+#          AttributeType: "S"
+#        - AttributeName: "track_number"
+#          AttributeType: "N"
+#      KeySchema:
+#        - AttributeName: "asin"
+#          KeyType: "HASH"
+#        - AttributeName: "track_number"
+#          KeyType: "RANGE"
+#      BillingMode: "PAY_PER_REQUEST"
+#      TableName: "album_tracks"
 
 #-----------------------------------------------------
 # The outputs defined below will be printed
