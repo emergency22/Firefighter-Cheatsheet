@@ -1,8 +1,8 @@
 package com.nashss.se.firefightercheatsheetservice.Activity;
 
 
-import com.nashss.se.musicplaylistservice.activity.requests.GetPlaylistRequest;
-import com.nashss.se.musicplaylistservice.activity.results.GetPlaylistResult;
+import com.nashss.se.firefightercheatsheetservice.Activity.Requests.GetApparatusRequest;
+import com.nashss.se.firefightercheatsheetservice.Activity.Results.GetApparatusResult;
 import com.nashss.se.musicplaylistservice.converters.ModelConverter;
 import com.nashss.se.musicplaylistservice.dynamodb.PlaylistDao;
 import com.nashss.se.musicplaylistservice.dynamodb.models.Playlist;
@@ -18,9 +18,9 @@ import javax.inject.Inject;
  *
  * This API allows the customer to get one of their saved playlists.
  */
-public class GetPlaylistActivity {
+public class GetApparatusActivity {
     private final Logger log = LogManager.getLogger();
-    private final PlaylistDao playlistDao;
+    private final GetApparatusDao getApparatusDao;
 
     /**
      * Instantiates a new GetPlaylistActivity object.
@@ -28,8 +28,8 @@ public class GetPlaylistActivity {
      * @param playlistDao PlaylistDao to access the playlist table.
      */
     @Inject
-    public GetPlaylistActivity(PlaylistDao playlistDao) {
-        this.playlistDao = playlistDao;
+    public GetApparatusActivity(GetApparatusDao getApparatusDao) {
+        this.getApparatusDao = getApparatusDao;
     }
 
     /**
@@ -42,14 +42,14 @@ public class GetPlaylistActivity {
      * @param getPlaylistRequest request object containing the playlist ID
      * @return getPlaylistResult result object containing the API defined {@link PlaylistModel}
      */
-    public GetPlaylistResult handleRequest(final GetPlaylistRequest getPlaylistRequest) {
+    public GetApparatusResult handleRequest(final GetPlaylistRequest getPlaylistRequest) {
         log.info("Received GetPlaylistRequest {}", getPlaylistRequest);
         String requestedId = getPlaylistRequest.getId();
         Playlist playlist = playlistDao.getPlaylist(requestedId);
         PlaylistModel playlistModel = new ModelConverter().toPlaylistModel(playlist);
 
-        return GetPlaylistResult.builder()
-                .withPlaylist(playlistModel)
+        return GetApparatusResult.builder()
+                .withApparatus(apparatus)
                 .build();
     }
 }

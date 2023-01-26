@@ -19,7 +19,7 @@ public class GetApparatusLambda extends LambdaActivityRunner<GetApparatusRequest
         return super.runActivity(
                 () -> input.fromPath(path ->
                         GetApparatusRequest.builder()
-                                .withId(path.get("id"))
+                                .withUserName(path.get("userName"))
                                 .build()),
                 (request, serviceComponent) ->
                         serviceComponent.provideGetApparatusActivity().handleRequest(request)
