@@ -72,10 +72,10 @@ export default class FirefighterCheatSheetClient extends BindingClass {
     }
 
     /**
-     * Gets the playlist for the given ID.
-     * @param id Unique identifier for a playlist
+     * Gets the Apparatus for the given user name.
+     * @param userName Unique identifier for an apparatus
      * @param errorCallback (Optional) A function to execute if the call fails.
-     * @returns The playlist's metadata.
+     * @returns The apparatus metadata.
      */
     async getApparatus(userName, errorCallback) {
         try {
