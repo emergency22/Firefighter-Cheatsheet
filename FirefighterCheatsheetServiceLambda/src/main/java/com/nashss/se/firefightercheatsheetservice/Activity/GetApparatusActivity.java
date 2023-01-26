@@ -14,18 +14,18 @@ import javax.inject.Inject;
 import java.util.List;
 
 /**
- * Implementation of the GetPlaylistActivity for the MusicPlaylistService's GetPlaylist API.
+ * Implementation of the GetApparatusActivity for the FirefighterCheatSheetService's GetApparatus API.
  *
- * This API allows the customer to get one of their saved playlists.
+ * This API allows the customer to get one or more of their saved apparatus.
  */
 public class GetApparatusActivity {
     private final Logger log = LogManager.getLogger();
     private final ApparatusDao apparatusDao;
 
     /**
-     * Instantiates a new GetPlaylistActivity object.
+     * Instantiates a new GetApparatusActivity object.
      *
-     * @param playlistDao PlaylistDao to access the playlist table.
+     * @param apparatusDao ApparatusDao to access the apparatus table.
      */
     @Inject
     public GetApparatusActivity(ApparatusDao apparatusDao) {
@@ -33,27 +33,23 @@ public class GetApparatusActivity {
     }
 
     /**
-     * This method handles the incoming request by retrieving the playlist from the database.
+     * This method handles the incoming request by retrieving the apparatus from the database.
      * <p>
-     * It then returns the playlist.
+     * It then returns the list of apparatus.
      * <p>
-     * If the playlist does not exist, this should throw a PlaylistNotFoundException.
+     * If the apparatus does not exist, this should throw a ApparatusListNotFoundException.
      *
-     * @param getPlaylistRequest request object containing the playlist ID
-     * @return getPlaylistResult result object containing the API defined {@link PlaylistModel}
+     * @param getApparatusRequest request object containing the user's name.
+     * @return getApparatusResult result object containing the API defined {@link ApparatusModel}
      */
     public GetApparatusResult handleRequest(final GetApparatusRequest getApparatusRequest) {
         log.info("Received GetApparatusRequest {}", getApparatusRequest);
         String userName = getApparatusRequest.getUserName();
         List<Apparatus> apparatusList = apparatusDao.getApparatus(userName);     // <-- come back to this
-//        for (Apparatus apparatus : apparatusList) {
-//            ApparatusModel apparatusModel = new ModelConverter().toApparatusModel(apparatus);
-//        }
-
-        List<ApparatusModel> apparatusModels = new ModelConverter().toApparatusModelList(apparatusList);
+        List<ApparatusModel> apparatusModelList = new ModelConverter().toApparatusModelList(apparatusList);
 
         return GetApparatusResult.builder()
-                .withApparatus(apparatus)    <-- probably needs to be a list of apparatus?
+                .withApparatusModelList(apparatusModelList)
                 .build();
     }
 }

@@ -2,21 +2,24 @@ package com.nashss.se.firefightercheatsheetservice.Activity.Results;
 
 import com.nashss.se.firefightercheatsheetservice.Models.ApparatusModel;
 
-public class GetApparatusResult {
-    private final ApparatusModel apparatus;
+import java.util.List;
 
-    private GetApparatusResult(ApparatusModel apparatus) {
-        this.apparatus = apparatus;
+
+public class GetApparatusResult {
+    private final List<ApparatusModel> apparatusModelList;
+
+    private GetApparatusResult(List<ApparatusModel> apparatusModelList) {
+        this.apparatusModelList = apparatusModelList;
     }
 
-    public ApparatusModel getApparatus() {
-        return apparatus;
+    public List<ApparatusModel> getApparatusModelList() {
+        return apparatusModelList;
     }
 
     @Override
     public String toString() {
         return "GetApparatusResult{" +
-                "apparatus=" + apparatus +
+                "apparatus=" + apparatusModelList +
                 '}';
     }
 
@@ -26,15 +29,15 @@ public class GetApparatusResult {
     }
 
     public static class Builder {
-        private ApparatusModel apparatus;
+        private List<ApparatusModel> apparatusModelList;
 
-        public Builder withApparatus(ApparatusModel apparatus) {
-            this.apparatus = apparatus;
+        public Builder withApparatusModelList(List<ApparatusModel> apparatusModelList) {
+            this.apparatusModelList = apparatusModelList;
             return this;
         }
 
         public GetApparatusResult build() {
-            return new GetApparatusResult(apparatus);
+            return new GetApparatusResult(apparatusModelList);
         }
     }
 }
