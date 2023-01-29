@@ -8,12 +8,12 @@ html {
     background-size: cover;
 }
 
-body {
+/* body {
     /* height: 100%; */
-    margin: 0;
+    /* margin: 0; */
     /* background-repeat: no-repeat; */
-    /* background-attachment: fixed; */
-}
+    /* background-attachment: fixed; 
+} */
 
   /* .backgroundGradient {
     background: rgb(0,0,0);
@@ -91,7 +91,7 @@ body {
   }
 
   .loginArea {
-    font-size: 1.5em;
+    font-size: 2em;
     color: white;
     /* float: right; */
     position: absolute;
