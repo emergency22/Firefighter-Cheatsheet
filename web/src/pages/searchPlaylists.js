@@ -1,5 +1,5 @@
-import FirefighterCheatsheetClient from '../api/FirefighterCheatsheetClient';
-import LoginArea from '../components/LoginArea';
+import MusicPlaylistClient from '../api/musicPlaylistClient';
+import Header from '../components/header';
 import BindingClass from "../util/bindingClass";
 import DataStore from "../util/DataStore";
 
@@ -25,7 +25,7 @@ const EMPTY_DATASTORE_STATE = {
 /**
  * Logic needed for the view playlist page of the website.
  */
-class IndexFront extends BindingClass {
+class SearchPlaylists extends BindingClass {
     constructor() {
         super();
 
@@ -33,7 +33,7 @@ class IndexFront extends BindingClass {
 
         // Create a enw datastore with an initial "empty" state.
         this.dataStore = new DataStore(EMPTY_DATASTORE_STATE);
-        this.loginArea = new LoginArea(this.dataStore);
+        this.header = new Header(this.dataStore);
         this.dataStore.addChangeListener(this.displaySearchResults);
         console.log("searchPlaylists constructor");
     }
@@ -46,13 +46,13 @@ class IndexFront extends BindingClass {
         document.getElementById('search-playlists-form').addEventListener('submit', this.search);
         document.getElementById('search-btn').addEventListener('click', this.search);
 
-        this.loginArea.addLoginAreaToPage();
+        this.header.addHeaderToPage();
 
-        this.client = new FirefighterCheatsheetClient();
+        this.client = new MusicPlaylistClient();
     }
 
     /**
-     * Uses the client to perform the search, 
+     * Uses the client to perform the search,
      * then updates the datastore with the criteria and results.
      * @param evt The "event" object representing the user-initiated event that triggered this method.
      */

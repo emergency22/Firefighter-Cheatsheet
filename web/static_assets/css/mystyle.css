@@ -92,7 +92,7 @@ body {
 
   .loginArea {
     font-size: 1.5em;
-    color: white;
+    color: rgb(201, 250, 6);
     /* float: right; */
     position: absolute;
     top: 4.5em;
@@ -104,7 +104,7 @@ body {
     /* z-index: 5; */
   }
 
-
+  
   .hamburger {
     float: right;
     position: absolute;
@@ -116,7 +116,7 @@ body {
     height: 45px;
     z-index: 5;
   }
-
+  
   .hamburger div {
     position: relative;
     width: 3em;
@@ -126,7 +126,7 @@ body {
     margin-top: 8px;
     transition: all 0.3s ease-in-out;
   }
-
+  
   /**
   Nav Styles
   **/
@@ -177,7 +177,7 @@ body {
   nav a:hover:before {
     height: 100%;
   }
-
+  
   /**
   Animations
   **/
@@ -193,7 +193,7 @@ body {
     transform: rotate(45deg);
     margin-top: -7px;
   }
-
+  
   #toggle:checked + .hamburger + .nav {
     top: 0;
     transform: scale(1);
@@ -213,8 +213,16 @@ body {
     text-decoration: none;
     cursor: pointer;
   }
-
+  
   .button-group {
       display: flex;
       justify-content: space-between;
   }
+
+  .loginArea_home {
+    font-size: 36px;
+    line-height: 40px;
+    height: 100px;
+    text-decoration: none;
+    color: blue;
+}

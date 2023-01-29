@@ -1,39 +1,39 @@
-import FirefighterCheatsheetClient from '../api/FirefighterCheatsheetClient';
+import MusicPlaylistClient from '../api/musicPlaylistClient';
 import BindingClass from "../util/bindingClass";
 
 /**
  * The header component for the website.
  */
-export default class LoginArea extends BindingClass {
+export default class Header extends BindingClass {
     constructor() {
         super();
 
         const methodsToBind = [
-            'addLoginAreaToPage', 'createSiteTitle', 'createUserInfoForLoginArea',
+            'addHeaderToPage', 'createSiteTitle', 'createUserInfoForHeader',
             'createLoginButton', 'createLoginButton', 'createLogoutButton'
         ];
         this.bindClassMethods(methodsToBind, this);
 
-        this.client = new FirefighterCheatsheetClient();
+        this.client = new MusicPlaylistClient();
     }
 
     /**
      * Add the header to the page.
      */
-    async addLoginAreaToPage() {
+    async addHeaderToPage() {
         const currentUser = await this.client.getIdentity();
 
         const siteTitle = this.createSiteTitle();
-        const userInfo = this.createUserInfoForLoginArea(currentUser);
+        const userInfo = this.createUserInfoForHeader(currentUser);
 
-        const loginArea = document.getElementById('loginArea');
-        loginArea.appendChild(siteTitle);  
-        loginArea.appendChild(userInfo);
+        const header = document.getElementById('loginArea');
+        header.appendChild(siteTitle);
+        header.appendChild(userInfo);
     }
 
     createSiteTitle() {
         const homeButton = document.createElement('a');
-        homeButton.classList.add('loginArea_home');
+        homeButton.classList.add('header_home');
         homeButton.href = 'index.html';
         homeButton.innerText = 'Playlists';
 
@@ -44,7 +44,7 @@ export default class LoginArea extends BindingClass {
         return siteTitle;
     }
 
-    createUserInfoForLoginArea(currentUser) {
+    createUserInfoForHeader(currentUser) {
         const userInfo = document.createElement('div');
         userInfo.classList.add('user');
 
