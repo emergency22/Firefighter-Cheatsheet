@@ -1,4 +1,4 @@
-import MusicPlaylistClient from '../api/musicPlaylistClient';
+import FirefighterCheatsheetClient from '../api/firefighterCheatsheetClient';
 import Header from '../components/header';
 import BindingClass from "../util/bindingClass";
 import DataStore from "../util/DataStore";
@@ -48,7 +48,7 @@ class SearchPlaylists extends BindingClass {
 
         this.header.addHeaderToPage();
 
-        this.client = new MusicPlaylistClient();
+        this.client = new FirefighterCheatsheetClient();
     }
 
     /**
@@ -87,7 +87,7 @@ class SearchPlaylists extends BindingClass {
         const searchCriteria = this.dataStore.get(SEARCH_CRITERIA_KEY);
         const searchResults = this.dataStore.get(SEARCH_RESULTS_KEY);
 
-        const searchResultsContainer = document.getElementById('search-results-container');
+        const searchResultsContainer = document.getElementById('userInterfaceArea');
         const searchCriteriaDisplay = document.getElementById('search-criteria-display');
         const searchResultsDisplay = document.getElementById('search-results-display');
 

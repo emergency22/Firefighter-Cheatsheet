@@ -222,3 +222,25 @@ html {
         rgb(201, 250, 6) 20px 40px
       );
   }
+
+
+
+
+
+  .card {
+    color: white;
+    font-size: 2em;
+    /* opacity: .85; */
+    background-color: red;
+    /* margin: 20px; */
+    padding: 600px 40px;
+}
+
+
+.card-content {
+  max-width: 500px;
+}
+
+.hidden {
+  display: none;
+}

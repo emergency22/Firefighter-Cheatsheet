@@ -1,4 +1,4 @@
-import MusicPlaylistClient from '../api/musicPlaylistClient';
+import FirefighterCheatsheetClient from '../api/firefighterCheatsheetClient';
 import BindingClass from "../util/bindingClass";
 
 /**
@@ -10,11 +10,11 @@ export default class Header extends BindingClass {
 
         const methodsToBind = [
             'addHeaderToPage', 'createSiteTitle', 'createUserInfoForHeader',
-            'createLoginButton', 'createLoginButton', 'createLogoutButton'
+            'createLoginButton', 'createLoginButton', 'createLogoutButton', 'createUserInterface'
         ];
         this.bindClassMethods(methodsToBind, this);
 
-        this.client = new MusicPlaylistClient();
+        this.client = new FirefighterCheatsheetClient();
     }
 
     /**
@@ -62,6 +62,7 @@ export default class Header extends BindingClass {
     }
 
     createLogoutButton(currentUser) {
+        this.createUserInterface();
         return this.createButton(`Logout: ${currentUser.name}`, this.client.logout);
     }
 
@@ -76,5 +77,11 @@ export default class Header extends BindingClass {
         });
 
         return button;
+    }
+
+    createUserInterface() {
+        const interfaceArea = document.getElementById('userInterfaceArea');
+        interfaceArea.classList.remove('hidden');
+        //THEN ADD CODE TO RUN A GET APPARATUS REQUEST
     }
 }
