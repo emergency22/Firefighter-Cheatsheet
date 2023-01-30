@@ -20,5 +20,6 @@ public interface ServiceComponent {
      */
     GetApparatusActivity provideGetApparatusActivity();
 
+    AddApparatusActivity provideAddApparatusActivity();
 
 }
