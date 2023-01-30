@@ -1,6 +1,7 @@
 package com.nashss.se.firefightercheatsheetservice.Dependency;
 
 
+import com.nashss.se.firefightercheatsheetservice.Activity.AddApparatusActivity;
 import com.nashss.se.firefightercheatsheetservice.Activity.GetApparatusActivity;
 
 import dagger.Component;
