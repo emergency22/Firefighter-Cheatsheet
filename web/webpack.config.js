@@ -3,7 +3,7 @@ const CopyPlugin = require("copy-webpack-plugin");
 const Dotenv = require('dotenv-webpack');
 
 // Get the name of the appropriate environment variable (`.env`) file for this build/run of the app
-const dotenvFile = process.env.local ? `.env.${process.env.local}` : '.env';   //was process.env.API_LOCATION
+const dotenvFile = process.env.API_LOCATION ? `.env.${process.env.API_LOCATION}` : '.env';
 
 module.exports = {
   plugins: [
