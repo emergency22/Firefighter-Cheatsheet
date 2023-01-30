@@ -1,0 +1,246 @@
+html {
+    height: 100%;
+    background: url(../images/helmet.PNG) no-repeat center center fixed;
+    /* background: url(../images/altBackground.JPG) no-repeat center center fixed; */
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+/* body {
+    /* height: 100%; */
+    /* margin: 0; */
+    /* background-repeat: no-repeat; */
+    /* background-attachment: fixed; 
+} */
+
+  /* .backgroundGradient {
+    background: rgb(0,0,0);
+    background: linear-gradient(180deg, rgba(0,0,0,4) 15%, rgba(252,16,4,1) 100%);
+} */
+
+
+.header {
+    float: left;
+    height: 50px;
+    width: 100%;
+    /* background-color: #000000; */
+    background-image: repeating-linear-gradient(
+        -45deg,
+        transparent 0 20px,
+        rgb(201, 250, 6) 20px 40px
+      );
+}
+
+/* .navbar {
+    float: right;
+    margin-top: 0px;
+    width: 100%;
+    height: 50px;
+    padding: 0px;
+    /* background-color: #000000; */
+    /* text-align: left;  */
+} */
+
+.logo {
+    float: left;
+    /* box-shadow: 7px 7px 7px #666666; */
+}
+
+.loginArea {
+  font-size: 2em;
+  color: white;
+  /* float: right; */
+  position: absolute;
+  top: 4.5em;
+  right: 20%;
+  /* margin-left: -2em; */
+  margin-top: -45px;
+  /* width: 2em; */
+  /* height: 45px; */
+  /* z-index: 5; */
+}
+
+/* .textBar {
+    float: right;
+    text-align: right;
+    display: inline-block;
+}
+
+.navbar-ul {
+    display: inline-block;
+}
+
+.nav-spacing {
+    margin-right: 1em;
+}
+
+.nav-link {
+    color: black;
+    background-color: rgb(201, 250, 6);
+    padding: 5px;
+    font-weight: bold;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+} */
+
+
+
+
+  /**
+  The hamburger
+  **/
+  #toggle {
+    display: none;
+  }
+
+
+
+
+  .hamburger {
+    float: right;
+    position: absolute;
+    top: 7em;
+    right: 5%;
+    margin-left: -2em;
+    margin-top: -45px;
+    width: 2em;
+    height: 45px;
+    z-index: 5;
+  }
+
+  .hamburger div {
+    position: relative;
+    width: 3em;
+    height: 7px;
+    border-radius: 3px;
+    background-color: rgb(201, 250, 6);
+    margin-top: 8px;
+    transition: all 0.3s ease-in-out;
+  }
+
+  /**
+  Nav Styles
+  **/
+  .nav {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    /* background-color: #090E6B; */
+    background: rgb(0,0,0);
+    background: linear-gradient(180deg, rgba(0,0,0,4) 40%, rgba(252,16,4,1) 100%);
+    top: -100%; left: 0; right: 0; bottom: 0;
+    overflow: hidden;
+    transition: all 0.3s ease-in-out;
+    transform: scale(0);
+  }
+  .nav-wrapper {
+    position: relative;
+    overflow: hidden;
+    overflow-y: auto;
+    height: 100%;
+  }
+  nav {
+    text-align: left;
+    margin-left: 25%;
+  }
+  nav a {
+    position: relative;
+    text-decoration: none;
+    color: #6ecddd;
+    font-size: 2em;
+    display: inline-block;
+    margin-top: 1.25em;
+    transition: color 0.2s ease-in-out;
+    letter-spacing: 1px;
+  }
+  nav a:before {
+    content: '';
+    height: 0;
+    position: absolute;
+    width: 0.25em;
+    background-color: white;
+    left: -0.5em;
+    transition: all 0.2s ease-in-out;
+  }
+  nav a:hover {
+    color: white;
+  }
+  nav a:hover:before {
+    height: 100%;
+  }
+
+  /**
+  Animations
+  **/
+  #toggle:checked + .hamburger .top-bun {
+    transform: rotate(-45deg);
+    margin-top: 25px;
+  }
+  #toggle:checked + .hamburger .bottom-bun {
+    opacity: 0;
+    transform: rotate(45deg);
+  }
+  #toggle:checked + .hamburger .meat {
+    transform: rotate(45deg);
+    margin-top: -7px;
+  }
+
+  #toggle:checked + .hamburger + .nav {
+    top: 0;
+    transform: scale(1);
+  }
+
+
+
+
+
+  .button {
+    background-color: green;
+    border: none;
+    color: white;
+    padding: 6px 8px 4px 8px;
+    text-align: center;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  /* .button-group {
+      display: flex;
+      justify-content: space-between;
+  } */
+
+  .footer {
+    position: fixed;
+    bottom: 0;
+    height: 50px;
+    width: 100%;
+    background-image: repeating-linear-gradient(
+        225deg,
+        transparent 0 20px,
+        rgb(201, 250, 6) 20px 40px
+      );
+  }
+
+
+
+
+
+  .card {
+    color: white;
+    font-size: 2em;
+    /* opacity: .85; */
+    background-color: red;
+    /* margin: 20px; */
+    padding: 600px 40px;
+}
+
+
+.card-content {
+  max-width: 500px;
+}
+
+.hidden {
+  display: none;
+}

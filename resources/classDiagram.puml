@@ -1,8 +1,47 @@
 @startuml
-'https://plantuml.com/class-diagram
+'https://plantuml.com/class-diagram'
+
+GetApparatusLambda -- GetApparatusActivity
+GetApparatusActivity -- GetApparatusDAO
 
 SaveApparatusLambda -- SaveApparatusActivity
 SaveApparatusActivity -- SaveApparatusDAO
+
+GetHosesLambda -- GetHosesActivity
+GetHosesActivity -- GetHosesDAO
+
+SaveHoseLambda -- SaveHoseActivity
+SaveHoseActivity -- SaveHoseDAO
+
+UpdateHoseLambda -- UpdateHoseActivity
+UpdateHoseActivity -- UpdateHoseDAO
+
+class GetApparatusLambda {
+String username[primary key]
+
+LambdaResponse handleRequest(AuthenticatedLambdaRequest<GetApparatusRequest>, Context)
+}
+
+class GetApparatusRequest {}
+
+class GetApparatusResponse {
+String response
+}
+
+class GetApparatusActivity {
+GetApparatusDao
+
+GetApparatusResult handleRequest(GetApparatusRequest)
+}
+
+class GetApparatusDAO {
+DynamoDBMapper
+
+List<Apparatus> getApparatus(userName, ApparatusTypeAndNumber)
+}
+
+
+
 
 class SaveApparatusLambda {
 String username[primary key]
@@ -29,6 +68,94 @@ DynamoDBMapper
 
 Apparatus saveApparatus(Apparatus)
 }
+
+
+
+
+class GetHosesLambda {
+String userName[primary key]
+String apparatusTypeAndNumber[sort key]
+
+LambdaResponse handleRequest(AuthenticatedLambdaRequest<GetHosesRequest>, Context)
+}
+
+class GetHosesRequest {}
+
+class GetHosesResponse {
+String response
+}
+
+class GetHosesActivity {
+GetHosesDao
+
+GetHosesResult handleRequest(GetHosesRequest)
+}
+
+class GetHosesDAO {
+DynamoDBMapper
+
+List<Hoses> getHoses(userName, ApparatusTypeAndNumber)
+}
+
+
+
+class SaveHoseLambda {
+String userName[primary key]
+String apparatusTypeAndNumber[sort key]
+Hose
+
+LambdaResponse handleRequest(AuthenticatedLambdaRequest<SaveHoseRequest>, Context)
+}
+
+class SaveHoseRequest {}
+
+class SaveHoseResponse {
+String response
+}
+
+class SaveHoseActivity {
+SaveHosesDao
+
+SaveHoseResult handleRequest(SaveHoseRequest)
+}
+
+class SaveHoseDAO {
+DynamoDBMapper
+
+Hose saveHose(userName, ApparatusTypeAndNumber, Hose)
+}
+
+
+
+
+class UpdateHoseLambda {
+String userName[primary key]
+String apparatusTypeAndNumber[sort key]
+Hose
+
+LambdaResponse handleRequest(AuthenticatedLambdaRequest<UpdateHoseRequest>, Context)
+}
+
+class UpdateHoseRequest {}
+
+class UpdateHoseResponse {
+String response
+}
+
+class UpdateHoseActivity {
+UpdateHosesDao
+
+UpdateHoseResult handleRequest(UpdateHoseRequest)
+}
+
+class UpdateHoseDAO {
+DynamoDBMapper
+
+Hose UpdateHose(userName, ApparatusTypeAndNumber, Hose)
+}
+
+
+
 
 class Apparatus {
 String username[primary key]
