@@ -87,7 +87,12 @@ export default class Header extends BindingClass {
         this.displayApparatusOnLogin();
     }
 
-    displayApparatusOnLogin() {
-
+    async displayApparatusOnLogin() {
+        const currentUser = await this.client.getIdentity();
+        const currentUserName = currentUser.name;
+        var apparatusList = await this.client.getApparatus(currentUserName);
+        const displayArea = document.getElementById('theDisplayArea');
+        displayArea.innerHTML = `"${apparatusList}"`;
+        //input apparatusList into html somehow
     }
 }

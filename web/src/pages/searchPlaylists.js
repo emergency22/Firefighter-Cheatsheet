@@ -88,7 +88,7 @@ class SearchPlaylists extends BindingClass {
         const searchResults = this.dataStore.get(SEARCH_RESULTS_KEY);
 
         const searchResultsContainer = document.getElementById('userInterfaceArea');
-        const searchCriteriaDisplay = document.getElementById('search-criteria-display');
+        const searchCriteriaDisplay = document.getElementById('search-criteria-display');  //search-criteria-display is now theDisplayArea
         const searchResultsDisplay = document.getElementById('search-results-display');
 
         if (searchCriteria === '') {
