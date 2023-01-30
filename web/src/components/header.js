@@ -84,6 +84,10 @@ export default class Header extends BindingClass {
         interfaceArea.classList.remove('hidden');
         const hamToggler = document.getElementById('hamToggle');
         hamToggler.classList.remove('hidden');
-        //THEN ADD CODE TO RUN A GET APPARATUS REQUEST
+        this.displayApparatusOnLogin();
+    }
+
+    displayApparatusOnLogin() {
+
     }
 }
