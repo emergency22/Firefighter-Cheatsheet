@@ -1,0 +1,31 @@
+{
+  "apparatus": [
+    {
+      "PutRequest": {
+        "Apparatus": {
+          "userName": { "S": "test1" },
+          "apparatusTypeAndNumber": { "S": "Engine 1" },
+          "fireDept": { "S": "MCFD" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Apparatus": {
+          "userName": { "S": "test1" },
+          "apparatusTypeAndNumber": { "S": "Tanker 2" },
+          "fireDept": { "S": "MCFD" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "userName": { "S": "test1" },
+          "apparatusTypeAndNumber": { "S": "Ladder 2" },
+          "fireDept": { "S": "SHFD" }
+        }
+      }
+    }
+  ]
+}
