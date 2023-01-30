@@ -1,14 +1,9 @@
 package com.nashss.se.firefightercheatsheetservice.Activity;
 
+import com.nashss.se.firefightercheatsheetservice.Activity.Requests.AddApparatusRequest;
 import com.nashss.se.firefightercheatsheetservice.Dynamodb.ApparatusDao;
-import com.nashss.se.musicplaylistservice.activity.requests.AddSongToPlaylistRequest;
-import com.nashss.se.musicplaylistservice.activity.results.AddSongToPlaylistResult;
-import com.nashss.se.musicplaylistservice.converters.ModelConverter;
-import com.nashss.se.musicplaylistservice.dynamodb.AlbumTrackDao;
-import com.nashss.se.musicplaylistservice.dynamodb.PlaylistDao;
-import com.nashss.se.musicplaylistservice.dynamodb.models.AlbumTrack;
-import com.nashss.se.musicplaylistservice.dynamodb.models.Playlist;
-import com.nashss.se.musicplaylistservice.models.SongModel;
+import com.nashss.se.firefightercheatsheetservice.Activity.Results.AddApparatusResult;
+import com.nashss.se.firefightercheatsheetservice.Converters.ModelConverter;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -31,7 +26,6 @@ public class AddApparatusActivity {
      * Instantiates a new AddSongToPlaylistActivity object.
      *
      * @param apparatusDao PlaylistDao to access the playlist table.
-     * @param albumTrackDao AlbumTrackDao to access the album_track table.
      */
     @Inject
     public AddApparatusActivity(ApparatusDao apparatusDao) {
@@ -48,28 +42,28 @@ public class AddApparatusActivity {
      * <p>
      * If the album track does not exist, this should throw an AlbumTrackNotFoundException.
      *
-     * @param addSongToPlaylistRequest request object containing the playlist ID and an asin and track number
+     * @param addApparatusRequest request object containing the playlist ID and an asin and track number
      *                                 to retrieve the song data
      * @return addSongToPlaylistResult result object containing the playlist's updated list of
      *                                 API defined {@link SongModel}s
      */
-    public AddSongToPlaylistResult handleRequest(final AddSongToPlaylistRequest addSongToPlaylistRequest) {
-        log.info("Received AddSongToPlaylistRequest {} ", addSongToPlaylistRequest);
+    public AddApparatusResult handleRequest(final AddApparatusRequest addApparatusRequest) {
+        log.info("Received AddSongToPlaylistRequest {} ", addApparatusRequest);
 
-        String asin = addSongToPlaylistRequest.getAsin();
+        String asin = addApparatusRequest.getAsin();
         // Allow NPE when unboxing Integer if track number is null (getTrackNumber returns Integer)
-        int trackNumber = addSongToPlaylistRequest.getTrackNumber();
+        int trackNumber = addApparatusRequest.getTrackNumber();
 
-        Playlist playlist = apparatusDao.getPlaylist(addSongToPlaylistRequest.getId());
+        Playlist playlist = apparatusDao.getPlaylist(addApparatusRequest.getId());
 
-        if (!playlist.getCustomerId().equals(addSongToPlaylistRequest.getCustomerId())) {
+        if (!playlist.getCustomerId().equals(addApparatusRequest.getCustomerId())) {
             throw new SecurityException("You must own a playlist to add songs to it.");
         }
 
         AlbumTrack albumTrackToAdd = albumTrackDao.getAlbumTrack(asin, trackNumber);
 
         LinkedList<AlbumTrack> albumTracks = (LinkedList<AlbumTrack>) (playlist.getSongList());
-        if (addSongToPlaylistRequest.isQueueNext()) {
+        if (addApparatusRequest.isQueueNext()) {
             albumTracks.addFirst(albumTrackToAdd);
         } else {
             albumTracks.addLast(albumTrackToAdd);
@@ -80,7 +74,7 @@ public class AddApparatusActivity {
         playlist = apparatusDao.savePlaylist(playlist);
 
         List<SongModel> songModels = new ModelConverter().toSongModelList(playlist.getSongList());
-        return AddSongToPlaylistResult.builder()
+        return AddApparatusResult.builder()
                 .withSongList(songModels)
                 .build();
     }
