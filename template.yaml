@@ -206,6 +206,13 @@ Resources:
               - Effect: Allow
                 Action: dynamodb:*
                 Resource: !Sub "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/apparatus"
+        - PolicyName: 'AccessCoefficientTable'
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action: dynamodb:*
+                Resource: !Sub "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/coefficient"
 
 #        - PolicyName: 'AccessAlbumTracksTable'
 #          PolicyDocument:
@@ -387,6 +394,17 @@ Resources:
           KeyType: "RANGE"
       BillingMode: "PAY_PER_REQUEST"
       TableName: "apparatus"
+  CoefficientTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      AttributeDefinitions:
+        - AttributeName: "hoseDiameter"
+          AttributeType: "N"
+      KeySchema:
+        - AttributeName: "hoseDiameter"
+          KeyType: "HASH"
+      BillingMode: "PAY_PER_REQUEST"
+      TableName: "coefficient"
 
 #  PlaylistsTable:
 #    Type: AWS::DynamoDB::Table
