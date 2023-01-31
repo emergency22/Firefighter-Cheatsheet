@@ -7,21 +7,13 @@ import com.nashss.se.firefightercheatsheetservice.Dynamodb.ApparatusDao;
 import com.nashss.se.firefightercheatsheetservice.Dynamodb.models.Apparatus;
 import com.nashss.se.firefightercheatsheetservice.Dynamodb.models.Hose;
 import com.nashss.se.firefightercheatsheetservice.Models.ApparatusModel;
-import com.nashss.se.musicplaylistservice.activity.requests.GetPlaylistRequest;
-import com.nashss.se.musicplaylistservice.activity.results.GetPlaylistResult;
-import com.nashss.se.musicplaylistservice.dynamodb.PlaylistDao;
-import com.nashss.se.musicplaylistservice.dynamodb.models.Playlist;
 
-import com.google.common.collect.Lists;
-import com.google.common.collect.Sets;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
@@ -36,7 +28,7 @@ public class GetApparatusActivityTest {
     @BeforeEach
     public void setUp() {
         openMocks(this);
-        getApparatusActivity = new getApparatusActivity(apparatusDao);
+        getApparatusActivity = new GetApparatusActivity(apparatusDao);
     }
 
     @Test
@@ -50,6 +42,7 @@ public class GetApparatusActivityTest {
         String apparatusTypeAndNumber = "Engine 1";
         String fireDept = "MCFD";
         List<Hose> hostList = new ArrayList<>();
+
         ApparatusModel apparatusModel = ApparatusModel.builder()
                 .withUserName(userName)
                 .withApparatusTypeAndNumber(apparatusTypeAndNumber)
@@ -70,22 +63,12 @@ public class GetApparatusActivityTest {
 
         when(apparatusDao.getApparatus(userName)).thenReturn(apparatusList);
 
-
-
-
-
-        GetPlaylistRequest request = GetPlaylistRequest.builder()
-                .withId(expectedId)
-                .build();
-
-        // WHEN
-        GetPlaylistResult result = getPlaylistActivity.handleRequest(request);
+        //WHEN calling handleRequest with the valid request
+        GetApparatusResult finalResult = getApparatusActivity.handleRequest(request);
 
         // THEN
-        assertEquals(expectedId, result.getPlaylist().getId());
-        assertEquals(expectedName, result.getPlaylist().getName());
-        assertEquals(expectedCustomerId, result.getPlaylist().getCustomerId());
-        assertEquals(expectedSongCount, result.getPlaylist().getSongCount());
-        assertEquals(expectedTags, result.getPlaylist().getTags());
+        assertEquals(userName, finalResult.getApparatusModelList().get(0).getUserName());
+        assertEquals(apparatusTypeAndNumber, finalResult.getApparatusModelList().get(0).getApparatusTypeAndNumber());
+        assertEquals(fireDept, finalResult.getApparatusModelList().get(0).getFireDept());
     }
 }
