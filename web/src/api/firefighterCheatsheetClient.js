@@ -79,7 +79,14 @@ export default class MusicPlaylistClient extends BindingClass {
      */
     async getApparatus(userName, errorCallback) {
         try {
-            const response = await this.axiosClient.get(`/apparatus/get/${userName}`);
+            const token = await this.getTokenOrThrow("Only authenticated users can make get apparatus requests.");
+            const response = await this.axiosClient.get(`/apparatus/get/${userName}`, {
+                userName: userName
+            }, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
             return response.data.apparatus;
         } catch (error) {
             this.handleError(error, errorCallback)
