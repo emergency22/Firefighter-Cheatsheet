@@ -48,6 +48,11 @@ public class AddApparatusActivity {
      *                                 API defined {@link SongModel}s
      */
     public AddApparatusResult handleRequest(final AddApparatusRequest addApparatusRequest) {
+
+        //What I want to happen: Take in all values from the request, and transfer each value separately to the dao. The dao will build an apparatus from the values,
+        //and save it to the apparatus table, which will return the updated LIST of apparatus to be viewed in the User Interface.
+
+
         log.info("Received AddSongToPlaylistRequest {} ", addApparatusRequest);
 
         String asin = addApparatusRequest.getAsin();
@@ -60,7 +65,7 @@ public class AddApparatusActivity {
             throw new SecurityException("You must own a playlist to add songs to it.");
         }
 
-        AlbumTrack albumTrackToAdd = albumTrackDao.getAlbumTrack(asin, trackNumber);
+        AlbumTrack albumTrackToAdd = albumTrackDao.getAlbumTrack(asin, trackNumber);   //this is an entirely different dao in the template.
 
         LinkedList<AlbumTrack> albumTracks = (LinkedList<AlbumTrack>) (playlist.getSongList());
         if (addApparatusRequest.isQueueNext()) {
