@@ -240,7 +240,7 @@ Resources:
         Variables:
           JAVA_TOOL_OPTIONS: -XX:+TieredCompilation -XX:TieredStopAtLevel=1
       Events:
-        MusicPlaylistService:
+        FirefighterCheatsheetService:
           Type: Api
           Properties:
             Path: /apparatus/get/{userName}
