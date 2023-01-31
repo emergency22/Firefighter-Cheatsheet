@@ -4,6 +4,7 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBQueryExpression;
 import com.amazonaws.services.dynamodbv2.datamodeling.PaginatedQueryList;
 import com.nashss.se.firefightercheatsheetservice.Dynamodb.ApparatusDao;
 import com.nashss.se.firefightercheatsheetservice.Dynamodb.models.Apparatus;
+import com.nashss.se.firefightercheatsheetservice.Exceptions.ApparatusListNotFoundException;
 import com.nashss.se.firefightercheatsheetservice.Metrics.MetricsPublisher;
 import org.junit.jupiter.api.Test;
 
@@ -13,10 +14,10 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 
 public class ApparatusDaoTest {
@@ -27,9 +28,6 @@ public class ApparatusDaoTest {
     @Mock
     private PaginatedQueryList<Apparatus> queryList;
     private ApparatusDao apparatusDao;
-//    @Mock
-//    private PaginatedScanList<Category> scanResult;
-
 
     @BeforeEach
     public void setup() {
@@ -42,20 +40,11 @@ public class ApparatusDaoTest {
         // GIVEN a valid User Name
         String userName = "userName";
 
-        Apparatus apparatus = new Apparatus();
-        apparatus.setUserName(userName);
-        queryList.add(apparatus);
-        System.out.println(queryList.get(0));
         when(dynamoDBMapper.query(eq(Apparatus.class), any())).thenReturn(queryList);
-
-        System.out.println(queryList.get(0));
-
 
         ArgumentCaptor<DynamoDBQueryExpression> queryExpressionArgumentCaptor = ArgumentCaptor.forClass(DynamoDBQueryExpression.class);
         //WHEN calling getApparatus
         List<Apparatus> finalResult = apparatusDao.getApparatus(userName);
-        System.out.println(finalResult.get(0));
-
 
         //THEN
         verify(dynamoDBMapper).query(eq(Apparatus.class), queryExpressionArgumentCaptor.capture());
@@ -63,7 +52,18 @@ public class ApparatusDaoTest {
         DynamoDBQueryExpression queryExpression = queryExpressionArgumentCaptor.getValue();
         verify(dynamoDBMapper).query(Apparatus.class, queryExpression);
 
-        assertEquals(userName, finalResult.get(0).getUserName(), "Expected method to return the results of the query");
-
+        assertEquals(queryList, finalResult, "Expected method to return the results of the query");
     }
+
+    @Test
+    void getApparatus_givenANullList_throwsApparatusNotFoundException() {
+        //GIVEN a null list returned by the query
+
+        PaginatedQueryList<Apparatus> nullList = null;
+        when(dynamoDBMapper.query(eq(Apparatus.class), any())).thenReturn(nullList);
+
+        //WHEN & THEN an ApparatusListNotFoundException should be thrown
+        assertThrows(ApparatusListNotFoundException.class, () -> apparatusDao.getApparatus("whatever"));
+    }
+
 }
