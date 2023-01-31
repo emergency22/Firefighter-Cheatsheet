@@ -24,5 +24,3 @@ public class AddApparatusLambda extends LambdaActivityRunner<AddApparatusRequest
             );
         }
     }
-
-}

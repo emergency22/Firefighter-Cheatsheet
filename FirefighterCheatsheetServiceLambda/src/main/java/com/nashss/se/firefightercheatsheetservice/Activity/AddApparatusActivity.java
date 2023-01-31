@@ -46,7 +46,7 @@ public class AddApparatusActivity {
      * @param addApparatusRequest request object containing the playlist ID and an asin and track number
      *                                 to retrieve the song data
      * @return addSongToPlaylistResult result object containing the playlist's updated list of
-     *                                 API defined {@link SongModel}s
+     *                                 API defined {@link }s
      */
     public AddApparatusResult handleRequest(final AddApparatusRequest addApparatusRequest) {
 
@@ -57,7 +57,7 @@ public class AddApparatusActivity {
         String apparatusTypeAndNumber = addApparatusRequest.getApparatusTypeAndNumber();
         String fireDept = addApparatusRequest.getApparatusTypeAndNumber();
 
-        List<Apparatus> apparatusList = apparatusDao.addApparatus(userName, apparatusTypeAndNumber, fireDept);
+//        List<Apparatus> apparatusList = apparatusDao.addApparatus(userName, apparatusTypeAndNumber, fireDept);
 
 
 
@@ -66,34 +66,35 @@ public class AddApparatusActivity {
 
 
 
-        log.info("Received AddSongToPlaylistRequest {} ", addApparatusRequest);
-
-        String asin = addApparatusRequest.getAsin();
-        // Allow NPE when unboxing Integer if track number is null (getTrackNumber returns Integer)
-        int trackNumber = addApparatusRequest.getTrackNumber();
-
-        Playlist playlist = apparatusDao.getPlaylist(addApparatusRequest.getId());
-
-        if (!playlist.getCustomerId().equals(addApparatusRequest.getCustomerId())) {
-            throw new SecurityException("You must own a playlist to add songs to it.");
-        }
-
-        AlbumTrack albumTrackToAdd = albumTrackDao.getAlbumTrack(asin, trackNumber);   //this is an entirely different dao in the template.
-
-        LinkedList<AlbumTrack> albumTracks = (LinkedList<AlbumTrack>) (playlist.getSongList());
-        if (addApparatusRequest.isQueueNext()) {
-            albumTracks.addFirst(albumTrackToAdd);
-        } else {
-            albumTracks.addLast(albumTrackToAdd);
-        }
-
-        playlist.setSongList(albumTracks);
-        playlist.setSongCount(playlist.getSongList().size());
-        playlist = apparatusDao.savePlaylist(playlist);
-
-        List<SongModel> songModels = new ModelConverter().toSongModelList(playlist.getSongList());
-        return AddApparatusResult.builder()
-                .withSongList(songModels)
-                .build();
+//        log.info("Received AddSongToPlaylistRequest {} ", addApparatusRequest);
+//
+//        String asin = addApparatusRequest.getAsin();
+//        // Allow NPE when unboxing Integer if track number is null (getTrackNumber returns Integer)
+//        int trackNumber = addApparatusRequest.getTrackNumber();
+//
+//        Playlist playlist = apparatusDao.getPlaylist(addApparatusRequest.getId());
+//
+//        if (!playlist.getCustomerId().equals(addApparatusRequest.getCustomerId())) {
+//            throw new SecurityException("You must own a playlist to add songs to it.");
+//        }
+//
+//        AlbumTrack albumTrackToAdd = albumTrackDao.getAlbumTrack(asin, trackNumber);   //this is an entirely different dao in the template.
+//
+//        LinkedList<AlbumTrack> albumTracks = (LinkedList<AlbumTrack>) (playlist.getSongList());
+//        if (addApparatusRequest.isQueueNext()) {
+//            albumTracks.addFirst(albumTrackToAdd);
+//        } else {
+//            albumTracks.addLast(albumTrackToAdd);
+//        }
+//
+//        playlist.setSongList(albumTracks);
+//        playlist.setSongCount(playlist.getSongList().size());
+//        playlist = apparatusDao.savePlaylist(playlist);
+//
+//        List<SongModel> songModels = new ModelConverter().toSongModelList(playlist.getSongList());
+//        return AddApparatusResult.builder()
+//                .withSongList(songModels)
+//                .build();
+        return new AddApparatusResult();
     }
 }
