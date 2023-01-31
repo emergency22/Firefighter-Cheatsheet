@@ -5,6 +5,7 @@ import com.nashss.se.firefightercheatsheetservice.Dynamodb.ApparatusDao;
 import com.nashss.se.firefightercheatsheetservice.Activity.Results.AddApparatusResult;
 import com.nashss.se.firefightercheatsheetservice.Converters.ModelConverter;
 
+import com.nashss.se.firefightercheatsheetservice.Dynamodb.models.Apparatus;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -51,6 +52,18 @@ public class AddApparatusActivity {
 
         //What I want to happen: Take in all values from the request, and transfer each value separately to the dao. The dao will build an apparatus from the values,
         //and save it to the apparatus table, which will return the updated LIST of apparatus to be viewed in the User Interface.
+
+        String userName = addApparatusRequest.getUserName();
+        String apparatusTypeAndNumber = addApparatusRequest.getApparatusTypeAndNumber();
+        String fireDept = addApparatusRequest.getApparatusTypeAndNumber();
+
+        List<Apparatus> apparatusList = apparatusDao.addApparatus(userName, apparatusTypeAndNumber, fireDept);
+
+
+
+
+
+
 
 
         log.info("Received AddSongToPlaylistRequest {} ", addApparatusRequest);
