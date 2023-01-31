@@ -1,16 +1,20 @@
 package test.java.com.nashss.se.firefightercheatsheetservice.Dynamodb;
 
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBQueryExpression;
+import com.amazonaws.services.dynamodbv2.datamodeling.PaginatedQueryList;
 import com.nashss.se.firefightercheatsheetservice.Dynamodb.ApparatusDao;
+import com.nashss.se.firefightercheatsheetservice.Dynamodb.models.Apparatus;
 import com.nashss.se.firefightercheatsheetservice.Metrics.MetricsPublisher;
 import org.junit.jupiter.api.Test;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBScanExpression;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
@@ -20,6 +24,8 @@ public class ApparatusDaoTest {
     private DynamoDBMapper dynamoDBMapper;
     @Mock
     private MetricsPublisher metricsPublisher;
+    @Mock
+    private PaginatedQueryList<Apparatus> queryList;
     private ApparatusDao apparatusDao;
 //    @Mock
 //    private PaginatedScanList<Category> scanResult;
@@ -36,24 +42,28 @@ public class ApparatusDaoTest {
         // GIVEN a valid User Name
         String userName = "userName";
 
+        Apparatus apparatus = new Apparatus();
+        apparatus.setUserName(userName);
+        queryList.add(apparatus);
+        System.out.println(queryList.get(0));
+        when(dynamoDBMapper.query(eq(Apparatus.class), any())).thenReturn(queryList);
+
+        System.out.println(queryList.get(0));
 
 
+        ArgumentCaptor<DynamoDBQueryExpression> queryExpressionArgumentCaptor = ArgumentCaptor.forClass(DynamoDBQueryExpression.class);
+        //WHEN calling getApparatus
+        List<Apparatus> finalResult = apparatusDao.getApparatus(userName);
+        System.out.println(finalResult.get(0));
 
 
-        when(dynamoDBMapper.scan(eq(Category.class), any())).thenReturn(scanResult);
+        //THEN
+        verify(dynamoDBMapper).query(eq(Apparatus.class), queryExpressionArgumentCaptor.capture());
 
-        ArgumentCaptor<DynamoDBScanExpression> scanExpressionArgumentCaptor =
-                ArgumentCaptor.forClass(DynamoDBScanExpression.class);
+        DynamoDBQueryExpression queryExpression = queryExpressionArgumentCaptor.getValue();
+        verify(dynamoDBMapper).query(Apparatus.class, queryExpression);
 
-        // WHEN
-        List<Category> categories = categoryDao.getCategories();
+        assertEquals(userName, finalResult.get(0).getUserName(), "Expected method to return the results of the query");
 
-        // THEN
-        verify(dynamoDBMapper).scan(eq(Category.class), scanExpressionArgumentCaptor.capture());
-        DynamoDBScanExpression scanExpression = scanExpressionArgumentCaptor.getValue();
-
-        verify(dynamoDBMapper).scan(Category.class, scanExpression);
-
-        assertEquals(scanResult, categories, "Expected method to return the results of the scan");
     }
 }
