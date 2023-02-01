@@ -59,7 +59,7 @@ public class Apparatus {
         this.fireDept = fireDept;
     }
 
-    @DynamoDBAttribute(attributeName = "fireDept")
+    @DynamoDBAttribute(attributeName = "hoseList")
     public List<Hose> getHoseList() {
         return new ArrayList<>(hoseList);
     }

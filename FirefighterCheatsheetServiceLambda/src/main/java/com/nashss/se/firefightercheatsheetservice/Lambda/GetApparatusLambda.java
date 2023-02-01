@@ -25,7 +25,7 @@ public class GetApparatusLambda
 //                GetApparatusRequest unauthenticatedRequest = input.fromBody(GetApparatusRequest.class);       //public T fromUserClaims(Function<Map<String, String>, T> converter) {
                 return input.fromUserClaims(claims ->
                         GetApparatusRequest.builder()
-                                .withUserName("test1")
+                                .withUserName(claims.get("email"))
                                 .build());
             },
             (request, serviceComponent) ->

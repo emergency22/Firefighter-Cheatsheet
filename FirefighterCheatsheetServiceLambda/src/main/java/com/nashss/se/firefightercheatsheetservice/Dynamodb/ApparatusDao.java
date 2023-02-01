@@ -51,18 +51,18 @@ public class ApparatusDao {
     public List<Apparatus> getApparatus(String userName) {
         log.info("getApparatus method called in ApparatusDao with userName: " + userName);
 
-//        Apparatus apparatus = new Apparatus();
-//        apparatus.setUserName(userName);
-//        DynamoDBQueryExpression<Apparatus> queryExpression = new DynamoDBQueryExpression<Apparatus>()
-//                .withHashKeyValues(apparatus);
-//        PaginatedQueryList<Apparatus> apparatusList = this.dynamoDbMapper.query(Apparatus.class, queryExpression);
-
-        Map<String, AttributeValue> valueMap = new HashMap<>();
-        valueMap.put(":userName", new AttributeValue().withS(userName));
+        Apparatus apparatus = new Apparatus();
+        apparatus.setUserName(userName);
         DynamoDBQueryExpression<Apparatus> queryExpression = new DynamoDBQueryExpression<Apparatus>()
-                .withKeyConditionExpression("userName = :userName")
-                .withExpressionAttributeValues(valueMap);
+                .withHashKeyValues(apparatus);
         PaginatedQueryList<Apparatus> apparatusList = this.dynamoDbMapper.query(Apparatus.class, queryExpression);
+
+//        Map<String, AttributeValue> valueMap = new HashMap<>();
+//        valueMap.put(":userName", new AttributeValue().withS(userName));
+//        DynamoDBQueryExpression<Apparatus> queryExpression = new DynamoDBQueryExpression<Apparatus>()
+//                .withKeyConditionExpression("userName = :userName")
+//                .withExpressionAttributeValues(valueMap);
+//        PaginatedQueryList<Apparatus> apparatusList = this.dynamoDbMapper.query(Apparatus.class, queryExpression);
 
 
         if (apparatusList == null) {
