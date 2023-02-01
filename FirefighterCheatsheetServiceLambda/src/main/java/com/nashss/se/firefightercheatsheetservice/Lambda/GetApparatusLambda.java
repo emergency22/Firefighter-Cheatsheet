@@ -19,13 +19,13 @@ public class GetApparatusLambda
 
         // createPlaylist version
 
-        log.info("handleRequest");
+        log.info("HIT!");
         return super.runActivity(
             () -> {
-                GetApparatusRequest unauthenticatedRequest = input.fromBody(GetApparatusRequest.class);
+//                GetApparatusRequest unauthenticatedRequest = input.fromBody(GetApparatusRequest.class);       //public T fromUserClaims(Function<Map<String, String>, T> converter) {
                 return input.fromUserClaims(claims ->
                         GetApparatusRequest.builder()
-                                .withUserName(unauthenticatedRequest.getUserName())
+                                .withUserName(THIS_NEEDS_TO_BE_THE_USER_NAME)
                                 .build());
             },
             (request, serviceComponent) ->

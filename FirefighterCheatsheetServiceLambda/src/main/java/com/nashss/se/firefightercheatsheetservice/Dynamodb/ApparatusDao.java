@@ -46,14 +46,17 @@ public class ApparatusDao {
      * @return the List of Apparatus, or null if none was found.
      */
     public List<Apparatus> getApparatus(String userName) {
-        log.info("getApparatus method called in ApparatusDao");
-
+        log.info("getApparatus method called in ApparatusDao with userName: " + userName);
 
         Apparatus apparatus = new Apparatus();
         apparatus.setUserName(userName);
         DynamoDBQueryExpression<Apparatus> queryExpression = new DynamoDBQueryExpression<Apparatus>()
                 .withHashKeyValues(apparatus);
         PaginatedQueryList<Apparatus> apparatusList = this.dynamoDbMapper.query(Apparatus.class, queryExpression);
+
+
+
+
 
         if (apparatusList == null) {
             metricsPublisher.addCount(MetricsConstants.GETAPPARATUS_APPARTATUSLISTNOTFOUND_COUNT, 1);
