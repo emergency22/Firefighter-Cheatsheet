@@ -14,6 +14,9 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 /**
  * Accesses data for a List of Apparatus using {@link Apparatus} to represent the model in DynamoDB.
  */
@@ -21,6 +24,8 @@ import javax.inject.Singleton;
 public class ApparatusDao {
     private final DynamoDBMapper dynamoDbMapper;
     private final MetricsPublisher metricsPublisher;
+    private final Logger log = LogManager.getLogger();
+
 
     /**
      * Instantiates a ApparatusDao object.
@@ -41,6 +46,9 @@ public class ApparatusDao {
      * @return the List of Apparatus, or null if none was found.
      */
     public List<Apparatus> getApparatus(String userName) {
+        log.info("getApparatus method called in ApparatusDao");
+
+
         Apparatus apparatus = new Apparatus();
         apparatus.setUserName(userName);
         DynamoDBQueryExpression<Apparatus> queryExpression = new DynamoDBQueryExpression<Apparatus>()

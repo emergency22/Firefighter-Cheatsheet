@@ -17,8 +17,9 @@ public class GetApparatusLambda
     @Override
     public LambdaResponse handleRequest(AuthenticatedLambdaRequest<GetApparatusRequest> input, Context context) {
 
-        log.info("handleRequest");
+        // createPlaylist version
 
+        log.info("handleRequest");
         return super.runActivity(
             () -> {
                 GetApparatusRequest unauthenticatedRequest = input.fromBody(GetApparatusRequest.class);
@@ -33,6 +34,10 @@ public class GetApparatusLambda
 
 
 
+
+// htt://foo.bar.com/some-path/user/1234?q=hello
+
+//original path version
 
         // log.info("handleRequest");
         // return super.runActivity(

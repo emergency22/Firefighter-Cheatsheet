@@ -231,7 +231,7 @@ Resources:
     Properties:
       Role: !GetAtt AccessRole.Arn
       CodeUri: FirefighterCheatsheetServiceLambda
-      Handler: com.nashss.se.firefightercheatsheetservice.lambda.GetApparatusLambda::handleRequest
+      Handler: com.nashss.se.firefightercheatsheetservice.Lambda.GetApparatusLambda::handleRequest
       Runtime: java11
       Architectures:
         - x86_64
@@ -243,7 +243,7 @@ Resources:
         FirefighterCheatsheetService:
           Type: Api
           Properties:
-            Path: /apparatus/get/{userName}
+            Path: /apparatus
             Method: get
             Auth:
               Authorizer: 'NONE'

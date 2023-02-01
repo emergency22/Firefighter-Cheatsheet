@@ -77,12 +77,10 @@ export default class MusicPlaylistClient extends BindingClass {
      * @param errorCallback (Optional) A function to execute if the call fails.
      * @returns The apparatus metadata.
      */
-    async getApparatus(userName, errorCallback) {
+    async getApparatus(errorCallback) {
         try {
             const token = await this.getTokenOrThrow("Only authenticated users can make get apparatus requests.");
-            const response = await this.axiosClient.get(`/apparatus/get/${userName}`, {
-                userName: userName
-            }, {
+            const response = await this.axiosClient.get(`apparatus`, {   
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
