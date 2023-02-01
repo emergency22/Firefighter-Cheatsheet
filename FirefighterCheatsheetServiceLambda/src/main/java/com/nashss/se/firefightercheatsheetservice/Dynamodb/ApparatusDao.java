@@ -59,7 +59,7 @@ public class ApparatusDao {
 
 
         if (apparatusList == null) {
-            log.info("getApparatus method FAILED with userName: " + userName);
+            log.info("ApparatusDao: getApparatus method has returned a null apparatusList");
             metricsPublisher.addCount(MetricsConstants.GETAPPARATUS_APPARTATUSLISTNOTFOUND_COUNT, 1);
             throw new ApparatusListNotFoundException("Could not find apparatus for user name: " + userName);
         }
