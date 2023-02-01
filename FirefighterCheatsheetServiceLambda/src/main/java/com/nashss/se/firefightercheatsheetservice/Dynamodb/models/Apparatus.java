@@ -61,7 +61,12 @@ public class Apparatus {
 
     @DynamoDBAttribute(attributeName = "hoseList")
     public List<Hose> getHoseList() {
-        return new ArrayList<>(hoseList);
+        if (hoseList != null) {
+            return new ArrayList<>(hoseList);
+        }
+        else {
+            return new ArrayList<>();
+        }
     }
 
     public void setHoseList(List<Hose> hoseList) {
