@@ -90,7 +90,7 @@ export default class Header extends BindingClass {
     async displayApparatusOnLogin() {
         const currentUser = await this.client.getIdentity();
         const currentUserName = currentUser.name;
-        var apparatusList = await this.client.getApparatus(currentUserName);
+        var apparatusList = await this.client.getApparatus(currentUserName);     //may want to set apparatusList in the datastore later. dunno.
         const displayArea = document.getElementById('theDisplayArea');
         displayArea.innerHTML = `"${apparatusList}"`;
         //input apparatusList into html somehow

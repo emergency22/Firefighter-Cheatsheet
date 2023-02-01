@@ -73,7 +73,7 @@ export default class MusicPlaylistClient extends BindingClass {
 
     /**
      * Gets the Apparatus for the given user name.
-     * @param userName Unique identifier for an apparatus
+     * @param userName The user name used to select associated apparatus
      * @param errorCallback (Optional) A function to execute if the call fails.
      * @returns The apparatus metadata.
      */
