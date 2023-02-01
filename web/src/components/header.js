@@ -92,6 +92,7 @@ export default class Header extends BindingClass {
 //        const currentUserName = currentUser.name;
 //        console.log("CurrentUserName: " + currentUserName);
         var apparatusList = await this.client.getApparatus();     //may want to set apparatusList in the datastore later. dunno.
+        console.log("apparatusList: " + apparatusList);
         const displayArea = document.getElementById('theDisplayArea');
         displayArea.innerHTML = `"${apparatusList}"`;
         //input apparatusList into html somehow
