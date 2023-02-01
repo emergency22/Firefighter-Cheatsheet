@@ -2,6 +2,7 @@ package com.nashss.se.firefightercheatsheetservice.Dynamodb;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBQueryExpression;
 import com.amazonaws.services.dynamodbv2.datamodeling.PaginatedQueryList;
+import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 import com.nashss.se.firefightercheatsheetservice.Dynamodb.models.Apparatus;
 import com.nashss.se.firefightercheatsheetservice.Exceptions.ApparatusListNotFoundException;
 import com.nashss.se.firefightercheatsheetservice.Metrics.MetricsConstants;
@@ -9,7 +10,9 @@ import com.nashss.se.firefightercheatsheetservice.Metrics.MetricsPublisher;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -48,14 +51,18 @@ public class ApparatusDao {
     public List<Apparatus> getApparatus(String userName) {
         log.info("getApparatus method called in ApparatusDao with userName: " + userName);
 
-        Apparatus apparatus = new Apparatus();
-        apparatus.setUserName(userName);
+//        Apparatus apparatus = new Apparatus();
+//        apparatus.setUserName(userName);
+//        DynamoDBQueryExpression<Apparatus> queryExpression = new DynamoDBQueryExpression<Apparatus>()
+//                .withHashKeyValues(apparatus);
+//        PaginatedQueryList<Apparatus> apparatusList = this.dynamoDbMapper.query(Apparatus.class, queryExpression);
+
+        Map<String, AttributeValue> valueMap = new HashMap<>();
+        valueMap.put("userName", new AttributeValue().withS(userName));
         DynamoDBQueryExpression<Apparatus> queryExpression = new DynamoDBQueryExpression<Apparatus>()
-                .withHashKeyValues(apparatus);
+                .withKeyConditionExpression("userName = :userName")
+                .withExpressionAttributeValues(valueMap);
         PaginatedQueryList<Apparatus> apparatusList = this.dynamoDbMapper.query(Apparatus.class, queryExpression);
-
-
-
 
 
         if (apparatusList == null) {
