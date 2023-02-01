@@ -58,7 +58,7 @@ public class ApparatusDao {
 //        PaginatedQueryList<Apparatus> apparatusList = this.dynamoDbMapper.query(Apparatus.class, queryExpression);
 
         Map<String, AttributeValue> valueMap = new HashMap<>();
-        valueMap.put("userName", new AttributeValue().withS(userName));
+        valueMap.put(":userName", new AttributeValue().withS(userName));
         DynamoDBQueryExpression<Apparatus> queryExpression = new DynamoDBQueryExpression<Apparatus>()
                 .withKeyConditionExpression("userName = :userName")
                 .withExpressionAttributeValues(valueMap);
