@@ -10,7 +10,8 @@ export default class Header extends BindingClass {
 
         const methodsToBind = [
             'addHeaderToPage', 'createSiteTitle', 'createUserInfoForHeader',
-            'createLoginButton', 'createLoginButton', 'createLogoutButton', 'createUserInterface'
+            'createLoginButton', 'createLoginButton', 'createLogoutButton', 'createUserInterface', 
+            'deleteAnApparatus'
         ];
         this.bindClassMethods(methodsToBind, this);
 
@@ -85,22 +86,14 @@ export default class Header extends BindingClass {
         const hamToggler = document.getElementById('hamToggle');
         hamToggler.classList.remove('hidden');
         this.displayApparatusOnLogin();
+        this.displayAddApparatusMenuOnLogin();
     }
 
     async displayApparatusOnLogin() {
-//        const currentUser = await this.client.getIdentity();
-//        const currentUserName = currentUser.name;
-//        console.log("CurrentUserName: " + currentUserName);
         const apparatusList = await this.client.getApparatus();     //may want to set apparatusList in the datastore later. dunno.
         if (apparatusList.length == 0) {
             document.getElementById('theDisplayArea').innerHTML = "No apparatus exist for this account. Add your apparatus below."
         }
-
-        // const btn = document.createElement('button');
-        // btn.innerText = 'New Button';
-        // "New Button"
-        // document.body.appendChild(btn);
-        // <button>New Button</button>;
 
         for (var i=0; i < apparatusList.length; i++) {
             var currentApparatus = apparatusList[i];
@@ -118,16 +111,16 @@ export default class Header extends BindingClass {
                 "<div class='editHoses'>" +
                 (document.getElementById('editHoses').innerHTML += " Edit Hoses for " + fireDept + " " + currentApparatus) +
                 " </div></li> ";
-
-                const delButton = document.getElementById('deleteButton');
-                delButton.addEventListener('click', (currentApparatus)=> {
-                    this.client.deleteApparatus(currentApparatus);
-                } );
-
-
-            
-
             }
         }
+  
+    }
+    deleteAnApparatus() {
+        const delButton = document.getElementById('deleteButton');
+        delButton.addEventListener('click', this.client.deleteApparatus(currentApparatus));
+    }
+
+    async displayAddApparatusMenuOnLogin() {
+        //do some toggle/hidden stuff here.
     }
 }

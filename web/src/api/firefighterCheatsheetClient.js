@@ -94,9 +94,7 @@ export default class MusicPlaylistClient extends BindingClass {
     async deleteApparatus(apparatusTypeAndNumber, errorCallback) {
         try {
             const token = await this.getTokenOrThrow("Only authenticated users can make delete apparatus requests.");
-            const response = await this.axiosClient.delete(`apparatus`, {
-                apparatusTypeAndNumber: apparatusTypeAndNumber,
-                }, {   
+            const response = await this.axiosClient.delete(`apparatus/` + apparatusTypeAndNumber, {   
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
