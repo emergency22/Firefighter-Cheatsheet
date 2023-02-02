@@ -3,7 +3,7 @@
     {
       "PutRequest": {
         "Item": {
-          "userName": { "S": "test1" },
+          "userName": { "S": "alex.d.murillo+test1@protonmail.com" },
           "apparatusTypeAndNumber": { "S": "Engine 1" },
           "fireDept": { "S": "MCFD" }
         }
@@ -12,7 +12,7 @@
     {
       "PutRequest": {
         "Item": {
-          "userName": { "S": "test1" },
+          "userName": { "S": "alex.d.murillo+test1@protonmail.com" },
           "apparatusTypeAndNumber": { "S": "Tanker 2" },
           "fireDept": { "S": "MCFD" }
         }
@@ -21,7 +21,7 @@
     {
       "PutRequest": {
         "Item": {
-          "userName": { "S": "test1" },
+          "userName": { "S": "alex.d.murillo+test1@protonmail.com" },
           "apparatusTypeAndNumber": { "S": "Ladder 2" },
           "fireDept": { "S": "SHFD" }
         }

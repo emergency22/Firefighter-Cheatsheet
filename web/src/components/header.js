@@ -91,10 +91,28 @@ export default class Header extends BindingClass {
 //        const currentUser = await this.client.getIdentity();
 //        const currentUserName = currentUser.name;
 //        console.log("CurrentUserName: " + currentUserName);
-        var apparatusList = await this.client.getApparatus();     //may want to set apparatusList in the datastore later. dunno.
+        const apparatusList = await this.client.getApparatus();     //may want to set apparatusList in the datastore later. dunno.
+        if (apparatusList == null) {
+            console.log("no wait, I don't have it");
+        }
+        if (apparatusList.length == 0) {
+            document.getElementById('theDisplayArea').innerHTML = "No apparatus exist for this account. Try adding some below."
+        }
+        
+        for (var i=0; i < apparatusList.length; i++) {
+            var currentApparatus = apparatusList[i];
+            console.log("yes" + currentApparatus);
+
+            if (currentApparatus.fireDept != null) {
+                document.getElementById('theDisplayArea').innerHTML += "<br>"+ currentApparatus.fireDept + " " + currentApparatus.apparatusTypeAndNumber + "<br>";
+            }
+
+        }
+
+
         console.log("apparatusList: " + apparatusList);
         const displayArea = document.getElementById('theDisplayArea');
-        displayArea.innerHTML = `"${apparatusList}"`;
+        //displayArea.innerHTML = `"${apparatusList}"`;
         //input apparatusList into html somehow
     }
 }

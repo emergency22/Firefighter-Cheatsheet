@@ -85,7 +85,8 @@ export default class MusicPlaylistClient extends BindingClass {
                     Authorization: `Bearer ${token}`
                 }
             });
-            return JSON.stringify(response.data);
+            // return JSON.stringify(response.data);
+            return response.data.apparatus;
         } catch (error) {
             this.handleError(error, errorCallback)
         }
