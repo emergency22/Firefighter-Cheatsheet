@@ -17,8 +17,6 @@ public class GetApparatusLambda
     @Override
     public LambdaResponse handleRequest(AuthenticatedLambdaRequest<GetApparatusRequest> input, Context context) {
 
-        // createPlaylist version
-
         log.info("GetApparatusLambda: handleRequest method accessed.");
         return super.runActivity(
             () -> {
