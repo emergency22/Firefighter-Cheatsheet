@@ -15,7 +15,7 @@ export default class MusicPlaylistClient extends BindingClass {
     constructor(props = {}) {
         super();
 
-        const methodsToBind = ['clientLoaded', 'getIdentity', 'login', 'logout', 'getApparatus'];  //originally had 'getPlaylist', 'getPlaylistSongs', 'createPlaylist'
+        const methodsToBind = ['clientLoaded', 'getIdentity', 'login', 'logout', 'getApparatus', 'deleteApparatus'];  //originally had 'getPlaylist', 'getPlaylistSongs', 'createPlaylist'
         this.bindClassMethods(methodsToBind, this);
 
         this.authenticator = new Authenticator();;
@@ -85,7 +85,22 @@ export default class MusicPlaylistClient extends BindingClass {
                     Authorization: `Bearer ${token}`
                 }
             });
-            // return JSON.stringify(response.data);
+            return response.data.apparatusModelList;
+        } catch (error) {
+            this.handleError(error, errorCallback)
+        }
+    }
+
+    async deleteApparatus(apparatusTypeAndNumber, errorCallback) {
+        try {
+            const token = await this.getTokenOrThrow("Only authenticated users can make delete apparatus requests.");
+            const response = await this.axiosClient.delete(`apparatus`, {
+                apparatusTypeAndNumber: apparatusTypeAndNumber,
+                }, {   
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
             return response.data.apparatusModelList;
         } catch (error) {
             this.handleError(error, errorCallback)

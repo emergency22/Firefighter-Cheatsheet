@@ -115,11 +115,17 @@ export default class Header extends BindingClass {
                 "<span>" +
                 (document.getElementById('deleteButton').innerHTML += " X") +
                 "</span>" +
-                (document.getElementById('editHoses').innerHTML += " Edit Hoses") +
-                " </li> ";
+                "<div class='editHoses'>" +
+                (document.getElementById('editHoses').innerHTML += " Edit Hoses for " + fireDept + " " + currentApparatus) +
+                " </div></li> ";
+
+                const delButton = document.getElementById('deleteButton');
+                delButton.addEventListener('click', (currentApparatus)=> {
+                    this.client.deleteApparatus(currentApparatus);
+                } );
 
 
-
+            
 
             }
         }
