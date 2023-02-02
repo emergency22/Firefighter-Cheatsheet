@@ -92,26 +92,28 @@ export default class Header extends BindingClass {
 //        const currentUserName = currentUser.name;
 //        console.log("CurrentUserName: " + currentUserName);
         const apparatusList = await this.client.getApparatus();     //may want to set apparatusList in the datastore later. dunno.
-        if (apparatusList == null) {
-            console.log("no wait, I don't have it");
-        }
         if (apparatusList.length == 0) {
-            document.getElementById('theDisplayArea').innerHTML = "No apparatus exist for this account. Try adding some below."
+            document.getElementById('theDisplayArea').innerHTML = "No apparatus exist for this account. Add your apparatus below."
         }
-        
+
+        // const btn = document.createElement('button');
+        // btn.innerText = 'New Button';
+        // "New Button"
+        // document.body.appendChild(btn);
+        // <button>New Button</button>;
+
         for (var i=0; i < apparatusList.length; i++) {
             var currentApparatus = apparatusList[i];
-            console.log("yes" + currentApparatus);
-
             if (currentApparatus.fireDept != null) {
-                document.getElementById('theDisplayArea').innerHTML += "<br>"+ currentApparatus.fireDept + " " + currentApparatus.apparatusTypeAndNumber + "<br>";
+                document.getElementById('theDisplayArea').innerHTML += 
+                "<br><li>"+ currentApparatus.fireDept + 
+                " " + 
+                currentApparatus.apparatusTypeAndNumber + 
+                " </li> ";
             }
-
         }
-
-
         console.log("apparatusList: " + apparatusList);
-        const displayArea = document.getElementById('theDisplayArea');
+        // const displayArea = document.getElementById('theDisplayArea');
         //displayArea.innerHTML = `"${apparatusList}"`;
         //input apparatusList into html somehow
     }

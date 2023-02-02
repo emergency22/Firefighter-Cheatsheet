@@ -86,7 +86,7 @@ export default class MusicPlaylistClient extends BindingClass {
                 }
             });
             // return JSON.stringify(response.data);
-            return response.data.apparatus;
+            return response.data.apparatusModelList;
         } catch (error) {
             this.handleError(error, errorCallback)
         }
