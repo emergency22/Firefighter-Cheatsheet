@@ -105,16 +105,23 @@ export default class Header extends BindingClass {
         for (var i=0; i < apparatusList.length; i++) {
             var currentApparatus = apparatusList[i];
             if (currentApparatus.fireDept != null) {
+                var fireDept = currentApparatus.fireDept;
+                var currentApparatus = currentApparatus.apparatusTypeAndNumber;
+
                 document.getElementById('theDisplayArea').innerHTML += 
-                "<br><li>"+ currentApparatus.fireDept + 
+                "<br><li>" + fireDept + 
                 " " + 
-                currentApparatus.apparatusTypeAndNumber + 
+                currentApparatus + 
+                "<span>" +
+                (document.getElementById('deleteButton').innerHTML += " X") +
+                "</span>" +
+                (document.getElementById('editHoses').innerHTML += " Edit Hoses") +
                 " </li> ";
+
+
+
+
             }
         }
-        console.log("apparatusList: " + apparatusList);
-        // const displayArea = document.getElementById('theDisplayArea');
-        //displayArea.innerHTML = `"${apparatusList}"`;
-        //input apparatusList into html somehow
     }
 }

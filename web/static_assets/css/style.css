@@ -204,7 +204,6 @@ html {
     text-align: center;
     font-weight: bold;
     text-decoration: none;
-    cursor: pointer;
     box-shadow: -3px 6px 4px #222;
   }
 
@@ -262,11 +261,26 @@ ul li{
   color: black;
   height: 40px;
   line-height: 40px;
-  padding: 0 0px;
+  padding: 0 10px;
   position: relative;
-  cursor: pointer;
   display: block;
   margin: 5px 0;
   box-shadow: -3px 6px 4px #222;
 }
+
+ul li span{
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50px;
+  text-align: center;
+  background: rgb(145, 10, 10);
+  cursor: pointer;
+  box-shadow: -3px 6px 4px #222;
+}
+
+.editHoses{
+  color: green;
+}
+
 
