@@ -1,5 +1,9 @@
 package com.nashss.se.firefightercheatsheetservice.Activity.Requests;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
+
+@JsonDeserialize(builder = GetApparatusRequest.Builder.class)
 public class GetApparatusRequest {
     private final String userName;
 
@@ -23,6 +27,7 @@ public class GetApparatusRequest {
         return new Builder();
     }
 
+    @JsonPOJOBuilder
     public static class Builder {
         private String userName;
 

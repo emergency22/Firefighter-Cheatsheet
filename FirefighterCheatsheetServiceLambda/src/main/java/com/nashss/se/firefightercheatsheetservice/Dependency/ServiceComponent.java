@@ -1,7 +1,7 @@
 package com.nashss.se.firefightercheatsheetservice.Dependency;
 
-
 import com.nashss.se.firefightercheatsheetservice.Activity.AddApparatusActivity;
+import com.nashss.se.firefightercheatsheetservice.Activity.DeleteApparatusActivity;
 import com.nashss.se.firefightercheatsheetservice.Activity.GetApparatusActivity;
 
 import dagger.Component;
@@ -22,5 +22,7 @@ public interface ServiceComponent {
     GetApparatusActivity provideGetApparatusActivity();
 
     AddApparatusActivity provideAddApparatusActivity();
+
+    DeleteApparatusActivity provideDeleteApparatusActivity();
 
 }

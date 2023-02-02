@@ -45,7 +45,7 @@ public class GetApparatusActivity {
     public GetApparatusResult handleRequest(final GetApparatusRequest getApparatusRequest) {
         log.info("Received GetApparatusRequest {}", getApparatusRequest);
         String userName = getApparatusRequest.getUserName();
-        List<Apparatus> apparatusList = apparatusDao.getApparatus(userName);     // <-- come back to this
+        List<Apparatus> apparatusList = apparatusDao.getApparatus(userName);
         List<ApparatusModel> apparatusModelList = new ModelConverter().toApparatusModelList(apparatusList);
         return GetApparatusResult.builder()
                 .withApparatusModelList(apparatusModelList)

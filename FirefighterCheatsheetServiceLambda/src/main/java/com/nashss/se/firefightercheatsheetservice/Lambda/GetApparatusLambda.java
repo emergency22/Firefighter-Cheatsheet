@@ -19,10 +19,9 @@ public class GetApparatusLambda
 
         // createPlaylist version
 
-        log.info("HIT!");
+        log.info("GetApparatusLambda: handleRequest method accessed.");
         return super.runActivity(
             () -> {
-//                GetApparatusRequest unauthenticatedRequest = input.fromBody(GetApparatusRequest.class);       //public T fromUserClaims(Function<Map<String, String>, T> converter) {
                 return input.fromUserClaims(claims ->
                         GetApparatusRequest.builder()
                                 .withUserName(claims.get("email"))
@@ -31,9 +30,6 @@ public class GetApparatusLambda
             (request, serviceComponent) ->
                     serviceComponent.provideGetApparatusActivity().handleRequest(request)
         );
-
-
-
 
 // htt://foo.bar.com/some-path/user/1234?q=hello
 
