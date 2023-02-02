@@ -4,7 +4,6 @@ import com.nashss.se.firefightercheatsheetservice.Models.ApparatusModel;
 
 import java.util.List;
 
-
 public class GetApparatusResult {
     private final List<ApparatusModel> apparatusModelList;
 
