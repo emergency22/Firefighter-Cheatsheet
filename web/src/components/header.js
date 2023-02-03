@@ -85,11 +85,11 @@ export default class Header extends BindingClass {
         interfaceArea.classList.remove('hidden');
         const hamToggler = document.getElementById('hamToggle');
         hamToggler.classList.remove('hidden');
-        this.displayApparatusOnLogin();
-        this.displayAddApparatusMenuOnLogin();
+        this.displayApparatus();
+        this.displayAddApparatusMenu();
     }
 
-    async displayApparatusOnLogin() {
+    async displayApparatus() {
         const apparatusList = await this.client.getApparatus();     //may want to set apparatusList in the datastore later. dunno.
         if (apparatusList.length == 0) {
             document.getElementById('theDisplayArea').innerHTML = "No apparatus exist for this account. Add your apparatus below."
@@ -123,10 +123,10 @@ export default class Header extends BindingClass {
 
     async deleteThenRefresh(currentApparatus) {
         await this.client.deleteApparatus(currentApparatus)
-        this.displayApparatusOnLogin();
+        this.displayApparatus();
     }
 
-    async displayAddApparatusMenuOnLogin() {
+    async displayAddApparatusMenu() {
         (document.getElementById('addApparatusForm').innerHTML += "<div class='addApp'><form>" +
             "<label for='fireDept'>Fire Department</label>" +
             "<input type='text' id='fireDept' name='fireDept'>" +
@@ -134,5 +134,22 @@ export default class Header extends BindingClass {
             "<input type='text' id='apparatusTypeAndNumber' name='apparatusTypeAndNumber'>" +
             "<input type='submit' value='Add Apparatus'></div>"
         );
+
+        this.readyAddApparatus();
     }
+
+    async readyAddApparatus() {
+        const inputFireDept = document.getElementById('fireDept');
+        const inputApparatusTypeAndNumber = document.getElementById('apparatusTypeAndNumber');
+
+        if (inputFireDept === 'Fire Department' || inputApparatusTypeAndNumber === 'Apparatus Type and Number') {
+            return;
+        }
+
+        if (inputFireDept && inputApparatusTypeAndNumber) {
+            await this.client.addApparatus(inputFireDept, inputApparatusTypeAndNumber);
+            this.displayApparatus;
+        }
+    }
+
 }
