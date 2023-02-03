@@ -263,7 +263,8 @@ ul li{
   color: black;
   height: 40px;
   line-height: 40px;
-  padding: 0 10px;
+  /* padding: 0 10px; */
+  padding: 40px;
   position: relative;
   display: block;
   margin: 5px 0;
@@ -284,7 +285,7 @@ ul li span{
 .editHoses{
   color: rgb(145, 10, 10);
   cursor: pointer;
-  background:rgb(201, 250, 6);
+  background:rgb(201, 200, 6);
   box-shadow: -3px 6px 4px #222;
   font-size: large;
   text-align: center;
