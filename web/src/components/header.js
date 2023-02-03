@@ -1,3 +1,4 @@
+import { establishRelationAndKeys } from '@aws-amplify/datastore/lib-esm/util';
 import FirefighterCheatsheetClient from '../api/firefighterCheatsheetClient';
 import BindingClass from "../util/bindingClass";
 
@@ -10,8 +11,7 @@ export default class Header extends BindingClass {
 
         const methodsToBind = [
             'addHeaderToPage', 'createSiteTitle', 'createUserInfoForHeader',
-            'createLoginButton', 'createLoginButton', 'createLogoutButton', 'createUserInterface', 
-            'deleteAnApparatus'
+            'createLoginButton', 'createLoginButton', 'createLogoutButton', 'createUserInterface'
         ];
         this.bindClassMethods(methodsToBind, this);
 
@@ -111,14 +111,30 @@ export default class Header extends BindingClass {
                 "<div class='editHoses'>" +
                 (document.getElementById('editHoses').innerHTML += " Edit Hoses for " + fireDept + " " + currentApparatus) +
                 " </div></li> ";
+
+                this.createDeleteApparatusButton(currentApparatus);
+
             }
         }
   
     }
 
-    async deleteAnApparatus() {
-        const delButton = document.getElementById('deleteButton');   //get the location where the action should happen
-        delButton.addEventListener('click', deleteThenRefresh(currentApparatus));  //with a click, run the client's delete apparatus function, passing in the relevant apparatus
+    async createDeleteApparatusButton(currentApparatus) {
+        const button = document.getElementById('deleteButton');
+        button.classList.add('button');
+        button.href = '#';
+        button.innerText = 'X';
+
+        button.addEventListener('click', async () => {
+            this.client.deleteApparatus(currentApparatus);
+            
+            this.displayApparatus();
+        })
+
+        return button;
+
+        // const delButton = document.getElementById('deleteButton');   //get the location where the action should happen
+        // delButton.addEventListener('click', deleteThenRefresh(currentApparatus));  //with a click, run the client's delete apparatus function, passing in the relevant apparatus
     }
 
     async deleteThenRefresh(currentApparatus) {
