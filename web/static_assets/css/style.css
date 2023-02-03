@@ -233,7 +233,8 @@ html {
     color: white;
     font-size: 2em;
     /* opacity: .85; */
-    background-color: red;
+    /* background-color: red;     this turns the background red*/
+    opacity: 95%;
     /* margin: 20px; */
     padding: 600px 40px;
 }
@@ -291,7 +292,9 @@ ul li span{
 
 .addApp{
   width: 775px;
+  color: black;
   font-size: large;
   font-weight: bold;
-  background-color: rgb(145, 10, 10);
+  background-color: rgb(201, 250, 6);
+  opacity: 95%;
 }
