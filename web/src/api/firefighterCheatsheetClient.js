@@ -15,7 +15,7 @@ export default class MusicPlaylistClient extends BindingClass {
     constructor(props = {}) {
         super();
 
-        const methodsToBind = ['clientLoaded', 'getIdentity', 'login', 'logout', 'getApparatus'];  //originally had 'getPlaylist', 'getPlaylistSongs', 'createPlaylist'
+        const methodsToBind = ['clientLoaded', 'getIdentity', 'login', 'logout', 'getApparatus', 'deleteApparatus'];  //originally had 'getPlaylist', 'getPlaylistSongs', 'createPlaylist'
         this.bindClassMethods(methodsToBind, this);
 
         this.authenticator = new Authenticator();;
@@ -73,14 +73,33 @@ export default class MusicPlaylistClient extends BindingClass {
 
     /**
      * Gets the Apparatus for the given user name.
-     * @param userName Unique identifier for an apparatus
+     * @param userName The user name used to select associated apparatus
      * @param errorCallback (Optional) A function to execute if the call fails.
      * @returns The apparatus metadata.
      */
-    async getApparatus(userName, errorCallback) {
+    async getApparatus(errorCallback) {
         try {
-            const response = await this.axiosClient.get(`/apparatus/get/${userName}`);
-            return response.data.apparatus;
+            const token = await this.getTokenOrThrow("Only authenticated users can make get apparatus requests.");
+            const response = await this.axiosClient.get(`apparatus`, {   
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+            return response.data.apparatusModelList;
+        } catch (error) {
+            this.handleError(error, errorCallback)
+        }
+    }
+
+    async deleteApparatus(apparatusTypeAndNumber, errorCallback) {
+        try {
+            const token = await this.getTokenOrThrow("Only authenticated users can make delete apparatus requests.");
+            const response = await this.axiosClient.delete(`apparatus/` + apparatusTypeAndNumber, {   
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+            return response.data.apparatusModelList;
         } catch (error) {
             this.handleError(error, errorCallback)
         }

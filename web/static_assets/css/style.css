@@ -23,6 +23,7 @@ html {
 
 .header {
     float: left;
+    box-shadow: -3px 6px 4px #222;
     height: 50px;
     width: 100%;
     /* background-color: #000000; */
@@ -54,7 +55,7 @@ html {
   /* float: right; */
   position: absolute;
   top: 4.5em;
-  right: 20%;
+  right: 12%;
   /* margin-left: -2em; */
   margin-top: -45px;
   /* width: 2em; */
@@ -203,7 +204,7 @@ html {
     text-align: center;
     font-weight: bold;
     text-decoration: none;
-    cursor: pointer;
+    box-shadow: -3px 6px 4px #222;
   }
 
   /* .button-group {
@@ -213,6 +214,7 @@ html {
 
   .footer {
     position: fixed;
+    box-shadow: -3px -6px 4px #222;
     bottom: 0;
     height: 50px;
     width: 100%;
@@ -244,3 +246,47 @@ html {
 .hidden {
   display: none;
 }
+
+
+
+
+ul{
+  list-style: none;
+  width: 500px;
+}
+
+ul li{
+  width: 100%;
+  background:rgb(201, 250, 6);
+  color: black;
+  height: 40px;
+  line-height: 40px;
+  padding: 0 10px;
+  position: relative;
+  display: block;
+  margin: 5px 0;
+  box-shadow: -3px 6px 4px #222;
+}
+
+ul li span{
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50px;
+  text-align: center;
+  background: rgb(145, 10, 10);
+  cursor: pointer;
+  box-shadow: -3px 6px 4px #222;
+}
+
+.editHoses{
+  color: rgb(145, 10, 10);
+  cursor: pointer;
+  background:rgb(201, 250, 6);
+  box-shadow: -3px 6px 4px #222;
+  font-size: large;
+  text-align: center;
+
+}
+
+

@@ -8,22 +8,40 @@ import com.amazonaws.services.lambda.runtime.RequestHandler;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class GetApparatusLambda extends LambdaActivityRunner<GetApparatusRequest, GetApparatusResult>
-        implements RequestHandler<LambdaRequest<GetApparatusRequest>, LambdaResponse> {
+public class GetApparatusLambda 
+        extends LambdaActivityRunner<GetApparatusRequest, GetApparatusResult>
+        implements RequestHandler<AuthenticatedLambdaRequest<GetApparatusRequest>, LambdaResponse> {
 
     private final Logger log = LogManager.getLogger();
 
     @Override
-    public LambdaResponse handleRequest(LambdaRequest<GetApparatusRequest> input, Context context) {
-        log.info("handleRequest");
+    public LambdaResponse handleRequest(AuthenticatedLambdaRequest<GetApparatusRequest> input, Context context) {
+
+        log.info("GetApparatusLambda: handleRequest method accessed.");
         return super.runActivity(
-                () -> input.fromPath(path ->
+            () -> {
+                return input.fromUserClaims(claims ->
                         GetApparatusRequest.builder()
-                                .withUserName(path.get("userName"))
-                                .build()),
-                (request, serviceComponent) ->
-                        serviceComponent.provideGetApparatusActivity().handleRequest(request)
+                                .withUserName(claims.get("email"))
+                                .build());
+            },
+            (request, serviceComponent) ->
+                    serviceComponent.provideGetApparatusActivity().handleRequest(request)
         );
+
+// htt://foo.bar.com/some-path/user/1234?q=hello
+
+//original path version
+
+        // log.info("handleRequest");
+        // return super.runActivity(
+        //         () -> input.fromPath(path ->
+        //                 GetApparatusRequest.builder()
+        //                         .withUserName(path.get("userName"))
+        //                         .build()),
+        //         (request, serviceComponent) ->
+        //                 serviceComponent.provideGetApparatusActivity().handleRequest(request)
+        // );
     }
 
 

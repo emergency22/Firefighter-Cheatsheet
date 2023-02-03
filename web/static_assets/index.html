@@ -3,6 +3,7 @@
 <head>
     <script type="text/javascript" src="assets/searchPlaylists.js"></script>   <!--original searchPlaylists.js-->
     <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
 </head>
 
 <body>
@@ -30,11 +31,39 @@
 
 
 
+<!-- Hamburger start-->
+    
+<input id="toggle" type="checkbox"></input>
+<label for="toggle" class="hamburger hidden" id="hamToggle">
+  <div class="top-bun"></div>
+  <div class="meat"></div>
+  <div class="bottom-bun"></div>
+</label>
+
+<div class="nav">
+  <div class="nav-wrapper">
+    <nav>
+        <a href="#">Home</a><img src="images/icons/home.png" width="35" height="35"><br>
+        <a href="#">Edit Apparatus</a><img src="images/icons/apparatus.png" width="50" height="50"><br>
+        <a href="#">Edit Hoses</a><img src="images/icons/hose.png" width="50" height="50"><br>
+        <a href="#">Your Cheatsheet</a><img src="images/icons/cheatsheet.png" width="35" height="35">
+    </nav>
+  </div>
+</div>
+    <!-- Hamburger end-->
+
+
+
 <!--        <a href="createPlaylist.html" class="button">New Playlist</a>        //may want to keep this  -->
 <!--    </p>-->
 <!--</div>-->
 <div class="card hidden" id='userInterfaceArea'>
-   <h3>User Interface Area <span id="search-criteria-display"></span></h3>
+   <h4><ul>
+    <div id="theDisplayArea">
+    <div id="deleteButton"></div>
+    <div id="editHoses"></div>
+  </div>
+</h4><ul>  
    <div id="search-results-display">
    </div>
 </div>

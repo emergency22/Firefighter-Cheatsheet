@@ -10,7 +10,8 @@ export default class Header extends BindingClass {
 
         const methodsToBind = [
             'addHeaderToPage', 'createSiteTitle', 'createUserInfoForHeader',
-            'createLoginButton', 'createLoginButton', 'createLogoutButton', 'createUserInterface'
+            'createLoginButton', 'createLoginButton', 'createLogoutButton', 'createUserInterface', 
+            'deleteAnApparatus'
         ];
         this.bindClassMethods(methodsToBind, this);
 
@@ -82,6 +83,44 @@ export default class Header extends BindingClass {
     createUserInterface() {
         const interfaceArea = document.getElementById('userInterfaceArea');
         interfaceArea.classList.remove('hidden');
-        //THEN ADD CODE TO RUN A GET APPARATUS REQUEST
+        const hamToggler = document.getElementById('hamToggle');
+        hamToggler.classList.remove('hidden');
+        this.displayApparatusOnLogin();
+        this.displayAddApparatusMenuOnLogin();
+    }
+
+    async displayApparatusOnLogin() {
+        const apparatusList = await this.client.getApparatus();     //may want to set apparatusList in the datastore later. dunno.
+        if (apparatusList.length == 0) {
+            document.getElementById('theDisplayArea').innerHTML = "No apparatus exist for this account. Add your apparatus below."
+        }
+
+        for (var i=0; i < apparatusList.length; i++) {
+            var currentApparatus = apparatusList[i];
+            if (currentApparatus.fireDept != null) {
+                var fireDept = currentApparatus.fireDept;
+                var currentApparatus = currentApparatus.apparatusTypeAndNumber;
+
+                document.getElementById('theDisplayArea').innerHTML += 
+                "<br><li>" + fireDept + 
+                " " + 
+                currentApparatus + 
+                "<span>" +
+                (document.getElementById('deleteButton').innerHTML += " X") +
+                "</span>" +
+                "<div class='editHoses'>" +
+                (document.getElementById('editHoses').innerHTML += " Edit Hoses for " + fireDept + " " + currentApparatus) +
+                " </div></li> ";
+            }
+        }
+  
+    }
+    deleteAnApparatus() {
+        const delButton = document.getElementById('deleteButton');
+        delButton.addEventListener('click', this.client.deleteApparatus(currentApparatus));
+    }
+
+    async displayAddApparatusMenuOnLogin() {
+        //do some toggle/hidden stuff here.
     }
 }

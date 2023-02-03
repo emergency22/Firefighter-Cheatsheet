@@ -1,9 +1,8 @@
 package com.nashss.se.firefightercheatsheetservice.Dependency;
 
-import com.nashss.se.aws.dynamodb.DynamoDbClientProvider;
-
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
+import com.nashss.se.firefightercheatsheetservice.Dynamodb.DynamoDbClientProvider;
 import dagger.Module;
 import dagger.Provides;
 

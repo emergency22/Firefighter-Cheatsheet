@@ -1,0 +1,44 @@
+{
+  "coefficient": [
+    {
+      "PutRequest": {
+        "Item": {
+          "hoseDiameter": { "N": "1.5" },
+          "coefficient": { "N": "24" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "hoseDiameter": { "N": "1.75" },
+          "coefficient": { "N": "15" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "hoseDiameter": { "N": "2" },
+          "coefficient": { "N": "8" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "hoseDiameter": { "N": "2.5" },
+          "coefficient": { "N": "2" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "hoseDiameter": { "N": "3" },
+          "coefficient": { "N": "0.8" }
+        }
+      }
+    }
+  ]
+}

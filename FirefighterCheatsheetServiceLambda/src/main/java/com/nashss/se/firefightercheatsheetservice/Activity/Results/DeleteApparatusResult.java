@@ -4,10 +4,10 @@ import com.nashss.se.firefightercheatsheetservice.Models.ApparatusModel;
 
 import java.util.List;
 
-public class GetApparatusResult {
+public class DeleteApparatusResult {
     private final List<ApparatusModel> apparatusModelList;
 
-    private GetApparatusResult(List<ApparatusModel> apparatusModelList) {
+    private DeleteApparatusResult(List<ApparatusModel> apparatusModelList) {
         this.apparatusModelList = apparatusModelList;
     }
 
@@ -17,26 +17,26 @@ public class GetApparatusResult {
 
     @Override
     public String toString() {
-        return "GetApparatusResult{" +
+        return "DeleteApparatusResult{" +
                 "apparatus=" + apparatusModelList +
                 '}';
     }
 
     //CHECKSTYLE:OFF:Builder
-    public static Builder builder() {
-        return new Builder();
+    public static DeleteApparatusResult.Builder builder() {
+        return new DeleteApparatusResult.Builder();
     }
 
     public static class Builder {
         private List<ApparatusModel> apparatusModelList;
 
-        public Builder withApparatusModelList(List<ApparatusModel> apparatusModelList) {
+        public DeleteApparatusResult.Builder withApparatusModelList(List<ApparatusModel> apparatusModelList) {
             this.apparatusModelList = apparatusModelList;
             return this;
         }
 
-        public GetApparatusResult build() {
-            return new GetApparatusResult(apparatusModelList);
+        public DeleteApparatusResult build() {
+            return new DeleteApparatusResult(apparatusModelList);
         }
     }
 }
