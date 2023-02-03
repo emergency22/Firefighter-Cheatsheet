@@ -289,4 +289,9 @@ ul li span{
 
 }
 
-
+.addApp{
+  width: 775px;
+  font-size: large;
+  font-weight: bold;
+  background-color: blue;;
+}

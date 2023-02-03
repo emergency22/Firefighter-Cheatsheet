@@ -115,12 +115,24 @@ export default class Header extends BindingClass {
         }
   
     }
-    deleteAnApparatus() {
-        const delButton = document.getElementById('deleteButton');
-        delButton.addEventListener('click', this.client.deleteApparatus(currentApparatus));
+
+    async deleteAnApparatus() {
+        const delButton = document.getElementById('deleteButton');   //get the location where the action should happen
+        delButton.addEventListener('click', deleteThenRefresh(currentApparatus));  //with a click, run the client's delete apparatus function, passing in the relevant apparatus
+    }
+
+    async deleteThenRefresh(currentApparatus) {
+        await this.client.deleteApparatus(currentApparatus)
+        this.displayApparatusOnLogin();
     }
 
     async displayAddApparatusMenuOnLogin() {
-        //do some toggle/hidden stuff here.
+        (document.getElementById('addApparatusForm').innerHTML += "<div class='addApp'><form>" +
+            "<label for='fireDept'>Fire Department</label>" +
+            "<input type='text' id='fireDept' name='fireDept'>" +
+            "<label for='apparatusTypeAndNumber'>Apparatus Type and Number</label>" +
+            "<input type='text' id='apparatusTypeAndNumber' name='apparatusTypeAndNumber'>" +
+            "<input type='submit' value='Add Apparatus'></div>"
+        );
     }
 }
