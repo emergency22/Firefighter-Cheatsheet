@@ -300,3 +300,8 @@ ul li span{
   opacity: 95%;
   box-shadow: -3px 6px 4px #222;
 }
+
+.delButton{
+  color: black;
+  background-color: rgb(145, 10, 10);
+}
