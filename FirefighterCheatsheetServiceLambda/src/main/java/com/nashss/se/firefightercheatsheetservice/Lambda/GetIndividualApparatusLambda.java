@@ -3,12 +3,12 @@ package com.nashss.se.firefightercheatsheetservice.Lambda;
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 import com.nashss.se.firefightercheatsheetservice.Activity.Requests.GetIndividualApparatusRequest;
-import com.nashss.se.firefightercheatsheetservice.Activity.Results.GetApparatusResult;
+import com.nashss.se.firefightercheatsheetservice.Activity.Results.GetIndividualApparatusResult;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class GetIndividualApparatusLambda
-        extends LambdaActivityRunner<GetIndividualApparatusRequest, GetApparatusResult>
+        extends LambdaActivityRunner<GetIndividualApparatusRequest, GetIndividualApparatusResult>
         implements RequestHandler<AuthenticatedLambdaRequest<GetIndividualApparatusRequest>, LambdaResponse> {
 
     private final Logger log = LogManager.getLogger();
