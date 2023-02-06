@@ -29,19 +29,6 @@ public class GetApparatusLambda
                     serviceComponent.provideGetApparatusActivity().handleRequest(request)
         );
 
-// htt://foo.bar.com/some-path/user/1234?q=hello
-
-//original path version
-
-        // log.info("handleRequest");
-        // return super.runActivity(
-        //         () -> input.fromPath(path ->
-        //                 GetApparatusRequest.builder()
-        //                         .withUserName(path.get("userName"))
-        //                         .build()),
-        //         (request, serviceComponent) ->
-        //                 serviceComponent.provideGetApparatusActivity().handleRequest(request)
-        // );
     }
 
 

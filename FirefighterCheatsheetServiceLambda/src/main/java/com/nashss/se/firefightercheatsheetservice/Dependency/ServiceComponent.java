@@ -4,6 +4,7 @@ import com.nashss.se.firefightercheatsheetservice.Activity.AddApparatusActivity;
 import com.nashss.se.firefightercheatsheetservice.Activity.DeleteApparatusActivity;
 import com.nashss.se.firefightercheatsheetservice.Activity.GetApparatusActivity;
 
+import com.nashss.se.firefightercheatsheetservice.Activity.GetIndividualApparatusActivity;
 import dagger.Component;
 
 import javax.inject.Singleton;
@@ -24,5 +25,7 @@ public interface ServiceComponent {
     AddApparatusActivity provideAddApparatusActivity();
 
     DeleteApparatusActivity provideDeleteApparatusActivity();
+
+    GetIndividualApparatusActivity provideGetIndividualApparatusActivity();
 
 }

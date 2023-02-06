@@ -2,20 +2,17 @@ package com.nashss.se.firefightercheatsheetservice.Dynamodb;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBQueryExpression;
 import com.amazonaws.services.dynamodbv2.datamodeling.PaginatedQueryList;
-import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 import com.nashss.se.firefightercheatsheetservice.Dynamodb.models.Apparatus;
 import com.nashss.se.firefightercheatsheetservice.Exceptions.ApparatusListNotFoundException;
 import com.nashss.se.firefightercheatsheetservice.Exceptions.ApparatusNotFoundException;
 import com.nashss.se.firefightercheatsheetservice.Exceptions.CannotAddApparatusException;
+import com.nashss.se.firefightercheatsheetservice.Exceptions.IndividualApparatusNotFoundException;
 import com.nashss.se.firefightercheatsheetservice.Metrics.MetricsConstants;
 import com.nashss.se.firefightercheatsheetservice.Metrics.MetricsPublisher;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -102,6 +99,16 @@ public class ApparatusDao {
         }
     }
 
+    /**
+     * Returns the {@link List<Apparatus> corresponding to the specified userName.
+     *
+     * @param userName the userName associated with the logged in account.
+     * @param apparatusTypeAndNumber the apparatus type and number associated with the
+     * individual apparatus.
+     * @param fireDept the fire department associated with the apparatus.
+     * @return the list of Apparatus.
+     */
+
     public List<Apparatus> addApparatus(String userName, String apparatusTypeAndNumber, String fireDept) {
         log.info("addApparatus method called in ApparatusDao with userName: " + userName +
                 " , apparatusTypeAndNumber: " + apparatusTypeAndNumber + ", and fireDept: " + fireDept);
@@ -119,6 +126,29 @@ public class ApparatusDao {
             metricsPublisher.addCount(MetricsConstants.ADDAPPARATUS_COUNT, 0);
             throw new CannotAddApparatusException("Apparatus could not be saved", e);
         }
+    }
+
+    /**
+     * Returns the {@link Apparatus corresponding to the specified userName and
+     * apparatusTypeAndNumber.
+     *
+     * @param userName the userName associated with the logged in account.
+     * @param apparatusTypeAndNumber the apparatus type and number associated with the
+     * individual apparatus.
+     * @return the individual Apparatus.
+     */
+    public Apparatus getIndividualApparatus(String userName, String apparatusTypeAndNumber) {
+        log.info("getIndividualApparatus method called in ApparatusDao with userName: " + userName + " and apparatusTypeAndNumber: " + apparatusTypeAndNumber);
+
+        try {
+        Apparatus apparatus = this.dynamoDbMapper.load(Apparatus.class, userName, apparatusTypeAndNumber);
+            metricsPublisher.addCount(MetricsConstants.GETINDIVIDUALAPPARATUS_APPARAUTSNOTFOUND_COUNT, 1);
+            return apparatus;
+        } catch (UnsupportedOperationException e) {
+            metricsPublisher.addCount(MetricsConstants.GETINDIVIDUALAPPARATUS_APPARAUTSNOTFOUND_COUNT, 0);
+            throw new IndividualApparatusNotFoundException("Individual Apparatus could not be found", e);
+        }
+
     }
 
 
