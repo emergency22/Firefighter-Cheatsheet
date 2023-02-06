@@ -160,11 +160,11 @@ export default class Header extends BindingClass {
 
     async displayAddApparatusMenu() {
         (document.getElementById('addApparatusForm').innerHTML += "<form class='addAppForm' id='addAppForm'>" +
-            // "<label for='fireDept'>Fire Department</label>" +
-            "<input type='text' id='fireDept' placeHolder='Fire Department' style='width: 200px'>" +
+            "<label for='fireDept'>Add an apparatus: </label>" +
+            "<input type='text' id='fireDept' placeHolder='Fire Department' style='width: 200px' required>" +
             // name='fireDept'
             // "<label for='apparatusTypeAndNumber'>Apparatus Type and Number</label>" +
-            "<input type='text' id='apparatusTypeAndNumber' placeHolder='Apparatus Type and Number' style='width: 200px'>" +
+            "<input type='text' id='apparatusTypeAndNumber' placeHolder='Apparatus Type and Number' style='width: 200px' required>" +
             "<input type='submit' value='Add Apparatus'></div>"
         );
 
@@ -173,27 +173,20 @@ export default class Header extends BindingClass {
 
     async addApparatusFormSubmitter() {
         var addApparatusForm = document.getElementById('addAppForm');
-        addApparatusForm.addEventListener('submit', function(event) {
+        addApparatusForm.addEventListener('submit', async function(event) {
             event.preventDefault()  //prevents auto-submit
 
             var inputFireDept = document.getElementById('fireDept').value;
             var inputApparatusTypeAndNumber = document.getElementById('apparatusTypeAndNumber').value;
 
+            await this.client.addApparatus(inputFireDept, inputApparatusTypeAndNumber);
+            await this.displayApparatus();
+        // if (inputFireDept && inputApparatusTypeAndNumber) {
             
-
-
+        // }
         })
-
-
-
-
         // if (inputFireDept === 'Fire Department' || inputApparatusTypeAndNumber === 'Apparatus Type and Number') {
         //     return;
-        // }
-
-        // if (inputFireDept && inputApparatusTypeAndNumber) {
-        //     await this.client.addApparatus(inputFireDept, inputApparatusTypeAndNumber);
-        //     //refresh page
         // }
     }
 
