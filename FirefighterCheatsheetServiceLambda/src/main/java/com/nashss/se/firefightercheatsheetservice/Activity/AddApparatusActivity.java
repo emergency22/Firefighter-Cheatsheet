@@ -57,7 +57,7 @@ public class AddApparatusActivity {
 
         String userName = addApparatusRequest.getUserName();
         String apparatusTypeAndNumber = addApparatusRequest.getApparatusTypeAndNumber();
-        String fireDept = addApparatusRequest.getApparatusTypeAndNumber();
+        String fireDept = addApparatusRequest.getFireDept();
 
         List<Apparatus> apparatusList = apparatusDao.addApparatus(userName, apparatusTypeAndNumber, fireDept);
         List<ApparatusModel> apparatusModelList = new ModelConverter().toApparatusModelList(apparatusList);
