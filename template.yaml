@@ -285,7 +285,7 @@ Resources:
         FirefighterCheatsheetService:
           Type: Api
           Properties:
-            Path: /apparatus/{fireDept}/{apparatusTypeAndNumber}/
+            Path: /apparatus
             Method: post
             Auth:
               Authorizer: 'NONE'

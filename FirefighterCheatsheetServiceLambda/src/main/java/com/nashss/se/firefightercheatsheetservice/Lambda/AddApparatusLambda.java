@@ -17,23 +17,38 @@ public class AddApparatusLambda extends LambdaActivityRunner<AddApparatusRequest
 
         log.info("AddApparatusLambda: handleRequest method accessed.");
 
-        AddApparatusRequest email = input.fromUserClaims(claims ->
-                AddApparatusRequest.builder()
-                        .withUserName(claims.get("email"))
-                        .build());
+        // AddApparatusRequest email = input.fromUserClaims(claims ->
+        //         AddApparatusRequest.builder()
+        //                 .withUserName(claims.get("email"))
+        //                 .build());
 
-        String actualEmail = email.getUserName();
+        // String actualEmail = email.getUserName();
 
-        return super.runActivity(
-                () -> input.fromPath(path ->
-                        AddApparatusRequest.builder()
-                                .withUserName(actualEmail)
-                                .withFireDept(path.get("fireDept"))
-                                .withApparatusTypeAndNumber(path.get("apparatusTypeAndNumber"))
-                                .build()),
-                (request, serviceComponent) ->
-                        serviceComponent.provideAddApparatusActivity().handleRequest(request)
-        );
+       return super.runActivity(
+               () -> {
+                   AddApparatusRequest unauthenticatedRequest = input.fromBody(AddApparatusRequest.class);
+                   return input.fromUserClaims(claims ->
+                           AddApparatusRequest.builder()
+                                   .withUserName(claims.get("email"))
+                                   .withFireDept(unauthenticatedRequest.getFireDept())
+                                   .withApparatusTypeAndNumber(unauthenticatedRequest.getApparatusTypeAndNumber())
+                                   .build());
+               },
+               (request, serviceComponent) ->
+                       serviceComponent.provideAddApparatusActivity().handleRequest(request)
+       );
+
+
+        // return super.runActivity(
+        //         () -> input.fromPath(path ->
+        //                 AddApparatusRequest.builder()
+        //                         .withUserName(actualEmail)
+        //                         .withFireDept(path.get("fireDept"))
+        //                         .withApparatusTypeAndNumber(path.get("apparatusTypeAndNumber"))
+        //                         .build()),
+        //         (request, serviceComponent) ->
+        //                 serviceComponent.provideAddApparatusActivity().handleRequest(request)
+        // );
 
         }
     }

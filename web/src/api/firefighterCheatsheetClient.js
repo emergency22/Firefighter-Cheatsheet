@@ -106,11 +106,16 @@ export default class MusicPlaylistClient extends BindingClass {
     }
 
     async addApparatus(fireDept, apparatusTypeAndNumber, errorCallback) {
-        console.log("inside client now");
+        console.log("fireDept " + fireDept);
+        console.log("apparatusTypeAndNumber " + apparatusTypeAndNumber);
+
         try {
            const token = await this.getTokenOrThrow("Only authenticated users can add an apparatus.");
-           const response = await this.axiosClient.post(`apparatus/` + fireDept + `/` + apparatusTypeAndNumber, {
-               headers: {
+           const response = await this.axiosClient.post(`apparatus`, {
+                fireDept: fireDept,
+                apparatusTypeAndNumber: apparatusTypeAndNumber
+            }, {
+                headers: {
                    Authorization: `Bearer ${token}`
                }
            });

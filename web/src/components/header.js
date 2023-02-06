@@ -106,7 +106,6 @@ export default class Header extends BindingClass {
             
             let iString = i.toString();
             currentLocation += iString;
-            console.log("currentLocation: " + currentLocation);
 
             var currentApparatus = apparatusList[i];
             if (currentApparatus.fireDept != null) {
@@ -137,9 +136,7 @@ export default class Header extends BindingClass {
     }
 
     createDeleteApparatusButton(currentLocation, apparatusTypeAndNumber) {
-        console.log("Location: " + currentLocation + " and Apparatus: " + apparatusTypeAndNumber);
         const button = document.getElementById(currentLocation);
-        console.log("button: ", button);
         button.classList.add('button');
         button.classList.add(currentLocation);
 
@@ -166,7 +163,7 @@ export default class Header extends BindingClass {
 
     addApparatusFormSubmitter() {
         var addApparatusForm = document.getElementById('addAppForm');
-        addApparatusForm.addEventListener('submit', async function(event) {
+        addApparatusForm.addEventListener('submit', async (event) => {
             event.preventDefault()  //prevents auto-submit
 
             var inputFireDept = document.getElementById('fireDept').value;
