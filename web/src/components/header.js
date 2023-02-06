@@ -1,4 +1,5 @@
 import { establishRelationAndKeys } from '@aws-amplify/datastore/lib-esm/util';
+import { formToJSON } from 'axios';
 import FirefighterCheatsheetClient from '../api/firefighterCheatsheetClient';
 import BindingClass from "../util/bindingClass";
 
@@ -158,29 +159,42 @@ export default class Header extends BindingClass {
 
 
     async displayAddApparatusMenu() {
-        (document.getElementById('addApparatusForm').innerHTML += "<div class='addApp'><form>" +
-            "<label for='fireDept'>Fire Department</label>" +
-            "<input type='text' id='fireDept' name='fireDept'>" +
-            "<label for='apparatusTypeAndNumber'>Apparatus Type and Number</label>" +
-            "<input type='text' id='apparatusTypeAndNumber' name='apparatusTypeAndNumber'>" +
+        (document.getElementById('addApparatusForm').innerHTML += "<form class='addAppForm' id='addAppForm'>" +
+            // "<label for='fireDept'>Fire Department</label>" +
+            "<input type='text' id='fireDept' placeHolder='Fire Department' style='width: 200px'>" +
+            // name='fireDept'
+            // "<label for='apparatusTypeAndNumber'>Apparatus Type and Number</label>" +
+            "<input type='text' id='apparatusTypeAndNumber' placeHolder='Apparatus Type and Number' style='width: 200px'>" +
             "<input type='submit' value='Add Apparatus'></div>"
         );
 
-        // this.readyAddApparatus();   //undo this when ready
+         this.addApparatusFormSubmitter();
     }
 
-    async readyAddApparatus() {
-        const inputFireDept = document.getElementById('fireDept');
-        const inputApparatusTypeAndNumber = document.getElementById('apparatusTypeAndNumber');
+    async addApparatusFormSubmitter() {
+        var addApparatusForm = document.getElementById('addAppForm');
+        addApparatusForm.addEventListener('submit', function(event) {
+            event.preventDefault()  //prevents auto-submit
 
-        if (inputFireDept === 'Fire Department' || inputApparatusTypeAndNumber === 'Apparatus Type and Number') {
-            return;
-        }
+            var inputFireDept = document.getElementById('fireDept').value;
+            var inputApparatusTypeAndNumber = document.getElementById('apparatusTypeAndNumber').value;
 
-        if (inputFireDept && inputApparatusTypeAndNumber) {
-            await this.client.addApparatus(inputFireDept, inputApparatusTypeAndNumber);
-            this.displayApparatus;
-        }
+            
+
+
+        })
+
+
+
+
+        // if (inputFireDept === 'Fire Department' || inputApparatusTypeAndNumber === 'Apparatus Type and Number') {
+        //     return;
+        // }
+
+        // if (inputFireDept && inputApparatusTypeAndNumber) {
+        //     await this.client.addApparatus(inputFireDept, inputApparatusTypeAndNumber);
+        //     //refresh page
+        // }
     }
 
 }
