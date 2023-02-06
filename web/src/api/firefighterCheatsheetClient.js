@@ -15,7 +15,7 @@ export default class MusicPlaylistClient extends BindingClass {
     constructor(props = {}) {
         super();
 
-        const methodsToBind = ['clientLoaded', 'getIdentity', 'login', 'logout', 'getApparatus', 'deleteApparatus'];  //originally had 'getPlaylist', 'getPlaylistSongs', 'createPlaylist'
+        const methodsToBind = ['clientLoaded', 'getIdentity', 'login', 'logout', 'getApparatus', 'deleteApparatus', 'addApparatus'];  //originally had 'getPlaylist', 'getPlaylistSongs', 'createPlaylist'
         this.bindClassMethods(methodsToBind, this);
 
         this.authenticator = new Authenticator();;
@@ -105,18 +105,22 @@ export default class MusicPlaylistClient extends BindingClass {
         }
     }
 
-       async addApparatus(fireDept, apparatusTypeAndNumber, errorCallback) {
-       try {
+    async addApparatus(fireDept, apparatusTypeAndNumber, errorCallback) {
+        console.log("fireDept " + fireDept);
+        console.log("apparatusTypeAndNumber " + apparatusTypeAndNumber);
+
+        try {
            const token = await this.getTokenOrThrow("Only authenticated users can add an apparatus.");
            const response = await this.axiosClient.post(`apparatus`, {
-               fireDept: fireDept,
-               apparatusTypeAndNumber: apparatusTypeAndNumber
-           }, {
-               headers: {
+                fireDept: fireDept,
+                apparatusTypeAndNumber: apparatusTypeAndNumber
+            }, {
+                headers: {
                    Authorization: `Bearer ${token}`
                }
            });
-           return response.data.apparatus;
+           console.log("pre-return");
+           return response.data.apparatusModelList;
        } catch (error) {
            this.handleError(error, errorCallback)
        }

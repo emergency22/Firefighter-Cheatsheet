@@ -1,4 +1,5 @@
 import { establishRelationAndKeys } from '@aws-amplify/datastore/lib-esm/util';
+import { formToJSON } from 'axios';
 import FirefighterCheatsheetClient from '../api/firefighterCheatsheetClient';
 import BindingClass from "../util/bindingClass";
 
@@ -105,7 +106,6 @@ export default class Header extends BindingClass {
             
             let iString = i.toString();
             currentLocation += iString;
-            console.log("currentLocation: " + currentLocation);
 
             var currentApparatus = apparatusList[i];
             if (currentApparatus.fireDept != null) {
@@ -121,9 +121,8 @@ export default class Header extends BindingClass {
                 "</span><div class='editHoses'>" +
                 `Edit Hoses for ${fireDept} ${apparatusTypeAndNumber}` + "</div></li>";
                 document.getElementById('theDisplayArea').innerHTML += apparatusInfo;
-                // console.log("appratusinfo: " + apparatusInfo);
                 currentLocations.push(currentLocation);
-                // const newHeader = new Header();   //nope
+
                 currentLocation = "currentLocation";   //reset variable for the next loop
             }
         }
@@ -137,19 +136,14 @@ export default class Header extends BindingClass {
     }
 
     createDeleteApparatusButton(currentLocation, apparatusTypeAndNumber) {
-        console.log("Location: " + currentLocation + " and Apparatus: " + apparatusTypeAndNumber);
         const button = document.getElementById(currentLocation);
-        console.log("button: ", button);
         button.classList.add('button');
         button.classList.add(currentLocation);
-        // button.href = '#';
-        // button.innerText = 'X';
 
         button.addEventListener('click', async () => {
             if (confirm("Click OK to delete this apparatus.") == true) {
             await this.client.deleteApparatus(apparatusTypeAndNumber);
-            // window.location.reload();
-            await this.displayApparatus();
+            await this.displayApparatus();  //reload the page
             }
         });
         return button;
@@ -157,30 +151,30 @@ export default class Header extends BindingClass {
 
 
 
-    async displayAddApparatusMenu() {
-        (document.getElementById('addApparatusForm').innerHTML += "<div class='addApp'><form>" +
-            "<label for='fireDept'>Fire Department</label>" +
-            "<input type='text' id='fireDept' name='fireDept'>" +
-            "<label for='apparatusTypeAndNumber'>Apparatus Type and Number</label>" +
-            "<input type='text' id='apparatusTypeAndNumber' name='apparatusTypeAndNumber'>" +
+    displayAddApparatusMenu() {
+        (document.getElementById('addApparatusForm').innerHTML += "<form class='addAppForm' id='addAppForm'>" +
+            "<label for='fireDept'>Add an apparatus: </label>" +
+            "<input type='text' id='fireDept' placeHolder='Fire Department' style='width: 200px' required>" +
+            "<input type='text' id='apparatusTypeAndNumber' placeHolder='Apparatus Type and Number' style='width: 200px' required>" +
             "<input type='submit' value='Add Apparatus'></div>"
         );
-
-        // this.readyAddApparatus();   //undo this when ready
+         this.addApparatusFormSubmitter();
     }
 
-    async readyAddApparatus() {
-        const inputFireDept = document.getElementById('fireDept');
-        const inputApparatusTypeAndNumber = document.getElementById('apparatusTypeAndNumber');
+    addApparatusFormSubmitter() {
+        var addApparatusForm = document.getElementById('addAppForm');
+        addApparatusForm.addEventListener('submit', async (event) => {
+            event.preventDefault()  //prevents auto-submit
 
-        if (inputFireDept === 'Fire Department' || inputApparatusTypeAndNumber === 'Apparatus Type and Number') {
-            return;
-        }
+            var inputFireDept = document.getElementById('fireDept').value;
+            var inputApparatusTypeAndNumber = document.getElementById('apparatusTypeAndNumber').value;
 
-        if (inputFireDept && inputApparatusTypeAndNumber) {
+            console.log("yup");
             await this.client.addApparatus(inputFireDept, inputApparatusTypeAndNumber);
-            this.displayApparatus;
-        }
+            console.log("uh huh");
+
+            await this.displayApparatus();
+        });
     }
 
 }

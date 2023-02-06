@@ -86,24 +86,31 @@ _The design will include a front end created with HTML, CSS, and Javascript and 
 _Name: GetApparatus_ <br>
 _Description: After saving the Apparatus, the user should then be able to see the saved Apparatus in their account. This will be accomplished via a GET request to the apparatus table based on userName. This endpoint will additionally used to generate the cheat sheet on the CheatSheet.html webpage._  <br>
 _HTTP Method: GET_  <br>
-_Path: /apparatus/get/userName_ <br>
+_Path: /apparatus_ <br>
 _Request Body: empty_ <br>
 _Errors: "ERROR. Cannot obtain apparatus."_ <br>
 
-<img src="../resources/images/getApparatusData.PNG">
+## 6.3 _DeleteApparatus Endpoint_
 
-## 6.3 _SaveApparatus Endpoint_
+_Name: AddApparatus_ <br>
+_Description: While logged in and on an Apparatus page, the user will be able to delete from a list of available Apparatus from the page and Apparatus table. This will be accomplished via a DELETE request to the Apparatus Table._ <br>
+_HTTP Method: DELETE_ <br>
+_Path: /apparatus/{apparatusTypeAndNumber} <br>
+_Request Body: empty_ <br>
+_Errors: "ERROR: Cannot delete apparatus."_ <br>
 
-_Name: SaveApparatus_ <br>
-_Description: While logged in and on an Edit Apparatus page, the user will be able to enter in Apparatus and save those items to the database. This will be accomplished via a POST request to an Apparatus Table._ <br>
+## 6.4 _AddApparatus Endpoint_
+
+_Name: AddApparatus_ <br>
+_Description: While logged in and on an Apparatus page, the user will be able to enter in Apparatus and save that Apparatus to the Apparatus table. This will be accomplished via a POST request to an Apparatus Table._ <br>
 _HTTP Method: POST_ <br>
-_Path: /apparatus/save_ <br>
-_Request Body: userName, apparatusTypeAndNumber, fireDept_ <br>
-_Errors: "ERROR: Cannot save apparatus."_ <br>
+_Path: /apparatus/{fireDept}/{apparatusTypeAndNumber} <br>
+_Request Body: empty_<br>
+_Errors: "ERROR: Cannot add apparatus."_ <br>
 
-<img src="../resources/images/postSaveApparatus.PNG">
+<img src="../resources/images/postAddApparatus.PNG">
 
-## 6.4 _GetHoses Endpoint_
+## 6.5 _GetHoses Endpoint_
 
 _Name: GetHoses_ <br>
 _Description: While logged in and on an Edit Hoses page, the user will be able to see the saved Hoses on a particular Apparatus. This will be accomplished via a GET request to the apparatus table based on userName and apparatusTypeAndNumber._ <br>
@@ -112,7 +119,7 @@ _Path: /hoses/get/userName/apparatusTypeAndNumber_ <br>
 _Request Body: empty_  <br>
 _Errors: "ERROR: Cannot obtain hoses."_ <br>
 
-## 6.5 _SaveHose Endpoint_
+## 6.6 _SaveHose Endpoint_
 
 _Name: SaveHose_ <br>
 _Description: While logged in and on an Edit Hoses page, the user will be able to enter in Hoses and save those items to the database. This will be accomplished via a POST request to an Apparatus Table, based on userName and apparatusTypeAndNumber._ <br>
@@ -121,7 +128,7 @@ _Path: /hoses/save_ <br>
 _Request Body: userName, apparatusTypeAndNumber, name, color, length, hoseDiameter, waterQuantityInGallons_ <br>
 _Errors: "ERROR: Cannot save apparatus."_ <br>
 
-## 6.6 _UpdateHose Endpoint_
+## 6.7 _UpdateHose Endpoint_
 
 _Name: UpdateHose_ <br>
 _Description: While logged in and on an Edit Hoses page, the user will be able to enter hose values and save those items to the database. This will be accomplished via a PUT request to an Apparatus Table, based on userName and apparatusTypeAndNumber._ <br>

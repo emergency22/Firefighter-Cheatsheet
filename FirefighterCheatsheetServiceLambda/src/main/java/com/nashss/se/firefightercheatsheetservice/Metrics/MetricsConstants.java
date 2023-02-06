@@ -7,6 +7,9 @@ public class MetricsConstants {
     public static final String GETAPPARATUS_APPARTATUSLISTNOTFOUND_COUNT = "GetApparatus.ApparatusListNotFoundException.Count";
     public static final String DELETEAPPARATUS_APPARTATUSFOUND_COUNT = "DeleteApparatus.ApparatusNotFoundException.Count";
 
+    public static final String ADDAPPARATUS_COUNT = "AddApparatusException.Count";
+
+
     //    public static final String UPDATEPLAYLIST_INVALIDATTRIBUTEVALUE_COUNT =
 //            "UpdatePlaylist.InvalidAttributeValueException.Count";
 //    public static final String UPDATEPLAYLIST_INVALIDATTRIBUTECHANGE_COUNT =

@@ -1,11 +1,13 @@
 package com.nashss.se.firefightercheatsheetservice.Activity;
 
 import com.nashss.se.firefightercheatsheetservice.Activity.Requests.AddApparatusRequest;
+import com.nashss.se.firefightercheatsheetservice.Activity.Results.GetApparatusResult;
 import com.nashss.se.firefightercheatsheetservice.Dynamodb.ApparatusDao;
 import com.nashss.se.firefightercheatsheetservice.Activity.Results.AddApparatusResult;
 import com.nashss.se.firefightercheatsheetservice.Converters.ModelConverter;
 
 import com.nashss.se.firefightercheatsheetservice.Dynamodb.models.Apparatus;
+import com.nashss.se.firefightercheatsheetservice.Models.ApparatusModel;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -55,46 +57,13 @@ public class AddApparatusActivity {
 
         String userName = addApparatusRequest.getUserName();
         String apparatusTypeAndNumber = addApparatusRequest.getApparatusTypeAndNumber();
-        String fireDept = addApparatusRequest.getApparatusTypeAndNumber();
+        String fireDept = addApparatusRequest.getFireDept();
 
-//        List<Apparatus> apparatusList = apparatusDao.addApparatus(userName, apparatusTypeAndNumber, fireDept);
+        List<Apparatus> apparatusList = apparatusDao.addApparatus(userName, apparatusTypeAndNumber, fireDept);
+        List<ApparatusModel> apparatusModelList = new ModelConverter().toApparatusModelList(apparatusList);
+        return AddApparatusResult.builder()
+                .withApparatusModelList(apparatusModelList)
+                .build();
 
-
-
-
-
-
-
-
-//        log.info("Received AddSongToPlaylistRequest {} ", addApparatusRequest);
-//
-//        String asin = addApparatusRequest.getAsin();
-//        // Allow NPE when unboxing Integer if track number is null (getTrackNumber returns Integer)
-//        int trackNumber = addApparatusRequest.getTrackNumber();
-//
-//        Playlist playlist = apparatusDao.getPlaylist(addApparatusRequest.getId());
-//
-//        if (!playlist.getCustomerId().equals(addApparatusRequest.getCustomerId())) {
-//            throw new SecurityException("You must own a playlist to add songs to it.");
-//        }
-//
-//        AlbumTrack albumTrackToAdd = albumTrackDao.getAlbumTrack(asin, trackNumber);   //this is an entirely different dao in the template.
-//
-//        LinkedList<AlbumTrack> albumTracks = (LinkedList<AlbumTrack>) (playlist.getSongList());
-//        if (addApparatusRequest.isQueueNext()) {
-//            albumTracks.addFirst(albumTrackToAdd);
-//        } else {
-//            albumTracks.addLast(albumTrackToAdd);
-//        }
-//
-//        playlist.setSongList(albumTracks);
-//        playlist.setSongCount(playlist.getSongList().size());
-//        playlist = apparatusDao.savePlaylist(playlist);
-//
-//        List<SongModel> songModels = new ModelConverter().toSongModelList(playlist.getSongList());
-//        return AddApparatusResult.builder()
-//                .withSongList(songModels)
-//                .build();
-        return new AddApparatusResult();
     }
 }
