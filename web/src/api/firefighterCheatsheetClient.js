@@ -105,6 +105,23 @@ export default class MusicPlaylistClient extends BindingClass {
         }
     }
 
+       async addApparatus(fireDept, apparatusTypeAndNumber, errorCallback) {
+       try {
+           const token = await this.getTokenOrThrow("Only authenticated users can add an apparatus.");
+           const response = await this.axiosClient.post(`apparatus`, {
+               fireDept: fireDept,
+               apparatusTypeAndNumber: apparatusTypeAndNumber
+           }, {
+               headers: {
+                   Authorization: `Bearer ${token}`
+               }
+           });
+           return response.data.apparatus;
+       } catch (error) {
+           this.handleError(error, errorCallback)
+       }
+   }
+
     /**
      * Get the songs on a given playlist by the playlist's identifier.
      * @param id Unique identifier for a playlist
