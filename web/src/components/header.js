@@ -122,9 +122,8 @@ export default class Header extends BindingClass {
                 "</span><div class='editHoses'>" +
                 `Edit Hoses for ${fireDept} ${apparatusTypeAndNumber}` + "</div></li>";
                 document.getElementById('theDisplayArea').innerHTML += apparatusInfo;
-                // console.log("appratusinfo: " + apparatusInfo);
                 currentLocations.push(currentLocation);
-                // const newHeader = new Header();   //nope
+
                 currentLocation = "currentLocation";   //reset variable for the next loop
             }
         }
@@ -143,14 +142,11 @@ export default class Header extends BindingClass {
         console.log("button: ", button);
         button.classList.add('button');
         button.classList.add(currentLocation);
-        // button.href = '#';
-        // button.innerText = 'X';
 
         button.addEventListener('click', async () => {
             if (confirm("Click OK to delete this apparatus.") == true) {
             await this.client.deleteApparatus(apparatusTypeAndNumber);
-            // window.location.reload();
-            await this.displayApparatus();
+            await this.displayApparatus();  //reload the page
             }
         });
         return button;
@@ -158,20 +154,17 @@ export default class Header extends BindingClass {
 
 
 
-    async displayAddApparatusMenu() {
+    displayAddApparatusMenu() {
         (document.getElementById('addApparatusForm').innerHTML += "<form class='addAppForm' id='addAppForm'>" +
             "<label for='fireDept'>Add an apparatus: </label>" +
             "<input type='text' id='fireDept' placeHolder='Fire Department' style='width: 200px' required>" +
-            // name='fireDept'
-            // "<label for='apparatusTypeAndNumber'>Apparatus Type and Number</label>" +
             "<input type='text' id='apparatusTypeAndNumber' placeHolder='Apparatus Type and Number' style='width: 200px' required>" +
             "<input type='submit' value='Add Apparatus'></div>"
         );
-
          this.addApparatusFormSubmitter();
     }
 
-    async addApparatusFormSubmitter() {
+    addApparatusFormSubmitter() {
         var addApparatusForm = document.getElementById('addAppForm');
         addApparatusForm.addEventListener('submit', async function(event) {
             event.preventDefault()  //prevents auto-submit
@@ -179,15 +172,12 @@ export default class Header extends BindingClass {
             var inputFireDept = document.getElementById('fireDept').value;
             var inputApparatusTypeAndNumber = document.getElementById('apparatusTypeAndNumber').value;
 
+            console.log("yup");
             await this.client.addApparatus(inputFireDept, inputApparatusTypeAndNumber);
+            console.log("uh huh");
+
             await this.displayApparatus();
-        // if (inputFireDept && inputApparatusTypeAndNumber) {
-            
-        // }
-        })
-        // if (inputFireDept === 'Fire Department' || inputApparatusTypeAndNumber === 'Apparatus Type and Number') {
-        //     return;
-        // }
+        });
     }
 
 }
