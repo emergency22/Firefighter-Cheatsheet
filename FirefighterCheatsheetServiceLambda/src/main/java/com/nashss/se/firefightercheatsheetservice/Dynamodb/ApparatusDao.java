@@ -6,6 +6,7 @@ import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 import com.nashss.se.firefightercheatsheetservice.Dynamodb.models.Apparatus;
 import com.nashss.se.firefightercheatsheetservice.Exceptions.ApparatusListNotFoundException;
 import com.nashss.se.firefightercheatsheetservice.Exceptions.ApparatusNotFoundException;
+import com.nashss.se.firefightercheatsheetservice.Exceptions.CannotAddApparatusException;
 import com.nashss.se.firefightercheatsheetservice.Metrics.MetricsConstants;
 import com.nashss.se.firefightercheatsheetservice.Metrics.MetricsPublisher;
 
@@ -100,6 +101,26 @@ public class ApparatusDao {
             throw new ApparatusNotFoundException("Apparatus not found", e);
         }
     }
+
+    public List<Apparatus> addApparatus(String userName, String apparatusTypeAndNumber, String fireDept) {
+        log.info("addApparatus method called in ApparatusDao with userName: " + userName +
+                " , apparatusTypeAndNumber: " + apparatusTypeAndNumber + ", and fireDept: " + fireDept);
+
+        Apparatus apparatus = new Apparatus();
+        apparatus.setUserName(userName);
+        apparatus.setApparatusTypeAndNumber(apparatusTypeAndNumber);
+        apparatus.setFireDept(fireDept);
+
+        try {
+            dynamoDbMapper.save(apparatus);
+            metricsPublisher.addCount(MetricsConstants.ADDAPPARATUS_COUNT, 1);
+            return this.getApparatus(userName);
+        } catch (UnsupportedOperationException e) {
+            metricsPublisher.addCount(MetricsConstants.ADDAPPARATUS_COUNT, 0);
+            throw new CannotAddApparatusException("Apparatus could not be saved", e);
+        }
+    }
+
 
     /**
      * Saves (creates or updates) the given playlist.

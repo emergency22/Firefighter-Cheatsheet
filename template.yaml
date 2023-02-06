@@ -264,7 +264,7 @@ Resources:
         FirefighterCheatsheetService:
           Type: Api
           Properties:
-            Path: /apparatus/{apparatusTypeAndNumber}
+            Path: /apparatus/{apparatusTypeAndNumber}/
             Method: delete
             Auth:
               Authorizer: 'NONE'
@@ -285,7 +285,7 @@ Resources:
         FirefighterCheatsheetService:
           Type: Api
           Properties:
-            Path: /apparatus
+            Path: /apparatus/{fireDept}/{apparatusTypeAndNumber}/
             Method: post
             Auth:
               Authorizer: 'NONE'

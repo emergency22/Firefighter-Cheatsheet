@@ -104,7 +104,7 @@ _Errors: "ERROR: Cannot delete apparatus."_ <br>
 _Name: AddApparatus_ <br>
 _Description: While logged in and on an Apparatus page, the user will be able to enter in Apparatus and save that Apparatus to the Apparatus table. This will be accomplished via a POST request to an Apparatus Table._ <br>
 _HTTP Method: POST_ <br>
-_Path: /apparatus/{apparatusTypeAndNumber} <br>
+_Path: /apparatus/{fireDept}/{apparatusTypeAndNumber} <br>
 _Request Body: empty_<br>
 _Errors: "ERROR: Cannot add apparatus."_ <br>
 
