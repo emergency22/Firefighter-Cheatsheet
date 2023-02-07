@@ -21,9 +21,19 @@ export default class EditHoses {
      * Display hoses on the page.
      */
     async displayHoses(fireDept, apparatusTypeAndNumber) {
-        await this.client.getIndividualApparatus(fireDept, apparatusTypeAndNumber);
+        console.log("editHoses: fireDept: " + fireDept);
+        console.log("editHoses: apparatusTypeAndNumber: " + apparatusTypeAndNumber);
+
+
+        const apparatus = await this.client.getIndividualApparatus(fireDept, apparatusTypeAndNumber);
         document.getElementById('theDisplayArea').innerHTML = "";
         document.getElementById('addApparatusForm').innerHTML = "";
-        //clear the screen and show the hoses
+        console.log("apparatus: " + apparatus);
+
+        if (apparatus == null) {
+            document.getElementById('theDisplayArea').innerHTML = "No hoses exist for this apparatus. Add a hose below."
+        }
+
+
     }
 }

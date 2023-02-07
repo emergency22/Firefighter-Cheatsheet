@@ -129,7 +129,8 @@ export default class MusicPlaylistClient extends BindingClass {
    async getIndividualApparatus(fireDept, apparatusTypeAndNumber, errorCallback) {
     try {
         const token = await this.getTokenOrThrow("Only authenticated users can make get apparatus requests.");
-        const response = await this.axiosClient.get(`apparatus?${fireDept}&${apparatusTypeAndNumber}`, {   
+        console.log("calling axios client with fireDept: " + fireDept + " and apparatusTypeAndNumber: " + apparatusTypeAndNumber);
+        const response = await this.axiosClient.get(`apparatus/individual?fireDept=${fireDept}&apparatusTypeAndNumber=${apparatusTypeAndNumber}`, {   
             headers: {
                 Authorization: `Bearer ${token}`
             }

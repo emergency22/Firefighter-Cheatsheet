@@ -96,10 +96,8 @@ export default class Header extends BindingClass {
         document.getElementById('theDisplayArea').innerHTML = "";
         const apparatusList = await this.client.getApparatus();     //may want to set apparatusList in the datastore later. dunno.
         if (apparatusList.length == 0) {
-            document.getElementById('theDisplayArea').innerHTML = "No apparatus exist for this account. Add your apparatus below."
+            document.getElementById('theDisplayArea').innerHTML = "No apparatus exist for this account. Add an apparatus below."
         }
-
-
 
         var currentLocation = "currentLocation";
         var currentHose = "currentHose";
