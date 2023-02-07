@@ -100,12 +100,15 @@ export default class Header extends BindingClass {
 
 
         var currentLocation = "currentLocation";
+        var currentHose = "currentHose";
         var currentLocations = [];
+        var currentHoses = [];
 
         for (var i=0; i < apparatusList.length; i++) {
             
             let iString = i.toString();
             currentLocation += iString;
+            currentHose += iString;
 
             var currentApparatus = apparatusList[i];
             if (currentApparatus.fireDept != null) {
@@ -118,20 +121,25 @@ export default class Header extends BindingClass {
                 apparatusTypeAndNumber + 
                 "<span>" +
                     `<div class='delButton' id='${currentLocation}'>X</div>` +
-                "</span><div class='editHoses'>" +
+                `</span><div class='editHoses' id='${currentHose}'>` +
                 `Edit Hoses for ${fireDept} ${apparatusTypeAndNumber}` + "</div></li>";
                 document.getElementById('theDisplayArea').innerHTML += apparatusInfo;
                 currentLocations.push(currentLocation);
+                currentHoses.push(currentHose);
 
                 currentLocation = "currentLocation";   //reset variable for the next loop
+                currentHose = "currentHose";  //reset variable for the next loop;
             }
         }
 
         for (var i=0; i < apparatusList.length; i++) {
             var currentLocation = currentLocations[i];
+            var currentHose = currentHoses[i];
+            var fireDept = apparatusList[i].fireDept;
             var apparatusTypeAndNumber = apparatusList[i].apparatusTypeAndNumber;
 
             this.createDeleteApparatusButton(currentLocation, apparatusTypeAndNumber);
+            this.createEditHosesButton(currentHose, fireDept, apparatusTypeAndNumber);
         }
     }
 
@@ -175,6 +183,20 @@ export default class Header extends BindingClass {
 
             await this.displayApparatus();
         });
+    }
+
+    createEditHosesButton(currentHose, fireDept, apparatusTypeAndNumber) {
+        const button = document.getElementById(currentLocation);
+        button.classList.add('button');
+        button.classList.add(currentLocation);
+
+        button.addEventListener('click', async () => {
+            if (confirm("Click OK to delete this apparatus.") == true) {
+            await this.client.deleteApparatus(apparatusTypeAndNumber);
+            await this.displayApparatus();  //reload the page
+            }
+        });
+        return button;
     }
 
 }

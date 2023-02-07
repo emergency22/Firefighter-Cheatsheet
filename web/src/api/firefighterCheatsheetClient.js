@@ -126,6 +126,20 @@ export default class MusicPlaylistClient extends BindingClass {
        }
    }
 
+   async getIndividualApparatus(fireDept, apparatusTypeAndNumber, errorCallback) {
+    try {
+        const token = await this.getTokenOrThrow("Only authenticated users can make get apparatus requests.");
+        const response = await this.axiosClient.get(`apparatus?${fireDept}&${apparatusTypeAndNumber}`, {   
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
+        return response.data.apparatusModel;
+    } catch (error) {
+        this.handleError(error, errorCallback)
+    }
+}
+
     /**
      * Get the songs on a given playlist by the playlist's identifier.
      * @param id Unique identifier for a playlist
