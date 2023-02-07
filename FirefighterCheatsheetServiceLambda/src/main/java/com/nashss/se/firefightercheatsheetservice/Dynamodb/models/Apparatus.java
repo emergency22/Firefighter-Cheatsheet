@@ -1,11 +1,14 @@
 package com.nashss.se.firefightercheatsheetservice.Dynamodb.models;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.*;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+@JsonDeserialize(builder = Apparatus.Builder.class)
 @DynamoDBTable(tableName = "apparatus")
 public class Apparatus {
     public static final String FIRE_DEPT_APP_TYPE_NUM_INDEX = "FireDeptAndAppTypeNumIndex";
@@ -87,5 +90,44 @@ public class Apparatus {
     @Override
     public int hashCode() {
         return Objects.hash(userName, apparatusTypeAndNumber, fireDept, hoseList);
+    }
+
+
+    //CHECKSTYLE:OFF:Builder
+    public static Builder builder() {
+        return new Builder();
+    }
+
+
+    @JsonPOJOBuilder
+    public static class Builder {
+        private String userName;
+        private String apparatusTypeAndNumber;
+        private String fireDept;
+        private List<Hose> hoseList;
+
+        public Builder withUserName(String userName) {
+            this.userName = userName;
+            return this;
+        }
+
+        public Builder withApparatusTypeAndNumber(String apparatusTypeAndNumber) {
+            this.apparatusTypeAndNumber = apparatusTypeAndNumber;
+            return this;
+        }
+
+        public Builder withFireDept(String fireDept) {
+            this.fireDept = fireDept;
+            return this;
+        }
+
+        public Builder withHoseList(List<Hose> hoseList) {
+            this.hoseList = hoseList;
+            return this;
+        }
+
+        public Apparatus build() {
+            return new Apparatus(userName, apparatusTypeAndNumber, fireDept, hoseList);
+        }
     }
 }

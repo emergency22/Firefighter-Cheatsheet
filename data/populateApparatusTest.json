@@ -5,8 +5,8 @@
         "Item": {
           "userName": { "S": "alex.d.murillo+test1@protonmail.com" },
           "apparatusTypeAndNumber": { "S": "Engine 1" },
-          "fireDept": { "S": "MCFD" }
-          "hoseList": {}
+          "fireDept": { "S": "MCFD" },
+          "hoseList": { "S": "[{\"name\": \"Preconnect 1\", \"color\": \"Red\", \"length\": \"200\", \"hoseDiameter\": \"2.0\", \"waterQuantityInGallons\": \"200\"}, {\"name\": \"Preconnect 2\", \"color\": \"Yellow\", \"length\": \"200\", \"hoseDiameter\": \"2.0\", \"waterQuantityInGallons\": \"200\"}]"}
         }
       }
     },

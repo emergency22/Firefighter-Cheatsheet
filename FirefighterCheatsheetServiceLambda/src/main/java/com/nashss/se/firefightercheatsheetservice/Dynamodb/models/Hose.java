@@ -2,9 +2,13 @@ package com.nashss.se.firefightercheatsheetservice.Dynamodb.models;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 
+import java.util.List;
 import java.util.Objects;
 
+@JsonDeserialize(builder = Hose.Builder.class)
 public class Hose {
 
     private String name;
@@ -102,4 +106,57 @@ public class Hose {
     public int hashCode() {
         return Objects.hash(name, color, length, hoseDiameter, waterQuantityInGallons, pumpDischargePressure);
     }
+
+
+    //CHECKSTYLE:OFF:Builder
+    public static Builder builder() {
+        return new Builder();
+    }
+
+
+    @JsonPOJOBuilder
+    public static class Builder {
+        private String name;
+        private String color;
+        private int length;
+        private Double hoseDiameter;
+        private int waterQuantityInGallons;
+        private int pumpDischargePressure;
+
+
+        public Builder withName(String name) {
+            this.name = name;
+            return this;
+        }
+
+        public Builder withColor(String color) {
+            this.color = color;
+            return this;
+        }
+
+        public Builder withLength(int length) {
+            this.length = length;
+            return this;
+        }
+
+        public Builder withHoseDiamater(Double hoseDiameter) {
+            this.hoseDiameter = hoseDiameter;
+            return this;
+        }
+
+        public Builder withWaterQuantityInGallons(int waterQuantityInGallons) {
+            this.waterQuantityInGallons = waterQuantityInGallons;
+            return this;
+        }
+
+        public Builder withPumpDischargePressure(int pumpDischargePressure) {
+            this.pumpDischargePressure = pumpDischargePressure;
+            return this;
+        }
+
+        public Hose build() {
+            return new Hose(name, color, length, hoseDiameter, waterQuantityInGallons, pumpDischargePressure);
+        }
+    }
+
 }
