@@ -186,13 +186,13 @@ export default class Header extends BindingClass {
     }
 
     createEditHosesButton(currentHose, fireDept, apparatusTypeAndNumber) {
-        const button = document.getElementById(currentLocation);
+        const button = document.getElementById(currentHose);
         button.classList.add('button');
-        button.classList.add(currentLocation);
+        button.classList.add(currentHose);
 
         button.addEventListener('click', async () => {
             if (confirm("Click OK to delete this apparatus.") == true) {
-            await this.client.deleteApparatus(apparatusTypeAndNumber);
+            await this.client.getIndividualApparatus(fireDept, apparatusTypeAndNumber);
             await this.displayApparatus();  //reload the page
             }
         });
