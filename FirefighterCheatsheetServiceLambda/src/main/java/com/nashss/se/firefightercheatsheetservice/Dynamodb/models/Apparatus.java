@@ -1,9 +1,6 @@
 package com.nashss.se.firefightercheatsheetservice.Dynamodb.models;
 
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBRangeKey;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
+import com.amazonaws.services.dynamodbv2.datamodeling.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +8,7 @@ import java.util.Objects;
 
 @DynamoDBTable(tableName = "apparatus")
 public class Apparatus {
+    public static final String FIRE_DEPT_APP_TYPE_NUM_INDEX = "FireDeptAndAppTypeNumIndex";
 
     private String userName;
     private String apparatusTypeAndNumber;
@@ -42,6 +40,7 @@ public class Apparatus {
     }
 
     @DynamoDBRangeKey(attributeName = "apparatusTypeAndNumber")
+    @DynamoDBIndexRangeKey(globalSecondaryIndexName = FIRE_DEPT_APP_TYPE_NUM_INDEX, attributeName = "apparatusTypeAndNumber")
     public String getApparatusTypeAndNumber() {
         return apparatusTypeAndNumber;
     }
@@ -51,6 +50,7 @@ public class Apparatus {
     }
 
     @DynamoDBAttribute(attributeName = "fireDept")
+    @DynamoDBIndexHashKey(globalSecondaryIndexName = FIRE_DEPT_APP_TYPE_NUM_INDEX, attributeName = "fireDept")
     public String getFireDept() {
         return fireDept;
     }
@@ -78,7 +78,10 @@ public class Apparatus {
         if (this == o) return true;
         if (!(o instanceof Apparatus)) return false;
         Apparatus apparatus = (Apparatus) o;
-        return Objects.equals(userName, apparatus.userName) && Objects.equals(apparatusTypeAndNumber, apparatus.apparatusTypeAndNumber) && Objects.equals(fireDept, apparatus.fireDept) && Objects.equals(hoseList, apparatus.hoseList);
+        return Objects.equals(userName, apparatus.userName) &&
+                Objects.equals(apparatusTypeAndNumber, apparatus.apparatusTypeAndNumber) &&
+                Objects.equals(fireDept, apparatus.fireDept) &&
+                Objects.equals(hoseList, apparatus.hoseList);
     }
 
     @Override

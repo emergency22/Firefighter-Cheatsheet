@@ -18,21 +18,23 @@ public class GetIndividualApparatusLambda
 
         log.info("GetIndividualApparatusLambda: handleRequest method accessed.");
 
-        GetIndividualApparatusRequest email = input.fromUserClaims(claims ->
-                GetIndividualApparatusRequest.builder()
-                         .withUserName(claims.get("email"))
-                         .build());
-
-         String actualEmail = email.getUserName();
+//        GetIndividualApparatusRequest email = input.fromUserClaims(claims ->
+//                GetIndividualApparatusRequest.builder()
+//                         .withUserName(claims.get("email"))
+//                         .build());
+//
+//         String actualEmail = email.getUserName();
 
          return super.runActivity(
-                 () ->
-                     input.fromPath(path ->
+                 () -> {
+                     GetIndividualApparatusRequest unauthenticatedRequest = input.fromBody(GetIndividualApparatusRequest.class);
+                     return input.fromUserClaims(claims ->
                              GetIndividualApparatusRequest.builder()
-                                     .withUserName(actualEmail)
-                                     .withApparatusTypeAndNumber(path.get("apparatusTypeAndNumber"))
-                                     .build()),
-
+                                     .withUserName(claims.get("email"))
+                                     .withFireDept(unauthenticatedRequest.getFireDept())
+                                     .withApparatusTypeAndNumber(unauthenticatedRequest.getApparatusTypeAndNumber())
+                                     .build());
+                 },
                  (request, serviceComponent) ->
                          serviceComponent.provideGetIndividualApparatusActivity().handleRequest(request)
          );

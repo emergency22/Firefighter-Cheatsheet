@@ -137,11 +137,11 @@ public class ApparatusDao {
      * individual apparatus.
      * @return the individual Apparatus.
      */
-    public Apparatus getIndividualApparatus(String userName, String apparatusTypeAndNumber) {
-        log.info("getIndividualApparatus method called in ApparatusDao with userName: " + userName + " and apparatusTypeAndNumber: " + apparatusTypeAndNumber);
+    public Apparatus getIndividualApparatus(String fireDept, String apparatusTypeAndNumber) {
+        log.info("getIndividualApparatus method called in ApparatusDao with fireDept: " + fireDept + " and apparatusTypeAndNumber: " + apparatusTypeAndNumber);
 
         try {
-        Apparatus apparatus = this.dynamoDbMapper.load(Apparatus.class, userName, apparatusTypeAndNumber);
+        Apparatus apparatus = this.dynamoDbMapper.load(Apparatus.class, fireDept, apparatusTypeAndNumber);
             metricsPublisher.addCount(MetricsConstants.GETINDIVIDUALAPPARATUS_APPARAUTSNOTFOUND_COUNT, 1);
             return apparatus;
         } catch (UnsupportedOperationException e) {

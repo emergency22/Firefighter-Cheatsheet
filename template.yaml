@@ -214,6 +214,7 @@ Resources:
                 Action: dynamodb:*
                 Resource: !Sub "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/coefficient"
 
+
 #        - PolicyName: 'AccessAlbumTracksTable'
 #          PolicyDocument:
 #            Version: '2012-10-17'
@@ -306,7 +307,7 @@ Resources:
         FirefighterCheatsheetService:
           Type: Api
           Properties:
-            Path: /apparatus/{apparatusTypeAndNumber}
+            Path: /apparatus/individual
             Method: get
             Auth:
               Authorizer: 'NONE'
@@ -448,6 +449,8 @@ Resources:
       AttributeDefinitions:
         - AttributeName: "userName"
           AttributeType: "S"
+        - AttributeName: "fireDept"
+          AttributeType: "S"
         - AttributeName: "apparatusTypeAndNumber"
           AttributeType: "S"
       KeySchema:
@@ -457,6 +460,16 @@ Resources:
           KeyType: "RANGE"
       BillingMode: "PAY_PER_REQUEST"
       TableName: "apparatus"
+      GlobalSecondaryIndexes:
+        - IndexName: "FireDeptAndAppTypeNumIndex"
+          KeySchema:
+            - AttributeName: "fireDept"
+              KeyType: "HASH"
+            - AttributeName: "apparatusTypeAndNumber"
+              KeyType: "RANGE"
+          Projection:
+            ProjectionType: "ALL"
+
   CoefficientTable:
     Type: AWS::DynamoDB::Table
     Properties:

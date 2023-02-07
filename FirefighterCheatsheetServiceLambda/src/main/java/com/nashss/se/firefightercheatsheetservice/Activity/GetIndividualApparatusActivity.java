@@ -46,10 +46,11 @@ public class GetIndividualApparatusActivity {
         log.info("Received GetIndividualApparatusRequest {}", getIndividualApparatusRequest);
 
         String userName = getIndividualApparatusRequest.getUserName();
+        String fireDept = getIndividualApparatusRequest.getFireDept();
         String apparatusTypeAndNumber = getIndividualApparatusRequest.getApparatusTypeAndNumber();
 
-        Apparatus apparatus = apparatusDao.getIndividualApparatus(userName, apparatusTypeAndNumber);
-        ApparatusModel apparatusModel = new ModelConverter().toApparatusModel(apparatus);   //fix this
+        Apparatus apparatus = apparatusDao.getIndividualApparatus(fireDept, apparatusTypeAndNumber);
+        ApparatusModel apparatusModel = new ModelConverter().toApparatusModel(apparatus);
         return GetIndividualApparatusResult.builder()
                 .withApparatusModel(apparatusModel)
                 .build();
