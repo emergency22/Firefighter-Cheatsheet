@@ -145,7 +145,6 @@ public class ApparatusDao {
         log.info("getIndividualApparatus method called in ApparatusDao with fireDept: " + fireDept + " and apparatusTypeAndNumber: " + apparatusTypeAndNumber);
 
         try {
-            log.info("Pre-query");
             Map<String, AttributeValue> valueMap = new HashMap<>();
             valueMap.put(":fireDept", new AttributeValue().withS(fireDept));
             valueMap.put(":apparatusTypeAndNumber", new AttributeValue().withS(apparatusTypeAndNumber));
@@ -156,11 +155,10 @@ public class ApparatusDao {
                     .withExpressionAttributeValues(valueMap);
 
             PaginatedQueryList<Apparatus> apparatusList = dynamoDbMapper.query(Apparatus.class, queryExpression);
-            log.info("Apparatus from ApparatusDAO: " + apparatusList.toString());
             metricsPublisher.addCount(MetricsConstants.GETINDIVIDUALAPPARATUS_APPARAUTSNOTFOUND_COUNT, 1);
             log.info("ApparatusDAO: getIndividualApparatus method successful");
             return apparatusList;
-        } catch (Exception e) {  //UnsupportedOperationException
+        } catch (UnsupportedOperationException e) {
             metricsPublisher.addCount(MetricsConstants.GETINDIVIDUALAPPARATUS_APPARAUTSNOTFOUND_COUNT, 0);
             log.info("ApparatusDAO: getIndividualApparatus method unsuccessful");
             throw new IndividualApparatusNotFoundException("Individual Apparatus could not be found", e);
