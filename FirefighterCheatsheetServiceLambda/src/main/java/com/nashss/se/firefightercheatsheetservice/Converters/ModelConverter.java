@@ -75,7 +75,7 @@ public class ModelConverter {
      * @return The converted list of ApparatusModels
      */
     public List<ApparatusModel> toApparatusModelList(List<Apparatus> apparatusList) {
-        log.info("ModelConverter toApparatusModelList method has run");
+        log.info("ModelConverter: toApparatusModelList method has run");
         List<ApparatusModel> apparatusModels = new ArrayList<>();
 
         for (Apparatus apparatus : apparatusList) {
@@ -83,5 +83,11 @@ public class ModelConverter {
         }
 
         return apparatusModels;
+    }
+
+    public ApparatusModel toIndividualApparatusModel(List<Apparatus> apparatusList) {
+        log.info("ModelConverter: toIndividualApparatusModel method has run");
+        List<ApparatusModel> apparatusModelList = toApparatusModelList(apparatusList);
+        return apparatusModelList.get(0);
     }
 }

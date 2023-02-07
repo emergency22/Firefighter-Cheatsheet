@@ -18,27 +18,38 @@ public class GetIndividualApparatusLambda
 
         log.info("GetIndividualApparatusLambda: handleRequest method accessed.");
 
-//        GetIndividualApparatusRequest email = input.fromUserClaims(claims ->
-//                GetIndividualApparatusRequest.builder()
-//                         .withUserName(claims.get("email"))
-//                         .build());
-//
-//         String actualEmail = email.getUserName();
+        GetIndividualApparatusRequest email = input.fromUserClaims(claims ->
+                GetIndividualApparatusRequest.builder()
+                         .withUserName(claims.get("email"))
+                         .build());
 
-         return super.runActivity(
-                 () -> {
-                     GetIndividualApparatusRequest unauthenticatedRequest = input.fromBody(GetIndividualApparatusRequest.class);
-                     return input.fromUserClaims(claims ->
-                             GetIndividualApparatusRequest.builder()
-                                     .withUserName(claims.get("email"))
-                                     .withFireDept(unauthenticatedRequest.getFireDept())
-                                     .withApparatusTypeAndNumber(unauthenticatedRequest.getApparatusTypeAndNumber())
-                                     .build());
-                 },
-                 (request, serviceComponent) ->
-                         serviceComponent.provideGetIndividualApparatusActivity().handleRequest(request)
-         );
+         String actualEmail = email.getUserName();
+
+        return super.runActivity(
+                () -> input.fromQuery(query ->
+                        GetIndividualApparatusRequest.builder()
+                                .withUserName(actualEmail)
+                                .withFireDept(query.get("fireDept"))
+                                .withApparatusTypeAndNumber(query.get("apparatusTypeAndNumber"))
+                                .build()),
+                (request, serviceComponent) ->
+                        serviceComponent.provideGetIndividualApparatusActivity().handleRequest(request)
+        );
+
+        //body
+//         return super.runActivity(
+//                 () -> {
+//                     GetIndividualApparatusRequest unauthenticatedRequest = input.fromBody(GetIndividualApparatusRequest.class);
+//                     return input.fromUserClaims(claims ->
+//                             GetIndividualApparatusRequest.builder()
+//                                     .withUserName(claims.get("email"))
+//                                     .withFireDept(unauthenticatedRequest.getFireDept())
+//                                     .withApparatusTypeAndNumber(unauthenticatedRequest.getApparatusTypeAndNumber())
+//                                     .build());
+//                 },
+//                 (request, serviceComponent) ->
+//                         serviceComponent.provideGetIndividualApparatusActivity().handleRequest(request)
+//         );
     }
-
 
 }

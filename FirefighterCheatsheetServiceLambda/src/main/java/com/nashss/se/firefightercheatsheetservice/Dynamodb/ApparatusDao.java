@@ -2,6 +2,7 @@ package com.nashss.se.firefightercheatsheetservice.Dynamodb;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBQueryExpression;
 import com.amazonaws.services.dynamodbv2.datamodeling.PaginatedQueryList;
+import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 import com.nashss.se.firefightercheatsheetservice.Dynamodb.models.Apparatus;
 import com.nashss.se.firefightercheatsheetservice.Exceptions.ApparatusListNotFoundException;
 import com.nashss.se.firefightercheatsheetservice.Exceptions.ApparatusNotFoundException;
@@ -12,7 +13,9 @@ import com.nashss.se.firefightercheatsheetservice.Metrics.MetricsPublisher;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -29,6 +32,7 @@ public class ApparatusDao {
     private final MetricsPublisher metricsPublisher;
     private final Logger log = LogManager.getLogger();
 
+    public static final String FIRE_DEPT_APP_TYPE_NUM_INDEX = "FireDeptAndAppTypeNumIndex";
 
     /**
      * Instantiates a ApparatusDao object.
@@ -137,15 +141,28 @@ public class ApparatusDao {
      * individual apparatus.
      * @return the individual Apparatus.
      */
-    public Apparatus getIndividualApparatus(String fireDept, String apparatusTypeAndNumber) {
+    public List<Apparatus> getIndividualApparatus(String fireDept, String apparatusTypeAndNumber) {
         log.info("getIndividualApparatus method called in ApparatusDao with fireDept: " + fireDept + " and apparatusTypeAndNumber: " + apparatusTypeAndNumber);
 
         try {
-        Apparatus apparatus = this.dynamoDbMapper.load(Apparatus.class, fireDept, apparatusTypeAndNumber);
+            log.info("Pre-query");
+            Map<String, AttributeValue> valueMap = new HashMap<>();
+            valueMap.put(":fireDept", new AttributeValue().withS(fireDept));
+            valueMap.put(":apparatusTypeAndNumber", new AttributeValue().withS(apparatusTypeAndNumber));
+            DynamoDBQueryExpression<Apparatus> queryExpression = new DynamoDBQueryExpression<Apparatus>()
+                    .withIndexName(FIRE_DEPT_APP_TYPE_NUM_INDEX)
+                    .withConsistentRead(false)
+                    .withKeyConditionExpression("fireDept = :fireDept and apparatusTypeAndNum = :apparatusTypeAndNum")
+                    .withExpressionAttributeValues(valueMap);
+
+            PaginatedQueryList<Apparatus> apparatusList = dynamoDbMapper.query(Apparatus.class, queryExpression);
+            log.info("Apparatus from ApparatusDAO: " + apparatusList.toString());
             metricsPublisher.addCount(MetricsConstants.GETINDIVIDUALAPPARATUS_APPARAUTSNOTFOUND_COUNT, 1);
-            return apparatus;
-        } catch (UnsupportedOperationException e) {
+            log.info("ApparatusDAO: getIndividualApparatus method successful");
+            return apparatusList;
+        } catch (Exception e) {  //UnsupportedOperationException
             metricsPublisher.addCount(MetricsConstants.GETINDIVIDUALAPPARATUS_APPARAUTSNOTFOUND_COUNT, 0);
+            log.info("ApparatusDAO: getIndividualApparatus method unsuccessful");
             throw new IndividualApparatusNotFoundException("Individual Apparatus could not be found", e);
         }
 

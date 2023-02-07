@@ -49,8 +49,8 @@ public class GetIndividualApparatusActivity {
         String fireDept = getIndividualApparatusRequest.getFireDept();
         String apparatusTypeAndNumber = getIndividualApparatusRequest.getApparatusTypeAndNumber();
 
-        Apparatus apparatus = apparatusDao.getIndividualApparatus(fireDept, apparatusTypeAndNumber);
-        ApparatusModel apparatusModel = new ModelConverter().toApparatusModel(apparatus);
+        List<Apparatus> apparatusList = apparatusDao.getIndividualApparatus(fireDept, apparatusTypeAndNumber);
+        ApparatusModel apparatusModel = new ModelConverter().toIndividualApparatusModel(apparatusList);
         return GetIndividualApparatusResult.builder()
                 .withApparatusModel(apparatusModel)
                 .build();
