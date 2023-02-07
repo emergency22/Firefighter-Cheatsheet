@@ -5,7 +5,6 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 
-import java.util.List;
 import java.util.Objects;
 
 @JsonDeserialize(builder = Hose.Builder.class)
@@ -139,7 +138,7 @@ public class Hose {
             return this;
         }
 
-        public Builder withHoseDiamater(Double hoseDiameter) {
+        public Builder withHoseDiameter(Double hoseDiameter) {
             this.hoseDiameter = hoseDiameter;
             return this;
         }
