@@ -152,7 +152,7 @@ public class ApparatusDao {
             DynamoDBQueryExpression<Apparatus> queryExpression = new DynamoDBQueryExpression<Apparatus>()
                     .withIndexName(FIRE_DEPT_APP_TYPE_NUM_INDEX)
                     .withConsistentRead(false)
-                    .withKeyConditionExpression("fireDept = :fireDept and apparatusTypeAndNum = :apparatusTypeAndNum")
+                    .withKeyConditionExpression("fireDept = :fireDept and apparatusTypeAndNumber = :apparatusTypeAndNumber")
                     .withExpressionAttributeValues(valueMap);
 
             PaginatedQueryList<Apparatus> apparatusList = dynamoDbMapper.query(Apparatus.class, queryExpression);
