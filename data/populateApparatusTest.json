@@ -6,6 +6,7 @@
           "userName": { "S": "alex.d.murillo+test1@protonmail.com" },
           "apparatusTypeAndNumber": { "S": "Engine 1" },
           "fireDept": { "S": "MCFD" }
+          "hoseList": {}
         }
       }
     },

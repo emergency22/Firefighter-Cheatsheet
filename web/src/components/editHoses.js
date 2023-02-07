@@ -24,7 +24,6 @@ export default class EditHoses {
         console.log("editHoses: fireDept: " + fireDept);
         console.log("editHoses: apparatusTypeAndNumber: " + apparatusTypeAndNumber);
 
-
         const apparatus = await this.client.getIndividualApparatus(fireDept, apparatusTypeAndNumber);
         document.getElementById('theDisplayArea').innerHTML = "";
         document.getElementById('addApparatusForm').innerHTML = "";
@@ -33,6 +32,9 @@ export default class EditHoses {
         if (apparatus == null) {
             document.getElementById('theDisplayArea').innerHTML = "No hoses exist for this apparatus. Add a hose below."
         }
+
+        document.getElementById('theDisplayArea').innerHTML += "<div class='individualApparatus'>" + fireDept + " " + apparatusTypeAndNumber + "</div>";
+
 
 
     }
