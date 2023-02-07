@@ -2,6 +2,7 @@ import { establishRelationAndKeys } from '@aws-amplify/datastore/lib-esm/util';
 import { formToJSON } from 'axios';
 import FirefighterCheatsheetClient from '../api/firefighterCheatsheetClient';
 import BindingClass from "../util/bindingClass";
+import EditHoses from "../components/editHoses";
 
 /**
  * The header component for the website.
@@ -17,6 +18,7 @@ export default class Header extends BindingClass {
         this.bindClassMethods(methodsToBind, this);
 
         this.client = new FirefighterCheatsheetClient();
+        this.editHoses = new EditHoses();
     }
 
     /**
@@ -191,9 +193,8 @@ export default class Header extends BindingClass {
         button.classList.add(currentHose);
 
         button.addEventListener('click', async () => {
-            if (confirm("Click OK to delete this apparatus.") == true) {
-            await this.client.getIndividualApparatus(fireDept, apparatusTypeAndNumber);
-            await this.displayApparatus();  //reload the page
+            if (confirm("Click OK to edit the hoses this apparatus.") == true) {
+            await this.editHoses.displayHoses(fireDept, apparatusTypeAndNumber);
             }
         });
         return button;
