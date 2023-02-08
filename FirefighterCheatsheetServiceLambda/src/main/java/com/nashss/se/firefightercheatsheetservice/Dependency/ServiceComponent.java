@@ -1,10 +1,7 @@
 package com.nashss.se.firefightercheatsheetservice.Dependency;
 
-import com.nashss.se.firefightercheatsheetservice.Activity.AddApparatusActivity;
-import com.nashss.se.firefightercheatsheetservice.Activity.DeleteApparatusActivity;
-import com.nashss.se.firefightercheatsheetservice.Activity.GetApparatusActivity;
+import com.nashss.se.firefightercheatsheetservice.Activity.*;
 
-import com.nashss.se.firefightercheatsheetservice.Activity.GetIndividualApparatusActivity;
 import dagger.Component;
 
 import javax.inject.Singleton;

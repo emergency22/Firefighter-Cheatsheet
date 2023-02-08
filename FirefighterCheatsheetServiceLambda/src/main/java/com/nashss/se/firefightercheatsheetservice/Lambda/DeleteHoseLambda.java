@@ -2,6 +2,8 @@ package com.nashss.se.firefightercheatsheetservice.Lambda;
 
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
+import com.nashss.se.firefightercheatsheetservice.Activity.Requests.DeleteHoseRequest;
+import com.nashss.se.firefightercheatsheetservice.Activity.Results.DeleteHoseResult;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -21,6 +23,7 @@ public class DeleteHoseLambda extends LambdaActivityRunner<DeleteHoseRequest, De
                         .build());
 
         String actualEmail = email.getUserName();
+        log.info("DeleteHoseLambda: email: " + actualEmail);
 
         return super.runActivity(
                 () -> input.fromQuery(query ->
@@ -28,12 +31,10 @@ public class DeleteHoseLambda extends LambdaActivityRunner<DeleteHoseRequest, De
                                 .withUserName(actualEmail)
                                 .withFireDept(query.get("fireDept"))
                                 .withApparatusTypeAndNumber(query.get("apparatusTypeAndNumber"))
-                                .withHoseIndexNumber(query.get("hoseIndexNumber"))
+                                .withHoseIndexNumber(Integer.valueOf(query.get("hoseIndexNumber")))
                                 .build()),
                 (request, serviceComponent) ->
                         serviceComponent.provideDeleteHoseActivity().handleRequest(request)
         );
-
-
-
+    }
 }

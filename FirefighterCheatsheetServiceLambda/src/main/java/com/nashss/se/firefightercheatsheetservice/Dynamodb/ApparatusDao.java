@@ -5,10 +5,7 @@ import com.amazonaws.services.dynamodbv2.datamodeling.PaginatedQueryList;
 import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 import com.nashss.se.firefightercheatsheetservice.Dynamodb.models.Apparatus;
 import com.nashss.se.firefightercheatsheetservice.Dynamodb.models.Hose;
-import com.nashss.se.firefightercheatsheetservice.Exceptions.ApparatusListNotFoundException;
-import com.nashss.se.firefightercheatsheetservice.Exceptions.ApparatusNotFoundException;
-import com.nashss.se.firefightercheatsheetservice.Exceptions.CannotAddApparatusException;
-import com.nashss.se.firefightercheatsheetservice.Exceptions.IndividualApparatusNotFoundException;
+import com.nashss.se.firefightercheatsheetservice.Exceptions.*;
 import com.nashss.se.firefightercheatsheetservice.Metrics.MetricsConstants;
 import com.nashss.se.firefightercheatsheetservice.Metrics.MetricsPublisher;
 
@@ -171,6 +168,45 @@ public class ApparatusDao {
             throw new IndividualApparatusNotFoundException("Individual Apparatus could not be found", e);
         }
 
+    }
+
+    public List<Apparatus> deleteHose(String fireDept, String apparatusTypeAndNumber, int hoseIndexNumber) {
+        log.info("ApparatusDAO: deleteHose method accessed");
+
+
+        Map<String, AttributeValue> valueMap = new HashMap<>();
+        valueMap.put(":fireDept", new AttributeValue().withS(fireDept));
+        valueMap.put(":apparatusTypeAndNumber", new AttributeValue().withS(apparatusTypeAndNumber));
+        DynamoDBQueryExpression<Apparatus> queryExpression = new DynamoDBQueryExpression<Apparatus>()
+                .withIndexName(FIRE_DEPT_APP_TYPE_NUM_INDEX)
+                .withConsistentRead(false)
+                .withKeyConditionExpression("fireDept = :fireDept and apparatusTypeAndNumber = :apparatusTypeAndNumber")
+                .withExpressionAttributeValues(valueMap);
+
+        PaginatedQueryList<Apparatus> apparatusListFromGSI = dynamoDbMapper.query(Apparatus.class, queryExpression);
+        Apparatus apparatusFromGSI = apparatusListFromGSI.get(0);
+
+        String userNameFromGSI = apparatusFromGSI.getUserName();
+        String apparatusTypeAndNumberFromGSI = apparatusFromGSI.getApparatusTypeAndNumber();
+        String fireDeptFromGSI = apparatusFromGSI.getFireDept();
+        List<Hose> hoseListFromGSI = new ArrayList<>(apparatusFromGSI.getHoseList());
+        
+        hoseListFromGSI.remove(hoseIndexNumber);
+
+        Apparatus apparatusWithHoseRemoved = new Apparatus(userNameFromGSI, apparatusTypeAndNumberFromGSI, fireDeptFromGSI, hoseListFromGSI);
+        
+        try {
+            dynamoDbMapper.save(apparatusWithHoseRemoved);
+            metricsPublisher.addCount(MetricsConstants.DELETEHOSE_COUNT, 1);
+            log.info("ApparatusDAO: hose successfully deleted.");
+        } catch (UnsupportedOperationException e) {
+            metricsPublisher.addCount(MetricsConstants.DELETEHOSE_COUNT, 0);
+            throw new CannotDeleteHoseException("Apparatus could not be saved", e);
+        }
+        
+        List<Apparatus> list = new ArrayList<>();
+        list.add(apparatusWithHoseRemoved);
+        return list;
     }
 
 

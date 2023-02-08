@@ -7,7 +7,7 @@ public class MetricsConstants {
     public static final String GETAPPARATUS_APPARTATUSLISTNOTFOUND_COUNT = "GetApparatus.ApparatusListNotFoundException.Count";
     public static final String DELETEAPPARATUS_APPARTATUSFOUND_COUNT = "DeleteApparatus.ApparatusNotFoundException.Count";
     public static final String ADDAPPARATUS_COUNT = "AddApparatusException.Count";
-
+    public static final String DELETEHOSE_COUNT = "CannotDeleteHoseException.Count";
     public static final String GETINDIVIDUALAPPARATUS_APPARAUTSNOTFOUND_COUNT = "GetIndividualApparatus.ApparatusListNotFoundException.Count";
 
 

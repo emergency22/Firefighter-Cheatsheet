@@ -2,10 +2,10 @@ package com.nashss.se.firefightercheatsheetservice.Activity.Results;
 
 import com.nashss.se.firefightercheatsheetservice.Models.ApparatusModel;
 
-public class GetIndividualApparatusResult {
+public class DeleteHoseResult {
     private final ApparatusModel apparatusModel;
 
-    private GetIndividualApparatusResult(ApparatusModel apparatusModel) {
+    private DeleteHoseResult(ApparatusModel apparatusModel) {
         this.apparatusModel = apparatusModel;
     }
 
@@ -15,7 +15,7 @@ public class GetIndividualApparatusResult {
 
     @Override
     public String toString() {
-        return "GetIndividualApparatusResult{" +
+        return "DeleteHoseResult{" +
                 "apparatusModel=" + apparatusModel +
                 '}';
     }
@@ -33,8 +33,8 @@ public class GetIndividualApparatusResult {
             return this;
         }
 
-        public GetIndividualApparatusResult build() {
-            return new GetIndividualApparatusResult(apparatusModel);
+        public DeleteHoseResult build() {
+            return new DeleteHoseResult(apparatusModel);
         }
     }
 }
