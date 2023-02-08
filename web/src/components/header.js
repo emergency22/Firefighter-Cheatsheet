@@ -160,7 +160,7 @@ export default class Header extends BindingClass {
 
 
     displayAddApparatusMenu() {
-        (document.getElementById('addForm').innerHTML += "<form class='addAppForm' id='addAppForm'>" +
+        (document.getElementById('addApparatusForm').innerHTML += "<form class='addAppForm' id='addAppForm'>" +
             "<label for='fireDept'>Add an apparatus: </label>" +
             "<input type='text' id='fireDept' placeHolder='Fire Department' style='width: 200px' required>" +
             "<input type='text' id='apparatusTypeAndNumber' placeHolder='Apparatus Type and Number' style='width: 200px' required>" +

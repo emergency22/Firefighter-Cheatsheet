@@ -27,7 +27,7 @@ export default class EditHoses {
         document.getElementById('addApparatusForm').innerHTML = "";
         console.log("apparatus: " + apparatus);
 
-        if (apparatus == null) {
+        if (apparatus.hoseList.length == 0) {
             document.getElementById('theDisplayArea').innerHTML = "No hoses exist for this apparatus. Add a hose below."
         }
 
@@ -38,11 +38,15 @@ export default class EditHoses {
 
         var currentHoseLocation = "currentHoseLocation";
         var currentHoseLocations = [];
-        var currentHoses = [];
+        // var currentHoses = [];
 
 
         for (var i=0; i < hoseList.length; i++) {
-            console.log(i);
+
+            let iString = i.toString();
+            currentHoseLocation += iString;
+            // currentHose += iString;
+
             var currentHose = hoseList[i];
             if (currentHose != null) {
                 var name = currentHose.name;
@@ -59,7 +63,7 @@ export default class EditHoses {
                 console.log(pumpDischargePressure);
 
 
-                var apparatusInfo = 
+                var apparatusHoseInfo = 
                 "<li>" + color + 
                 " " + 
                 name + 
@@ -76,38 +80,39 @@ export default class EditHoses {
                     `<div class='delButton' id='${currentHoseLocation}'>X</div>` +
                 `</span><div class='editHoses' id='${currentHose}'>` +
                 `Calculate pump discharge pressure for ${color} ${name}` + "</div></li>";
-                document.getElementById('theDisplayArea').innerHTML += apparatusInfo;
+                document.getElementById('theDisplayArea').innerHTML += apparatusHoseInfo;
                 currentHoseLocations.push(currentHoseLocation);
-                currentHoses.push(currentHose);
+                // currentHoses.push(currentHose);
 
                 currentHoseLocation = "currentLocation";   //reset variable for the next loop
-                currentHose = "currentHose";  //reset variable for the next loop;
+                // currentHose = "currentHose";  //reset variable for the next loop;
             }
         }
-        // for (var i=0; i < apparatusList.length; i++) {
-        //     var currentHoseLocation = currentHoseLocations[i];
+        for (var i=0; i < hoseList.length; i++) {
+            var currentHoseLocation = currentHoseLocations[i];
         //     var currentHose = currentHoses[i];
         //     var fireDept = hoseList[i].fireDept;
-        //     var apparatusTypeAndNumber = hoseList[i].apparatusTypeAndNumber;
+            var hoseIndexNumber = i;
 
-        //     this.createDeleteHoseButton(currentHoseLocation, apparatusTypeAndNumber);
+            this.createDeleteHoseButton(currentHoseLocation, fireDept, apparatusTypeAndNumber, hoseIndexNumber);
         //     this.createCalculatePDPButton(currentHose, fireDept, apparatusTypeAndNumber);
         // }
     }
+}
 
-    // createDeleteHoseButton(currentHoseLocation, apparatusTypeAndNumber) {
-    //     const button = document.getElementById(currentHoseLocation);
-    //     button.classList.add('button');
-    //     button.classList.add(currentHoseLocation);
+    createDeleteHoseButton(currentHoseLocation, fireDept, apparatusTypeAndNumber, hoseIndexNumber) {
+        const button = document.getElementById(currentHoseLocation);
+        button.classList.add('button');
+        button.classList.add(currentHoseLocation);
 
-    //     button.addEventListener('click', async () => {
-    //         if (confirm("Click OK to delete this apparatus.") == true) {
-    //         await this.client.deleteHose(apparatusTypeAndNumber);
-    //         await this.displayApparatus();  //reload the page
-    //         }
-    //     });
-    //     return button;
-    // }
+        button.addEventListener('click', async () => {
+            if (confirm("Click OK to delete this hose.") == true) {
+            await this.client.deleteHose(fireDept, apparatusTypeAndNumber, hoseIndexNumber);
+            await this.displayHoses(fireDept, apparatusTypeAndNumber);  //reload the page
+            }
+        });
+        return button;
+    }
 
     // displayAddApparatusMenu() {
     //     (document.getElementById('addForm').innerHTML += "<form class='addAppForm' id='addAppForm'>" +
