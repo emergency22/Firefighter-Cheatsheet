@@ -1,12 +1,10 @@
 package test.java.com.nashss.se.firefightercheatsheetservice.Dynamodb;
 
-import com.amazonaws.regions.Regions;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBQueryExpression;
 import com.amazonaws.services.dynamodbv2.datamodeling.PaginatedQueryList;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nashss.se.firefightercheatsheetservice.Dynamodb.ApparatusDao;
-import com.nashss.se.firefightercheatsheetservice.Dynamodb.DynamoDbClientProvider;
 import com.nashss.se.firefightercheatsheetservice.Dynamodb.models.Apparatus;
 import com.nashss.se.firefightercheatsheetservice.Dynamodb.models.Hose;
 import com.nashss.se.firefightercheatsheetservice.Exceptions.ApparatusListNotFoundException;
@@ -75,12 +73,7 @@ public class ApparatusDaoTest {
     @Test
     void makeSomeJson() throws JsonProcessingException {
 
-        String name = "Preconnect 1";
-        String color = "Red";
-        int length = 200;
-        Double hoseDiameter = 1.5;
-        int waterQuantityInGallons = 200;
-        Hose hose1 = new Hose(name, color, length, hoseDiameter, waterQuantityInGallons);
+        Hose hose1 = new Hose("Preconnect 1", "Red", 200, 1.5, 200);
         Hose hose2 = new Hose("Preconnect 2", "Red", 200, 1.75, 150);
         List<Hose> hoseList = new ArrayList<>();
         hoseList.add(hose1);

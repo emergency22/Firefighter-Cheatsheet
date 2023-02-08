@@ -1,7 +1,5 @@
 package com.nashss.se.firefightercheatsheetservice.Converters;
 
-
-
 import com.nashss.se.firefightercheatsheetservice.Dynamodb.models.Apparatus;
 import com.nashss.se.firefightercheatsheetservice.Dynamodb.models.Hose;
 import com.nashss.se.firefightercheatsheetservice.Models.ApparatusModel;
@@ -23,10 +21,12 @@ public class ModelConverter {
      * @return the converted playlist
      */
     public ApparatusModel toApparatusModel(Apparatus apparatus) {
-        log.info("ModelConverter toApparatusModel method has run");
+        log.info("ModelConverter: toApparatusModel method has run");
         List<Hose> hoseList = null;
         if (apparatus.getHoseList() != null) {
             hoseList = new ArrayList<>(apparatus.getHoseList());
+        } else {
+            hoseList = new ArrayList<>();
         }
 
         return ApparatusModel.builder()

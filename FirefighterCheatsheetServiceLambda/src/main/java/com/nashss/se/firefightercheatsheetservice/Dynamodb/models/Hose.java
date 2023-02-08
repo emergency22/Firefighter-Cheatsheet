@@ -17,6 +17,8 @@ public class Hose {
     private int waterQuantityInGallons;
     private int pumpDischargePressure;
 
+    public Hose() {}
+
     public Hose(String name, String color, int length, Double hoseDiameter, int waterQuantityInGallons) {
         this.name = name;
         this.color = color;

@@ -6,7 +6,7 @@
           "userName": { "S": "alex.d.murillo+test1@protonmail.com" },
           "apparatusTypeAndNumber": { "S": "Engine 1" },
           "fireDept": { "S": "MCFD" },
-          "hoseList": { "L": [{"name":"Preconnect 1","color":"Red","length":200,"hoseDiameter":1.5,"waterQuantityInGallons":200,"pumpDischargePressure":0},{"name":"Preconnect 2","color":"Red","length":200,"hoseDiameter":1.75,"waterQuantityInGallons":150,"pumpDischargePressure":0}]}
+          "hoseList": { "S": [{"name":"Preconnect 1","color":"Red","length":200,"hoseDiameter":1.5,"waterQuantityInGallons":200,"pumpDischargePressure":0},{"name":"Preconnect 2","color":"Red","length":200,"hoseDiameter":1.75,"waterQuantityInGallons":150,"pumpDischargePressure":0}] }
         }
       }
     },

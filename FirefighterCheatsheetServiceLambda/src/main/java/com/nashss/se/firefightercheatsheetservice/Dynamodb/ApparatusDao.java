@@ -13,6 +13,7 @@ import com.nashss.se.firefightercheatsheetservice.Metrics.MetricsPublisher;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -117,10 +118,7 @@ public class ApparatusDao {
         log.info("addApparatus method called in ApparatusDao with userName: " + userName +
                 " , apparatusTypeAndNumber: " + apparatusTypeAndNumber + ", and fireDept: " + fireDept);
 
-        Apparatus apparatus = new Apparatus();
-        apparatus.setUserName(userName);
-        apparatus.setApparatusTypeAndNumber(apparatusTypeAndNumber);
-        apparatus.setFireDept(fireDept);
+        Apparatus apparatus = new Apparatus(userName, apparatusTypeAndNumber, fireDept, new ArrayList<>());
 
         try {
             dynamoDbMapper.save(apparatus);
