@@ -70,21 +70,21 @@ public class ApparatusDaoTest {
         assertThrows(ApparatusListNotFoundException.class, () -> apparatusDao.getApparatus("whatever"));
     }
 
-    @Test
-    void makeSomeJson() throws JsonProcessingException {
-
-        Hose hose1 = new Hose("Preconnect 1", "Red", 200, 1.5, 200);
-        Hose hose2 = new Hose("Preconnect 2", "Red", 200, 1.75, 150);
-        List<Hose> hoseList = new ArrayList<>();
-        hoseList.add(hose1);
-        hoseList.add(hose2);
-
-        Apparatus apparatus = new Apparatus();
-        apparatus.setHoseList(hoseList);
-
-        ObjectMapper objectMapper = new ObjectMapper();
-        String serializedApparatus = objectMapper.writeValueAsString(apparatus);
-        System.out.println(serializedApparatus);
-    }
+//    @Test
+//    void makeSomeJson() throws JsonProcessingException {
+//
+//        Hose hose1 = new Hose("Preconnect 1", "Red", 200, 1.5, 200);
+//        Hose hose2 = new Hose("Preconnect 2", "Red", 200, 1.75, 150);
+//        List<Hose> hoseList = new ArrayList<>();
+//        hoseList.add(hose1);
+//        hoseList.add(hose2);
+//
+//        Apparatus apparatus = new Apparatus();
+//        apparatus.setHoseList(hoseList);
+//
+//        ObjectMapper objectMapper = new ObjectMapper();
+//        String serializedApparatus = objectMapper.writeValueAsString(apparatus);
+//        System.out.println(serializedApparatus);
+//    }
 
 }

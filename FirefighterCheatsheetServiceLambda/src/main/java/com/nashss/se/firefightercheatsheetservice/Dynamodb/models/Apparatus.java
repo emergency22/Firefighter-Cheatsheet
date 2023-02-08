@@ -3,6 +3,7 @@ package com.nashss.se.firefightercheatsheetservice.Dynamodb.models;
 import com.amazonaws.services.dynamodbv2.datamodeling.*;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
+import com.nashss.se.firefightercheatsheetservice.Converters.HoseListConverter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -62,6 +63,7 @@ public class Apparatus {
         this.fireDept = fireDept;
     }
 
+    @DynamoDBTypeConverted(converter = HoseListConverter.class)
     @DynamoDBAttribute(attributeName = "hoseList")
     public List<Hose> getHoseList() {
         return hoseList;

@@ -4,6 +4,7 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBQueryExpression;
 import com.amazonaws.services.dynamodbv2.datamodeling.PaginatedQueryList;
 import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 import com.nashss.se.firefightercheatsheetservice.Dynamodb.models.Apparatus;
+import com.nashss.se.firefightercheatsheetservice.Dynamodb.models.Hose;
 import com.nashss.se.firefightercheatsheetservice.Exceptions.ApparatusListNotFoundException;
 import com.nashss.se.firefightercheatsheetservice.Exceptions.ApparatusNotFoundException;
 import com.nashss.se.firefightercheatsheetservice.Exceptions.CannotAddApparatusException;
@@ -118,7 +119,15 @@ public class ApparatusDao {
         log.info("addApparatus method called in ApparatusDao with userName: " + userName +
                 " , apparatusTypeAndNumber: " + apparatusTypeAndNumber + ", and fireDept: " + fireDept);
 
-        Apparatus apparatus = new Apparatus(userName, apparatusTypeAndNumber, fireDept, new ArrayList<>());
+//        Hose hose1 = new Hose("Preconnect 1", "Red", 200, 1.5, 200);
+//        Hose hose2 = new Hose("Preconnect 2", "Red", 200, 1.75, 150);
+//        List<Hose> hoseList = new ArrayList<>();
+//        hoseList.add(hose1);
+//        hoseList.add(hose2);
+//
+//        Apparatus apparatus = new Apparatus(userName, apparatusTypeAndNumber, fireDept, hoseList);
+
+        Apparatus apparatus = new Apparatus(userName, apparatusTypeAndNumber, fireDept);
 
         try {
             dynamoDbMapper.save(apparatus);
