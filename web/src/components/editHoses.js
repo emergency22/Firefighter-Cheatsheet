@@ -108,7 +108,7 @@ export default class EditHoses {
         button.addEventListener('click', async () => {
             if (confirm("Click OK to delete this hose.") == true) {
             await this.client.deleteHose(fireDept, apparatusTypeAndNumber, hoseIndexNumber);
-            await this.displayHoses();  //reload the page
+            await this.displayHoses(fireDept, apparatusTypeAndNumber);  //reload the page
             }
         });
         return button;
