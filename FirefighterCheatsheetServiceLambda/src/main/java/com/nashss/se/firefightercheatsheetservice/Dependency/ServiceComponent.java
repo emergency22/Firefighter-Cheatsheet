@@ -28,4 +28,6 @@ public interface ServiceComponent {
 
     GetIndividualApparatusActivity provideGetIndividualApparatusActivity();
 
+    DeleteHoseActivity provideDeleteHoseActivity();
+
 }
