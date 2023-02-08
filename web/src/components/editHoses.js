@@ -83,8 +83,57 @@ export default class EditHoses {
                 currentHoseLocation = "currentLocation";   //reset variable for the next loop
                 currentHose = "currentHose";  //reset variable for the next loop;
             }
-
-
         }
+        // for (var i=0; i < apparatusList.length; i++) {
+        //     var currentHoseLocation = currentHoseLocations[i];
+        //     var currentHose = currentHoses[i];
+        //     var fireDept = hoseList[i].fireDept;
+        //     var apparatusTypeAndNumber = hoseList[i].apparatusTypeAndNumber;
+
+        //     this.createDeleteHoseButton(currentHoseLocation, apparatusTypeAndNumber);
+        //     this.createCalculatePDPButton(currentHose, fireDept, apparatusTypeAndNumber);
+        // }
     }
+
+    // createDeleteHoseButton(currentHoseLocation, apparatusTypeAndNumber) {
+    //     const button = document.getElementById(currentHoseLocation);
+    //     button.classList.add('button');
+    //     button.classList.add(currentHoseLocation);
+
+    //     button.addEventListener('click', async () => {
+    //         if (confirm("Click OK to delete this apparatus.") == true) {
+    //         await this.client.deleteHose(apparatusTypeAndNumber);
+    //         await this.displayApparatus();  //reload the page
+    //         }
+    //     });
+    //     return button;
+    // }
+
+    // displayAddApparatusMenu() {
+    //     (document.getElementById('addForm').innerHTML += "<form class='addAppForm' id='addAppForm'>" +
+    //         "<label for='fireDept'>Add an apparatus: </label>" +
+    //         "<input type='text' id='fireDept' placeHolder='Fire Department' style='width: 200px' required>" +
+    //         "<input type='text' id='apparatusTypeAndNumber' placeHolder='Apparatus Type and Number' style='width: 200px' required>" +
+    //         "<input type='submit' value='Add Apparatus'></div>"
+    //     );
+    //      this.addApparatusFormSubmitter();
+    // }
+
+    // addApparatusFormSubmitter() {
+    //     var addApparatusForm = document.getElementById('addAppForm');
+    //     addApparatusForm.addEventListener('submit', async (event) => {
+    //         event.preventDefault()  //prevents auto-submit
+
+    //         var inputFireDept = document.getElementById('fireDept').value;
+    //         var inputApparatusTypeAndNumber = document.getElementById('apparatusTypeAndNumber').value;
+
+    //         console.log("yup");
+    //         await this.client.addHose(inputFireDept, inputApparatusTypeAndNumber);
+    //         console.log("uh huh");
+
+    //         await this.displayApparatus();
+    //     });
+    // }
+
+
 }
