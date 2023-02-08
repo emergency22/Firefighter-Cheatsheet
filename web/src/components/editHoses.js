@@ -98,6 +98,7 @@ export default class EditHoses {
         //     this.createCalculatePDPButton(currentHose, fireDept, apparatusTypeAndNumber);
         // }
     }
+    this.displayAddHoseMenu(fireDept, apparatusTypeAndNumber);
 }
 
     createDeleteHoseButton(currentHoseLocation, fireDept, apparatusTypeAndNumber, hoseIndexNumber) {
@@ -114,31 +115,35 @@ export default class EditHoses {
         return button;
     }
 
-    // displayAddApparatusMenu() {
-    //     (document.getElementById('addForm').innerHTML += "<form class='addAppForm' id='addAppForm'>" +
-    //         "<label for='fireDept'>Add an apparatus: </label>" +
-    //         "<input type='text' id='fireDept' placeHolder='Fire Department' style='width: 200px' required>" +
-    //         "<input type='text' id='apparatusTypeAndNumber' placeHolder='Apparatus Type and Number' style='width: 200px' required>" +
-    //         "<input type='submit' value='Add Apparatus'></div>"
-    //     );
-    //      this.addApparatusFormSubmitter();
-    // }
+    displayAddHoseMenu(fireDept, apparatusTypeAndNumber) {
+        (document.getElementById('addApparatusForm').innerHTML += "<form class='addAppForm' id='addAppForm'>" +
+            "<label for='fireDept'>Add a hose: </label>" +
+            "<input type='text' id='name' placeHolder='Name of Hose' style='width: 200px' required>" +
+            "<input type='text' id='color' placeHolder='Color' style='width: 200px' required>" +
+            "<input type='text' id='length' placeHolder='Length in Feet' style='width: 200px' required>" +
+            "<input type='text' id='gallons' placeHolder='Total Gallonage' style='width: 200px' required>" +
+            "<input type='submit' value='Add Hose'></div>"
+        );
+            this.addHoseFormSubmitter(fireDept, apparatusTypeAndNumber);
+    }
 
-    // addApparatusFormSubmitter() {
-    //     var addApparatusForm = document.getElementById('addAppForm');
-    //     addApparatusForm.addEventListener('submit', async (event) => {
-    //         event.preventDefault()  //prevents auto-submit
+    addHoseFormSubmitter(fireDept, apparatusTypeAndNumber) {
+        var addApparatusForm = document.getElementById('addAppForm');
+        addApparatusForm.addEventListener('submit', async (event) => {
+            event.preventDefault()  //prevents auto-submit
 
-    //         var inputFireDept = document.getElementById('fireDept').value;
-    //         var inputApparatusTypeAndNumber = document.getElementById('apparatusTypeAndNumber').value;
+            var inputName = document.getElementById('name').value;
+            var inputColor = document.getElementById('color').value;
+            var inputLength = document.getElementById('length').value;
+            var inputGallons = document.getElementById('gallons').value;
+    
+            console.log("yup");
+            await this.client.addHose(fireDept, apparatusTypeAndNumber, inputName, inputColor, inputLength, inputGallons);
+            console.log("uh huh");
 
-    //         console.log("yup");
-    //         await this.client.addHose(inputFireDept, inputApparatusTypeAndNumber);
-    //         console.log("uh huh");
-
-    //         await this.displayApparatus();
-    //     });
-    // }
+            await this.displayHoses();
+        });
+    }
 
 
 }
