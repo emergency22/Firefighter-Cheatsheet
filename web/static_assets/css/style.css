@@ -59,6 +59,7 @@ html {
   opacity: 95%;
   /* margin-left: -2em; */
   margin-top: -45px;
+  z-index: 1000;
   /* width: 2em; */
   /* height: 45px; */
   /* z-index: 5; */

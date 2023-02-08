@@ -27,7 +27,7 @@ export default class EditHoses {
         document.getElementById('addApparatusForm').innerHTML = "";
         console.log("apparatus: " + apparatus);
 
-        if (apparatus == null) {
+        if (apparatus.hoseList.length == 0) {
             document.getElementById('theDisplayArea').innerHTML = "No hoses exist for this apparatus. Add a hose below."
         }
 
