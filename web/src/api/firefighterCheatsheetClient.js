@@ -141,6 +141,20 @@ export default class MusicPlaylistClient extends BindingClass {
     }
 }
 
+    async deleteHose(fireDept, apparatusTypeAndNumber, hoseIndexNumber) {
+        try {
+            const token = await this.getTokenOrThrow("Only authenticated users can make delete hose requests.");
+            const response = await this.axiosClient.delete(`apparatus/hose?fireDept=${fireDept}&apparatusTypeAndNumber=${apparatusTypeAndNumber}&hoseIndexNumber=${hoseIndexNumber}`, {   
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+            return response.data.apparatusModelList;
+        } catch (error) {
+            this.handleError(error, errorCallback)
+        }
+    }
+
     /**
      * Get the songs on a given playlist by the playlist's identifier.
      * @param id Unique identifier for a playlist
