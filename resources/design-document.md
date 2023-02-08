@@ -163,6 +163,7 @@ Additional data: <br>
 _fireDept: The fire department associated with this particular apparatus._ <br> 
 _List of Hose: A list of hoses associated with this particular apparatus._ <br>
 
+_A GlobalSecondaryIndex will also be utilized, based on the Apparatus Table and named "FireDeptAndAppTypeNumIndex". This will allow a user to view a particular Apparatus based on fireDept (Hash Key) and apparatusTypeAndNumber(Sort Key)._
 _A GlobalSecondaryIndex will also be utilized, based on the Apparatus Table, to allow a user to view all Apparatus for a particular Fire Department. This will utilize the String 'fire dept' in the Apparatus table as a Sort Key._
 
 # 8. Pages

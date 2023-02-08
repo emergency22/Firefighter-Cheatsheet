@@ -2,6 +2,7 @@ import { establishRelationAndKeys } from '@aws-amplify/datastore/lib-esm/util';
 import { formToJSON } from 'axios';
 import FirefighterCheatsheetClient from '../api/firefighterCheatsheetClient';
 import BindingClass from "../util/bindingClass";
+import EditHoses from "../components/editHoses";
 
 /**
  * The header component for the website.
@@ -17,6 +18,7 @@ export default class Header extends BindingClass {
         this.bindClassMethods(methodsToBind, this);
 
         this.client = new FirefighterCheatsheetClient();
+        this.editHoses = new EditHoses();
     }
 
     /**
@@ -94,18 +96,19 @@ export default class Header extends BindingClass {
         document.getElementById('theDisplayArea').innerHTML = "";
         const apparatusList = await this.client.getApparatus();     //may want to set apparatusList in the datastore later. dunno.
         if (apparatusList.length == 0) {
-            document.getElementById('theDisplayArea').innerHTML = "No apparatus exist for this account. Add your apparatus below."
+            document.getElementById('theDisplayArea').innerHTML = "No apparatus exist for this account. Add an apparatus below."
         }
 
-
-
         var currentLocation = "currentLocation";
+        var currentHose = "currentHose";
         var currentLocations = [];
+        var currentHoses = [];
 
         for (var i=0; i < apparatusList.length; i++) {
             
             let iString = i.toString();
             currentLocation += iString;
+            currentHose += iString;
 
             var currentApparatus = apparatusList[i];
             if (currentApparatus.fireDept != null) {
@@ -118,20 +121,25 @@ export default class Header extends BindingClass {
                 apparatusTypeAndNumber + 
                 "<span>" +
                     `<div class='delButton' id='${currentLocation}'>X</div>` +
-                "</span><div class='editHoses'>" +
+                `</span><div class='editHoses' id='${currentHose}'>` +
                 `Edit Hoses for ${fireDept} ${apparatusTypeAndNumber}` + "</div></li>";
                 document.getElementById('theDisplayArea').innerHTML += apparatusInfo;
                 currentLocations.push(currentLocation);
+                currentHoses.push(currentHose);
 
                 currentLocation = "currentLocation";   //reset variable for the next loop
+                currentHose = "currentHose";  //reset variable for the next loop;
             }
         }
 
         for (var i=0; i < apparatusList.length; i++) {
             var currentLocation = currentLocations[i];
+            var currentHose = currentHoses[i];
+            var fireDept = apparatusList[i].fireDept;
             var apparatusTypeAndNumber = apparatusList[i].apparatusTypeAndNumber;
 
             this.createDeleteApparatusButton(currentLocation, apparatusTypeAndNumber);
+            this.createEditHosesButton(currentHose, fireDept, apparatusTypeAndNumber);
         }
     }
 
@@ -152,7 +160,7 @@ export default class Header extends BindingClass {
 
 
     displayAddApparatusMenu() {
-        (document.getElementById('addApparatusForm').innerHTML += "<form class='addAppForm' id='addAppForm'>" +
+        (document.getElementById('addForm').innerHTML += "<form class='addAppForm' id='addAppForm'>" +
             "<label for='fireDept'>Add an apparatus: </label>" +
             "<input type='text' id='fireDept' placeHolder='Fire Department' style='width: 200px' required>" +
             "<input type='text' id='apparatusTypeAndNumber' placeHolder='Apparatus Type and Number' style='width: 200px' required>" +
@@ -175,6 +183,19 @@ export default class Header extends BindingClass {
 
             await this.displayApparatus();
         });
+    }
+
+    createEditHosesButton(currentHose, fireDept, apparatusTypeAndNumber) {
+        const button = document.getElementById(currentHose);
+        button.classList.add('button');
+        button.classList.add(currentHose);
+
+        button.addEventListener('click', async () => {
+            if (confirm("Click OK to edit the hoses this apparatus.") == true) {
+            await this.editHoses.displayHoses(fireDept, apparatusTypeAndNumber);
+            }
+        });
+        return button;
     }
 
 }

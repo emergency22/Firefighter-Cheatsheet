@@ -2,7 +2,9 @@ package com.nashss.se.firefightercheatsheetservice.Dynamodb;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBQueryExpression;
 import com.amazonaws.services.dynamodbv2.datamodeling.PaginatedQueryList;
+import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 import com.nashss.se.firefightercheatsheetservice.Dynamodb.models.Apparatus;
+import com.nashss.se.firefightercheatsheetservice.Dynamodb.models.Hose;
 import com.nashss.se.firefightercheatsheetservice.Exceptions.ApparatusListNotFoundException;
 import com.nashss.se.firefightercheatsheetservice.Exceptions.ApparatusNotFoundException;
 import com.nashss.se.firefightercheatsheetservice.Exceptions.CannotAddApparatusException;
@@ -12,7 +14,10 @@ import com.nashss.se.firefightercheatsheetservice.Metrics.MetricsPublisher;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -29,6 +34,7 @@ public class ApparatusDao {
     private final MetricsPublisher metricsPublisher;
     private final Logger log = LogManager.getLogger();
 
+    public static final String FIRE_DEPT_APP_TYPE_NUM_INDEX = "FireDeptAndAppTypeNumIndex";
 
     /**
      * Instantiates a ApparatusDao object.
@@ -113,10 +119,15 @@ public class ApparatusDao {
         log.info("addApparatus method called in ApparatusDao with userName: " + userName +
                 " , apparatusTypeAndNumber: " + apparatusTypeAndNumber + ", and fireDept: " + fireDept);
 
-        Apparatus apparatus = new Apparatus();
-        apparatus.setUserName(userName);
-        apparatus.setApparatusTypeAndNumber(apparatusTypeAndNumber);
-        apparatus.setFireDept(fireDept);
+//        Hose hose1 = new Hose("Preconnect 1", "Red", 200, 1.5, 200);
+//        Hose hose2 = new Hose("Preconnect 2", "Red", 200, 1.75, 150);
+//        List<Hose> hoseList = new ArrayList<>();
+//        hoseList.add(hose1);
+//        hoseList.add(hose2);
+//
+//        Apparatus apparatus = new Apparatus(userName, apparatusTypeAndNumber, fireDept, hoseList);
+
+        Apparatus apparatus = new Apparatus(userName, apparatusTypeAndNumber, fireDept);
 
         try {
             dynamoDbMapper.save(apparatus);
@@ -137,15 +148,26 @@ public class ApparatusDao {
      * individual apparatus.
      * @return the individual Apparatus.
      */
-    public Apparatus getIndividualApparatus(String userName, String apparatusTypeAndNumber) {
-        log.info("getIndividualApparatus method called in ApparatusDao with userName: " + userName + " and apparatusTypeAndNumber: " + apparatusTypeAndNumber);
+    public List<Apparatus> getIndividualApparatus(String fireDept, String apparatusTypeAndNumber) {
+        log.info("getIndividualApparatus method called in ApparatusDao with fireDept: " + fireDept + " and apparatusTypeAndNumber: " + apparatusTypeAndNumber);
 
         try {
-        Apparatus apparatus = this.dynamoDbMapper.load(Apparatus.class, userName, apparatusTypeAndNumber);
+            Map<String, AttributeValue> valueMap = new HashMap<>();
+            valueMap.put(":fireDept", new AttributeValue().withS(fireDept));
+            valueMap.put(":apparatusTypeAndNumber", new AttributeValue().withS(apparatusTypeAndNumber));
+            DynamoDBQueryExpression<Apparatus> queryExpression = new DynamoDBQueryExpression<Apparatus>()
+                    .withIndexName(FIRE_DEPT_APP_TYPE_NUM_INDEX)
+                    .withConsistentRead(false)
+                    .withKeyConditionExpression("fireDept = :fireDept and apparatusTypeAndNumber = :apparatusTypeAndNumber")
+                    .withExpressionAttributeValues(valueMap);
+
+            PaginatedQueryList<Apparatus> apparatusList = dynamoDbMapper.query(Apparatus.class, queryExpression);
             metricsPublisher.addCount(MetricsConstants.GETINDIVIDUALAPPARATUS_APPARAUTSNOTFOUND_COUNT, 1);
-            return apparatus;
+            log.info("ApparatusDAO: getIndividualApparatus method successful");
+            return apparatusList;
         } catch (UnsupportedOperationException e) {
             metricsPublisher.addCount(MetricsConstants.GETINDIVIDUALAPPARATUS_APPARAUTSNOTFOUND_COUNT, 0);
+            log.info("ApparatusDAO: getIndividualApparatus method unsuccessful");
             throw new IndividualApparatusNotFoundException("Individual Apparatus could not be found", e);
         }
 

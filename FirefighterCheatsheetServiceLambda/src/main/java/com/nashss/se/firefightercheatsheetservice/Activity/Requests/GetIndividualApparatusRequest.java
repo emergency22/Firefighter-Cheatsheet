@@ -6,15 +6,21 @@ import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 @JsonDeserialize(builder = GetIndividualApparatusRequest.Builder.class)
 public class GetIndividualApparatusRequest {
     private final String userName;
+    private final String fireDept;
     private final String apparatusTypeAndNumber;
 
-    private GetIndividualApparatusRequest(String userName, String apparatusTypeAndNumber) {
+    private GetIndividualApparatusRequest(String userName, String fireDept, String apparatusTypeAndNumber) {
         this.userName = userName;
+        this.fireDept = fireDept;
         this.apparatusTypeAndNumber = apparatusTypeAndNumber;
     }
 
     public String getUserName() {
         return userName;
+    }
+
+    public String getFireDept() {
+        return fireDept;
     }
 
     public String getApparatusTypeAndNumber() {
@@ -26,6 +32,7 @@ public class GetIndividualApparatusRequest {
     public String toString() {
         return "GetIndividualApparatusRequest{" +
                 "userName='" + userName + '\'' +
+                "fireDept='" + fireDept + '\'' +
                 "apparatusTypeAndNumber='" + apparatusTypeAndNumber + '\'' +
                 '}';
     }
@@ -38,10 +45,16 @@ public class GetIndividualApparatusRequest {
     @JsonPOJOBuilder
     public static class Builder {
         private String userName;
+        private String fireDept;
         private String apparatusTypeAndNumber;
 
         public Builder withUserName(String userName) {
             this.userName = userName;
+            return this;
+        }
+
+        public Builder withFireDept(String fireDept) {
+            this.fireDept = fireDept;
             return this;
         }
 
@@ -51,7 +64,7 @@ public class GetIndividualApparatusRequest {
         }
 
         public GetIndividualApparatusRequest build() {
-            return new GetIndividualApparatusRequest(userName, apparatusTypeAndNumber);
+            return new GetIndividualApparatusRequest(userName, fireDept, apparatusTypeAndNumber);
         }
     }
 

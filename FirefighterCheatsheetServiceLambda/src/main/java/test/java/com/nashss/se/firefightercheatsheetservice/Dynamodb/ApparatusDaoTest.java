@@ -2,8 +2,11 @@ package test.java.com.nashss.se.firefightercheatsheetservice.Dynamodb;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBQueryExpression;
 import com.amazonaws.services.dynamodbv2.datamodeling.PaginatedQueryList;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nashss.se.firefightercheatsheetservice.Dynamodb.ApparatusDao;
 import com.nashss.se.firefightercheatsheetservice.Dynamodb.models.Apparatus;
+import com.nashss.se.firefightercheatsheetservice.Dynamodb.models.Hose;
 import com.nashss.se.firefightercheatsheetservice.Exceptions.ApparatusListNotFoundException;
 import com.nashss.se.firefightercheatsheetservice.Metrics.MetricsPublisher;
 import org.junit.jupiter.api.Test;
@@ -14,6 +17,7 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -65,5 +69,22 @@ public class ApparatusDaoTest {
         //WHEN & THEN an ApparatusListNotFoundException should be thrown
         assertThrows(ApparatusListNotFoundException.class, () -> apparatusDao.getApparatus("whatever"));
     }
+
+//    @Test
+//    void makeSomeJson() throws JsonProcessingException {
+//
+//        Hose hose1 = new Hose("Preconnect 1", "Red", 200, 1.5, 200);
+//        Hose hose2 = new Hose("Preconnect 2", "Red", 200, 1.75, 150);
+//        List<Hose> hoseList = new ArrayList<>();
+//        hoseList.add(hose1);
+//        hoseList.add(hose2);
+//
+//        Apparatus apparatus = new Apparatus();
+//        apparatus.setHoseList(hoseList);
+//
+//        ObjectMapper objectMapper = new ObjectMapper();
+//        String serializedApparatus = objectMapper.writeValueAsString(apparatus);
+//        System.out.println(serializedApparatus);
+//    }
 
 }

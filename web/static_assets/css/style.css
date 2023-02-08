@@ -261,7 +261,7 @@ ul li{
   width: 100%;
   background:rgb(201, 250, 6);
   color: black;
-  height: 40px;
+  height: 80px;
   line-height: 40px;
   /* padding: 0 10px; */
   padding: 40px;
@@ -305,4 +305,11 @@ ul li span{
 .delButton{
   color: black;
   background-color: rgb(145, 10, 10);
+}
+
+.individualApparatus{
+  width: 100%;
+  background:rgb(201, 250, 6);
+  color: black;
+  text-align: center;
 }
