@@ -21,8 +21,6 @@ export default class EditHoses {
      * Display hoses on the page.
      */
     async displayHoses(fireDept, apparatusTypeAndNumber) {
-        console.log("editHoses: fireDept: " + fireDept);
-        console.log("editHoses: apparatusTypeAndNumber: " + apparatusTypeAndNumber);
 
         const apparatus = await this.client.getIndividualApparatus(fireDept, apparatusTypeAndNumber);
         document.getElementById('theDisplayArea').innerHTML = "";
@@ -33,9 +31,60 @@ export default class EditHoses {
             document.getElementById('theDisplayArea').innerHTML = "No hoses exist for this apparatus. Add a hose below."
         }
 
-        document.getElementById('theDisplayArea').innerHTML += "<div class='individualApparatus'>" + fireDept + " " + apparatusTypeAndNumber + "</div>";
+        document.getElementById('theDisplayArea').innerHTML += "<div class='individualApparatus' id='individualApparatus'>" + fireDept + " " + apparatusTypeAndNumber + "</div>";
+
+        const hoseList = apparatus.hoseList;
+        console.log(hoseList.length);
+
+        var currentHoseLocation = "currentHoseLocation";
+        var currentHoseLocations = [];
+        var currentHoses = [];
 
 
+        for (var i=0; i < hoseList.length; i++) {
+            console.log(i);
+            var currentHose = hoseList[i];
+            if (currentHose != null) {
+                var name = currentHose.name;
+                var color = currentHose.color;
+                var length = currentHose.length;
+                var hoseDiameter = currentHose.hoseDiameter;
+                var waterQuantityInGallons = currentHose.waterQuantityInGallons;
+                var pumpDischargePressure = currentHose.pumpDischargePressure;
+                console.log(name);
+                console.log(color);
+                console.log(length);
+                console.log(hoseDiameter);
+                console.log(waterQuantityInGallons);
+                console.log(pumpDischargePressure);
 
+
+                var apparatusInfo = 
+                "<li>" + color + 
+                " " + 
+                name + 
+                " - " + 
+                length +
+                " Feet, " + 
+                hoseDiameter +
+                " Diameter, " + 
+                waterQuantityInGallons +
+                " Gallons, " + 
+                pumpDischargePressure +
+                " PSI " +
+                "<span>" +
+                    `<div class='delButton' id='${currentHoseLocation}'>X</div>` +
+                `</span><div class='editHoses' id='${currentHose}'>` +
+                `Calculate pump discharge pressure for ${color} ${name}` + "</div></li>";
+                document.getElementById('theDisplayArea').innerHTML += apparatusInfo;
+                currentHoseLocations.push(currentHoseLocation);
+                currentHoses.push(currentHose);
+
+                currentHoseLocation = "currentLocation";   //reset variable for the next loop
+                currentHose = "currentHose";  //reset variable for the next loop;
+            }
+
+
+        }
     }
 }
