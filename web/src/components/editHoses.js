@@ -126,15 +126,15 @@ export default class EditHoses {
             `       
             <select id='colorSelector' name='colorSelector' required>
                 <option value="">Color</option>
-                <option value="white">White</option>
-                <option value="green">Green</option>
-                <option value="red">Red</option>
-                <option value="yellow">Yellow</option>
-                <option value="orange">Orange</option>
-                <option value="blue">Blue</option>
-                <option value="purple">Purple</option>
-                <option value="brown">Brown</option>
-                <option value="black">Black</option>
+                <option value="White">White</option>
+                <option value="Green">Green</option>
+                <option value="Red">Red</option>
+                <option value="Yellow">Yellow</option>
+                <option value="Orange">Orange</option>
+                <option value="Blue">Blue</option>
+                <option value="Purple">Purple</option>
+                <option value="Brown">Brown</option>
+                <option value="Black">Black</option>
             </select>
            ` +
 
