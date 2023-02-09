@@ -12,31 +12,19 @@ public class AddHoseRequest {
     private final String name;
     private final String color;
     private final int length;
-    private final Double hoseDiameter;
-    private final int waterQuantityInGallons;
+    private final Double diameter;
+    private final int gallons;
     private final int pumpDischargePressure;
 
-//    private AddHoseRequest(String userName, String fireDept, String apparatusTypeAndNumber, String name, String color, Integer length, Double hoseDiameter, Integer waterQuantityInGallons, Integer pumpDischargePressure) {
-//        this.userName = userName;
-//        this.fireDept = fireDept;
-//        this.apparatusTypeAndNumber = apparatusTypeAndNumber;
-//        this.name = name;
-//        this.color = color;
-//        this.length = length;
-//        this.hoseDiameter = hoseDiameter;
-//        this.waterQuantityInGallons = waterQuantityInGallons;
-//        this.pumpDischargePressure = pumpDischargePressure;
-//    }
-
-    private AddHoseRequest(String userName, String fireDept, String apparatusTypeAndNumber, String name, String color, Integer length, Double hoseDiameter, Integer waterQuantityInGallons) {
+    private AddHoseRequest(String userName, String fireDept, String apparatusTypeAndNumber, String name, String color, Integer length, Double diameter, Integer gallons) {
         this.userName = userName;
         this.fireDept = fireDept;
         this.apparatusTypeAndNumber = apparatusTypeAndNumber;
         this.name = name;
         this.color = color;
         this.length = length;
-        this.hoseDiameter = hoseDiameter;
-        this.waterQuantityInGallons = waterQuantityInGallons;
+        this.diameter = diameter;
+        this.gallons = gallons;
         this.pumpDischargePressure = 0;
     }
 
@@ -64,12 +52,12 @@ public class AddHoseRequest {
         return length;
     }
 
-    public Double getHoseDiameter() {
-        return hoseDiameter;
+    public Double getDiameter() {
+        return diameter;
     }
 
-    public int getWaterQuantityInGallons() {
-        return waterQuantityInGallons;
+    public int getGallons() {
+        return gallons;
     }
 
     public int getPumpDischargePressure() {
@@ -85,8 +73,8 @@ public class AddHoseRequest {
                 "name='" + name + '\'' +
                 "color='" + color + '\'' +
                 "length='" + length + '\'' +
-                "hoseDiameter='" + hoseDiameter + '\'' +
-                "waterQuantityInGallons='" + waterQuantityInGallons + '\'' +
+                "diameter='" + diameter + '\'' +
+                "gallons='" + gallons + '\'' +
                 "pumpDischargePressure='" + pumpDischargePressure + '\'' +
                 '}';
     }
@@ -104,8 +92,8 @@ public class AddHoseRequest {
         private String name;
         private String color;
         private int length;
-        private Double hoseDiameter;
-        private int waterQuantityInGallons;
+        private Double diameter;
+        private int gallons;
         private int pumpDischargePressure;
 
         public Builder withUserName(String userName) {
@@ -138,13 +126,13 @@ public class AddHoseRequest {
             return this;
         }
 
-        public Builder withHoseDiameter(Double hoseDiameter) {
-            this.hoseDiameter = hoseDiameter;
+        public Builder withDiameter(Double diameter) {
+            this.diameter = diameter;
             return this;
         }
 
-        public Builder withWaterQuantityInGallons(int waterQuantityInGallons) {
-            this.waterQuantityInGallons = waterQuantityInGallons;
+        public Builder withGallons(int gallons) {
+            this.gallons = gallons;
             return this;
         }
 
@@ -154,7 +142,7 @@ public class AddHoseRequest {
         }
 
         public AddHoseRequest build() {
-            return new AddHoseRequest(userName, fireDept, apparatusTypeAndNumber, name, color, length, hoseDiameter, waterQuantityInGallons);
+            return new AddHoseRequest(userName, fireDept, apparatusTypeAndNumber, name, color, length, diameter, gallons);
         }
     }
 

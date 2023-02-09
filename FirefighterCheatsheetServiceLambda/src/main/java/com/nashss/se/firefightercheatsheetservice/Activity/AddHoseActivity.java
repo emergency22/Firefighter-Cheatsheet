@@ -52,10 +52,10 @@ public class AddHoseActivity {
         String name = addHoseRequest.getName();
         String color = addHoseRequest.getColor();
         int length = addHoseRequest.getLength();
-        Double hoseDiameter = addHoseRequest.getHoseDiameter();
-        int waterQuantityInGallons = addHoseRequest.getWaterQuantityInGallons();
+        Double diameter = addHoseRequest.getDiameter();
+        int gallons = addHoseRequest.getGallons();
 
-        List<Apparatus> apparatusList = apparatusDao.addHose(fireDept, apparatusTypeAndNumber, name, color, length, hoseDiameter, waterQuantityInGallons);
+        List<Apparatus> apparatusList = apparatusDao.addHose(fireDept, apparatusTypeAndNumber, name, color, length, diameter, gallons);
         log.info("AddHoseActivity: handleRequest method: Before ModelConverter.");
         ApparatusModel apparatusModel = new ModelConverter().toIndividualApparatusModel(apparatusList);
         return AddHoseResult.builder()

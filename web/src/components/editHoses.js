@@ -207,7 +207,7 @@ export default class EditHoses {
             await this.client.addHose(fireDept, apparatusTypeAndNumber, inputName, inputColor, inputLength, inputDiameter, inputGallons);
             console.log("uh huh");
 
-            await this.displayHoses();
+            await this.displayHoses(fireDept, apparatusTypeAndNumber);
         });
     }
 

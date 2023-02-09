@@ -236,7 +236,7 @@ public class ApparatusDao {
      * @param waterQuantityInGallons the gallons per minute of the hose to add.
      * @return the individual Apparatus.
      */
-    public List<Apparatus> addHose(String fireDept, String apparatusTypeAndNumber, String name, String color, int length, Double hoseDiameter, int waterQuantityInGallons) {
+    public List<Apparatus> addHose(String fireDept, String apparatusTypeAndNumber, String name, String color, int length, Double diameter, int gallons) {
         log.info("ApparatusDAO: addHose method accessed");
 
 
@@ -260,7 +260,7 @@ public class ApparatusDao {
         String fireDeptFromGSI = apparatusFromGSI.getFireDept();
         List<Hose> hoseListFromGSI = new ArrayList<>(apparatusFromGSI.getHoseList());
 
-        Hose hoseToAdd = new Hose(name, color, length, hoseDiameter, waterQuantityInGallons);
+        Hose hoseToAdd = new Hose(name, color, length, diameter, gallons);
 
         hoseListFromGSI.add(hoseToAdd);
 

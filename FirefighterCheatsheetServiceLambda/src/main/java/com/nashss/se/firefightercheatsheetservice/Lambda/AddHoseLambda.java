@@ -3,7 +3,6 @@ package com.nashss.se.firefightercheatsheetservice.Lambda;
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 
-import com.nashss.se.firefightercheatsheetservice.Activity.Requests.AddApparatusRequest;
 import com.nashss.se.firefightercheatsheetservice.Activity.Requests.AddHoseRequest;
 import com.nashss.se.firefightercheatsheetservice.Activity.Results.AddHoseResult;
 import org.apache.logging.log4j.LogManager;
@@ -30,8 +29,8 @@ public class AddHoseLambda extends LambdaActivityRunner<AddHoseRequest, AddHoseR
                                     .withName(unauthenticatedRequest.getName())
                                     .withColor(unauthenticatedRequest.getColor())
                                     .withLength(Integer.valueOf(unauthenticatedRequest.getLength()))
-                                    .withHoseDiameter(Double.valueOf(unauthenticatedRequest.getHoseDiameter()))
-                                    .withWaterQuantityInGallons(Integer.valueOf(unauthenticatedRequest.getWaterQuantityInGallons()))
+                                    .withDiameter(Double.valueOf(unauthenticatedRequest.getDiameter()))
+                                    .withGallons(Integer.valueOf(unauthenticatedRequest.getGallons()))
                                     .build());
                 },
                 (request, serviceComponent) ->
