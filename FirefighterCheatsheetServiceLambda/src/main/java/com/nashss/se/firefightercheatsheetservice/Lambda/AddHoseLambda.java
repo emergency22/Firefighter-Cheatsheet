@@ -4,6 +4,7 @@ import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 
 import com.nashss.se.firefightercheatsheetservice.Activity.Requests.AddHoseRequest;
+import com.nashss.se.firefightercheatsheetservice.Activity.Results.AddHoseResult;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -17,25 +18,6 @@ public class AddHoseLambda extends LambdaActivityRunner<AddHoseRequest, AddHoseR
 
         log.info("AddHoseLambda: handleRequest method accessed.");
 
-//        DeleteHoseRequest email = input.fromUserClaims(claims ->
-//                DeleteHoseRequest.builder()
-//                        .withUserName(claims.get("email"))
-//                        .build());
-//
-//        String actualEmail = email.getUserName();
-//        log.info("DeleteHoseLambda: email: " + actualEmail);
-//
-//        return super.runActivity(
-//                () -> input.fromQuery(query ->
-//                        DeleteHoseRequest.builder()
-//                                .withUserName(actualEmail)
-//                                .withFireDept(query.get("fireDept"))
-//                                .withApparatusTypeAndNumber(query.get("apparatusTypeAndNumber"))
-//                                .withHoseIndexNumber(Integer.valueOf(query.get("hoseIndexNumber")))
-//                                .build()),
-//                (request, serviceComponent) ->
-//                        serviceComponent.provideDeleteHoseActivity().handleRequest(request)
-//        );
         return super.runActivity(
                 () -> {
                     AddHoseRequest queryRequest = input.fromQuery(query ->

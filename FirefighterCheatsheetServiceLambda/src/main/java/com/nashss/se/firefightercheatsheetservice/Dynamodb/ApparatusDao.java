@@ -170,6 +170,16 @@ public class ApparatusDao {
 
     }
 
+    /**
+     * Returns the {@link Apparatus corresponding to the specified userName and
+     * apparatusTypeAndNumber.
+     *
+     * @param userName the userName associated with the logged in account.
+     * @param apparatusTypeAndNumber the apparatus type and number associated with the
+     * individual apparatus.
+     * @param hoseIndexNumber the index of the hose to remove.
+     * @return the individual Apparatus.
+     */
     public List<Apparatus> deleteHose(String fireDept, String apparatusTypeAndNumber, int hoseIndexNumber) {
         log.info("ApparatusDAO: deleteHose method accessed");
 
@@ -210,6 +220,65 @@ public class ApparatusDao {
         List<Apparatus> list = new ArrayList<>();
         list.add(apparatusWithHoseRemoved);
         return list;
+    }
+
+    /**
+     * Returns the {@link Apparatus corresponding to the specified userName and
+     * apparatusTypeAndNumber.
+     *
+     * @param userName the userName associated with the logged in account.
+     * @param apparatusTypeAndNumber the apparatus type and number associated with the
+     * individual apparatus.
+     * @param name the name of the hose to add.
+     * @param color the color of the hose to add.
+     * @param length the length in feet of the hose to add.
+     * @param hoseDiameter the hose diameter of the hose to add.
+     * @param waterQuantityInGallons the gallons per minute of the hose to add.
+     * @return the individual Apparatus.
+     */
+    public List<Apparatus> addHose(String fireDept, String apparatusTypeAndNumber, String name, String color, int length, Double hoseDiameter, int waterQuantityInGallons) {
+        log.info("ApparatusDAO: addHose method accessed");
+
+
+        Map<String, AttributeValue> valueMap = new HashMap<>();
+        valueMap.put(":fireDept", new AttributeValue().withS(fireDept));
+        valueMap.put(":apparatusTypeAndNumber", new AttributeValue().withS(apparatusTypeAndNumber));
+        DynamoDBQueryExpression<Apparatus> queryExpression = new DynamoDBQueryExpression<Apparatus>()
+                .withIndexName(FIRE_DEPT_APP_TYPE_NUM_INDEX)
+                .withConsistentRead(false)
+                .withKeyConditionExpression("fireDept = :fireDept and apparatusTypeAndNumber = :apparatusTypeAndNumber")
+                .withExpressionAttributeValues(valueMap);
+        log.info("ApparatusDAO: about to query table");
+
+        PaginatedQueryList<Apparatus> apparatusListFromGSI = dynamoDbMapper.query(Apparatus.class, queryExpression);
+        log.info("ApparatusDAO: apparatusListFromGSI size: " + apparatusListFromGSI.size());
+        Apparatus apparatusFromGSI = apparatusListFromGSI.get(0);
+
+
+        String userNameFromGSI = apparatusFromGSI.getUserName();
+        String apparatusTypeAndNumberFromGSI = apparatusFromGSI.getApparatusTypeAndNumber();
+        String fireDeptFromGSI = apparatusFromGSI.getFireDept();
+        List<Hose> hoseListFromGSI = new ArrayList<>(apparatusFromGSI.getHoseList());
+
+        Hose hoseToAdd = new Hose(name, color, length, hoseDiameter, waterQuantityInGallons);
+
+        hoseListFromGSI.add(hoseToAdd);
+
+        Apparatus apparatusWithHoseAdded = new Apparatus(userNameFromGSI, apparatusTypeAndNumberFromGSI, fireDeptFromGSI, hoseListFromGSI);
+
+        try {
+            dynamoDbMapper.save(apparatusWithHoseAdded);
+            metricsPublisher.addCount(MetricsConstants.ADDHOSE_COUNT, 1);
+            log.info("ApparatusDAO: hose successfully deleted.");
+        } catch (UnsupportedOperationException e) {
+            metricsPublisher.addCount(MetricsConstants.ADDHOSE_COUNT, 0);
+            throw new CannotAddHoseException("Apparatus could not be saved", e);
+        }
+
+        List<Apparatus> list = new ArrayList<>();
+        list.add(apparatusWithHoseAdded);
+        return list;
+
     }
 
 
