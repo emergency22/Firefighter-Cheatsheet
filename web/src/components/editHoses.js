@@ -161,11 +161,11 @@ export default class EditHoses {
             `
             <select id='diameterSelector' name='diameterSelector' required>
                 <option value="">Hose Diameter</option>
-                <option value="50">1.5 Inches</option>
-                <option value="100">1.75 Inches</option>
-                <option value="150">2 Inches</option>
-                <option value="200">2.5 Inches</option>
-                <option value="250">3 Inches</option>
+                <option value="1.5">1.5 Inches</option>
+                <option value="1.75">1.75 Inches</option>
+                <option value="2">2 Inches</option>
+                <option value="2.5">2.5 Inches</option>
+                <option value="3">3 Inches</option>
             </select>
             ` +
 
