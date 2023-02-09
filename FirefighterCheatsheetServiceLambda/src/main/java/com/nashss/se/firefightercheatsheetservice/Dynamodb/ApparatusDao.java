@@ -258,7 +258,13 @@ public class ApparatusDao {
         String userNameFromGSI = apparatusFromGSI.getUserName();
         String apparatusTypeAndNumberFromGSI = apparatusFromGSI.getApparatusTypeAndNumber();
         String fireDeptFromGSI = apparatusFromGSI.getFireDept();
-        List<Hose> hoseListFromGSI = new ArrayList<>(apparatusFromGSI.getHoseList());
+
+        List<Hose> hoseListFromGSI = null;
+        if (apparatusFromGSI.getHoseList() != null) {
+            hoseListFromGSI = new ArrayList<>(apparatusFromGSI.getHoseList());
+        } else {
+            hoseListFromGSI = new ArrayList<>();
+        }
 
         Hose hoseToAdd = new Hose(name, color, length, diameter, gallons);
 
