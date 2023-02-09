@@ -156,6 +156,19 @@ export default class EditHoses {
             </select>
             ` +
 
+            // "<input type='text' id='diameter' placeHolder='Hose Diameter' style='width: 200px' required>" +
+
+            `
+            <select id='diameterSelector' name='diameterSelector' required>
+                <option value="">Hose Diameter</option>
+                <option value="50">1.5 Inches</option>
+                <option value="100">1.75 Inches</option>
+                <option value="150">2 Inches</option>
+                <option value="200">2.5 Inches</option>
+                <option value="250">3 Inches</option>
+            </select>
+            ` +
+
             // "<input type='text' id='gallons' placeHolder='Total Gallonage' style='width: 200px' required>" +
 
             `       
@@ -187,10 +200,11 @@ export default class EditHoses {
             var inputName = document.getElementById('name').value;
             var inputColor = document.getElementById('colorSelector').value;
             var inputLength = document.getElementById('lengthSelector').value;
+            var inputDiameter = document.getElementById('diameterSelector').value;
             var inputGallons = document.getElementById('gpmSelector').value;
     
             console.log("yup");
-            await this.client.addHose(fireDept, apparatusTypeAndNumber, inputName, inputColor, inputLength, inputGallons);
+            await this.client.addHose(fireDept, apparatusTypeAndNumber, inputName, inputColor, inputLength, inputDiameter, inputGallons);
             console.log("uh huh");
 
             await this.displayHoses();
