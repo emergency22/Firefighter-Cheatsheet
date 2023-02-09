@@ -25,6 +25,7 @@ export default class EditHoses {
         const apparatus = await this.client.getIndividualApparatus(fireDept, apparatusTypeAndNumber);
         document.getElementById('theDisplayArea').innerHTML = "";
         document.getElementById('addApparatusForm').innerHTML = "";
+        document.getElementById('addHoseFormMain').innerHTML = "";
         console.log("apparatus: " + apparatus);
 
         if (apparatus.hoseList.length == 0) {
@@ -71,9 +72,9 @@ export default class EditHoses {
                 length +
                 " Feet, " + 
                 hoseDiameter +
-                " Diameter, " + 
+                '" Diameter, ' + 
                 waterQuantityInGallons +
-                " Gallons, " + 
+                " GPM, " + 
                 pumpDischargePressure +
                 " PSI " +
                 "<span>" +
@@ -116,20 +117,77 @@ export default class EditHoses {
     }
 
     displayAddHoseMenu(fireDept, apparatusTypeAndNumber) {
-        (document.getElementById('addApparatusForm').innerHTML += "<form class='addAppForm' id='addAppForm'>" +
+        (document.getElementById('addHoseFormMain').innerHTML += "<form class='addHoseForm' id='addHoseForm'>" +
             "<label for='fireDept'>Add a hose: </label>" +
             "<input type='text' id='name' placeHolder='Name of Hose' style='width: 200px' required>" +
-            "<input type='text' id='color' placeHolder='Color' style='width: 200px' required>" +
-            "<input type='text' id='length' placeHolder='Length in Feet' style='width: 200px' required>" +
-            "<input type='text' id='gallons' placeHolder='Total Gallonage' style='width: 200px' required>" +
+            // "<input type='text' id='color' placeHolder='Color' style='width: 200px' required>" +
+
+            `<form>       
+            <!-- <label for"lang">Language</label> -->
+            <select id='lang' name='lang' required>
+                <option value="">Color</option>
+                <option value="white">White</option>
+                <option value="green">Green</option>
+                <option value="red">Red</option>
+                <option value="yellow">Yellow</option>
+                <option value="orange">Orange</option>
+                <option value="blue">Blue</option>
+                <option value="purple">Purple</option>
+                <option value="brown">Brown</option>
+                <option value="black">Black</option>
+            </select>
+            <!--<input type='submit' value='submit' />  -->
+            </form>` +
+
+
+            // "<input type='text' id='length' placeHolder='Length in Feet' style='width: 200px' required>" +
+
+            `<form>       
+            <!-- <label for"lang">Language</label> -->
+            <select id='lang' name='lang' required>
+                <option value="">Length in Feet</option>
+                <option value="50">50 Feet</option>
+                <option value="100">100 Feet</option>
+                <option value="150">150 Feet</option>
+                <option value="200">200 Feet</option>
+                <option value="250">250 Feet</option>
+                <option value="300">300 Feet</option>
+                <option value="350">350 Feet</option>
+                <option value="400">400 Feet</option>
+                <option value="450">450 Feet</option>
+                <option value="500">500 Feet</option>
+            </select>
+            <!--<input type='submit' value='submit' />  -->
+            </form>` +
+
+            // "<input type='text' id='gallons' placeHolder='Total Gallonage' style='width: 200px' required>" +
+
+            `<form>       
+            <!-- <label for"lang">Language</label> -->
+            <select id='lang' name='lang' required>
+                <option value="">Gallons Per Minute</option>
+                <option value="50">50 GPM</option>
+                <option value="100">100 GPM</option>
+                <option value="150">150 GPM</option>
+                <option value="200">200 GPM</option>
+                <option value="250">250 GPM</option>
+                <option value="300">300 GPM</option>
+                <option value="350">350 GPM</option>
+                <option value="400">400 GPM</option>
+                <option value="450">450 GPM</option>
+                <option value="500">500 GPM</option>
+            </select>
+            <!--<input type='submit' value='submit' />  -->
+            </form>` +
+
             "<input type='submit' value='Add Hose'></div>"
         );
             this.addHoseFormSubmitter(fireDept, apparatusTypeAndNumber);
     }
 
     addHoseFormSubmitter(fireDept, apparatusTypeAndNumber) {
-        var addApparatusForm = document.getElementById('addAppForm');
-        addApparatusForm.addEventListener('submit', async (event) => {
+        var addHoseFormToClient = document.getElementById('addHoseForm');
+        addHoseFormToClient.addEventListener('submit', async (event) => {
             event.preventDefault()  //prevents auto-submit
 
             var inputName = document.getElementById('name').value;

@@ -177,9 +177,7 @@ export default class Header extends BindingClass {
             var inputFireDept = document.getElementById('fireDept').value;
             var inputApparatusTypeAndNumber = document.getElementById('apparatusTypeAndNumber').value;
 
-            console.log("yup");
             await this.client.addApparatus(inputFireDept, inputApparatusTypeAndNumber);
-            console.log("uh huh");
 
             await this.displayApparatus();
         });
