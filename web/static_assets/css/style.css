@@ -303,8 +303,12 @@ ul li span{
   box-shadow: -3px 6px 4px #222;
 }
 
+/* .addHoseFormMain {
+
+} */
+
 .addHoseForm{
-  width: 1200px;
+  width: 800px;
   color: black;
   font-size: large;
   font-weight: bold;

@@ -120,11 +120,11 @@ export default class EditHoses {
         (document.getElementById('addHoseFormMain').innerHTML += "<form class='addHoseForm' id='addHoseForm'>" +
             "<label for='fireDept'>Add a hose: </label>" +
             "<input type='text' id='name' placeHolder='Name of Hose' style='width: 200px' required>" +
+
             // "<input type='text' id='color' placeHolder='Color' style='width: 200px' required>" +
 
-            `<form>       
-            <!-- <label for"lang">Language</label> -->
-            <select id='lang' name='lang' required>
+            `       
+            <select id='colorSelector' name='colorSelector' required>
                 <option value="">Color</option>
                 <option value="white">White</option>
                 <option value="green">Green</option>
@@ -136,15 +136,12 @@ export default class EditHoses {
                 <option value="brown">Brown</option>
                 <option value="black">Black</option>
             </select>
-            <!--<input type='submit' value='submit' />  -->
-            </form>` +
-
+           ` +
 
             // "<input type='text' id='length' placeHolder='Length in Feet' style='width: 200px' required>" +
 
-            `<form>       
-            <!-- <label for"lang">Language</label> -->
-            <select id='lang' name='lang' required>
+            `       
+            <select id='lengthSelector' name='lengthSelector' required>
                 <option value="">Length in Feet</option>
                 <option value="50">50 Feet</option>
                 <option value="100">100 Feet</option>
@@ -157,14 +154,12 @@ export default class EditHoses {
                 <option value="450">450 Feet</option>
                 <option value="500">500 Feet</option>
             </select>
-            <!--<input type='submit' value='submit' />  -->
-            </form>` +
+            ` +
 
             // "<input type='text' id='gallons' placeHolder='Total Gallonage' style='width: 200px' required>" +
 
-            `<form>       
-            <!-- <label for"lang">Language</label> -->
-            <select id='lang' name='lang' required>
+            `       
+            <select id='gpmSelector' name='gpmSelector' required>
                 <option value="">Gallons Per Minute</option>
                 <option value="50">50 GPM</option>
                 <option value="100">100 GPM</option>
@@ -177,10 +172,9 @@ export default class EditHoses {
                 <option value="450">450 GPM</option>
                 <option value="500">500 GPM</option>
             </select>
-            <!--<input type='submit' value='submit' />  -->
-            </form>` +
+            ` +
 
-            "<input type='submit' value='Add Hose'></div>"
+            "<input type='submit' style='font-weight:bold' value='Add Hose'></form>"
         );
             this.addHoseFormSubmitter(fireDept, apparatusTypeAndNumber);
     }
@@ -191,9 +185,9 @@ export default class EditHoses {
             event.preventDefault()  //prevents auto-submit
 
             var inputName = document.getElementById('name').value;
-            var inputColor = document.getElementById('color').value;
-            var inputLength = document.getElementById('length').value;
-            var inputGallons = document.getElementById('gallons').value;
+            var inputColor = document.getElementById('colorSelector').value;
+            var inputLength = document.getElementById('lengthSelector').value;
+            var inputGallons = document.getElementById('gpmSelector').value;
     
             console.log("yup");
             await this.client.addHose(fireDept, apparatusTypeAndNumber, inputName, inputColor, inputLength, inputGallons);
