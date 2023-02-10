@@ -43,9 +43,9 @@ public class GetIndividualApparatusActivity {
      * @return getIndividualApparatusResult result object containing the API defined {@link ApparatusModel}
      */
     public GetIndividualApparatusResult handleRequest(final GetIndividualApparatusRequest getIndividualApparatusRequest) {
-        log.info("Received GetIndividualApparatusRequest {}", getIndividualApparatusRequest);
+        log.info("GetIndividualApparatusActivity: handleRequest method has received " +
+                "GetIndividualApparatusRequest {}", getIndividualApparatusRequest);
 
-        String userName = getIndividualApparatusRequest.getUserName();
         String fireDept = getIndividualApparatusRequest.getFireDept();
         String apparatusTypeAndNumber = getIndividualApparatusRequest.getApparatusTypeAndNumber();
 

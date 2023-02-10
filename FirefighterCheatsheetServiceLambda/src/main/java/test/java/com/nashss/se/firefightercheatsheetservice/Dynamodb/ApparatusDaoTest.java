@@ -2,8 +2,7 @@ package test.java.com.nashss.se.firefightercheatsheetservice.Dynamodb;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBQueryExpression;
 import com.amazonaws.services.dynamodbv2.datamodeling.PaginatedQueryList;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+
 import com.nashss.se.firefightercheatsheetservice.Dynamodb.ApparatusDao;
 import com.nashss.se.firefightercheatsheetservice.Dynamodb.models.Apparatus;
 import com.nashss.se.firefightercheatsheetservice.Dynamodb.models.Hose;
@@ -70,21 +69,96 @@ public class ApparatusDaoTest {
         assertThrows(ApparatusListNotFoundException.class, () -> apparatusDao.getApparatus("whatever"));
     }
 
-//    @Test
-//    void makeSomeJson() throws JsonProcessingException {
+    @Test
+    void deleteApparatus_validRequest_deletesTheApparatus() {
+
+    }
+
+    @Test
+    void addApparatus_validRequest_returnsListWithApparatusAdded() {
+//        String userName = "userName";
+//        String fireDept = "fireDept";
+//        String apparatusTypeAndNumber = "apparatusTypeAndNumber";
 //
-//        Hose hose1 = new Hose("Preconnect 1", "Red", 200, 1.5, 200);
-//        Hose hose2 = new Hose("Preconnect 2", "Red", 200, 1.75, 150);
-//        List<Hose> hoseList = new ArrayList<>();
-//        hoseList.add(hose1);
-//        hoseList.add(hose2);
-//
+//        List<Apparatus> returnedListOfApparatus = new ArrayList<>();
 //        Apparatus apparatus = new Apparatus();
-//        apparatus.setHoseList(hoseList);
+//        apparatus.setUserName(userName);
+//        apparatus.setApparatusTypeAndNumber(apparatusTypeAndNumber);
+//        apparatus.setFireDept(fireDept);
+//        returnedListOfApparatus.add(apparatus);
 //
-//        ObjectMapper objectMapper = new ObjectMapper();
-//        String serializedApparatus = objectMapper.writeValueAsString(apparatus);
-//        System.out.println(serializedApparatus);
-//    }
+////        when(dynamoDBMapper.query(eq(Apparatus.class), any())).thenReturn(queryList);
+////        when(apparatusDao.getApparatus(userName)).thenReturn(returnedListOfApparatus);
+//
+//        List<Apparatus> result = apparatusDao.addApparatus(userName, apparatusTypeAndNumber, fireDept);
+//
+//        verify(dynamoDBMapper).save(eq(Apparatus.class));
+    }
+
+    @Test
+    void getIndividualApparatus_validRequest_returnsListWithSingleRequestedApparatus() {
+        String fireDept = "fireDept";
+        String apparatusTypeAndNumber = "apparatusTypeAndNumber";
+
+        when(dynamoDBMapper.query(eq(Apparatus.class), any())).thenReturn(queryList);
+
+        List<Apparatus> result = apparatusDao.getIndividualApparatus(fireDept, apparatusTypeAndNumber);
+
+        verify(dynamoDBMapper).query(eq(Apparatus.class), any());
+    }
+
+    @Test
+    void deleteHose_validRequest_returnsApparatusWithHoseDeleted() {
+        String fireDept = "fireDept";
+        String apparatusTypeAndNumber = "apparatusTypeAndNumber";
+        int hoseIndexNumber = 1;
+
+        Apparatus apparatus = new Apparatus();
+        apparatus.setUserName("userName");
+        apparatus.setApparatusTypeAndNumber(apparatusTypeAndNumber);
+        apparatus.setFireDept(fireDept);
+        List<Hose> hoseList = new ArrayList<>();
+        Hose zeroIndexHose = new Hose();
+        Hose oneIndexHose = new Hose();
+        hoseList.add(zeroIndexHose);
+        hoseList.add(oneIndexHose);
+        apparatus.setHoseList(hoseList);
+
+        when(dynamoDBMapper.query(eq(Apparatus.class), any())).thenReturn(queryList);
+        when(queryList.get(0)).thenReturn(apparatus);
+
+        List<Apparatus> result = apparatusDao.deleteHose(fireDept, apparatusTypeAndNumber, hoseIndexNumber);
+
+        assertEquals(fireDept, result.get(0).getFireDept());
+        assertEquals(apparatusTypeAndNumber, result.get(0).getApparatusTypeAndNumber());
+        assertEquals(1, result.get(0).getHoseList().size());
+    }
+
+    @Test
+    void addHose_validRequestButNullHoseList_returnsListWithApparatusWithHoseAdded() {
+        String fireDept = "fireDept";
+        String apparatusTypeAndNumber = "apparatusTypeAndNumber";
+        String name = "name";
+        String color = "blue";
+        int length = 150;
+        Double diameter = 1.5;
+        int gallons = 250;
+
+        Apparatus apparatus = new Apparatus();
+        apparatus.setUserName("userName");
+        apparatus.setApparatusTypeAndNumber(apparatusTypeAndNumber);
+        apparatus.setFireDept(fireDept);
+
+        when(dynamoDBMapper.query(eq(Apparatus.class), any())).thenReturn(queryList);
+        when(queryList.get(0)).thenReturn(apparatus);
+
+        List<Apparatus> result = apparatusDao.addHose(fireDept, apparatusTypeAndNumber, name, color, length, diameter, gallons);
+
+        assertEquals(fireDept, result.get(0).getFireDept());
+        assertEquals(color, result.get(0).getHoseList().get(0).getColor());
+        assertEquals(1, result.get(0).getHoseList().size());
+    }
+
+
 
 }

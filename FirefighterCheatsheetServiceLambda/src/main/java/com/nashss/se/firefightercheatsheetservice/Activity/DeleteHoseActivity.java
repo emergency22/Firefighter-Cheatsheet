@@ -44,7 +44,6 @@ public class DeleteHoseActivity {
     public DeleteHoseResult handleRequest(final DeleteHoseRequest deleteHoseRequest) {
         log.info("DeleteHoseActivity: handleRequest method: Received DeleteHoseRequest {}", deleteHoseRequest);
 
-        String userName = deleteHoseRequest.getUserName();
         String fireDept = deleteHoseRequest.getFireDept();
         String apparatusTypeAndNumber = deleteHoseRequest.getApparatusTypeAndNumber();
         int hoseIndexNumber = deleteHoseRequest.getHoseIndexNumber();
