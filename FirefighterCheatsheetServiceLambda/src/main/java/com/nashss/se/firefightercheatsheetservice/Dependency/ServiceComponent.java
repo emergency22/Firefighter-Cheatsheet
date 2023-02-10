@@ -27,4 +27,6 @@ public interface ServiceComponent {
 
     DeleteHoseActivity provideDeleteHoseActivity();
 
+    AddHoseActivity provideAddHoseActivity();
+
 }

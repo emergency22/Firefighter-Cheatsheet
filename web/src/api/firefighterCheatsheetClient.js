@@ -149,7 +149,29 @@ export default class MusicPlaylistClient extends BindingClass {
                     Authorization: `Bearer ${token}`
                 }
             });
-            return response.data.apparatusModelList;
+            return response.data.apparatusModel;
+        } catch (error) {
+            this.handleError(error, errorCallback)
+        }
+    }
+
+    async addHose(fireDept, apparatusTypeAndNumber, name, color, length, diameter, gallons) {
+        try {
+            const token = await this.getTokenOrThrow("Only authenticated users can make delete hose requests.");
+            const response = await this.axiosClient.put(`apparatus/hose`, {
+                fireDept: fireDept,
+                apparatusTypeAndNumber: apparatusTypeAndNumber,
+                name: name,
+                color: color,
+                length: length,
+                diameter: diameter,
+                gallons: gallons
+            }, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+            return response.data.apparatusModel;
         } catch (error) {
             this.handleError(error, errorCallback)
         }

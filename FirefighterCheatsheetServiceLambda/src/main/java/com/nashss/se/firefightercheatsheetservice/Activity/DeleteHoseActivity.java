@@ -1,9 +1,7 @@
 package com.nashss.se.firefightercheatsheetservice.Activity;
 
 import com.nashss.se.firefightercheatsheetservice.Activity.Requests.DeleteHoseRequest;
-import com.nashss.se.firefightercheatsheetservice.Activity.Requests.GetIndividualApparatusRequest;
 import com.nashss.se.firefightercheatsheetservice.Activity.Results.DeleteHoseResult;
-import com.nashss.se.firefightercheatsheetservice.Activity.Results.GetIndividualApparatusResult;
 import com.nashss.se.firefightercheatsheetservice.Converters.ModelConverter;
 import com.nashss.se.firefightercheatsheetservice.Dynamodb.ApparatusDao;
 import com.nashss.se.firefightercheatsheetservice.Dynamodb.models.Apparatus;
@@ -15,9 +13,9 @@ import javax.inject.Inject;
 import java.util.List;
 
 /**
- * Implementation of the GetIndividualApparatusActivity for the FirefighterCheatSheetService's GetIndividualApparatus API.
+ * Implementation of the DeleteHoseActivity for the FirefighterCheatSheetService's DeleteHose API.
  *
- * This API allows the customer to get one their saved apparatus.
+ * This API allows the customer to delete a hose on an individual apparatus.
  */
 public class DeleteHoseActivity {
     private final Logger log = LogManager.getLogger();

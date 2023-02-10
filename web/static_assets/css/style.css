@@ -303,6 +303,20 @@ ul li span{
   box-shadow: -3px 6px 4px #222;
 }
 
+/* .addHoseFormMain {
+
+} */
+
+.addHoseForm{
+  width: 800px;
+  color: black;
+  font-size: large;
+  font-weight: bold;
+  background-color: rgb(201, 250, 6);
+  opacity: 95%;
+  box-shadow: -3px 6px 4px #222;
+}
+
 .delButton{
   color: black;
   background-color: rgb(145, 10, 10);
@@ -313,4 +327,5 @@ ul li span{
   background:rgb(201, 250, 6);
   color: black;
   text-align: center;
+  box-shadow: -3px 6px 4px #222;
 }
