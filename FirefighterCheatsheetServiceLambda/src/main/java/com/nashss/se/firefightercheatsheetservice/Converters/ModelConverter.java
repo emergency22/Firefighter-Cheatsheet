@@ -88,6 +88,11 @@ public class ModelConverter {
     public ApparatusModel toIndividualApparatusModel(List<Apparatus> apparatusList) {
         log.info("ModelConverter: toIndividualApparatusModel method has run");
         List<ApparatusModel> apparatusModelList = toApparatusModelList(apparatusList);
-        return apparatusModelList.get(0);
+        if (!apparatusModelList.isEmpty()) {
+            return apparatusModelList.get(0);
+        } else {
+            return ApparatusModel.builder().build();
+        }
+
     }
 }
