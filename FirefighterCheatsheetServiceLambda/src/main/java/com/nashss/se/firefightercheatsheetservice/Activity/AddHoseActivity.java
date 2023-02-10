@@ -46,7 +46,6 @@ public class AddHoseActivity {
     public AddHoseResult handleRequest(final AddHoseRequest addHoseRequest) {
         log.info("AddHoseActivity: handleRequest method: Received AddHoseRequest {}", addHoseRequest);
 
-        String userName = addHoseRequest.getUserName();
         String fireDept = addHoseRequest.getFireDept();
         String apparatusTypeAndNumber = addHoseRequest.getApparatusTypeAndNumber();
         String name = addHoseRequest.getName();
