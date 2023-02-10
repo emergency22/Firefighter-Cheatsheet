@@ -177,6 +177,24 @@ export default class MusicPlaylistClient extends BindingClass {
         }
     }
 
+    async calculatePSI(fireDept, apparatusTypeAndNumber, hoseIndexNumber) {
+        try {
+            const token = await this.getTokenOrThrow("Only authenticated users can calculate hose PSI.");
+            const response = await this.axiosClient.put(`apparatus/hose/calculate`, {
+                fireDept: fireDept,
+                apparatusTypeAndNumber: apparatusTypeAndNumber,
+                hoseIndexNumber: hoseIndexNumber
+            }, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+            return response.data.apparatusModel;
+        } catch (error) {
+            this.handleError(error, errorCallback)
+        }
+    }
+
     /**
      * Get the songs on a given playlist by the playlist's identifier.
      * @param id Unique identifier for a playlist

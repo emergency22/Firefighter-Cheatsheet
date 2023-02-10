@@ -39,14 +39,14 @@ export default class EditHoses {
 
         var currentHoseLocation = "currentHoseLocation";
         var currentHoseLocations = [];
-        // var currentHoses = [];
+        var currentHoses = [];
 
 
         for (var i=0; i < hoseList.length; i++) {
 
             let iString = i.toString();
             currentHoseLocation += iString;
-            // currentHose += iString;
+            currentHose += iString;
 
             var currentHose = hoseList[i];
             if (currentHose != null) {
@@ -91,12 +91,12 @@ export default class EditHoses {
         }
         for (var i=0; i < hoseList.length; i++) {
             var currentHoseLocation = currentHoseLocations[i];
-        //     var currentHose = currentHoses[i];
+            var currentHose = currentHoses[i];
         //     var fireDept = hoseList[i].fireDept;
             var hoseIndexNumber = i;
 
             this.createDeleteHoseButton(currentHoseLocation, fireDept, apparatusTypeAndNumber, hoseIndexNumber);
-        //     this.createCalculatePDPButton(currentHose, fireDept, apparatusTypeAndNumber);
+            this.createCalculatePSIButton(currentHose, fireDept, apparatusTypeAndNumber, hoseIndexNumber);
         // }
     }
     this.displayAddHoseMenu(fireDept, apparatusTypeAndNumber);
@@ -209,6 +209,20 @@ export default class EditHoses {
 
             await this.displayHoses(fireDept, apparatusTypeAndNumber);
         });
+    }
+
+    createCalculatePSIButton(currentHose, fireDept, apparatusTypeAndNumber, hoseIndexNumber) {
+        const button = document.getElementById(currentHose);
+        button.classList.add('button');
+        button.classList.add(currentHose);
+
+        button.addEventListener('click', async () => {
+            if (confirm("Click OK to calculate a PSI for this hose.") == true) {
+            await this.client.calculatePSI(fireDept, apparatusTypeAndNumber, hoseIndexNumber);
+            await this.displayHoses(fireDept, apparatusTypeAndNumber);  //reload the page
+            }
+        });
+        return button;
     }
 
 
