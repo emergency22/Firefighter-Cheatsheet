@@ -119,39 +119,39 @@ _Path: /apparatus/{apparatusTypeAndNumber} <br>
 _Request Body: fireDept, apparatusTypeAndNumber_<br>
 _Errors: "ERROR: Cannot find apparatus."_ <br>
 
-## 6.6 _GetHoses Endpoint_
+## 6.6 _DeleteHose Endpoint_
 
-_Name: GetHoses_ <br>
-_Description: While logged in and on an Edit Hoses page, the user will be able to see the saved Hoses on a particular Apparatus. This will be accomplished via a GET request to the apparatus table based on userName and apparatusTypeAndNumber._ <br>
-_HTTP Method: GET_ <br>
-_Path: /hoses/get/userName/apparatusTypeAndNumber_ <br>
+_Name: DeleteHose_ <br>
+_Description: While logged in the user will be able to delete an individual hose on a particular Apparatus. This will be accomplished via a DELETE request to the apparatus table based on userName, apparatusTypeAndNumber, and a hose index number_ <br>
+_HTTP Method: DELETE_ <br>
+_Path: /apparatus/hose_ <br>
 _Request Body: empty_  <br>
-_Errors: "ERROR: Cannot obtain hoses."_ <br>
+_Errors: "ERROR: Cannot delete hoses."_ <br>
 
-## 6.7 _SaveHose Endpoint_
+## 6.7 _AddHose Endpoint_
 
-_Name: SaveHose_ <br>
-_Description: While logged in and on an Edit Hoses page, the user will be able to enter in Hoses and save those items to the database. This will be accomplished via a POST request to an Apparatus Table, based on userName and apparatusTypeAndNumber._ <br>
+_Name: AddHose_ <br>
+_Description: While logged in the user will be able to enter in a Hose with particular values and save the hose to the particular Apparatus. This will be accomplished via a PUT request to an Apparatus Table, based on userName and apparatusTypeAndNumber._ <br>
 _HTTP Method: POST_ <br>
-_Path: /hoses/save_ <br>
-_Request Body: userName, apparatusTypeAndNumber, name, color, length, hoseDiameter, waterQuantityInGallons_ <br>
-_Errors: "ERROR: Cannot save apparatus."_ <br>
+_Path: /apparatus/hose_ <br>
+_Request Body: fireDept, apparatusTypeAndNumber, name, color, length, diameter, gallons_ <br>
+_Errors: "ERROR: Cannot save hose."_ <br>
 
-## 6.8 _UpdateHose Endpoint_
+## 6.8 _CalculatePSI Endpoint_
 
-_Name: UpdateHose_ <br>
-_Description: While logged in and on an Edit Hoses page, the user will be able to enter hose values and save those items to the database. This will be accomplished via a PUT request to an Apparatus Table, based on userName and apparatusTypeAndNumber._ <br>
+_Name: CalculatePSI_ <br>
+_Description: While logged in, the user will be able to calculate a PSI/Pump Discharge Pressure for a particular Hose. This will be accomplished via a PUT request to update the Apparatus Table, based on userName, apparatusTypeAndNumber, and hoseIndexNumber._ <br>
 _HTTP Method: PUT_ <br>
-_Path: /hoses/save_ <br>
-_Request Body: userName, apparatusTypeAndNumber, name, color, length, hoseDiameter, waterQuantityInGallons_ <br>
-_Errors: "ERROR: Cannot update apparatus."_ <br>
+_Path: /apparatus/hose/calculate_ <br>
+_Request Body: fireDept, apparatusTypeAndNumber, hoseIndexNumber_ <br>
+_Errors: "ERROR: Cannot calculate PSI."_ <br>
 
 # 7. Tables
 
 _The service will be initially populated with a Coefficient table that will have coefficient data for each hose diameter. Additionally, an Apparatus table will also be utilized._ <br>
 
 **Coefficient Table:** Hose diameter will be the Primary Key.<br>
-[Hose diameter in inches (Coefficient)] <br>
+[Hose diameter in inches (Coefficient in parentheses)] <br>
 _1.5 (24)_<br>
 _1.75 (15)_<br>
 _2 (8)_<br>
