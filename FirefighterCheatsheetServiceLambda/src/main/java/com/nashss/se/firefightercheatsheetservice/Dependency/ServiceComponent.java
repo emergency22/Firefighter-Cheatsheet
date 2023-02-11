@@ -29,4 +29,6 @@ public interface ServiceComponent {
 
     AddHoseActivity provideAddHoseActivity();
 
+    CalculatePSIActivity provideCalculatePSIActivity();
+
 }

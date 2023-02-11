@@ -239,7 +239,6 @@ public class ApparatusDao {
     public List<Apparatus> addHose(String fireDept, String apparatusTypeAndNumber, String name, String color, int length, Double diameter, int gallons) {
         log.info("ApparatusDAO: addHose method accessed");
 
-
         Map<String, AttributeValue> valueMap = new HashMap<>();
         valueMap.put(":fireDept", new AttributeValue().withS(fireDept));
         valueMap.put(":apparatusTypeAndNumber", new AttributeValue().withS(apparatusTypeAndNumber));
@@ -287,4 +286,53 @@ public class ApparatusDao {
 
     }
 
+    public List<Apparatus> calculatePSI(String fireDept, String apparatusTypeAndNumber, int hoseIndexNumber) {
+        log.info("ApparatusDAO: calculatePSI method accessed");
+
+        Map<String, AttributeValue> valueMap = new HashMap<>();
+        valueMap.put(":fireDept", new AttributeValue().withS(fireDept));
+        valueMap.put(":apparatusTypeAndNumber", new AttributeValue().withS(apparatusTypeAndNumber));
+        DynamoDBQueryExpression<Apparatus> queryExpression = new DynamoDBQueryExpression<Apparatus>()
+                .withIndexName(FIRE_DEPT_APP_TYPE_NUM_INDEX)
+                .withConsistentRead(false)
+                .withKeyConditionExpression("fireDept = :fireDept and apparatusTypeAndNumber = :apparatusTypeAndNumber")
+                .withExpressionAttributeValues(valueMap);
+        log.info("ApparatusDAO: calculatePSI: about to query table");
+
+        PaginatedQueryList<Apparatus> apparatusListFromGSI = dynamoDbMapper.query(Apparatus.class, queryExpression);
+        log.info("ApparatusDAO: apparatusListFromGSI size: " + apparatusListFromGSI.size());
+        Apparatus apparatusFromGSI = apparatusListFromGSI.get(0);
+
+        String userNameFromGSI = apparatusFromGSI.getUserName();
+        String apparatusTypeAndNumberFromGSI = apparatusFromGSI.getApparatusTypeAndNumber();
+        String fireDeptFromGSI = apparatusFromGSI.getFireDept();
+        List<Hose> hoseListFromGSI = apparatusFromGSI.getHoseList();
+        Hose hoseThatNeedsCalc = hoseListFromGSI.get(hoseIndexNumber);
+        String name = hoseThatNeedsCalc.getName();
+        String color = hoseThatNeedsCalc.getColor();
+        int length = hoseThatNeedsCalc.getLength();
+        Double hoseDiameter = hoseThatNeedsCalc.getHoseDiameter();
+        int gallons = hoseThatNeedsCalc.getWaterQuantityInGallons();
+
+        Hose newHose = new Hose();
+
+        
+
+
+        Apparatus apparatusWithHoseAdded = new Apparatus(userNameFromGSI, apparatusTypeAndNumberFromGSI, fireDeptFromGSI, hoseListFromGSI);
+
+        try {
+            dynamoDbMapper.save(apparatusWithHoseAdded);
+            metricsPublisher.addCount(MetricsConstants.ADDHOSE_COUNT, 1);
+            log.info("ApparatusDAO: hose successfully added.");
+        } catch (UnsupportedOperationException e) {
+            metricsPublisher.addCount(MetricsConstants.ADDHOSE_COUNT, 0);
+            throw new CannotAddHoseException("Apparatus could not be saved", e);
+        }
+
+        List<Apparatus> list = new ArrayList<>();
+        list.add(apparatusWithHoseAdded);
+        return list;
+
+    }
 }
