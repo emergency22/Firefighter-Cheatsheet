@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Objects;
 
 @JsonDeserialize(builder = Coefficient.Builder.class)
-@DynamoDBTable(tableName = "apparatus")
+@DynamoDBTable(tableName = "coefficient")
 public class Coefficient {
     private Double hoseDiameter;
     private Double coefficient;
@@ -31,6 +31,7 @@ public class Coefficient {
         this.hoseDiameter = hoseDiameter;
     }
 
+    @DynamoDBAttribute (attributeName = "coefficient")
     public Double getCoefficient() {
         return coefficient;
     }
@@ -57,6 +58,13 @@ public class Coefficient {
         return new Builder();
     }
 
+    @Override
+    public String toString() {
+        return "Coefficient{" +
+                "hoseDiameter=" + hoseDiameter +
+                ", coefficient=" + coefficient +
+                '}';
+    }
 
     @JsonPOJOBuilder
     public static class Builder {

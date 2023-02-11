@@ -318,9 +318,12 @@ public class ApparatusDao {
 
         Coefficient coefficientClass = new Coefficient();
         coefficientClass.setHoseDiameter(hoseDiameter);
-
+        log.info("ApparatusDAO: prior to Mapper.load with hoseDiameter: " + hoseDiameter + " and Coefficient class: " + coefficientClass);
         Coefficient coefficientFromTable = dynamoDbMapper.load(coefficientClass);
+        log.info("Coefficient from table: " + coefficientFromTable);
         Double doubleCoefficientFromTable = coefficientFromTable.getCoefficient();
+        log.info("Double Coefficient from table: " + doubleCoefficientFromTable);
+
 
         FrictionLossCalculator calculator = new FrictionLossCalculator(doubleCoefficientFromTable, length, gallons);
         Integer calculatedPSI = calculator.calculateFrictionLoss();
@@ -333,7 +336,7 @@ public class ApparatusDao {
         newHose.setWaterQuantityInGallons(gallons);
         newHose.setPumpDischargePressure(calculatedPSI);
 
-        hoseListFromGSI.add(hoseIndexNumber, newHose);
+        hoseListFromGSI.set(hoseIndexNumber, newHose);
 
         Apparatus apparatusWithHoseUpdated = new Apparatus(userNameFromGSI, apparatusTypeAndNumberFromGSI, fireDeptFromGSI, hoseListFromGSI);
 
