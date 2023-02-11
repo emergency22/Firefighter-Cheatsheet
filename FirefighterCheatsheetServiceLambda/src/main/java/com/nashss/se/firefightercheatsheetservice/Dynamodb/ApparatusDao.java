@@ -4,6 +4,7 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBQueryExpression;
 import com.amazonaws.services.dynamodbv2.datamodeling.PaginatedQueryList;
 import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 import com.nashss.se.firefightercheatsheetservice.Dynamodb.models.Apparatus;
+import com.nashss.se.firefightercheatsheetservice.Dynamodb.models.Coefficient;
 import com.nashss.se.firefightercheatsheetservice.Dynamodb.models.Hose;
 import com.nashss.se.firefightercheatsheetservice.Exceptions.*;
 import com.nashss.se.firefightercheatsheetservice.Metrics.MetricsConstants;
@@ -19,6 +20,7 @@ import java.util.Map;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
+import com.nashss.se.firefightercheatsheetservice.Utils.FrictionLossCalculator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -306,7 +308,7 @@ public class ApparatusDao {
         String userNameFromGSI = apparatusFromGSI.getUserName();
         String apparatusTypeAndNumberFromGSI = apparatusFromGSI.getApparatusTypeAndNumber();
         String fireDeptFromGSI = apparatusFromGSI.getFireDept();
-        List<Hose> hoseListFromGSI = apparatusFromGSI.getHoseList();
+        List<Hose> hoseListFromGSI = new ArrayList<>(apparatusFromGSI.getHoseList());
         Hose hoseThatNeedsCalc = hoseListFromGSI.get(hoseIndexNumber);
         String name = hoseThatNeedsCalc.getName();
         String color = hoseThatNeedsCalc.getColor();
@@ -314,24 +316,38 @@ public class ApparatusDao {
         Double hoseDiameter = hoseThatNeedsCalc.getHoseDiameter();
         int gallons = hoseThatNeedsCalc.getWaterQuantityInGallons();
 
+        Coefficient coefficientClass = new Coefficient();
+        coefficientClass.setHoseDiameter(hoseDiameter);
+
+        Coefficient coefficientFromTable = dynamoDbMapper.load(coefficientClass);
+        Double doubleCoefficientFromTable = coefficientFromTable.getCoefficient();
+
+        FrictionLossCalculator calculator = new FrictionLossCalculator(doubleCoefficientFromTable, length, gallons);
+        Integer calculatedPSI = calculator.calculateFrictionLoss();
+
         Hose newHose = new Hose();
+        newHose.setName(name);
+        newHose.setColor(color);
+        newHose.setLength(length);
+        newHose.setHoseDiameter(hoseDiameter);
+        newHose.setWaterQuantityInGallons(gallons);
+        newHose.setPumpDischargePressure(calculatedPSI);
 
-        
+        hoseListFromGSI.add(hoseIndexNumber, newHose);
 
-
-        Apparatus apparatusWithHoseAdded = new Apparatus(userNameFromGSI, apparatusTypeAndNumberFromGSI, fireDeptFromGSI, hoseListFromGSI);
+        Apparatus apparatusWithHoseUpdated = new Apparatus(userNameFromGSI, apparatusTypeAndNumberFromGSI, fireDeptFromGSI, hoseListFromGSI);
 
         try {
-            dynamoDbMapper.save(apparatusWithHoseAdded);
-            metricsPublisher.addCount(MetricsConstants.ADDHOSE_COUNT, 1);
+            dynamoDbMapper.save(apparatusWithHoseUpdated);
+            metricsPublisher.addCount(MetricsConstants.CALC_HOSE_COUNT, 1);
             log.info("ApparatusDAO: hose successfully added.");
         } catch (UnsupportedOperationException e) {
-            metricsPublisher.addCount(MetricsConstants.ADDHOSE_COUNT, 0);
-            throw new CannotAddHoseException("Apparatus could not be saved", e);
+            metricsPublisher.addCount(MetricsConstants.CALC_HOSE_COUNT, 0);
+            throw new CannotCalculatePSIException("Apparatus could not be saved", e);
         }
 
         List<Apparatus> list = new ArrayList<>();
-        list.add(apparatusWithHoseAdded);
+        list.add(apparatusWithHoseUpdated);
         return list;
 
     }

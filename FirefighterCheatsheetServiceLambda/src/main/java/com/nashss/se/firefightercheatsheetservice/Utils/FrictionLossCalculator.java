@@ -12,17 +12,17 @@ public class FrictionLossCalculator {
     private int hoseLength;
     private int gallons;
 
-    FrictionLossCalculator(double coefficient, int hoseLength, int gallons) {
+    public FrictionLossCalculator(double coefficient, int hoseLength, int gallons) {
         this.coefficient = coefficient;
         this.hoseLength = hoseLength;
         this.gallons = gallons;
     }
 
-    public double calculateFrictionLoss() {
-        double adjustedGallons = (double) this.gallons / 100;
-        double adjustedHoseLength = (double) this.hoseLength / 100;
-
-        return this.coefficient * adjustedGallons * adjustedHoseLength;
+    public Integer calculateFrictionLoss() {
+        Double adjustedGallons = (double) this.gallons / 100;
+        Double adjustedHoseLength = (double) this.hoseLength / 100;
+        Double doublePSI = this.coefficient * adjustedGallons * adjustedHoseLength;
+        return doublePSI.intValue();
     }
 
 }
