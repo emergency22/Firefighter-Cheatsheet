@@ -46,7 +46,7 @@ export default class EditHoses {
                 var hoseList = currentApparatus.hoseList;
 
                 document.getElementById('theDisplayArea').innerHTML += 
-                `<div class='individualApparatus' id='${thisIndividualApparatus}'> ${fireDept } ${apparatusTypeAndNumber} <div id='${thisHoseList}'></div></div>`;
+                `<h2><div class='individualApparatus' id='${thisIndividualApparatus}'> ${fireDept } ${apparatusTypeAndNumber} </h2><div id='${thisHoseList}'></div></div>`;
                 console.log("thisIndividualApparatus: " , thisIndividualApparatus);
                 for (var j=0; j < hoseList.length; j++) {
                     
