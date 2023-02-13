@@ -54,15 +54,18 @@ export default class EditHoses {
                     if (currentHose != null) {
                         var name = currentHose.name;
                         var color = currentHose.color;
-                        var pumpDischargePressure = currentHose.pumpDischargePressure;
+                        var pumpDischargePressureFog = currentHose.pumpDischargePressure;
+                        var pumpDischargePressureSmoothBore = currentHose.pumpDischargePressure - 50;
 
                         var apparatusHoseInfo = 
                         "<li>" + color +
                         " " +
                         name +
-                        " - " +
-                        pumpDischargePressure +
-                        " PSI </li>";
+                        "<br>" +
+                        pumpDischargePressureFog +
+                        " PSI (Fog Nozzle)<br>" + 
+                        pumpDischargePressureSmoothBore +
+                        " PSI (Smooth Bore)</li>";
 
                         document.getElementById(thisHoseList).innerHTML += apparatusHoseInfo;
                     }

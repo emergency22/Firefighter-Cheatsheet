@@ -22,7 +22,7 @@ public class FrictionLossCalculator {
         Double adjustedGallons = (double) this.gallons / 100;
         Double adjustedHoseLength = (double) this.hoseLength / 100;
         Double doublePSI = this.coefficient * adjustedGallons * adjustedHoseLength;
-        return doublePSI.intValue();
+        return doublePSI.intValue() + 100;
     }
 
 }
