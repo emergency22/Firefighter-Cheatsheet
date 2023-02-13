@@ -26,15 +26,8 @@ export default class EditHoses {
             document.getElementById('theDisplayArea').innerHTML = "No apparatus exist for this account. Go back to add Apparatus.";
         }
 
-        //within theDisplayArea, for each apparatus, assign an apparatus display area. 
-        //display the apparatus fireDept and type/num first. Then assign a hoseList area.
-        //Then display each hose within the hoseList area.
-        //for each hose, display the Color, Name, and PSI in that order.
-
         var thisIndividualApparatus = "thisIndividualApparatus";
         var thisHoseList = "thisHoseList";
-        // var individualApparatusArray = [];
-        // var thisHoseListArray = [];
 
         for (var i=0; i < apparatusList.length; i++) {
 
@@ -73,15 +66,13 @@ export default class EditHoses {
 
                         document.getElementById(thisHoseList).innerHTML += apparatusHoseInfo;
                     }
-                    // thisHoseListArray.push(thisHoseList);
                 }
                 thisHoseList = "thisHoseList";  //reset variable for next loop
 
-                // individualApparatusArray.push(thisIndividualApparatus);
             }
             
             thisIndividualApparatus = "thisIndividualApparatus"; //reset variable for next loop
-
+            document.getElementById('addApparatusForm').innerHTML = "";
         }
 
     }
