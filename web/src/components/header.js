@@ -3,6 +3,8 @@ import { formToJSON } from 'axios';
 import FirefighterCheatsheetClient from '../api/firefighterCheatsheetClient';
 import BindingClass from "../util/bindingClass";
 import EditHoses from "../components/editHoses";
+import Cheatsheet from "../components/cheatsheet";
+
 
 /**
  * The header component for the website.
@@ -19,6 +21,7 @@ export default class Header extends BindingClass {
 
         this.client = new FirefighterCheatsheetClient();
         this.editHoses = new EditHoses();
+        this.cheatsheet = new Cheatsheet();
     }
 
     /**
@@ -86,8 +89,11 @@ export default class Header extends BindingClass {
     createUserInterface() {
         const interfaceArea = document.getElementById('userInterfaceArea');
         interfaceArea.classList.remove('hidden');
-        const hamToggler = document.getElementById('hamToggle');
-        hamToggler.classList.remove('hidden');
+        // const hamToggler = document.getElementById('hamToggle');
+        // hamToggler.classList.remove('hidden');
+        const cheatsheetButtonToggler = document.getElementById('cheatSheetButtonToggle')
+        cheatsheetButtonToggler.classList.remove('hidden');
+        this.cheatSheetButton();
         this.displayApparatus();
         this.displayAddApparatusMenu();
     }
@@ -192,6 +198,15 @@ export default class Header extends BindingClass {
             if (confirm("Click OK to edit the hoses this apparatus.") == true) {
             await this.editHoses.displayHoses(fireDept, apparatusTypeAndNumber);
             }
+        });
+        return button;
+    }
+
+    cheatSheetButton() {
+        const button = document.getElementById('cheatSheetButtonToggle');
+        document.getElementById('cheatSheetButtonToggle').innerHTML = "Your Cheat Sheet";
+        button.addEventListener('click', async () => {
+            this.cheatsheet.displayCheatsheet();
         });
         return button;
     }
