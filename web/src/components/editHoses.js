@@ -1,7 +1,7 @@
 import FirefighterCheatsheetClient from '../api/firefighterCheatsheetClient';
 
 /**
- * The header component for the website.
+ * The editHoses component for the website.
  */
 export default class EditHoses {
     constructor() {
