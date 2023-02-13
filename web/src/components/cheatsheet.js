@@ -26,14 +26,25 @@ export default class EditHoses {
             document.getElementById('theDisplayArea').innerHTML = "No apparatus exist for this account. Go back to add Apparatus.";
         }
 
-        //for each apparatus, display the apparatus fireDept and type/num first. Then display each hose.
+        //within theDisplayArea, for each apparatus, assign an apparatus display area. 
+        //display the apparatus fireDept and type/num first. Then assign a hoseList area.
+        //Then display each hose within the hoseList area.
         //for each hose, display the Color, Name, and PSI in that order.
 
+        var thisIndividualApparatus = "thisIndividualApparatus";
+        var thisHoseList = "thisHoseList";
+        // var individualApparatusArray = [];
+        // var thisHoseListArray = [];
+
         for (var i=0; i < apparatusList.length; i++) {
+
+            console.log("apparatusList: " , apparatusList);
             
-            // let iString = i.toString();
-            // currentLocation += iString;
-            // currentHose += iString;
+            let iString = i.toString();
+            thisIndividualApparatus += iString;
+            thisHoseList += iString;
+
+
 
             var currentApparatus = apparatusList[i];
             if (currentApparatus.fireDept != null) {
@@ -41,44 +52,36 @@ export default class EditHoses {
                 var apparatusTypeAndNumber = currentApparatus.apparatusTypeAndNumber;
                 var hoseList = currentApparatus.hoseList;
 
-                document.getElementById('theDisplayArea').innerHTML += "<div class='individualApparatus' id='individualApparatus'>" + fireDept + " " + apparatusTypeAndNumber + "<div id='thisHoseList'></div>";
-
-                for (var i=0; i < hoseList.length; i++) {
+                document.getElementById('theDisplayArea').innerHTML += 
+                `<div class='individualApparatus' id='${thisIndividualApparatus}'> ${fireDept } ${apparatusTypeAndNumber} <div id='${thisHoseList}'></div></div>`;
+                console.log("thisIndividualApparatus: " , thisIndividualApparatus);
+                for (var j=0; j < hoseList.length; j++) {
                     
-                    var currentHose = hoseList[i];
+                    var currentHose = hoseList[j];
                     if (currentHose != null) {
-                    var name = currentHose.name;
-                    var color = currentHose.color;
-                    var pumpDischargePressure = currentHose.pumpDischargePressure;
+                        var name = currentHose.name;
+                        var color = currentHose.color;
+                        var pumpDischargePressure = currentHose.pumpDischargePressure;
 
-                    var apparatusHoseInfo = 
-                    "<li>" + color +
-                    " " +
-                    name +
-                    " - " +
-                    pumpDischargePressure +
-                    " PSI ";
-                    document.getElementById('thisHoseList').innerHTML += apparatusHoseInfo;
+                        var apparatusHoseInfo = 
+                        "<li>" + color +
+                        " " +
+                        name +
+                        " - " +
+                        pumpDischargePressure +
+                        " PSI </li>";
+
+                        document.getElementById(thisHoseList).innerHTML += apparatusHoseInfo;
                     }
-
+                    // thisHoseListArray.push(thisHoseList);
                 }
+                thisHoseList = "thisHoseList";  //reset variable for next loop
 
-
-                // var apparatusInfo = 
-                // "<li>" + fireDept + 
-                // " " + 
-                // apparatusTypeAndNumber + 
-                // "<span>" +
-                //     `<div class='delButton' id='${currentLocation}'>X</div>` +
-                // `</span><div class='editHoses' id='${currentHose}'>` +
-                // `Edit Hoses for ${fireDept} ${apparatusTypeAndNumber}` + "</div></li>";
-                // document.getElementById('theDisplayArea').innerHTML += apparatusInfo;
-                // currentLocations.push(currentLocation);
-                // currentHoses.push(currentHose);
-
-                // currentLocation = "currentLocation";   //reset variable for the next loop
-                // currentHose = "currentHose";  //reset variable for the next loop;
+                // individualApparatusArray.push(thisIndividualApparatus);
             }
+            
+            thisIndividualApparatus = "thisIndividualApparatus"; //reset variable for next loop
+
         }
 
     }
