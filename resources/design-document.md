@@ -33,23 +33,23 @@ U1. _As a Firefighter Cheatsheet customer, I want to `be able to make an account
 
 U2. _As a Firefighter Cheatsheet customer, I want to `be able to add apparatus` when I `am logged in`. The benefit will be the saving of apparatus to the user account._
 
-U3. _As a Firefighter Cheatsheet customer, I want to `add corresponding hoses to each apparatus` when I `am logged in`. The benefit will be the saving of hoses for each apparatus._
+U3. _As a Firefighter Cheatsheet customer, I want to `delete an apparatus ` when I `am logged in`. The benefit will be the ability to delete unnecessary data._
 
-U4. _As a Firefighter Cheatsheet customer, I want to `delete apparatus and corresponding hoses` when I `am logged in`. The benefit will be the ability to delete unnecessary data._
+U4. _As a Firefighter Cheatsheet customer, I want to `add corresponding hoses to each apparatus` when I `am logged in`. The benefit will be the saving of hoses for each apparatus._
 
-U5. _As a Firefighter Cheatsheet customer, I want to `be able to calculate pump discharge pressures` when I `click a button`. The benefit will be to make complicated calculations_
+U5. _As a Firefighter Cheatsheet customer, I want to `delete a specific hose` when I `am logged in`. The benefit will be the ability to delete unnecessary data._
 
-U6. _As a Firefighter Cheatsheet customer, I want to `be able to edit the values on hoses` when I `click a button`. The benefit will be the ability to edit values in case a hose is changed on the apparatus (longer length, etc.)_
+U6. _As a Firefighter Cheatsheet customer, I want to `be able to calculate pump discharge pressures` when I `click a button`. The benefit will be to make complicated calculations_
 
-U7. _As a Firefighter Cheatsheet customer, I want to `save each pump discharge pressure for each hose` when I `click a button`. The benefit will be the ability to save the pump discharge pressure for later viewing._
+U7. _As a Firefighter Cheatsheet customer, I want to `calculate a pump discharge pressure (PSI) for each hose` when I `click a button`. The benefit will be the ability to save the pump discharge pressure for later viewing._
 
-U8. _As a Firefighter Cheatsheet customer, I wast to `be able to see a neat, tidy version of hose pump discharge pressures` when I `click a button to see my cheat sheet`. The benefit will be the ability to print a simple, tidy version of the cheatsheet for later use._
+U8. _As a Firefighter Cheatsheet customer, I wast to `be able to see a neat, tidy version of hose pump discharge pressures for each Apparatus and hose` when I `click a button to see my cheat sheet`. The benefit will be the ability to print a simple, tidy version of the cheatsheet for later use._
 
 U9. _As a Firefighter Cheatsheet customer, I want to `be shown fog nozzle and smooth bore pump discharge pressures` when I `see my cheat sheet`. The benefit will allow the user to utilize both pump discharge pressures if a nozzle is switched while fighting fire._
 
-STRETCH10. _As a Firefighter Cheatsheet customer, I want to `color code hoses` when I `see my cheatsheet`. The benefit will allow for easier visual identification._
+STRETCH10. _As a Firefighter Cheatsheet customer, I want to `add a deck gun` when I `edit my cheatsheet`. The benefit will be to have this commonly used item alongside the listed hoses._
 
-STRETCH11. _As a Firefighter Cheatsheet customer, I want to `add a deck gun` when I `edit my cheatsheet`. The benefit will be to have this commonly used item alongside the listed hoses._
+STRETCH11. _As a Firefighter Cheatsheet customer, I want to `color code hoses` when I `see my cheatsheet`. The benefit will allow for easier visual identification._
 
 STRETCH12. _As a Firefighter Cheatsheet customer, I want to `add radio frequencies` when I `edit my cheatsheet`. The benefit will be to have radio frequencies listed in the event they are needed._
 
@@ -84,7 +84,7 @@ _The design will include a front end created with HTML, CSS, and Javascript and 
 ## 6.2. _GetApparatus Endpoint_
 
 _Name: GetApparatus_ <br>
-_Description: The user should then be able to see saved Apparatus associated with their account. This will be accomplished via a GET request to the apparatus table based on userName. This endpoint will additionally used to generate the cheat sheet on the CheatSheet.html webpage._  <br>
+_Description: The user should then be able to see saved Apparatus associated with their account. This will be accomplished via a GET request to the apparatus table based on userName. This endpoint will additionally used to generate the cheat sheet on the CheatSheet webpage._  <br>
 _HTTP Method: GET_  <br>
 _Path: /apparatus_ <br>
 _Request Body: empty_ <br>
@@ -168,6 +168,12 @@ _A GlobalSecondaryIndex will also be utilized, based on the Apparatus Table, to 
 
 # 8. Pages
 
+All webpages will be dynamically loaded via Javascript methods. However, there will be four primary "sections" to the website:
+
+-A main page with a simple login button.
+-A page to add and delete apparatus.
+-A page to add and delete hoses for each individual apparatus.
+-A cheat sheet page that shows a simplified version of the Apparatus and Hose data.
 <img src="../resources/images/webpages.PNG">
 
 Index.html
