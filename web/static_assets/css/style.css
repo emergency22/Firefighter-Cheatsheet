@@ -65,6 +65,25 @@ html {
   /* z-index: 5; */
 }
 
+.cheatsheetButton {
+  font-size: 2em;
+  color: white;
+  position: absolute;
+  top: 4.5em;
+  right: 3%;
+  opacity: 95%;
+  margin-top: -45px;
+  z-index: 1000;
+  background-color: green;
+  border: none;
+  color: white;
+  padding: 6px 8px 4px 8px;
+  text-align: center;
+  font-weight: bold;
+  text-decoration: none;
+  box-shadow: -3px 6px 4px #222;
+}
+
 /* .textBar {
     float: right;
     text-align: right;
