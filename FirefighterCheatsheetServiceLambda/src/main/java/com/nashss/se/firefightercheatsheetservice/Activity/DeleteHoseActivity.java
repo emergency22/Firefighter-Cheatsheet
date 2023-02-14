@@ -39,7 +39,8 @@ public class DeleteHoseActivity {
      * <p>
      * If the apparatus does not exist, this should throw a CannotDeleteHoseException.
      *
-     * @param deleteHoseRequest request object containing the user's name, apparatusTypeAndNumber, and hose index number.
+     * @param deleteHoseRequest request object containing the user's name, apparatusTypeAndNumber, and hose
+     * index number.
      * @return DeleteHoseResult result object containing the API defined
      */
     public DeleteHoseResult handleRequest(final DeleteHoseRequest deleteHoseRequest) {

@@ -2,10 +2,11 @@ package com.nashss.se.firefightercheatsheetservice.Activity;
 
 import com.nashss.se.firefightercheatsheetservice.Activity.Requests.GetApparatusRequest;
 import com.nashss.se.firefightercheatsheetservice.Activity.Results.GetApparatusResult;
+import com.nashss.se.firefightercheatsheetservice.Converters.ModelConverter;
 import com.nashss.se.firefightercheatsheetservice.Dynamodb.ApparatusDao;
 import com.nashss.se.firefightercheatsheetservice.Dynamodb.models.Apparatus;
 import com.nashss.se.firefightercheatsheetservice.Models.ApparatusModel;
-import com.nashss.se.firefightercheatsheetservice.Converters.ModelConverter;
+
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
