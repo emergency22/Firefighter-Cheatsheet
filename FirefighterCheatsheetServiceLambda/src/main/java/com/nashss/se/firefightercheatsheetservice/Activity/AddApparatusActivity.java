@@ -1,24 +1,23 @@
 package com.nashss.se.firefightercheatsheetservice.Activity;
 
 import com.nashss.se.firefightercheatsheetservice.Activity.Requests.AddApparatusRequest;
-import com.nashss.se.firefightercheatsheetservice.Activity.Results.GetApparatusResult;
-import com.nashss.se.firefightercheatsheetservice.Dynamodb.ApparatusDao;
 import com.nashss.se.firefightercheatsheetservice.Activity.Results.AddApparatusResult;
 import com.nashss.se.firefightercheatsheetservice.Converters.ModelConverter;
+import com.nashss.se.firefightercheatsheetservice.Dynamodb.ApparatusDao;
 
 import com.nashss.se.firefightercheatsheetservice.Dynamodb.models.Apparatus;
 import com.nashss.se.firefightercheatsheetservice.Models.ApparatusModel;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.LinkedList;
 import java.util.List;
 import javax.inject.Inject;
 
 /**
- * Implementation of the AddSongToPlaylistActivity for the MusicPlaylistService's AddSongToPlaylist API.
+ * Implementation of the AddApparatusActivity for the Firefighter Cheat Sheet Service's Add Apparatus API.
  *
- * This API allows the customer to add a song to their existing playlist.
+ * This API allows the customer to add an Apparatus to their existing account.
  */
 
 public class AddApparatusActivity {
@@ -26,9 +25,9 @@ public class AddApparatusActivity {
     private final ApparatusDao apparatusDao;
 
     /**
-     * Instantiates a new AddSongToPlaylistActivity object.
+     * Instantiates a new AddApparatusActivity object.
      *
-     * @param apparatusDao PlaylistDao to access the playlist table.
+     * @param apparatusDao ApparatusDao to access the Apparatus table.
      */
     @Inject
     public AddApparatusActivity(ApparatusDao apparatusDao) {
@@ -36,19 +35,15 @@ public class AddApparatusActivity {
     }
 
     /**
-     * This method handles the incoming request by adding an additional song
-     * to a playlist and persisting the updated playlist.
+     * This method handles the incoming request by adding an additional apparatus to the apparatus table.
      * <p>
-     * It then returns the updated song list of the playlist.
+     * It then returns the updated list of Apparatus within an AddApparatusResult.
      * <p>
-     * If the playlist does not exist, this should throw a PlaylistNotFoundException.
+     * If the apparatus cannot be added, this should throw a CannotAddApparatusException.
      * <p>
-     * If the album track does not exist, this should throw an AlbumTrackNotFoundException.
      *
-     * @param addApparatusRequest request object containing the playlist ID and an asin and track number
-     *                                 to retrieve the song data
-     * @return addSongToPlaylistResult result object containing the playlist's updated list of
-     *                                 API defined {@link }s
+     * @param addApparatusRequest request object containing the apparatus data to be added
+     * @return addApparatusResult result object containing the apparatus table's updated list of Apparatus
      */
     public AddApparatusResult handleRequest(final AddApparatusRequest addApparatusRequest) {
 

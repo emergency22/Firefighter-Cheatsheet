@@ -118,14 +118,6 @@ public class ApparatusDao {
         log.info("addApparatus method called in ApparatusDao with userName: " + userName +
                 " , apparatusTypeAndNumber: " + apparatusTypeAndNumber + ", and fireDept: " + fireDept);
 
-//        Hose hose1 = new Hose("Preconnect 3", "Red", 200, 1.5, 200);
-//        Hose hose2 = new Hose("Preconnect 4", "Red", 200, 1.75, 150);
-//        List<Hose> hoseList = new ArrayList<>();
-//        hoseList.add(hose1);
-//        hoseList.add(hose2);
-//
-//        Apparatus apparatus = new Apparatus(userName, apparatusTypeAndNumber, fireDept, hoseList);
-
         Apparatus apparatus = new Apparatus(userName, apparatusTypeAndNumber, fireDept);
 
         try {
