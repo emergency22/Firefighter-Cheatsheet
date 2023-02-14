@@ -26,6 +26,7 @@ public class FrictionLossCalculator {
 
     /**
      * Method to calculate friction loss.
+     * @return Integer class.
      */
     public Integer calculateFrictionLoss() {
         Double adjustedGallons = (double) this.gallons / 100;

@@ -3,8 +3,8 @@ package com.nashss.se.firefightercheatsheetservice.Lambda;
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 
-import com.nashss.se.firefightercheatsheetservice.Activity.Requests.CalculatePSIRequest;
 import com.nashss.se.firefightercheatsheetservice.Activity.Results.CalculatePSIResult;
+import com.nashss.se.firefightercheatsheetservice.Activity.Requests.CalculatePSIRequest;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
