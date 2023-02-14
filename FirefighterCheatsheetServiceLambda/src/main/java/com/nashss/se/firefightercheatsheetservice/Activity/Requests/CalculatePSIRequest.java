@@ -52,7 +52,6 @@ public class CalculatePSIRequest {
         private String userName;
         private String fireDept;
         private String apparatusTypeAndNumber;
-
         private int hoseIndexNumber;
 
         public Builder withUserName(String userName) {
