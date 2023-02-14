@@ -23,6 +23,9 @@ public class DeleteHoseActivityTest {
 
     private DeleteHoseActivity deleteHoseActivity;
 
+    /**
+     * Initial set up for test methods.
+     */
     @BeforeEach
     public void setUp() {
         openMocks(this);

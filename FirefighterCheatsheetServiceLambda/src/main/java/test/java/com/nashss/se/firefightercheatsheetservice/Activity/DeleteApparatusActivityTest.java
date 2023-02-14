@@ -5,8 +5,7 @@ import com.nashss.se.firefightercheatsheetservice.Activity.Requests.DeleteAppara
 import com.nashss.se.firefightercheatsheetservice.Activity.Results.DeleteApparatusResult;
 import com.nashss.se.firefightercheatsheetservice.Dynamodb.ApparatusDao;
 import com.nashss.se.firefightercheatsheetservice.Dynamodb.models.Apparatus;
-import com.nashss.se.firefightercheatsheetservice.Dynamodb.models.Hose;
-import com.nashss.se.firefightercheatsheetservice.Models.ApparatusModel;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -14,7 +13,6 @@ import org.mockito.Mock;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.openMocks;
@@ -25,6 +23,9 @@ public class DeleteApparatusActivityTest {
 
     private DeleteApparatusActivity deleteApparatusActivity;
 
+    /**
+     * Initial set up for test methods.
+     */
     @BeforeEach
     public void setUp() {
         openMocks(this);

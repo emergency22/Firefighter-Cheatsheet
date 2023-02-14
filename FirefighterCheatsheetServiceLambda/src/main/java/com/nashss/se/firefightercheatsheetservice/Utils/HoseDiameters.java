@@ -1,6 +1,6 @@
 package com.nashss.se.firefightercheatsheetservice.Utils;
 
-public enum HOSE_DIAMETERS {
+public enum HoseDiameters {
 
     INCH_AND_HALF(1.5),
     INCH_THREE_QUARTER(1.75),
@@ -10,7 +10,10 @@ public enum HOSE_DIAMETERS {
 
     private double diameter;
 
-    HOSE_DIAMETERS(double diameter) {
+    /**
+     * @param diameter The hose diameter.
+     */
+    HoseDiameters(double diameter) {
         this.diameter = diameter;
     }
 

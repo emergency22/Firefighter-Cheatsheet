@@ -5,16 +5,8 @@ import FirefighterCheatsheetClient from '../api/firefighterCheatsheetClient';
  */
 export default class EditHoses {
     constructor() {
-        // super();
-
-        // const methodsToBind = [
-        //     'addHeaderToPage', 'createSiteTitle', 'createUserInfoForHeader',
-        //     'createLoginButton', 'createLoginButton', 'createLogoutButton', 'createUserInterface'
-        // ];
-        // this.bindClassMethods(methodsToBind, this);
 
         this.client = new FirefighterCheatsheetClient();
-        // this.editHoses = new EditHoses();
     }
 
     /**
@@ -57,10 +49,10 @@ export default class EditHoses {
                 var pumpDischargePressure = currentHose.pumpDischargePressure;
 
                 var apparatusHoseInfo = 
-                "<li>" + color + 
+                "<li><u>" + color + 
                 " " + 
                 name + 
-                " - " + 
+                "</u> - " + 
                 length +
                 " Feet, " + 
                 hoseDiameter +
@@ -68,7 +60,7 @@ export default class EditHoses {
                 waterQuantityInGallons +
                 " GPM, " + 
                 pumpDischargePressure +
-                " PSI " +
+                " PSI" +
                 "<span>" +
                     `<div class='delButton' id='${currentHoseLocation}'>X</div>` +
                 `</span><div class='editHoses' id='${currentHoseId}'>` +
@@ -84,12 +76,10 @@ export default class EditHoses {
         for (var i=0; i < hoseList.length; i++) {
             var thisCurrentHoseLocation = currentHoseLocations[i];
             var thisCurrentHose = currentHoseIds[i];
-        //     var fireDept = hoseList[i].fireDept;
             var hoseIndexNumber = i;
 
             this.createDeleteHoseButton(thisCurrentHoseLocation, fireDept, apparatusTypeAndNumber, hoseIndexNumber);
             this.createCalculatePSIButton(thisCurrentHose, fireDept, apparatusTypeAndNumber, hoseIndexNumber);
-        // }
     }
     this.displayAddHoseMenu(fireDept, apparatusTypeAndNumber);
 }
@@ -113,8 +103,6 @@ export default class EditHoses {
             "<label for='fireDept'>Add a hose: </label>" +
             "<input type='text' id='name' placeHolder='Name of Hose' style='width: 200px' required>" +
 
-            // "<input type='text' id='color' placeHolder='Color' style='width: 200px' required>" +
-
             `       
             <select id='colorSelector' name='colorSelector' required>
                 <option value="">Color</option>
@@ -129,8 +117,6 @@ export default class EditHoses {
                 <option value="Black">Black</option>
             </select>
            ` +
-
-            // "<input type='text' id='length' placeHolder='Length in Feet' style='width: 200px' required>" +
 
             `       
             <select id='lengthSelector' name='lengthSelector' required>
@@ -148,8 +134,6 @@ export default class EditHoses {
             </select>
             ` +
 
-            // "<input type='text' id='diameter' placeHolder='Hose Diameter' style='width: 200px' required>" +
-
             `
             <select id='diameterSelector' name='diameterSelector' required>
                 <option value="">Hose Diameter</option>
@@ -160,8 +144,6 @@ export default class EditHoses {
                 <option value="3">3 Inches</option>
             </select>
             ` +
-
-            // "<input type='text' id='gallons' placeHolder='Total Gallonage' style='width: 200px' required>" +
 
             `       
             <select id='gpmSelector' name='gpmSelector' required>

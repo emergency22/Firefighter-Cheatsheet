@@ -1,12 +1,12 @@
 package com.nashss.se.firefightercheatsheetservice.Dynamodb.models;
 
-import com.amazonaws.services.dynamodbv2.datamodeling.*;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
+
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
-import com.nashss.se.firefightercheatsheetservice.Converters.HoseListConverter;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 @JsonDeserialize(builder = Coefficient.Builder.class)
@@ -15,8 +15,16 @@ public class Coefficient {
     private Double hoseDiameter;
     private Double coefficient;
 
+    /**
+     * Empty Coefficient constructor.
+     */
     public Coefficient() {}
 
+    /**
+     * Hose constructor.
+     * @param hoseDiameter Diameter of the hose.
+     * @param coefficient Coefficient associated with a hose diameter.
+     */
     public Coefficient(Double hoseDiameter, Double coefficient) {
         this.hoseDiameter = hoseDiameter;
         this.coefficient = coefficient;
@@ -31,7 +39,7 @@ public class Coefficient {
         this.hoseDiameter = hoseDiameter;
     }
 
-    @DynamoDBAttribute (attributeName = "coefficient")
+    @DynamoDBAttribute(attributeName = "coefficient")
     public Double getCoefficient() {
         return coefficient;
     }
@@ -42,8 +50,12 @@ public class Coefficient {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Coefficient)) return false;
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Coefficient)) {
+            return false;
+        }
         Coefficient that = (Coefficient) o;
         return Objects.equals(hoseDiameter, that.hoseDiameter) && Objects.equals(coefficient, that.coefficient);
     }

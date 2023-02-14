@@ -10,7 +10,8 @@ public class DeleteHoseRequest {
     private final String apparatusTypeAndNumber;
     private final int hoseIndexNumber;
 
-    private DeleteHoseRequest(String userName, String fireDept, String apparatusTypeAndNumber, Integer hoseIndexNumber) {
+    private DeleteHoseRequest(String userName, String fireDept, String apparatusTypeAndNumber,
+        Integer hoseIndexNumber) {
         this.userName = userName;
         this.fireDept = fireDept;
         this.apparatusTypeAndNumber = apparatusTypeAndNumber;

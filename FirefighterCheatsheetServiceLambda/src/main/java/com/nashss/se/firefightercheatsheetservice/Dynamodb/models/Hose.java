@@ -2,6 +2,7 @@ package com.nashss.se.firefightercheatsheetservice.Dynamodb.models;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
+
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 
@@ -17,8 +18,19 @@ public class Hose {
     private int waterQuantityInGallons;
     private int pumpDischargePressure;
 
+    /**
+     * Empty Hose constructor.
+     */
     public Hose() {}
 
+    /**
+     * Hose constructor.
+     * @param name Name of the hose.
+     * @param color Color of the hose.
+     * @param length Length of the hose.
+     * @param hoseDiameter Diameter of the hose.
+     * @param waterQuantityInGallons Gallons per minute.
+     */
     public Hose(String name, String color, int length, Double hoseDiameter, int waterQuantityInGallons) {
         this.name = name;
         this.color = color;
@@ -26,8 +38,17 @@ public class Hose {
         this.hoseDiameter = hoseDiameter;
         this.waterQuantityInGallons = waterQuantityInGallons;
     }
-
-    public Hose(String name, String color, int length, Double hoseDiameter, int waterQuantityInGallons, int pumpDischargePressure) {
+    /**
+     * Hose constructor.
+     * @param name Name of the hose.
+     * @param color Color of the hose.
+     * @param length Length of the hose.
+     * @param hoseDiameter Diameter of the hose.
+     * @param waterQuantityInGallons Gallons per minute.
+     * @param pumpDischargePressure Pump Discharge Pressure / PSI.
+     */
+    public Hose(String name, String color, int length, Double hoseDiameter, int waterQuantityInGallons,
+                int pumpDischargePressure) {
         this.name = name;
         this.color = color;
         this.length = length;
@@ -92,8 +113,12 @@ public class Hose {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Hose)) return false;
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Hose)) {
+            return false;
+        }
         Hose hose = (Hose) o;
         return length == hose.length &&
                 waterQuantityInGallons == hose.waterQuantityInGallons &&

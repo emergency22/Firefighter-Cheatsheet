@@ -5,6 +5,7 @@ import com.nashss.se.firefightercheatsheetservice.Activity.Results.GetApparatusR
 
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

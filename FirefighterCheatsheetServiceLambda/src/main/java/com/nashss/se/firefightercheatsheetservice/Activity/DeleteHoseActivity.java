@@ -6,11 +6,12 @@ import com.nashss.se.firefightercheatsheetservice.Converters.ModelConverter;
 import com.nashss.se.firefightercheatsheetservice.Dynamodb.ApparatusDao;
 import com.nashss.se.firefightercheatsheetservice.Dynamodb.models.Apparatus;
 import com.nashss.se.firefightercheatsheetservice.Models.ApparatusModel;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import javax.inject.Inject;
 import java.util.List;
+import javax.inject.Inject;
 
 /**
  * Implementation of the DeleteHoseActivity for the FirefighterCheatSheetService's DeleteHose API.
@@ -38,7 +39,8 @@ public class DeleteHoseActivity {
      * <p>
      * If the apparatus does not exist, this should throw a CannotDeleteHoseException.
      *
-     * @param deleteHoseRequest request object containing the user's name, apparatusTypeAndNumber, and hose index number.
+     * @param deleteHoseRequest request object containing the user's name, apparatusTypeAndNumber, and hose
+     * index number.
      * @return DeleteHoseResult result object containing the API defined
      */
     public DeleteHoseResult handleRequest(final DeleteHoseRequest deleteHoseRequest) {

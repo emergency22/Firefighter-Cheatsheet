@@ -1,10 +1,11 @@
 package com.nashss.se.firefightercheatsheetservice.Lambda;
 
+import com.nashss.se.firefightercheatsheetservice.Activity.Requests.DeleteApparatusRequest;
+import com.nashss.se.firefightercheatsheetservice.Activity.Results.DeleteApparatusResult;
+
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
-import com.nashss.se.firefightercheatsheetservice.Activity.Requests.DeleteApparatusRequest;
-import com.nashss.se.firefightercheatsheetservice.Activity.Requests.GetApparatusRequest;
-import com.nashss.se.firefightercheatsheetservice.Activity.Results.DeleteApparatusResult;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -25,13 +26,13 @@ public class DeleteApparatusLambda extends LambdaActivityRunner<DeleteApparatusR
 
         String actualEmail = email.getUserName();
 
-         return super.runActivity(
-                 () -> input.fromPath(path ->
+        return super.runActivity(
+            () -> input.fromPath(path ->
                          DeleteApparatusRequest.builder()
                                  .withUserName(actualEmail)
                                  .withApparatusTypeAndNumber(path.get("apparatusTypeAndNumber"))
                                  .build()),
-                 (request, serviceComponent) ->
+            (request, serviceComponent) ->
                          serviceComponent.provideDeleteApparatusActivity().handleRequest(request)
          );
 

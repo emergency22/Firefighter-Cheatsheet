@@ -25,7 +25,7 @@ const EMPTY_DATASTORE_STATE = {
 /**
  * Logic needed for the view playlist page of the website.
  */
-class SearchPlaylists extends BindingClass {
+class DispApparatus extends BindingClass {
     constructor() {
         super();
 
@@ -35,7 +35,6 @@ class SearchPlaylists extends BindingClass {
         this.dataStore = new DataStore(EMPTY_DATASTORE_STATE);
         this.header = new Header(this.dataStore);
         this.dataStore.addChangeListener(this.displaySearchResults);
-        console.log("searchPlaylists constructor");
     }
 
     /**
@@ -134,8 +133,8 @@ class SearchPlaylists extends BindingClass {
  * Main method to run when the page contents have loaded.
  */
 const main = async () => {
-    const searchPlaylists = new SearchPlaylists();
-    searchPlaylists.mount();
+    const dispApparatus = new DispApparatus();
+    dispApparatus.mount();
 };
 
 window.addEventListener('DOMContentLoaded', main);

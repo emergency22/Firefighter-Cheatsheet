@@ -5,8 +5,7 @@ import com.nashss.se.firefightercheatsheetservice.Activity.Requests.GetIndividua
 import com.nashss.se.firefightercheatsheetservice.Activity.Results.GetIndividualApparatusResult;
 import com.nashss.se.firefightercheatsheetservice.Dynamodb.ApparatusDao;
 import com.nashss.se.firefightercheatsheetservice.Dynamodb.models.Apparatus;
-import com.nashss.se.firefightercheatsheetservice.Dynamodb.models.Hose;
-import com.nashss.se.firefightercheatsheetservice.Models.ApparatusModel;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -24,6 +23,9 @@ public class GetIndividualApparatusActivityTest {
 
     private GetIndividualApparatusActivity getIndividualApparatusActivity;
 
+    /**
+     * Initial set up for test methods.
+     */
     @BeforeEach
     public void setUp() {
         openMocks(this);

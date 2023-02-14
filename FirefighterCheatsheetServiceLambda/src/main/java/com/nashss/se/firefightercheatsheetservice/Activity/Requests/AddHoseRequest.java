@@ -16,7 +16,8 @@ public class AddHoseRequest {
     private final int gallons;
     private final int pumpDischargePressure;
 
-    private AddHoseRequest(String userName, String fireDept, String apparatusTypeAndNumber, String name, String color, Integer length, Double diameter, Integer gallons) {
+    private AddHoseRequest(String userName, String fireDept, String apparatusTypeAndNumber, String name,
+        String color, Integer length, Double diameter, Integer gallons) {
         this.userName = userName;
         this.fireDept = fireDept;
         this.apparatusTypeAndNumber = apparatusTypeAndNumber;

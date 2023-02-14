@@ -3,6 +3,7 @@ package com.nashss.se.firefightercheatsheetservice.Converters;
 import com.nashss.se.firefightercheatsheetservice.Dynamodb.models.Apparatus;
 import com.nashss.se.firefightercheatsheetservice.Dynamodb.models.Hose;
 import com.nashss.se.firefightercheatsheetservice.Models.ApparatusModel;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -17,8 +18,8 @@ public class ModelConverter {
     /**
      * Converts a provided {@link Apparatus} into an {@link ApparatusModel} representation.
      *
-     * @param apparatus the playlist to convert
-     * @return the converted playlist
+     * @param apparatus the apparatus to convert
+     * @return the converted ApparatusModel
      */
     public ApparatusModel toApparatusModel(Apparatus apparatus) {
         log.info("ModelConverter: toApparatusModel method has run");
@@ -38,37 +39,6 @@ public class ModelConverter {
     }
 
     /**
-     * Converts a provided AlbumTrack into a SongModel representation.
-     *
-     * @param albumTrack the AlbumTrack to convert to SongModel
-     * @return the converted SongModel with fields mapped from albumTrack
-     */
-//    public SongModel toSongModel(AlbumTrack albumTrack) {
-//        return SongModel.builder()
-//                .withAsin(albumTrack.getAsin())
-//                .withTrackNumber(albumTrack.getTrackNumber())
-//                .withAlbum(albumTrack.getAlbumName())
-//                .withTitle(albumTrack.getSongTitle())
-//                .build();
-//    }
-
-    /**
-     * Converts a list of AlbumTracks to a list of SongModels.
-     *
-     * @param albumTracks The AlbumTracks to convert to SongModels
-     * @return The converted list of SongModels
-     */
-//    public List<SongModel> toSongModelList(List<AlbumTrack> albumTracks) {
-//        List<SongModel> songModels = new ArrayList<>();
-//
-//        for (AlbumTrack albumTrack : albumTracks) {
-//            songModels.add(toSongModel(albumTrack));
-//        }
-//
-//        return songModels;
-//    }
-
-    /**
      * Converts a list of Apparatus to a list of ApparatusModels.
      *
      * @param apparatusList The Apparatus to convert to ApparatusModels
@@ -85,6 +55,12 @@ public class ModelConverter {
         return apparatusModels;
     }
 
+    /**
+     * Converts a provided List of Apparatus into an ApparatusModel.
+     *
+     * @param apparatusList the apparatus to convert
+     * @return the converted ApparatusModel
+     */
     public ApparatusModel toIndividualApparatusModel(List<Apparatus> apparatusList) {
         log.info("ModelConverter: toIndividualApparatusModel method has run");
         List<ApparatusModel> apparatusModelList = toApparatusModelList(apparatusList);

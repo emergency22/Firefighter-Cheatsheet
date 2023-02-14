@@ -1,17 +1,10 @@
 import FirefighterCheatsheetClient from '../api/firefighterCheatsheetClient';
 
 /**
- * The editHoses component for the website.
+ * The Cheat Sheet component for the website.
  */
 export default class EditHoses {
     constructor() {
-        // super();
-
-        // const methodsToBind = [
-        //     'addHeaderToPage', 'createSiteTitle', 'createUserInfoForHeader',
-        //     'createLoginButton', 'createLoginButton', 'createLogoutButton', 'createUserInterface'
-        // ];
-        // this.bindClassMethods(methodsToBind, this);
 
         this.client = new FirefighterCheatsheetClient();
     }
@@ -19,6 +12,7 @@ export default class EditHoses {
     async displayCheatsheet() {
         document.getElementById('theDisplayArea').innerHTML = "";
         document.getElementById('addApparatusForm').innerHTML = "";
+        document.getElementById('addHoseForm').innerHTML = "";
 
         const apparatusList = await this.client.getApparatus(); 
 
@@ -46,7 +40,7 @@ export default class EditHoses {
                 var hoseList = currentApparatus.hoseList;
 
                 document.getElementById('theDisplayArea').innerHTML += 
-                `<div class='individualApparatus' id='${thisIndividualApparatus}'> ${fireDept } ${apparatusTypeAndNumber} <div id='${thisHoseList}'></div></div>`;
+                `<h2><div class='individualApparatus' id='${thisIndividualApparatus}'> ${fireDept } ${apparatusTypeAndNumber} </h2><div id='${thisHoseList}'></div></div>`;
                 console.log("thisIndividualApparatus: " , thisIndividualApparatus);
                 for (var j=0; j < hoseList.length; j++) {
                     
@@ -54,15 +48,18 @@ export default class EditHoses {
                     if (currentHose != null) {
                         var name = currentHose.name;
                         var color = currentHose.color;
-                        var pumpDischargePressure = currentHose.pumpDischargePressure;
+                        var pumpDischargePressureFog = currentHose.pumpDischargePressure;
+                        var pumpDischargePressureSmoothBore = currentHose.pumpDischargePressure - 50;
 
                         var apparatusHoseInfo = 
-                        "<li>" + color +
+                        "<li><u>" + color +
                         " " +
                         name +
-                        " - " +
-                        pumpDischargePressure +
-                        " PSI </li>";
+                        "</u><br>" +
+                        pumpDischargePressureFog +
+                        " PSI (Fog Nozzle)<br>" + 
+                        pumpDischargePressureSmoothBore +
+                        " PSI (Smooth Bore)</li>";
 
                         document.getElementById(thisHoseList).innerHTML += apparatusHoseInfo;
                     }
@@ -72,7 +69,6 @@ export default class EditHoses {
             }
             
             thisIndividualApparatus = "thisIndividualApparatus"; //reset variable for next loop
-            document.getElementById('addApparatusForm').innerHTML = "";
         }
 
     }

@@ -1,17 +1,17 @@
 package com.nashss.se.firefightercheatsheetservice.Activity;
 
-
 import com.nashss.se.firefightercheatsheetservice.Activity.Requests.AddHoseRequest;
 import com.nashss.se.firefightercheatsheetservice.Activity.Results.AddHoseResult;
 import com.nashss.se.firefightercheatsheetservice.Converters.ModelConverter;
 import com.nashss.se.firefightercheatsheetservice.Dynamodb.ApparatusDao;
 import com.nashss.se.firefightercheatsheetservice.Dynamodb.models.Apparatus;
 import com.nashss.se.firefightercheatsheetservice.Models.ApparatusModel;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import javax.inject.Inject;
 import java.util.List;
+import javax.inject.Inject;
 
 /**
  * Implementation of the AddHoseActivity for the FirefighterCheatSheetService's AddHose API.
@@ -54,7 +54,8 @@ public class AddHoseActivity {
         Double diameter = addHoseRequest.getDiameter();
         int gallons = addHoseRequest.getGallons();
 
-        List<Apparatus> apparatusList = apparatusDao.addHose(fireDept, apparatusTypeAndNumber, name, color, length, diameter, gallons);
+        List<Apparatus> apparatusList = apparatusDao.addHose(fireDept, apparatusTypeAndNumber, name,
+                color, length, diameter, gallons);
         log.info("AddHoseActivity: handleRequest method: Before ModelConverter.");
         ApparatusModel apparatusModel = new ModelConverter().toIndividualApparatusModel(apparatusList);
         return AddHoseResult.builder()
