@@ -5,6 +5,7 @@ import com.amazonaws.services.dynamodbv2.datamodeling.PaginatedQueryList;
 
 import com.nashss.se.firefightercheatsheetservice.Dynamodb.ApparatusDao;
 import com.nashss.se.firefightercheatsheetservice.Dynamodb.models.Apparatus;
+import com.nashss.se.firefightercheatsheetservice.Dynamodb.models.Coefficient;
 import com.nashss.se.firefightercheatsheetservice.Dynamodb.models.Hose;
 import com.nashss.se.firefightercheatsheetservice.Exceptions.ApparatusListNotFoundException;
 import com.nashss.se.firefightercheatsheetservice.Metrics.MetricsPublisher;
@@ -136,6 +137,7 @@ public class ApparatusDaoTest {
 
     @Test
     void addHose_validRequestButNullHoseList_returnsListWithApparatusWithHoseAdded() {
+        //GIVEN
         String fireDept = "fireDept";
         String apparatusTypeAndNumber = "apparatusTypeAndNumber";
         String name = "name";
@@ -152,14 +154,55 @@ public class ApparatusDaoTest {
         when(dynamoDBMapper.query(eq(Apparatus.class), any())).thenReturn(queryList);
         when(queryList.get(0)).thenReturn(apparatus);
 
+        //WHEN
         List<Apparatus> result = apparatusDao.addHose(fireDept, apparatusTypeAndNumber, name, color,
                 length, diameter, gallons);
 
+        //THEN
         assertEquals(fireDept, result.get(0).getFireDept());
         assertEquals(color, result.get(0).getHoseList().get(0).getColor());
         assertEquals(1, result.get(0).getHoseList().size());
     }
 
+    @Test
+    void calculatePSI_validRequestWithOneHoseInHoseList_returnsUpdatedHose() {
+        //GIVEN
+        String fireDept = "fireDept";
+        String apparatusTypeAndNumber = "apparatusTypeAndNumber";
+        String name = "name";
+        String color = "blue";
+        int length = 100;
+        Double diameter = 2.5;
+        int gallons = 150;
+
+        Apparatus apparatus = new Apparatus();
+        apparatus.setUserName("userName");
+        apparatus.setApparatusTypeAndNumber(apparatusTypeAndNumber);
+        apparatus.setFireDept(fireDept);
+
+        List<Hose> hoseList = new ArrayList<>();
+        Hose hose = new Hose(name, color, length, diameter, gallons);
+        hoseList.add(hose);
+        apparatus.setHoseList(hoseList);
+        when(dynamoDBMapper.query(eq(Apparatus.class), any())).thenReturn(queryList);
+        when(queryList.get(0)).thenReturn(apparatus);
+        Coefficient coefficient = new Coefficient();
+        coefficient.setHoseDiameter(diameter);
+        Coefficient returnCoefficient = new Coefficient();
+        Double two = 2.0;
+        returnCoefficient.setCoefficient(two);
+        when(dynamoDBMapper.load(coefficient)).thenReturn(returnCoefficient);
+
+        //WHEN
+        List<Apparatus> result = apparatusDao.calculatePSI(fireDept, apparatusTypeAndNumber, 0);
+
+        //THEN
+        assertEquals(fireDept, result.get(0).getFireDept());
+        assertEquals(color, result.get(0).getHoseList().get(0).getColor());
+        assertEquals(1, result.get(0).getHoseList().size());
+        assertEquals(103, result.get(0).getHoseList().get(0).getPumpDischargePressure());
+
+    }
 
 
 }
