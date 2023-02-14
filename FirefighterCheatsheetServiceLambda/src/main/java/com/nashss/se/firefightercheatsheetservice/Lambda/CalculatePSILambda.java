@@ -3,8 +3,8 @@ package com.nashss.se.firefightercheatsheetservice.Lambda;
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 
-import com.nashss.se.firefightercheatsheetservice.Activity.Requests.CalculatePSIRequest;
 import com.nashss.se.firefightercheatsheetservice.Activity.Results.CalculatePSIResult;
+import com.nashss.se.firefightercheatsheetservice.Activity.Requests.CalculatePSIRequest;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -20,17 +20,17 @@ public class CalculatePSILambda extends LambdaActivityRunner<CalculatePSIRequest
         log.info("CalculatePSILambda: handleRequest method accessed.");
 
         return super.runActivity(
-                () -> {
-                    CalculatePSIRequest unauthenticatedRequest = input.fromBody(CalculatePSIRequest.class);
-                    return input.fromUserClaims(claims ->
+            () -> {
+                CalculatePSIRequest unauthenticatedRequest = input.fromBody(CalculatePSIRequest.class);
+                return input.fromUserClaims(claims ->
                             CalculatePSIRequest.builder()
                                     .withUserName(claims.get("email"))
                                     .withFireDept(unauthenticatedRequest.getFireDept())
                                     .withApparatusTypeAndNumber(unauthenticatedRequest.getApparatusTypeAndNumber())
                                     .withHoseIndexNumber(Integer.valueOf(unauthenticatedRequest.getHoseIndexNumber()))
                                     .build());
-                },
-                (request, serviceComponent) ->
+            },
+            (request, serviceComponent) ->
                         serviceComponent.provideCalculatePSIActivity().handleRequest(request)
         );
 
