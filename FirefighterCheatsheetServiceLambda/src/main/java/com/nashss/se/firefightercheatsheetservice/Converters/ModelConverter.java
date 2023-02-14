@@ -18,8 +18,8 @@ public class ModelConverter {
     /**
      * Converts a provided {@link Apparatus} into an {@link ApparatusModel} representation.
      *
-     * @param apparatus the playlist to convert
-     * @return the converted playlist
+     * @param apparatus the apparatus to convert
+     * @return the converted ApparatusModel
      */
     public ApparatusModel toApparatusModel(Apparatus apparatus) {
         log.info("ModelConverter: toApparatusModel method has run");
@@ -39,20 +39,6 @@ public class ModelConverter {
     }
 
     /**
-     * Converts a provided AlbumTrack into a SongModel representation.
-     *
-     * @param albumTrack the AlbumTrack to convert to SongModel
-     * @return the converted SongModel with fields mapped from albumTrack
-     */
-
-    /**
-     * Converts a list of AlbumTracks to a list of SongModels.
-     *
-     * @param albumTracks The AlbumTracks to convert to SongModels
-     * @return The converted list of SongModels
-     */
-
-    /**
      * Converts a list of Apparatus to a list of ApparatusModels.
      *
      * @param apparatusList The Apparatus to convert to ApparatusModels
@@ -69,6 +55,12 @@ public class ModelConverter {
         return apparatusModels;
     }
 
+    /**
+     * Converts a provided List of Apparatus into an ApparatusModel.
+     *
+     * @param apparatusList the apparatus to convert
+     * @return the converted ApparatusModel
+     */
     public ApparatusModel toIndividualApparatusModel(List<Apparatus> apparatusList) {
         log.info("ModelConverter: toIndividualApparatusModel method has run");
         List<ApparatusModel> apparatusModelList = toApparatusModelList(apparatusList);

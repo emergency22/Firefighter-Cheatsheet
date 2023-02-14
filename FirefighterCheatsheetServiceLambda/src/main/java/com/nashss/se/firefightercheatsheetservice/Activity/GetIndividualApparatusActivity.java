@@ -14,7 +14,8 @@ import java.util.List;
 import javax.inject.Inject;
 
 /**
- * Implementation of the GetIndividualApparatusActivity for the FirefighterCheatSheetService's GetIndividualApparatus API.
+ * Implementation of the GetIndividualApparatusActivity for the FirefighterCheatSheetService's
+ * GetIndividualApparatus API.
  *
  * This API allows the customer to get one their saved apparatus.
  */
@@ -42,7 +43,8 @@ public class GetIndividualApparatusActivity {
      * @param getIndividualApparatusRequest request object containing the user's name and apparatusTypeAndNumber.
      * @return getIndividualApparatusResult result object containing the API defined {@link ApparatusModel}
      */
-    public GetIndividualApparatusResult handleRequest(final GetIndividualApparatusRequest getIndividualApparatusRequest) {
+    public GetIndividualApparatusResult handleRequest(final GetIndividualApparatusRequest
+        getIndividualApparatusRequest) {
         log.info("GetIndividualApparatusActivity: handleRequest method has received " +
                 "GetIndividualApparatusRequest {}", getIndividualApparatusRequest);
 

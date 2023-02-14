@@ -2,10 +2,10 @@ package com.nashss.se.firefightercheatsheetservice.Converters;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTypeConverter;
 
+import com.nashss.se.firefightercheatsheetservice.Dynamodb.models.Hose;
+
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-
-import com.nashss.se.firefightercheatsheetservice.Dynamodb.models.Hose;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
