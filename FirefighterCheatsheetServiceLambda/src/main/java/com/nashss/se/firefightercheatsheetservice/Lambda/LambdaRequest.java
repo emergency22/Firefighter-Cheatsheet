@@ -8,9 +8,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.Map;
 import java.util.function.BiFunction;
 import java.util.function.Function;
+import java.util.Map;
 
 import static com.nashss.se.firefightercheatsheetservice.Utils.NullUtils.ifNull;
 

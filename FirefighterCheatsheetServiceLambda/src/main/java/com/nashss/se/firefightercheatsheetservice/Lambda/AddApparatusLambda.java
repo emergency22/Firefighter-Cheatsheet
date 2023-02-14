@@ -2,8 +2,10 @@ package com.nashss.se.firefightercheatsheetservice.Lambda;
 
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
+
 import com.nashss.se.firefightercheatsheetservice.Activity.Requests.AddApparatusRequest;
 import com.nashss.se.firefightercheatsheetservice.Activity.Results.AddApparatusResult;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

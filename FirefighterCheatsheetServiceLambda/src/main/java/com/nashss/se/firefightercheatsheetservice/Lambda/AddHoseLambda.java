@@ -5,6 +5,7 @@ import com.amazonaws.services.lambda.runtime.RequestHandler;
 
 import com.nashss.se.firefightercheatsheetservice.Activity.Requests.AddHoseRequest;
 import com.nashss.se.firefightercheatsheetservice.Activity.Results.AddHoseResult;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
