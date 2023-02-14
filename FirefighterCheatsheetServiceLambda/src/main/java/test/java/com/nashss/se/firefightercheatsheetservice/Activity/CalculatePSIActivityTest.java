@@ -30,7 +30,7 @@ public class CalculatePSIActivityTest {
     @BeforeEach
     public void setUp() {
         openMocks(this);
-        calculatePSIActivity= new CalculatePSIActivity(apparatusDao);
+        calculatePSIActivity = new CalculatePSIActivity(apparatusDao);
     }
 
     @Test

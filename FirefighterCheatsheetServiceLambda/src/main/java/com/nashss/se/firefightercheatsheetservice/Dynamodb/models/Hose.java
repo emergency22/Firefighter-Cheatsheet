@@ -2,9 +2,9 @@ package com.nashss.se.firefightercheatsheetservice.Dynamodb.models;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
+
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
-import com.nashss.se.firefightercheatsheetservice.Models.ApparatusModel;
 
 import java.util.Objects;
 
@@ -18,6 +18,9 @@ public class Hose {
     private int waterQuantityInGallons;
     private int pumpDischargePressure;
 
+    /**
+     * Empty Hose constructor.
+     */
     public Hose() {}
 
     /**

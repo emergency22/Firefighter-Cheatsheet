@@ -1,9 +1,17 @@
 package com.nashss.se.firefightercheatsheetservice.Dynamodb.models;
 
-import com.amazonaws.services.dynamodbv2.datamodeling.*;
+import com.nashss.se.firefightercheatsheetservice.Converters.HoseListConverter;
+
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBIndexHashKey;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBIndexRangeKey;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBRangeKey;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTypeConverted;
+
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
-import com.nashss.se.firefightercheatsheetservice.Converters.HoseListConverter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,8 +27,18 @@ public class Apparatus {
     private String fireDept;
     private List<Hose> hoseList;
 
+    /**
+     * Empty apparatus constructor.
+     */
     public Apparatus() {}
 
+    /**
+     * Apparatus constructor.
+     * @param userName Username associated with the apparatus.
+     * @param apparatusTypeAndNumber Apparatus Type and Number associated with the apparatus.
+     * @param fireDept Fire Department associated with the apparatus.
+     * @param hoseList List of Hose associated with the apparatus.
+     */
     public Apparatus(String userName, String apparatusTypeAndNumber, String fireDept, List<Hose> hoseList) {
         this.userName = userName;
         this.apparatusTypeAndNumber = apparatusTypeAndNumber;
@@ -28,6 +46,12 @@ public class Apparatus {
         this.hoseList = new ArrayList<>(hoseList);
     }
 
+    /**
+     * Apparatus constructor.
+     * @param userName Username associated with the apparatus.
+     * @param apparatusTypeAndNumber Apparatus Type and Number associated with the apparatus.
+     * @param fireDept Fire Department associated with the apparatus.
+     */
     public Apparatus(String userName, String apparatusTypeAndNumber, String fireDept) {
         this.userName = userName;
         this.apparatusTypeAndNumber = apparatusTypeAndNumber;
@@ -44,7 +68,8 @@ public class Apparatus {
     }
 
     @DynamoDBRangeKey(attributeName = "apparatusTypeAndNumber")
-    @DynamoDBIndexRangeKey(globalSecondaryIndexName = FIRE_DEPT_APP_TYPE_NUM_INDEX, attributeName = "apparatusTypeAndNumber")
+    @DynamoDBIndexRangeKey(globalSecondaryIndexName = FIRE_DEPT_APP_TYPE_NUM_INDEX, attributeName =
+        "apparatusTypeAndNumber")
     public String getApparatusTypeAndNumber() {
         return apparatusTypeAndNumber;
     }
@@ -75,8 +100,12 @@ public class Apparatus {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Apparatus)) return false;
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Apparatus)) {
+            return false;
+        }
         Apparatus apparatus = (Apparatus) o;
         return Objects.equals(userName, apparatus.userName) &&
                 Objects.equals(apparatusTypeAndNumber, apparatus.apparatusTypeAndNumber) &&

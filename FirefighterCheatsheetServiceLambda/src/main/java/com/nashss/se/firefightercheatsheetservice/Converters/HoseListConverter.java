@@ -1,8 +1,8 @@
 package com.nashss.se.firefightercheatsheetservice.Converters;
 
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTypeConverter;
-
 import com.nashss.se.firefightercheatsheetservice.Dynamodb.models.Hose;
+
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTypeConverter;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;

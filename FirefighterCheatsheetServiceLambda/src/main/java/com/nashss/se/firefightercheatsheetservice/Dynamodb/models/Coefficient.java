@@ -15,6 +15,9 @@ public class Coefficient {
     private Double hoseDiameter;
     private Double coefficient;
 
+    /**
+     * Empty Coefficient constructor.
+     */
     public Coefficient() {}
 
     /**

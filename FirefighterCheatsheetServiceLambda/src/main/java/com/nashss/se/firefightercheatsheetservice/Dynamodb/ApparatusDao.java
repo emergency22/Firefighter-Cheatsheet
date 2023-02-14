@@ -1,17 +1,25 @@
 package com.nashss.se.firefightercheatsheetservice.Dynamodb;
 
+import com.nashss.se.firefightercheatsheetservice.Dynamodb.models.Apparatus;
+import com.nashss.se.firefightercheatsheetservice.Dynamodb.models.Coefficient;
+import com.nashss.se.firefightercheatsheetservice.Dynamodb.models.Hose;
+import com.nashss.se.firefightercheatsheetservice.Exceptions.ApparatusListNotFoundException;
+import com.nashss.se.firefightercheatsheetservice.Exceptions.ApparatusNotFoundException;
+import com.nashss.se.firefightercheatsheetservice.Exceptions.CannotAddApparatusException;
+import com.nashss.se.firefightercheatsheetservice.Exceptions.CannotAddHoseException;
+import com.nashss.se.firefightercheatsheetservice.Exceptions.CannotCalculatePSIException;
+import com.nashss.se.firefightercheatsheetservice.Exceptions.CannotDeleteHoseException;
+import com.nashss.se.firefightercheatsheetservice.Exceptions.IndividualApparatusNotFoundException;
+import com.nashss.se.firefightercheatsheetservice.Metrics.MetricsConstants;
+import com.nashss.se.firefightercheatsheetservice.Metrics.MetricsPublisher;
+import com.nashss.se.firefightercheatsheetservice.Utils.FrictionLossCalculator;
+
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBQueryExpression;
 import com.amazonaws.services.dynamodbv2.datamodeling.PaginatedQueryList;
 import com.amazonaws.services.dynamodbv2.model.AttributeValue;
-
-import com.nashss.se.firefightercheatsheetservice.Dynamodb.models.Apparatus;
-import com.nashss.se.firefightercheatsheetservice.Dynamodb.models.Coefficient;
-import com.nashss.se.firefightercheatsheetservice.Dynamodb.models.Hose;
-import com.nashss.se.firefightercheatsheetservice.Exceptions.*;
-import com.nashss.se.firefightercheatsheetservice.Metrics.MetricsConstants;
-import com.nashss.se.firefightercheatsheetservice.Metrics.MetricsPublisher;
-import com.nashss.se.firefightercheatsheetservice.Utils.FrictionLossCalculator;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -21,8 +29,7 @@ import java.util.Map;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import static com.nashss.se.firefightercheatsheetservice.Dynamodb.models.Apparatus.FIRE_DEPT_APP_TYPE_NUM_INDEX;
 
 /**
  * Accesses data for a List of Apparatus using {@link Apparatus} to represent the model in DynamoDB.
@@ -32,8 +39,6 @@ public class ApparatusDao {
     private final DynamoDBMapper dynamoDbMapper;
     private final MetricsPublisher metricsPublisher;
     private final Logger log = LogManager.getLogger();
-
-    public static final String FIRE_DEPT_APP_TYPE_NUM_INDEX = "FireDeptAndAppTypeNumIndex";
 
     /**
      * Instantiates a ApparatusDao object.
@@ -48,7 +53,7 @@ public class ApparatusDao {
     }
 
     /**
-     * Returns the {@link List<Apparatus>} corresponding to the specified userName.
+     * Returns the List of Apparatus.
      *
      * @param userName the userName associated with the logged in account.
      * @return the List of Apparatus.
@@ -72,7 +77,7 @@ public class ApparatusDao {
     }
 
     /**
-     * Returns the {@link List<Apparatus>} corresponding to the specified userName.
+     * Returns the List of Apparatus.
      *
      * @param userName the userName associated with the logged in account.
      * @param apparatusTypeAndNumber the apparatus type and number.
@@ -97,7 +102,7 @@ public class ApparatusDao {
     }
 
     /**
-     * Returns the {@link List<Apparatus> corresponding to the specified userName.
+     * Returns the List of Apparatus.
      *
      * @param userName the userName associated with the logged in account.
      * @param apparatusTypeAndNumber the apparatus type and number associated with the
@@ -123,16 +128,15 @@ public class ApparatusDao {
     }
 
     /**
-     * Returns the {@link Apparatus corresponding to the specified userName and
-     * apparatusTypeAndNumber.
-     *
-     * @param userName the userName associated with the logged in account.
+     * Returns the List of Apparatus.
+     * @param fireDept the fireDept associated with the individual apparatus.
      * @param apparatusTypeAndNumber the apparatus type and number associated with the
      * individual apparatus.
      * @return the individual Apparatus.
      */
     public List<Apparatus> getIndividualApparatus(String fireDept, String apparatusTypeAndNumber) {
-        log.info("getIndividualApparatus method called in ApparatusDao with fireDept: " + fireDept + " and apparatusTypeAndNumber: " + apparatusTypeAndNumber);
+        log.info("getIndividualApparatus method called in ApparatusDao with fireDept: " + fireDept + " and " +
+            "apparatusTypeAndNumber: " + apparatusTypeAndNumber);
 
         try {
             Map<String, AttributeValue> valueMap = new HashMap<>();
@@ -141,7 +145,8 @@ public class ApparatusDao {
             DynamoDBQueryExpression<Apparatus> queryExpression = new DynamoDBQueryExpression<Apparatus>()
                     .withIndexName(FIRE_DEPT_APP_TYPE_NUM_INDEX)
                     .withConsistentRead(false)
-                    .withKeyConditionExpression("fireDept = :fireDept and apparatusTypeAndNumber = :apparatusTypeAndNumber")
+                    .withKeyConditionExpression("fireDept = :fireDept and apparatusTypeAndNumber = " +
+                        ":apparatusTypeAndNumber")
                     .withExpressionAttributeValues(valueMap);
 
             PaginatedQueryList<Apparatus> apparatusList = dynamoDbMapper.query(Apparatus.class, queryExpression);
@@ -157,14 +162,13 @@ public class ApparatusDao {
     }
 
     /**
-     * Returns the {@link Apparatus corresponding to the specified userName and
-     * apparatusTypeAndNumber.
+     * Returns the List of Apparatus.
      *
-     * @param userName the userName associated with the logged in account.
+     * @param fireDept the fireDept associated with the apparatus.
      * @param apparatusTypeAndNumber the apparatus type and number associated with the
      * individual apparatus.
      * @param hoseIndexNumber the index of the hose to remove.
-     * @return the individual Apparatus.
+     * @return the List of Apparatus.
      */
     public List<Apparatus> deleteHose(String fireDept, String apparatusTypeAndNumber, int hoseIndexNumber) {
         log.info("ApparatusDAO: deleteHose method accessed");
@@ -192,7 +196,8 @@ public class ApparatusDao {
         
         hoseListFromGSI.remove(hoseIndexNumber);
 
-        Apparatus apparatusWithHoseRemoved = new Apparatus(userNameFromGSI, apparatusTypeAndNumberFromGSI, fireDeptFromGSI, hoseListFromGSI);
+        Apparatus apparatusWithHoseRemoved = new Apparatus(userNameFromGSI, apparatusTypeAndNumberFromGSI,
+            fireDeptFromGSI, hoseListFromGSI);
         
         try {
             dynamoDbMapper.save(apparatusWithHoseRemoved);
@@ -209,20 +214,20 @@ public class ApparatusDao {
     }
 
     /**
-     * Returns the {@link Apparatus corresponding to the specified userName and
-     * apparatusTypeAndNumber.
+     * Returns the List of Apparatus.
      *
-     * @param userName the userName associated with the logged in account.
+     * @param fireDept the fireDept associated with the apparatus.
      * @param apparatusTypeAndNumber the apparatus type and number associated with the
      * individual apparatus.
      * @param name the name of the hose to add.
      * @param color the color of the hose to add.
      * @param length the length in feet of the hose to add.
-     * @param hoseDiameter the hose diameter of the hose to add.
-     * @param waterQuantityInGallons the gallons per minute of the hose to add.
-     * @return the individual Apparatus.
+     * @param diameter the diameter of the hose to add.
+     * @param gallons the gallons per minute of the hose to add.
+     * @return the List of Apparatus.
      */
-    public List<Apparatus> addHose(String fireDept, String apparatusTypeAndNumber, String name, String color, int length, Double diameter, int gallons) {
+    public List<Apparatus> addHose(String fireDept, String apparatusTypeAndNumber, String name, String color,
+        int length, Double diameter, int gallons) {
         log.info("ApparatusDAO: addHose method accessed");
 
         Map<String, AttributeValue> valueMap = new HashMap<>();
@@ -255,7 +260,8 @@ public class ApparatusDao {
 
         hoseListFromGSI.add(hoseToAdd);
 
-        Apparatus apparatusWithHoseAdded = new Apparatus(userNameFromGSI, apparatusTypeAndNumberFromGSI, fireDeptFromGSI, hoseListFromGSI);
+        Apparatus apparatusWithHoseAdded = new Apparatus(userNameFromGSI, apparatusTypeAndNumberFromGSI,
+            fireDeptFromGSI, hoseListFromGSI);
 
         try {
             dynamoDbMapper.save(apparatusWithHoseAdded);
@@ -272,6 +278,15 @@ public class ApparatusDao {
 
     }
 
+    /**
+     * Returns the List of Apparatus.
+     *
+     * @param fireDept the fireDept associated with the apparatus.
+     * @param apparatusTypeAndNumber the apparatus type and number associated with the
+     * individual apparatus.
+     * @param hoseIndexNumber the index number of the hose to calculate.
+     * @return the List of Apparatus.
+     */
     public List<Apparatus> calculatePSI(String fireDept, String apparatusTypeAndNumber, int hoseIndexNumber) {
         log.info("ApparatusDAO: calculatePSI method accessed");
 
@@ -302,7 +317,8 @@ public class ApparatusDao {
 
         Coefficient coefficientClass = new Coefficient();
         coefficientClass.setHoseDiameter(hoseDiameter);
-        log.info("ApparatusDAO: prior to Mapper.load with hoseDiameter: " + hoseDiameter + " and Coefficient class: " + coefficientClass);
+        log.info("ApparatusDAO: prior to Mapper.load with hoseDiameter: " + hoseDiameter + " and Coefficient class: " +
+            coefficientClass);
         Coefficient coefficientFromTable = dynamoDbMapper.load(coefficientClass);
         log.info("Coefficient from table: " + coefficientFromTable);
         Double doubleCoefficientFromTable = coefficientFromTable.getCoefficient();
@@ -322,7 +338,8 @@ public class ApparatusDao {
 
         hoseListFromGSI.set(hoseIndexNumber, newHose);
 
-        Apparatus apparatusWithHoseUpdated = new Apparatus(userNameFromGSI, apparatusTypeAndNumberFromGSI, fireDeptFromGSI, hoseListFromGSI);
+        Apparatus apparatusWithHoseUpdated = new Apparatus(userNameFromGSI, apparatusTypeAndNumberFromGSI,
+            fireDeptFromGSI, hoseListFromGSI);
 
         try {
             dynamoDbMapper.save(apparatusWithHoseUpdated);

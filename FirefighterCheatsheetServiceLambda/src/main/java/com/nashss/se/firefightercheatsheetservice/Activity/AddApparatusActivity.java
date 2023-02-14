@@ -15,10 +15,10 @@ import java.util.List;
 import javax.inject.Inject;
 
 /**
- * Implementation of the AddApparatusActivity for the Firefighter Cheat Sheet Service's Add Apparatus API.
- *
- * This API allows the customer to add an Apparatus to their existing account.
- */
+* Implementation of the AddApparatusActivity for the Firefighter Cheat Sheet Service's Add Apparatus API.
+*
+* This API allows the customer to add an Apparatus to their existing account.
+*/
 
 public class AddApparatusActivity {
     private final Logger log = LogManager.getLogger();
