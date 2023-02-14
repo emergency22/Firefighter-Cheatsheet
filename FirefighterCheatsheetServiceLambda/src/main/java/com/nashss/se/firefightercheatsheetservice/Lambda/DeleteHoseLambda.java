@@ -3,8 +3,8 @@ package com.nashss.se.firefightercheatsheetservice.Lambda;
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 
-import com.nashss.se.firefightercheatsheetservice.Activity.Results.DeleteHoseResult;
 import com.nashss.se.firefightercheatsheetservice.Activity.Requests.DeleteHoseRequest;
+import com.nashss.se.firefightercheatsheetservice.Activity.Results.DeleteHoseResult;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -22,7 +22,7 @@ public class DeleteHoseLambda extends LambdaActivityRunner<DeleteHoseRequest, De
         return super.runActivity(
             () -> {
                 DeleteHoseRequest queryRequest = input.fromQuery(query ->
-                DeleteHoseRequest.builder()
+                    DeleteHoseRequest.builder()
                         .withFireDept(query.get("fireDept"))
                         .withApparatusTypeAndNumber(query.get("apparatusTypeAndNumber"))
                         .withHoseIndexNumber(Integer.valueOf(query.get("hoseIndexNumber")))

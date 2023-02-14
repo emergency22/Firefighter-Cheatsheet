@@ -3,8 +3,8 @@ package com.nashss.se.firefightercheatsheetservice.Lambda;
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 
-import com.nashss.se.firefightercheatsheetservice.Activity.Requests.AddHoseRequest;
 import com.nashss.se.firefightercheatsheetservice.Activity.Results.AddHoseResult;
+import com.nashss.se.firefightercheatsheetservice.Activity.Requests.AddHoseRequest;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -20,9 +20,9 @@ public class AddHoseLambda extends LambdaActivityRunner<AddHoseRequest, AddHoseR
         log.info("AddHoseLambda: handleRequest method accessed.");
 
         return super.runActivity(
-                () -> {
-                    AddHoseRequest unauthenticatedRequest = input.fromBody(AddHoseRequest.class);
-                    return input.fromUserClaims(claims ->
+            () -> {
+                AddHoseRequest unauthenticatedRequest = input.fromBody(AddHoseRequest.class);
+                return input.fromUserClaims(claims ->
                             AddHoseRequest.builder()
                                     .withUserName(claims.get("email"))
                                     .withFireDept(unauthenticatedRequest.getFireDept())
@@ -33,7 +33,7 @@ public class AddHoseLambda extends LambdaActivityRunner<AddHoseRequest, AddHoseR
                                     .withDiameter(Double.valueOf(unauthenticatedRequest.getDiameter()))
                                     .withGallons(Integer.valueOf(unauthenticatedRequest.getGallons()))
                                     .build());
-                },
+            },
                 (request, serviceComponent) ->
                         serviceComponent.provideAddHoseActivity().handleRequest(request)
         );
