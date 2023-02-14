@@ -36,20 +36,6 @@ public class GetIndividualApparatusLambda
                         serviceComponent.provideGetIndividualApparatusActivity().handleRequest(request)
         );
 
-        //body
-//         return super.runActivity(
-//                 () -> {
-//                     GetIndividualApparatusRequest unauthenticatedRequest = input.fromBody(GetIndividualApparatusRequest.class);
-//                     return input.fromUserClaims(claims ->
-//                             GetIndividualApparatusRequest.builder()
-//                                     .withUserName(claims.get("email"))
-//                                     .withFireDept(unauthenticatedRequest.getFireDept())
-//                                     .withApparatusTypeAndNumber(unauthenticatedRequest.getApparatusTypeAndNumber())
-//                                     .build());
-//                 },
-//                 (request, serviceComponent) ->
-//                         serviceComponent.provideGetIndividualApparatusActivity().handleRequest(request)
-//         );
     }
 
 }

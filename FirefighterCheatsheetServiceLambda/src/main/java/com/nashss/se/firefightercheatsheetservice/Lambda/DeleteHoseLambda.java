@@ -17,25 +17,6 @@ public class DeleteHoseLambda extends LambdaActivityRunner<DeleteHoseRequest, De
 
         log.info("DeleteHoseLambda: handleRequest method accessed.");
 
-//        DeleteHoseRequest email = input.fromUserClaims(claims ->
-//                DeleteHoseRequest.builder()
-//                        .withUserName(claims.get("email"))
-//                        .build());
-//
-//        String actualEmail = email.getUserName();
-//        log.info("DeleteHoseLambda: email: " + actualEmail);
-//
-//        return super.runActivity(
-//                () -> input.fromQuery(query ->
-//                        DeleteHoseRequest.builder()
-//                                .withUserName(actualEmail)
-//                                .withFireDept(query.get("fireDept"))
-//                                .withApparatusTypeAndNumber(query.get("apparatusTypeAndNumber"))
-//                                .withHoseIndexNumber(Integer.valueOf(query.get("hoseIndexNumber")))
-//                                .build()),
-//                (request, serviceComponent) ->
-//                        serviceComponent.provideDeleteHoseActivity().handleRequest(request)
-//        );
         return super.runActivity(
                 () -> {
         DeleteHoseRequest queryRequest = input.fromQuery(query ->

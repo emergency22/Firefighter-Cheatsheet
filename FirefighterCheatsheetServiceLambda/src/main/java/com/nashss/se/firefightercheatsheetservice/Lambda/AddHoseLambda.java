@@ -37,45 +37,5 @@ public class AddHoseLambda extends LambdaActivityRunner<AddHoseRequest, AddHoseR
                         serviceComponent.provideAddHoseActivity().handleRequest(request)
         );
 
-
-
-//            return super.runActivity(
-//                    () -> {
-//                        AddHoseRequest queryRequest = input.fromQuery(query ->
-//                                AddHoseRequest.builder()
-//                                        .withFireDept(query.get("fireDept"))
-//                                        .withApparatusTypeAndNumber(query.get("apparatusTypeAndNumber"))
-//                                        .withName(query.get("name"))
-//                                        .withColor(query.get("color"))
-//                                        .withLength(Integer.valueOf(query.get("length")))
-//                                        .withHoseDiameter(Double.valueOf(query.get("diameter")))
-//                                        .withWaterQuantityInGallons(Integer.valueOf(query.get("gallons")))
-//                                        .build());
-//
-//                        log.info(queryRequest.getFireDept());
-//                        log.info(queryRequest.getApparatusTypeAndNumber());
-//                        log.info(queryRequest.getName());
-//                        log.info(queryRequest.getColor());
-//                        log.info(queryRequest.getLength());
-//                        log.info(queryRequest.getHoseDiameter());
-//                        log.info(queryRequest.getWaterQuantityInGallons());
-//
-//                        return input.fromUserClaims(claims ->
-//                                AddHoseRequest.builder()
-//                                        .withUserName(claims.get("email"))
-//                                        .withFireDept(queryRequest.getFireDept())
-//                                        .withApparatusTypeAndNumber(queryRequest.getApparatusTypeAndNumber())
-//                                        .withName(queryRequest.getName())
-//                                        .withColor(queryRequest.getColor())
-//                                        .withLength(queryRequest.getLength())
-//                                        .withHoseDiameter(queryRequest.getHoseDiameter())
-//                                        .withWaterQuantityInGallons(queryRequest.getWaterQuantityInGallons())
-//                                        .build());
-//                    },
-//
-//                    (request, serviceComponent) ->
-//                            serviceComponent.provideAddHoseActivity().handleRequest(request)
-//            );
-
     }
 }

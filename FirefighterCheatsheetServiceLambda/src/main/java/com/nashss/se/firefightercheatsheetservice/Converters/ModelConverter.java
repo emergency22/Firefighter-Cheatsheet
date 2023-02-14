@@ -43,14 +43,6 @@ public class ModelConverter {
      * @param albumTrack the AlbumTrack to convert to SongModel
      * @return the converted SongModel with fields mapped from albumTrack
      */
-//    public SongModel toSongModel(AlbumTrack albumTrack) {
-//        return SongModel.builder()
-//                .withAsin(albumTrack.getAsin())
-//                .withTrackNumber(albumTrack.getTrackNumber())
-//                .withAlbum(albumTrack.getAlbumName())
-//                .withTitle(albumTrack.getSongTitle())
-//                .build();
-//    }
 
     /**
      * Converts a list of AlbumTracks to a list of SongModels.
@@ -58,15 +50,6 @@ public class ModelConverter {
      * @param albumTracks The AlbumTracks to convert to SongModels
      * @return The converted list of SongModels
      */
-//    public List<SongModel> toSongModelList(List<AlbumTrack> albumTracks) {
-//        List<SongModel> songModels = new ArrayList<>();
-//
-//        for (AlbumTrack albumTrack : albumTracks) {
-//            songModels.add(toSongModel(albumTrack));
-//        }
-//
-//        return songModels;
-//    }
 
     /**
      * Converts a list of Apparatus to a list of ApparatusModels.
