@@ -152,7 +152,8 @@ public class ApparatusDaoTest {
         when(dynamoDBMapper.query(eq(Apparatus.class), any())).thenReturn(queryList);
         when(queryList.get(0)).thenReturn(apparatus);
 
-        List<Apparatus> result = apparatusDao.addHose(fireDept, apparatusTypeAndNumber, name, color, length, diameter, gallons);
+        List<Apparatus> result = apparatusDao.addHose(fireDept, apparatusTypeAndNumber, name, color,
+                length, diameter, gallons);
 
         assertEquals(fireDept, result.get(0).getFireDept());
         assertEquals(color, result.get(0).getHoseList().get(0).getColor());

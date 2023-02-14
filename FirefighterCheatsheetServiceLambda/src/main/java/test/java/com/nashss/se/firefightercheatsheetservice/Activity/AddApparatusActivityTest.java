@@ -7,6 +7,7 @@ import com.nashss.se.firefightercheatsheetservice.Dynamodb.ApparatusDao;
 import com.nashss.se.firefightercheatsheetservice.Dynamodb.models.Apparatus;
 import com.nashss.se.firefightercheatsheetservice.Dynamodb.models.Hose;
 import com.nashss.se.firefightercheatsheetservice.Models.ApparatusModel;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -21,9 +22,11 @@ import static org.mockito.MockitoAnnotations.openMocks;
 public class AddApparatusActivityTest {
     @Mock
     private ApparatusDao apparatusDao;
-
     private AddApparatusActivity addApparatusActivity;
 
+    /**
+     * Initial set up for test methods.
+     */
     @BeforeEach
     public void setUp() {
         openMocks(this);

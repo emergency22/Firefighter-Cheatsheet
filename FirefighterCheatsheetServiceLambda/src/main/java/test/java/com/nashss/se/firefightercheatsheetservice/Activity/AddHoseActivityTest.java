@@ -1,16 +1,13 @@
 package test.java.com.nashss.se.firefightercheatsheetservice.Activity;
 
-import com.nashss.se.firefightercheatsheetservice.Activity.AddApparatusActivity;
 import com.nashss.se.firefightercheatsheetservice.Activity.AddHoseActivity;
-import com.nashss.se.firefightercheatsheetservice.Activity.Requests.AddApparatusRequest;
 import com.nashss.se.firefightercheatsheetservice.Activity.Requests.AddHoseRequest;
-import com.nashss.se.firefightercheatsheetservice.Activity.Results.AddApparatusResult;
 import com.nashss.se.firefightercheatsheetservice.Activity.Results.AddHoseResult;
 import com.nashss.se.firefightercheatsheetservice.Dynamodb.ApparatusDao;
 import com.nashss.se.firefightercheatsheetservice.Dynamodb.models.Apparatus;
 import com.nashss.se.firefightercheatsheetservice.Dynamodb.models.Hose;
 import com.nashss.se.firefightercheatsheetservice.Models.ApparatusModel;
-import com.nashss.se.firefightercheatsheetservice.Utils.HOSE_DIAMETERS;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -28,6 +25,9 @@ public class AddHoseActivityTest {
 
     private AddHoseActivity addHoseActivity;
 
+    /**
+     * Initial set up for test methods.
+     */
     @BeforeEach
     public void setUp() {
         openMocks(this);
@@ -82,7 +82,8 @@ public class AddHoseActivityTest {
         List<Apparatus> apparatusList = new ArrayList<>();
         apparatusList.add(apparatus);
 
-        when(apparatusDao.addHose(fireDept, apparatusTypeAndNumber, name, color, length, diameter, gallons)).thenReturn(apparatusList);
+        when(apparatusDao.addHose(fireDept, apparatusTypeAndNumber, name, color, length,
+                diameter, gallons)).thenReturn(apparatusList);
 
         //WHEN calling handleRequest with the valid request
         AddHoseResult finalResult = addHoseActivity.handleRequest(request);

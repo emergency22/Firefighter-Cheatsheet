@@ -1,6 +1,6 @@
 package com.nashss.se.firefightercheatsheetservice.Utils;
 
-public enum HOSE_LENGTHS {
+public enum HoseLengths {
 
     FIFTY(50),
     ONE_HUNDRED(100),
@@ -15,7 +15,10 @@ public enum HOSE_LENGTHS {
 
     private int length;
 
-    HOSE_LENGTHS(int length) {
+    /**
+     * @param length The hose length.
+     */
+    HoseLengths(int length) {
         this.length = length;
     }
 
