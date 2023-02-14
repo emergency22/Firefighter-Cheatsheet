@@ -89,8 +89,6 @@ export default class Header extends BindingClass {
     createUserInterface() {
         const interfaceArea = document.getElementById('userInterfaceArea');
         interfaceArea.classList.remove('hidden');
-        // const hamToggler = document.getElementById('hamToggle');
-        // hamToggler.classList.remove('hidden');
         const cheatsheetButtonToggler = document.getElementById('cheatSheetButtonToggle')
         cheatsheetButtonToggler.classList.remove('hidden');
         this.cheatSheetButton();

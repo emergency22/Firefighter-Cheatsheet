@@ -1,17 +1,10 @@
 import FirefighterCheatsheetClient from '../api/firefighterCheatsheetClient';
 
 /**
- * The editHoses component for the website.
+ * The Cheat Sheet component for the website.
  */
 export default class EditHoses {
     constructor() {
-        // super();
-
-        // const methodsToBind = [
-        //     'addHeaderToPage', 'createSiteTitle', 'createUserInfoForHeader',
-        //     'createLoginButton', 'createLoginButton', 'createLogoutButton', 'createUserInterface'
-        // ];
-        // this.bindClassMethods(methodsToBind, this);
 
         this.client = new FirefighterCheatsheetClient();
     }
@@ -19,6 +12,7 @@ export default class EditHoses {
     async displayCheatsheet() {
         document.getElementById('theDisplayArea').innerHTML = "";
         document.getElementById('addApparatusForm').innerHTML = "";
+        document.getElementById('addHoseForm').innerHTML = "";
 
         const apparatusList = await this.client.getApparatus(); 
 
@@ -58,10 +52,10 @@ export default class EditHoses {
                         var pumpDischargePressureSmoothBore = currentHose.pumpDischargePressure - 50;
 
                         var apparatusHoseInfo = 
-                        "<li>" + color +
+                        "<li><u>" + color +
                         " " +
                         name +
-                        "<br>" +
+                        "</u><br>" +
                         pumpDischargePressureFog +
                         " PSI (Fog Nozzle)<br>" + 
                         pumpDischargePressureSmoothBore +
@@ -75,7 +69,6 @@ export default class EditHoses {
             }
             
             thisIndividualApparatus = "thisIndividualApparatus"; //reset variable for next loop
-            document.getElementById('addApparatusForm').innerHTML = "";
         }
 
     }
