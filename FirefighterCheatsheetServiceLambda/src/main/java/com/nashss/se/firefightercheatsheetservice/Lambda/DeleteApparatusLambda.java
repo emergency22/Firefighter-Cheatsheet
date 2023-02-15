@@ -9,6 +9,8 @@ import com.amazonaws.services.lambda.runtime.RequestHandler;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.io.UnsupportedEncodingException;
+
 public class DeleteApparatusLambda extends LambdaActivityRunner<DeleteApparatusRequest, DeleteApparatusResult>
         implements RequestHandler<AuthenticatedLambdaRequest<DeleteApparatusRequest>, LambdaResponse> {
 
@@ -28,10 +30,16 @@ public class DeleteApparatusLambda extends LambdaActivityRunner<DeleteApparatusR
 
         return super.runActivity(
             () -> input.fromPath(path ->
-                         DeleteApparatusRequest.builder()
-                                 .withUserName(actualEmail)
-                                 .withApparatusTypeAndNumber(path.get("apparatusTypeAndNumber"))
-                                 .build()),
+            {
+                try {
+                    return DeleteApparatusRequest.builder()
+                            .withUserName(actualEmail)
+                            .withApparatusTypeAndNumber(path.get("apparatusTypeAndNumber"))
+                            .build();
+                } catch (UnsupportedEncodingException e) {
+                    throw new RuntimeException(e);
+                }
+            }),
             (request, serviceComponent) ->
                          serviceComponent.provideDeleteApparatusActivity().handleRequest(request)
          );

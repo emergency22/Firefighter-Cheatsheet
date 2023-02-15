@@ -3,6 +3,10 @@ package com.nashss.se.firefightercheatsheetservice.Activity.Requests;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
+
 @JsonDeserialize(builder = DeleteApparatusRequest.Builder.class)
 public class DeleteApparatusRequest {
     private final String userName;
@@ -44,8 +48,8 @@ public class DeleteApparatusRequest {
             return this;
         }
 
-        public DeleteApparatusRequest.Builder withApparatusTypeAndNumber(String apparatusTypeAndNumber) {
-            this.apparatusTypeAndNumber = apparatusTypeAndNumber;
+        public DeleteApparatusRequest.Builder withApparatusTypeAndNumber(String apparatusTypeAndNumber) throws UnsupportedEncodingException {
+            this.apparatusTypeAndNumber = URLDecoder.decode(apparatusTypeAndNumber, StandardCharsets.UTF_8.toString());
             return this;
         }
 

@@ -10,6 +10,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,7 +34,7 @@ public class DeleteApparatusActivityTest {
     }
 
     @Test
-    public void handleRequest_givenValidDeleteApparatusRequest_returnsValidDeleteApparatusResult() {
+    public void handleRequest_givenValidDeleteApparatusRequest_returnsValidDeleteApparatusResult() throws UnsupportedEncodingException {
         // GIVEN a valid DeleteApparatusRequest
         String userName = "userName";
         String apparatusTypeAndNumber = "apparatusTypeAndNumber";

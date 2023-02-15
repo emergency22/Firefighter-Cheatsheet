@@ -213,6 +213,13 @@ Resources:
               - Effect: Allow
                 Action: dynamodb:*
                 Resource: !Sub "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/coefficient"
+        - PolicyName: 'FireDeptAndAppTypeNumIndex'
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action: dynamodb:*
+                Resource: !Sub "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/apparatus/index/*"
 
   #-----------------------------------------------------
   # Lambda Functions Configuration
@@ -237,8 +244,7 @@ Resources:
           Properties:
             Path: /apparatus
             Method: get
-            Auth:
-              Authorizer: 'NONE'
+
   DeleteApparatusLambda:
     Type: AWS::Serverless::Function
     Properties:
@@ -258,8 +264,7 @@ Resources:
           Properties:
             Path: /apparatus/{apparatusTypeAndNumber}/
             Method: delete
-            Auth:
-              Authorizer: 'NONE'
+
   AddApparatusLambda:
     Type: AWS::Serverless::Function
     Properties:
@@ -279,8 +284,7 @@ Resources:
           Properties:
             Path: /apparatus
             Method: post
-            Auth:
-              Authorizer: 'NONE'
+
   GetIndividualApparatusLambda:
     Type: AWS::Serverless::Function
     Properties:
@@ -300,8 +304,7 @@ Resources:
           Properties:
             Path: /apparatus/individual
             Method: get
-            Auth:
-              Authorizer: 'NONE'
+
   DeleteHoseLambda:
     Type: AWS::Serverless::Function
     Properties:
@@ -321,8 +324,7 @@ Resources:
           Properties:
             Path: /apparatus/hose
             Method: delete
-            Auth:
-              Authorizer: 'NONE'
+
   AddHoseLambda:
     Type: AWS::Serverless::Function
     Properties:
@@ -342,8 +344,7 @@ Resources:
           Properties:
             Path: /apparatus/hose
             Method: put
-            Auth:
-              Authorizer: 'NONE'
+
   CalculatePSILambda:
     Type: AWS::Serverless::Function
     Properties:
@@ -363,8 +364,6 @@ Resources:
           Properties:
             Path: /apparatus/hose/calculate
             Method: put
-            Auth:
-              Authorizer: 'NONE'
 
   #-----------------------------------------------------
   # DynamoDB Configuration
