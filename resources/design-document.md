@@ -47,11 +47,11 @@ U8. _As a Firefighter Cheatsheet customer, I wast to `be able to see a neat, tid
 
 U9. _As a Firefighter Cheatsheet customer, I want to `be shown fog nozzle and smooth bore pump discharge pressures` when I `see my cheat sheet`. The benefit will allow the user to utilize both pump discharge pressures if a nozzle is switched while fighting fire._
 
-STRETCH10. _As a Firefighter Cheatsheet customer, I want to `have a hose color drop down populated by a table` when I `add a hose`. The benefit will be to have this commonly used item alongside the listed hoses._
+STRETCH10. _As a Firefighter Cheatsheet customer, I want to `have a hose color drop down populated by a table` when I `add a hose`. The benefit will be to have hose colors populated by a table instead of hard coded into the Javascript._
 
-STRETCH11. _As a Firefighter Cheatsheet customer, I want to `have a hose length drop down populated by a table` when I `add a hose`. The benefit will be to have this commonly used item alongside the listed hoses._
+STRETCH11. _As a Firefighter Cheatsheet customer, I want to `have a hose length drop down populated by a table` when I `add a hose`. The benefit will be to have hose lengths populated by a table instead of hard coded into the Javascript._
 
-STRETCH12. _As a Firefighter Cheatsheet customer, I want to `have a hose diameter drop down populated by a table` when I `add a hose`. The benefit will be to have this commonly used item alongside the listed hoses._
+STRETCH12. _As a Firefighter Cheatsheet customer, I want to `have a hose diameter drop down populated by a table` when I `add a hose`. The benefit will be to have hose diameters populated by a table instead of hard coded into the Javascript._
 
 ## 4. Project Scope
 
