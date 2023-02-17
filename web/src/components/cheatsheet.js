@@ -3,7 +3,7 @@ import FirefighterCheatsheetClient from '../api/firefighterCheatsheetClient';
 /**
  * The Cheat Sheet component for the website.
  */
-export default class EditHoses {
+export default class CheatSheet {
     constructor() {
 
         this.client = new FirefighterCheatsheetClient();

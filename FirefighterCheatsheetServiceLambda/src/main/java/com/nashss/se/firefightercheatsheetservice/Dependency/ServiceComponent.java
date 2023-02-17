@@ -1,12 +1,6 @@
 package com.nashss.se.firefightercheatsheetservice.Dependency;
 
-import com.nashss.se.firefightercheatsheetservice.Activity.AddApparatusActivity;
-import com.nashss.se.firefightercheatsheetservice.Activity.AddHoseActivity;
-import com.nashss.se.firefightercheatsheetservice.Activity.CalculatePSIActivity;
-import com.nashss.se.firefightercheatsheetservice.Activity.DeleteApparatusActivity;
-import com.nashss.se.firefightercheatsheetservice.Activity.DeleteHoseActivity;
-import com.nashss.se.firefightercheatsheetservice.Activity.GetApparatusActivity;
-import com.nashss.se.firefightercheatsheetservice.Activity.GetIndividualApparatusActivity;
+import com.nashss.se.firefightercheatsheetservice.Activity.*;
 
 import dagger.Component;
 
@@ -60,5 +54,7 @@ public interface ServiceComponent {
      * @return CalculatePSIActivity
      */
     CalculatePSIActivity provideCalculatePSIActivity();
+
+    GetConstantsActivity provideGetConstantsActivity();
 
 }

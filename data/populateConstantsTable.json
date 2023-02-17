@@ -1,0 +1,204 @@
+{
+  "constants": [
+    {
+      "PutRequest": {
+        "Item": {
+          "key": { "S": "color" },
+          "value": { "S": "White" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "key": { "S": "color" },
+          "value": { "S": "Green" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "key": { "S": "color" },
+          "value": { "S": "Red" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "key": { "S": "color" },
+          "value": { "S": "Yellow" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "key": { "S": "color" },
+          "value": { "S": "Orange" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "key": { "S": "color" },
+          "value": { "S": "Blue" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "key": { "S": "color" },
+          "value": { "S": "Purple" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "key": { "S": "color" },
+          "value": { "S": "Brown" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "key": { "S": "color" },
+          "value": { "S": "Black" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "key": { "S": "length" },
+          "value": { "S": "50 Feet" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "key": { "S": "length" },
+          "value": { "S": "100 Feet" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "key": { "S": "length" },
+          "value": { "S": "150 Feet" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "key": { "S": "length" },
+          "value": { "S": "200 Feet" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "key": { "S": "length" },
+          "value": { "S": "250 Feet" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "key": { "S": "length" },
+          "value": { "S": "300 Feet" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "key": { "S": "length" },
+          "value": { "S": "350 Feet" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "key": { "S": "length" },
+          "value": { "S": "400 Feet" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "key": { "S": "length" },
+          "value": { "S": "450 Feet" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "key": { "S": "length" },
+          "value": { "S": "500 Feet" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "key": { "S": "diameter" },
+          "value": { "S": "1.5 Inches" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "key": { "S": "diameter" },
+          "value": { "S": "1.75 Inches" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "key": { "S": "2 Inches" },
+          "value": { "S": "2.5 Inches" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "key": { "S": "diameter" },
+          "value": { "S": "Orange" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "key": { "S": "diameter" },
+          "value": { "S": "Orange" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "key": { "S": "diameter" },
+          "value": { "S": "Orange" }
+        }
+      }
+    }
+  ]
+}

@@ -15,10 +15,12 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -88,8 +90,8 @@ public class ApparatusDaoTest {
 //        apparatus.setFireDept(fireDept);
 //        returnedListOfApparatus.add(apparatus);
 //
-////        when(dynamoDBMapper.query(eq(Apparatus.class), any())).thenReturn(queryList);
-////        when(apparatusDao.getApparatus(userName)).thenReturn(returnedListOfApparatus);
+//        when(dynamoDBMapper.query(eq(Apparatus.class), any())).thenReturn(queryList);
+//        //just mock the query.
 //
 //        List<Apparatus> result = apparatusDao.addApparatus(userName, apparatusTypeAndNumber, fireDept);
 //

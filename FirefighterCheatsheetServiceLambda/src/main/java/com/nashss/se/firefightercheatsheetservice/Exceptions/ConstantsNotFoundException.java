@@ -1,17 +1,17 @@
 package com.nashss.se.firefightercheatsheetservice.Exceptions;
 
 /**
- * Exception to throw when an individual apparatus is not found in the database.
+ * Exception to throw when constants not found in the database.
  */
 
-public class IndividualApparatusNotFoundException extends RuntimeException {
+public class ConstantsNotFoundException extends RuntimeException {
 
     private static final long serialVersionUID = -912326717789387971L;
 
     /**
      * Exception with no message or cause.
      */
-    public IndividualApparatusNotFoundException() {
+    public ConstantsNotFoundException() {
         super();
     }
 
@@ -19,7 +19,7 @@ public class IndividualApparatusNotFoundException extends RuntimeException {
      * Exception with a message, but no cause.
      * @param message A descriptive message for this exception.
      */
-    public IndividualApparatusNotFoundException(String message) {
+    public ConstantsNotFoundException(String message) {
         super(message);
     }
 
@@ -27,7 +27,7 @@ public class IndividualApparatusNotFoundException extends RuntimeException {
      * Exception with no message, but with a cause.
      * @param cause The original throwable resulting in this exception.
      */
-    public IndividualApparatusNotFoundException(Throwable cause) {
+    public ConstantsNotFoundException(Throwable cause) {
         super(cause);
     }
 
@@ -36,7 +36,7 @@ public class IndividualApparatusNotFoundException extends RuntimeException {
      * @param message A descriptive message for this exception.
      * @param cause The original throwable resulting in this exception.
      */
-    public IndividualApparatusNotFoundException(String message, Throwable cause) {
+    public ConstantsNotFoundException(String message, Throwable cause) {
         super(message, cause);
     }
 }

@@ -1,8 +1,10 @@
 package com.nashss.se.firefightercheatsheetservice.Converters;
 
 import com.nashss.se.firefightercheatsheetservice.Dynamodb.models.Apparatus;
+import com.nashss.se.firefightercheatsheetservice.Dynamodb.models.Constant;
 import com.nashss.se.firefightercheatsheetservice.Dynamodb.models.Hose;
 import com.nashss.se.firefightercheatsheetservice.Models.ApparatusModel;
+import com.nashss.se.firefightercheatsheetservice.Models.ConstantModel;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -69,6 +71,27 @@ public class ModelConverter {
         } else {
             return ApparatusModel.builder().build();
         }
-
     }
+
+    public List<ConstantModel> toConstantsModelList(List<Constant> constantList) {
+        log.info("ModelConverter: toConstantsModelList method has run");
+        List<ConstantModel> constantModels = new ArrayList<>();
+
+        for (Constant constant : constantList) {
+            constantModels.add(toConstantModel(constant));
+        }
+        return constantModels;
+    }
+
+    public ConstantModel toConstantModel(Constant constant) {
+        log.info("ModelConverter: toConstantModel method has run");
+
+        return ConstantModel.builder()
+                .withKey(constant.getKey())
+                .withHumanValue(constant.getHumanValue())
+                .withComputerValue(constant.getComputerValue())
+                .build();
+    }
+
+
 }

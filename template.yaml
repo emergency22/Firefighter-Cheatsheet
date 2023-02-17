@@ -220,6 +220,13 @@ Resources:
               - Effect: Allow
                 Action: dynamodb:*
                 Resource: !Sub "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/apparatus/index/*"
+        - PolicyName: 'AccessConstantsTable'
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action: dynamodb:*
+                Resource: !Sub "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/constants"
 
   #-----------------------------------------------------
   # Lambda Functions Configuration
@@ -365,6 +372,26 @@ Resources:
             Path: /apparatus/hose/calculate
             Method: put
 
+  GetConstantsLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      Role: !GetAtt AccessRole.Arn
+      CodeUri: FirefighterCheatsheetServiceLambda
+      Handler: com.nashss.se.firefightercheatsheetservice.Lambda.GetConstantsLambda::handleRequest
+      Runtime: java11
+      Architectures:
+        - x86_64
+      MemorySize: 512
+      Environment:
+        Variables:
+          JAVA_TOOL_OPTIONS: -XX:+TieredCompilation -XX:TieredStopAtLevel=1
+      Events:
+        FirefighterCheatsheetService:
+          Type: Api
+          Properties:
+            Path: /constants
+            Method: get
+
   #-----------------------------------------------------
   # DynamoDB Configuration
   #-----------------------------------------------------
@@ -407,6 +434,24 @@ Resources:
           KeyType: "HASH"
       BillingMode: "PAY_PER_REQUEST"
       TableName: "coefficient"
+
+  ConstantsTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      AttributeDefinitions:
+        - AttributeName: "key"
+          AttributeType: "S"
+        - AttributeName: "humanValue"
+          AttributeType: "S"
+        - AttributeName: "computerValue"
+          AttributeType: "S"
+      KeySchema:
+        - AttributeName: "key"
+          KeyType: "HASH"
+        - AttributeName: "humanValue"
+            KeyType: "RANGE"
+      BillingMode: "PAY_PER_REQUEST"
+      TableName: "constants"
 
 #-----------------------------------------------------
 # The outputs defined below will be printed

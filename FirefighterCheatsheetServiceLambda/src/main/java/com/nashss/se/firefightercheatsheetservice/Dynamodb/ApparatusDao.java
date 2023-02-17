@@ -1,22 +1,15 @@
 package com.nashss.se.firefightercheatsheetservice.Dynamodb;
 
+import com.amazonaws.services.dynamodbv2.datamodeling.*;
 import com.nashss.se.firefightercheatsheetservice.Dynamodb.models.Apparatus;
 import com.nashss.se.firefightercheatsheetservice.Dynamodb.models.Coefficient;
+import com.nashss.se.firefightercheatsheetservice.Dynamodb.models.Constant;
 import com.nashss.se.firefightercheatsheetservice.Dynamodb.models.Hose;
-import com.nashss.se.firefightercheatsheetservice.Exceptions.ApparatusListNotFoundException;
-import com.nashss.se.firefightercheatsheetservice.Exceptions.ApparatusNotFoundException;
-import com.nashss.se.firefightercheatsheetservice.Exceptions.CannotAddApparatusException;
-import com.nashss.se.firefightercheatsheetservice.Exceptions.CannotAddHoseException;
-import com.nashss.se.firefightercheatsheetservice.Exceptions.CannotCalculatePSIException;
-import com.nashss.se.firefightercheatsheetservice.Exceptions.CannotDeleteHoseException;
-import com.nashss.se.firefightercheatsheetservice.Exceptions.IndividualApparatusNotFoundException;
+import com.nashss.se.firefightercheatsheetservice.Exceptions.*;
 import com.nashss.se.firefightercheatsheetservice.Metrics.MetricsConstants;
 import com.nashss.se.firefightercheatsheetservice.Metrics.MetricsPublisher;
 import com.nashss.se.firefightercheatsheetservice.Utils.FrictionLossCalculator;
 
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBQueryExpression;
-import com.amazonaws.services.dynamodbv2.datamodeling.PaginatedQueryList;
 import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -354,5 +347,24 @@ public class ApparatusDao {
         list.add(apparatusWithHoseUpdated);
         return list;
 
+    }
+
+    /**
+     * Returns the List of Constants.
+     * @return the List of Constants.
+     */
+    public List<Constant> getConstants() {
+        log.info("ApparatusDao: getConstants() method called.");
+
+        DynamoDBScanExpression scanExpression = new DynamoDBScanExpression();
+        PaginatedScanList<Constant> constantsList = this.dynamoDbMapper.scan(Constant.class, scanExpression);
+
+        if (constantsList == null) {
+            log.info("ApparatusDao: getConstants method has returned a null constantsList");
+            metricsPublisher.addCount(MetricsConstants.GETCONSTANTS_CONSTANTSNOTFOUND_COUNT, 1);
+            throw new ConstantsNotFoundException("Could not find constants in table.");
+        }
+        metricsPublisher.addCount(MetricsConstants.GETCONSTANTS_CONSTANTSNOTFOUND_COUNT, 0);
+        return constantsList;
     }
 }
