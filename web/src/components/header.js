@@ -91,6 +91,9 @@ export default class Header extends BindingClass {
         interfaceArea.classList.remove('hidden');
         const cheatsheetButtonToggler = document.getElementById('cheatSheetButtonToggle')
         cheatsheetButtonToggler.classList.remove('hidden');
+        const homeButtonToggler = document.getElementById('homeButtonToggle')
+        homeButtonToggler.classList.remove('hidden');
+        this.homeButton();
         this.cheatSheetButton();
         this.displayApparatus();
         this.displayAddApparatusMenu();
@@ -205,6 +208,17 @@ export default class Header extends BindingClass {
         document.getElementById('cheatSheetButtonToggle').innerHTML = "Your Cheat Sheet";
         button.addEventListener('click', async () => {
             this.cheatsheet.displayCheatsheet();
+        });
+        return button;
+    }
+
+    homeButton() {
+        const button = document.getElementById('homeButtonToggle');
+        document.getElementById('homeButtonToggle').innerHTML = "Home";
+        button.addEventListener('click', async () => {
+            await this.displayApparatus();
+            await this.displayAddApparatusMenu();
+            document.getElementById('addHoseFormMain').innerHTML = "";
         });
         return button;
     }

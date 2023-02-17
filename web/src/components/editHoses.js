@@ -32,7 +32,6 @@ export default class EditHoses {
         var currentHoseLocations = [];
         var currentHoseIds = [];
 
-
         for (var i=0; i < hoseList.length; i++) {
 
             let iString = i.toString();
