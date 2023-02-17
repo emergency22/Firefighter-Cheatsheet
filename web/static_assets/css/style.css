@@ -49,20 +49,40 @@ html {
     /* box-shadow: 7px 7px 7px #666666; */
 }
 
+.homeButton {
+  font-size: 2em;
+  color: white;
+  position: absolute;
+  top: 4.5em;
+  right: 35%;
+  opacity: 95%;
+  margin-top: -45px;
+  z-index: 1000;
+  background-color: green;
+  border: none;
+  padding: 6px 8px 4px 8px;
+  text-align: center;
+  font-weight: bold;
+  text-decoration: none;
+  box-shadow: -3px 6px 4px #222;
+}
+
 .loginArea {
   font-size: 2em;
   color: white;
-  /* float: right; */
   position: absolute;
   top: 4.5em;
-  right: 15%;
+  right: 20%;
   opacity: 95%;
-  /* margin-left: -2em; */
   margin-top: -45px;
   z-index: 1000;
-  /* width: 2em; */
-  /* height: 45px; */
-  /* z-index: 5; */
+  background-color: green;
+  border: none;
+  padding: 6px 8px 4px 8px;
+  text-align: center;
+  font-weight: bold;
+  text-decoration: none;
+  box-shadow: -3px 6px 4px #222;
 }
 
 .cheatsheetButton {

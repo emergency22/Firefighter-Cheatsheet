@@ -12,12 +12,13 @@ export default class EditHoses {
     async displayCheatsheet() {
         document.getElementById('theDisplayArea').innerHTML = "";
         document.getElementById('addApparatusForm').innerHTML = "";
-        document.getElementById('addHoseForm').innerHTML = "";
+        document.getElementById('addHoseFormMain').innerHTML = "";
 
         const apparatusList = await this.client.getApparatus(); 
+        console.log("al: ", apparatusList);
 
         if (apparatusList.length == 0) {
-            document.getElementById('theDisplayArea').innerHTML = "No apparatus exist for this account. Go back to add Apparatus.";
+            document.getElementById('theDisplayArea').innerHTML = "No apparatus exist for this account. Click Home to add Apparatus.";
         }
 
         var thisIndividualApparatus = "thisIndividualApparatus";
