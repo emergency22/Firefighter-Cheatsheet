@@ -28,15 +28,12 @@ export default class EditHoses {
         const hoseList = apparatus.hoseList;
 
         var currentHoseLocation = "currentHoseLocation";
-        // var currentHoseId = "currentHoseId";
         var currentHoseLocations = [];
-        // var currentHoseIds = [];
 
         for (var i=0; i < hoseList.length; i++) {
 
             let iString = i.toString();
             currentHoseLocation += iString;
-            // currentHoseId += iString;
 
             var currentHose = hoseList[i];
             if (currentHose != null) {
@@ -58,34 +55,25 @@ export default class EditHoses {
                 '" Diameter, ' + 
                 waterQuantityInGallons +
                 " GPM " +
-                // " GPM, " + 
-                // pumpDischargePressure +
-                // " PSI" +
                 "<span>" +
                     `<div class='delButton' id='${currentHoseLocation}'>X</div>` +
-                // `</span><div class='editHoses' id='${currentHoseId}'>` +
                 `</span><div class='editHoses'>` +
 
-                // `Calculate pump discharge pressure for ${color} ${name}` + "</div></li>";
                 `${pumpDischargePressure} PSI on Fog Nozzle` + "</div></li>";
 
 
                 document.getElementById('theDisplayArea').innerHTML += apparatusHoseInfo;
                 
                 currentHoseLocations.push(currentHoseLocation);
-                // currentHoseIds.push(currentHoseId);
 
                 currentHoseLocation = "currentLocation";   //reset variable for the next loop
-                // currentHoseId = "currentHoseId";  //reset variable for the next loop;
             }
         }
         for (var i=0; i < hoseList.length; i++) {
             var thisCurrentHoseLocation = currentHoseLocations[i];
-            // var thisCurrentHose = currentHoseIds[i];
             var hoseIndexNumber = i;
 
             this.createDeleteHoseButton(thisCurrentHoseLocation, fireDept, apparatusTypeAndNumber, hoseIndexNumber);
-            // this.createCalculatePSIButton(thisCurrentHose, fireDept, apparatusTypeAndNumber, hoseIndexNumber);
     }
     this.displayAddHoseMenu(fireDept, apparatusTypeAndNumber);
 }
@@ -188,48 +176,5 @@ export default class EditHoses {
         });
     }
 
-    // createCalculatePSIButton(thisCurrentHose, fireDept, apparatusTypeAndNumber, hoseIndexNumber) {
-    //     const button = document.getElementById(thisCurrentHose);
-    //     button.classList.add('button');
-    //     button.classList.add(thisCurrentHose);
-
-    //     button.addEventListener('click', async () => {
-    //         if (confirm("Click OK to calculate a PSI for this hose.") == true) {
-    //         await this.client.calculatePSI(fireDept, apparatusTypeAndNumber, hoseIndexNumber);
-    //         await this.displayHoses(fireDept, apparatusTypeAndNumber);  //reload the page
-    //         }
-    //     });
-    //     return button;
-    // }
-
-    // async createCalculatePSIButton(thisCurrentHose, fireDept, apparatusTypeAndNumber, hoseIndexNumber) {
-
-    //     //get the element to edit and give it a variable name
-    //     //calculate the PSI and give that a variable name
-    //     //add the PSI to the original variable name
-
-    //     const fillPSI = document.getElementById(thisCurrentHose);
-
-    //     var psi = await this.client.calculatePSI(fireDept, apparatusTypeAndNumber, hoseIndexNumber);
-    //     var actualPSI = psi.hoseList[0].pumpDischargePressure;
-    //     fillPSI.innerHTML += actualPSI;
-
-    //     // button.addEventListener('click', async () => {
-    //     //     if (confirm("Click OK to calculate a PSI for this hose.") == true) {
-    //     //     await this.client.calculatePSI(fireDept, apparatusTypeAndNumber, hoseIndexNumber);
-    //     //     await this.displayHoses(fireDept, apparatusTypeAndNumber);  //reload the page
-    //     //     }
-    //     // });
-    //     // return button;
-    // }
-
-
-    // async calcPSI(fireDept, apparatusTypeAndNumber, hoseIndexNumber) {
-    //     const fillPSI = document.getElementById(thisCurrentHose);
-
-    //     var psi = await this.client.calculatePSI(fireDept, apparatusTypeAndNumber, hoseIndexNumber);
-    //     var actualPSI = psi.hoseList[0].pumpDischargePressure;
-    //     fillPSI.innerHTML += actualPSI;
-    // }
 
 }
