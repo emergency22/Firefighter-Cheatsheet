@@ -11,10 +11,11 @@ public class MetricsConstants {
     public static final String ADDAPPARATUS_COUNT = "AddApparatusException.Count";
     public static final String DELETEHOSE_COUNT = "CannotDeleteHoseException.Count";
     public static final String ADDHOSE_COUNT = "CannotAddHoseException.Count";
-
-    public static final String CALC_HOSE_COUNT = "CannotCalculatePSIException.Count";
+    public static final String GETCONSTANTS_CONSTANTSNOTFOUND_COUNT =
+        "GetConstants.ConstantsNotFoundException.Count";
     public static final String GETINDIVIDUALAPPARATUS_APPARAUTSNOTFOUND_COUNT =
-        "GetIndividualApparatus.ApparatusListNotFoundException.Count";
+            "GetConstants.IndividualApparatusNotFoundException.Count";
+
 
     public static final String SERVICE = "Service";
     public static final String SERVICE_NAME = "FirefighterCheatsheetService";

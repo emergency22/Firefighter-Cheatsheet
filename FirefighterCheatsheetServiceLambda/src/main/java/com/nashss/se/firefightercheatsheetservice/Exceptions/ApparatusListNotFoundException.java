@@ -1,7 +1,7 @@
 package com.nashss.se.firefightercheatsheetservice.Exceptions;
 
 /**
- * Exception to throw when a given playlist ID is not found in the database.
+ * Exception to throw when apparatus list is not found in the database.
  */
 
 public class ApparatusListNotFoundException extends RuntimeException {

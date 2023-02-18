@@ -1,0 +1,175 @@
+{
+  "constants": [
+    {
+      "PutRequest": {
+        "Item": {
+          "key": { "S": "color" },
+          "humanValue": { "S": "White" },
+          "computerValue": { "S": "White" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "key": { "S": "color" },
+          "humanValue": { "S": "Green" },
+          "computerValue": { "S": "Green" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "key": { "S": "color" },
+          "humanValue": { "S": "Red" },
+          "computerValue": { "S": "Red" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "key": { "S": "color" },
+          "humanValue": { "S": "Yellow" },
+          "computerValue": { "S": "Yellow" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "key": { "S": "color" },
+          "humanValue": { "S": "Orange" },
+          "computerValue": { "S": "Orange" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "key": { "S": "color" },
+          "humanValue": { "S": "Blue" },
+          "computerValue": { "S": "Blue" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "key": { "S": "color" },
+          "humanValue": { "S": "Purple" },
+          "computerValue": { "S": "Purple" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "key": { "S": "color" },
+          "humanValue": { "S": "Brown" },
+          "computerValue": { "S": "Brown" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "key": { "S": "color" },
+          "humanValue": { "S": "Black" },
+          "computerValue": { "S": "Black" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "key": { "S": "length" },
+          "humanValue": { "S": "50 Feet" },
+          "computerValue": { "S": "50" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "key": { "S": "length" },
+          "humanValue": { "S": "100 Feet" },
+          "computerValue": { "S": "100" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "key": { "S": "length" },
+          "humanValue": { "S": "150 Feet" },
+          "computerValue": { "S": "150" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "key": { "S": "length" },
+          "humanValue": { "S": "200 Feet" },
+          "computerValue": { "S": "200" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "key": { "S": "length" },
+          "humanValue": { "S": "250 Feet" },
+          "computerValue": { "S": "250" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "key": { "S": "length" },
+          "humanValue": { "S": "300 Feet" },
+          "computerValue": { "S": "300" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "key": { "S": "length" },
+          "humanValue": { "S": "350 Feet" },
+          "computerValue": { "S": "350" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "key": { "S": "length" },
+          "humanValue": { "S": "400 Feet" },
+          "computerValue": { "S": "400" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "key": { "S": "length" },
+          "humanValue": { "S": "450 Feet" },
+          "computerValue": { "S": "450" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "key": { "S": "length" },
+          "humanValue": { "S": "500 Feet" },
+          "computerValue": { "S": "500" }
+        }
+      }
+    }
+  ]
+}

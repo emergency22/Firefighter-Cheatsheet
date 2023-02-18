@@ -1,13 +1,17 @@
 package com.nashss.se.firefightercheatsheetservice.Exceptions;
 
-public class CannotCalculatePSIException extends RuntimeException {
+/**
+ * Exception to throw when constants not found in the database.
+ */
+
+public class ConstantsNotFoundException extends RuntimeException {
 
     private static final long serialVersionUID = -912326717789387971L;
 
     /**
      * Exception with no message or cause.
      */
-    public CannotCalculatePSIException() {
+    public ConstantsNotFoundException() {
         super();
     }
 
@@ -15,7 +19,7 @@ public class CannotCalculatePSIException extends RuntimeException {
      * Exception with a message, but no cause.
      * @param message A descriptive message for this exception.
      */
-    public CannotCalculatePSIException(String message) {
+    public ConstantsNotFoundException(String message) {
         super(message);
     }
 
@@ -23,7 +27,7 @@ public class CannotCalculatePSIException extends RuntimeException {
      * Exception with no message, but with a cause.
      * @param cause The original throwable resulting in this exception.
      */
-    public CannotCalculatePSIException(Throwable cause) {
+    public ConstantsNotFoundException(Throwable cause) {
         super(cause);
     }
 
@@ -32,7 +36,7 @@ public class CannotCalculatePSIException extends RuntimeException {
      * @param message A descriptive message for this exception.
      * @param cause The original throwable resulting in this exception.
      */
-    public CannotCalculatePSIException(String message, Throwable cause) {
+    public ConstantsNotFoundException(String message, Throwable cause) {
         super(message, cause);
     }
 }

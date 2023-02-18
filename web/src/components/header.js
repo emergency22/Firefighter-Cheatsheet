@@ -28,11 +28,15 @@ export default class Header extends BindingClass {
      * Add the header to the page.
      */
     async addHeaderToPage() {
+        const displayArea = document.getElementById('userInterfaceArea');
+        displayArea.classList.remove('hidden');
+        document.getElementById('theDisplayArea').innerHTML = `<img src="images/logo_transparent.png" width="1000" height="1000">`;
+
         const currentUser = await this.client.getIdentity();
 
         const siteTitle = this.createSiteTitle();
         const userInfo = this.createUserInfoForHeader(currentUser);
-
+        
         const header = document.getElementById('loginArea');
         header.appendChild(siteTitle);
         header.appendChild(userInfo);
@@ -69,6 +73,11 @@ export default class Header extends BindingClass {
     }
 
     createLogoutButton(currentUser) {
+
+        const logoToggler = document.getElementById('logoToggle')
+        logoToggler.classList.remove('hidden');
+        document.getElementById('logoToggle').innerHTML = `<img src="images/logo_transparent.png" width="250" height="250">`;
+
         this.createUserInterface();
         return this.createButton(`Logout: ${currentUser.name}`, this.client.logout);
     }
@@ -100,6 +109,9 @@ export default class Header extends BindingClass {
     }
 
     async displayApparatus() {
+        const displayArea = document.getElementById('userInterfaceArea');
+        displayArea.classList.remove('hidden');
+        
         document.getElementById('theDisplayArea').innerHTML = "";
         const apparatusList = await this.client.getApparatus();     //may want to set apparatusList in the datastore later. dunno.
         if (apparatusList.length == 0) {
@@ -167,6 +179,7 @@ export default class Header extends BindingClass {
 
 
     displayAddApparatusMenu() {
+        document.getElementById('addApparatusForm').innerHTML = "";
         (document.getElementById('addApparatusForm').innerHTML += "<form class='addAppForm' id='addAppForm'>" +
             "<label for='fireDept'>Add an apparatus: </label>" +
             "<input type='text' id='fireDept' placeHolder='Fire Department' style='width: 200px' required>" +
@@ -187,6 +200,7 @@ export default class Header extends BindingClass {
             await this.client.addApparatus(inputFireDept, inputApparatusTypeAndNumber);
 
             await this.displayApparatus();
+            addApparatusForm.reset();
         });
     }
 

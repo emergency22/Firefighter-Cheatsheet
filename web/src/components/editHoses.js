@@ -28,15 +28,12 @@ export default class EditHoses {
         const hoseList = apparatus.hoseList;
 
         var currentHoseLocation = "currentHoseLocation";
-        var currentHoseId = "currentHoseId";
         var currentHoseLocations = [];
-        var currentHoseIds = [];
 
         for (var i=0; i < hoseList.length; i++) {
 
             let iString = i.toString();
             currentHoseLocation += iString;
-            currentHoseId += iString;
 
             var currentHose = hoseList[i];
             if (currentHose != null) {
@@ -57,28 +54,26 @@ export default class EditHoses {
                 hoseDiameter +
                 '" Diameter, ' + 
                 waterQuantityInGallons +
-                " GPM, " + 
-                pumpDischargePressure +
-                " PSI" +
+                " GPM " +
                 "<span>" +
                     `<div class='delButton' id='${currentHoseLocation}'>X</div>` +
-                `</span><div class='editHoses' id='${currentHoseId}'>` +
-                `Calculate pump discharge pressure for ${color} ${name}` + "</div></li>";
+                `</span><div class='editHoses'>` +
+
+                `${pumpDischargePressure} PSI on Fog Nozzle` + "</div></li>";
+
+
                 document.getElementById('theDisplayArea').innerHTML += apparatusHoseInfo;
+                
                 currentHoseLocations.push(currentHoseLocation);
-                currentHoseIds.push(currentHoseId);
 
                 currentHoseLocation = "currentLocation";   //reset variable for the next loop
-                currentHoseId = "currentHoseId";  //reset variable for the next loop;
             }
         }
         for (var i=0; i < hoseList.length; i++) {
             var thisCurrentHoseLocation = currentHoseLocations[i];
-            var thisCurrentHose = currentHoseIds[i];
             var hoseIndexNumber = i;
 
             this.createDeleteHoseButton(thisCurrentHoseLocation, fireDept, apparatusTypeAndNumber, hoseIndexNumber);
-            this.createCalculatePSIButton(thisCurrentHose, fireDept, apparatusTypeAndNumber, hoseIndexNumber);
     }
     this.displayAddHoseMenu(fireDept, apparatusTypeAndNumber);
 }
@@ -177,27 +172,8 @@ export default class EditHoses {
             var inputGallons = document.getElementById('gpmSelector').value;
     
             await this.client.addHose(fireDept, apparatusTypeAndNumber, inputName, inputColor, inputLength, inputDiameter, inputGallons);
-
             await this.displayHoses(fireDept, apparatusTypeAndNumber);
         });
-    }
-
-    createCalculatePSIButton(thisCurrentHose, fireDept, apparatusTypeAndNumber, hoseIndexNumber) {
-        console.log(thisCurrentHose);
-        console.log(fireDept);
-        console.log(apparatusTypeAndNumber);
-        console.log(hoseIndexNumber);
-        const button = document.getElementById(thisCurrentHose);
-        button.classList.add('button');
-        button.classList.add(thisCurrentHose);
-
-        button.addEventListener('click', async () => {
-            if (confirm("Click OK to calculate a PSI for this hose.") == true) {
-            await this.client.calculatePSI(fireDept, apparatusTypeAndNumber, hoseIndexNumber);
-            await this.displayHoses(fireDept, apparatusTypeAndNumber);  //reload the page
-            }
-        });
-        return button;
     }
 
 

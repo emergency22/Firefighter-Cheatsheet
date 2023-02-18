@@ -1,22 +1,15 @@
 package com.nashss.se.firefightercheatsheetservice.Dynamodb;
 
+import com.amazonaws.services.dynamodbv2.datamodeling.*;
 import com.nashss.se.firefightercheatsheetservice.Dynamodb.models.Apparatus;
 import com.nashss.se.firefightercheatsheetservice.Dynamodb.models.Coefficient;
+import com.nashss.se.firefightercheatsheetservice.Dynamodb.models.Constant;
 import com.nashss.se.firefightercheatsheetservice.Dynamodb.models.Hose;
-import com.nashss.se.firefightercheatsheetservice.Exceptions.ApparatusListNotFoundException;
-import com.nashss.se.firefightercheatsheetservice.Exceptions.ApparatusNotFoundException;
-import com.nashss.se.firefightercheatsheetservice.Exceptions.CannotAddApparatusException;
-import com.nashss.se.firefightercheatsheetservice.Exceptions.CannotAddHoseException;
-import com.nashss.se.firefightercheatsheetservice.Exceptions.CannotCalculatePSIException;
-import com.nashss.se.firefightercheatsheetservice.Exceptions.CannotDeleteHoseException;
-import com.nashss.se.firefightercheatsheetservice.Exceptions.IndividualApparatusNotFoundException;
+import com.nashss.se.firefightercheatsheetservice.Exceptions.*;
 import com.nashss.se.firefightercheatsheetservice.Metrics.MetricsConstants;
 import com.nashss.se.firefightercheatsheetservice.Metrics.MetricsPublisher;
 import com.nashss.se.firefightercheatsheetservice.Utils.FrictionLossCalculator;
 
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBQueryExpression;
-import com.amazonaws.services.dynamodbv2.datamodeling.PaginatedQueryList;
 import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -258,6 +251,15 @@ public class ApparatusDao {
 
         Hose hoseToAdd = new Hose(name, color, length, diameter, gallons);
 
+
+        Coefficient coefficientClass = new Coefficient();
+        coefficientClass.setHoseDiameter(diameter);
+        Coefficient coefficientFromTable = dynamoDbMapper.load(coefficientClass);
+        Double doubleCoefficientFromTable = coefficientFromTable.getCoefficient();
+        FrictionLossCalculator calculator = new FrictionLossCalculator(doubleCoefficientFromTable, length, gallons);
+        Integer calculatedPSI = calculator.calculateFrictionLoss();
+        hoseToAdd.setPumpDischargePressure(calculatedPSI);
+
         hoseListFromGSI.add(hoseToAdd);
 
         Apparatus apparatusWithHoseAdded = new Apparatus(userNameFromGSI, apparatusTypeAndNumberFromGSI,
@@ -279,80 +281,21 @@ public class ApparatusDao {
     }
 
     /**
-     * Returns the List of Apparatus.
-     *
-     * @param fireDept the fireDept associated with the apparatus.
-     * @param apparatusTypeAndNumber the apparatus type and number associated with the
-     * individual apparatus.
-     * @param hoseIndexNumber the index number of the hose to calculate.
-     * @return the List of Apparatus.
+     * Returns the List of Constants.
+     * @return the List of Constants.
      */
-    public List<Apparatus> calculatePSI(String fireDept, String apparatusTypeAndNumber, int hoseIndexNumber) {
-        log.info("ApparatusDAO: calculatePSI method accessed");
+    public List<Constant> getConstants() {
+        log.info("ApparatusDao: getConstants() method called.");
 
-        Map<String, AttributeValue> valueMap = new HashMap<>();
-        valueMap.put(":fireDept", new AttributeValue().withS(fireDept));
-        valueMap.put(":apparatusTypeAndNumber", new AttributeValue().withS(apparatusTypeAndNumber));
-        DynamoDBQueryExpression<Apparatus> queryExpression = new DynamoDBQueryExpression<Apparatus>()
-                .withIndexName(FIRE_DEPT_APP_TYPE_NUM_INDEX)
-                .withConsistentRead(false)
-                .withKeyConditionExpression("fireDept = :fireDept and apparatusTypeAndNumber = :apparatusTypeAndNumber")
-                .withExpressionAttributeValues(valueMap);
-        log.info("ApparatusDAO: calculatePSI: about to query table");
+        DynamoDBScanExpression scanExpression = new DynamoDBScanExpression();
+        PaginatedScanList<Constant> constantsList = this.dynamoDbMapper.scan(Constant.class, scanExpression);
 
-        PaginatedQueryList<Apparatus> apparatusListFromGSI = dynamoDbMapper.query(Apparatus.class, queryExpression);
-        log.info("ApparatusDAO: apparatusListFromGSI size: " + apparatusListFromGSI.size());
-        Apparatus apparatusFromGSI = apparatusListFromGSI.get(0);
-
-        String userNameFromGSI = apparatusFromGSI.getUserName();
-        String apparatusTypeAndNumberFromGSI = apparatusFromGSI.getApparatusTypeAndNumber();
-        String fireDeptFromGSI = apparatusFromGSI.getFireDept();
-        List<Hose> hoseListFromGSI = new ArrayList<>(apparatusFromGSI.getHoseList());
-        Hose hoseThatNeedsCalc = hoseListFromGSI.get(hoseIndexNumber);
-        String name = hoseThatNeedsCalc.getName();
-        String color = hoseThatNeedsCalc.getColor();
-        int length = hoseThatNeedsCalc.getLength();
-        Double hoseDiameter = hoseThatNeedsCalc.getHoseDiameter();
-        int gallons = hoseThatNeedsCalc.getWaterQuantityInGallons();
-
-        Coefficient coefficientClass = new Coefficient();
-        coefficientClass.setHoseDiameter(hoseDiameter);
-        log.info("ApparatusDAO: prior to Mapper.load with hoseDiameter: " + hoseDiameter + " and Coefficient class: " +
-            coefficientClass);
-        Coefficient coefficientFromTable = dynamoDbMapper.load(coefficientClass);
-        log.info("Coefficient from table: " + coefficientFromTable);
-        Double doubleCoefficientFromTable = coefficientFromTable.getCoefficient();
-        log.info("Double Coefficient from table: " + doubleCoefficientFromTable);
-
-
-        FrictionLossCalculator calculator = new FrictionLossCalculator(doubleCoefficientFromTable, length, gallons);
-        Integer calculatedPSI = calculator.calculateFrictionLoss();
-
-        Hose newHose = new Hose();
-        newHose.setName(name);
-        newHose.setColor(color);
-        newHose.setLength(length);
-        newHose.setHoseDiameter(hoseDiameter);
-        newHose.setWaterQuantityInGallons(gallons);
-        newHose.setPumpDischargePressure(calculatedPSI);
-
-        hoseListFromGSI.set(hoseIndexNumber, newHose);
-
-        Apparatus apparatusWithHoseUpdated = new Apparatus(userNameFromGSI, apparatusTypeAndNumberFromGSI,
-            fireDeptFromGSI, hoseListFromGSI);
-
-        try {
-            dynamoDbMapper.save(apparatusWithHoseUpdated);
-            metricsPublisher.addCount(MetricsConstants.CALC_HOSE_COUNT, 1);
-            log.info("ApparatusDAO: hose successfully added.");
-        } catch (UnsupportedOperationException e) {
-            metricsPublisher.addCount(MetricsConstants.CALC_HOSE_COUNT, 0);
-            throw new CannotCalculatePSIException("Apparatus could not be saved", e);
+        if (constantsList == null) {
+            log.info("ApparatusDao: getConstants method has returned a null constantsList");
+            metricsPublisher.addCount(MetricsConstants.GETCONSTANTS_CONSTANTSNOTFOUND_COUNT, 1);
+            throw new ConstantsNotFoundException("Could not find constants in table.");
         }
-
-        List<Apparatus> list = new ArrayList<>();
-        list.add(apparatusWithHoseUpdated);
-        return list;
-
+        metricsPublisher.addCount(MetricsConstants.GETCONSTANTS_CONSTANTSNOTFOUND_COUNT, 0);
+        return constantsList;
     }
 }
