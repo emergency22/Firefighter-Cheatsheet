@@ -29,7 +29,9 @@ class DispApparatus extends BindingClass {
     constructor() {
         super();
 
-        this.bindClassMethods(['mount', 'search', 'displaySearchResults', 'getHTMLForSearchResults'], this);
+        // this.bindClassMethods(['mount', 'search', 'displaySearchResults', 'getHTMLForSearchResults'], this);
+        this.bindClassMethods(['mount'], this);
+
 
         // Create a enw datastore with an initial "empty" state.
         this.dataStore = new DataStore(EMPTY_DATASTORE_STATE);
@@ -42,8 +44,8 @@ class DispApparatus extends BindingClass {
      */
     mount() {
         // Wire up the form's 'submit' event and the button's 'click' event to the search method.
-        document.getElementById('search-playlists-form').addEventListener('submit', this.search);
-        document.getElementById('search-btn').addEventListener('click', this.search);
+        // document.getElementById('search-playlists-form').addEventListener('submit', this.search);
+        // document.getElementById('search-btn').addEventListener('click', this.search);
 
         this.header.addHeaderToPage();
 
