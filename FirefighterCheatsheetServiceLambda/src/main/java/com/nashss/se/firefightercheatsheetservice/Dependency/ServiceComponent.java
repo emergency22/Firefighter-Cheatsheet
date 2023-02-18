@@ -53,8 +53,6 @@ public interface ServiceComponent {
      * Provides the relevant activity.
      * @return CalculatePSIActivity
      */
-    CalculatePSIActivity provideCalculatePSIActivity();
-
     GetConstantsActivity provideGetConstantsActivity();
 
 }
