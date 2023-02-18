@@ -443,13 +443,11 @@ Resources:
           AttributeType: "S"
         - AttributeName: "humanValue"
           AttributeType: "S"
-        - AttributeName: "computerValue"
-          AttributeType: "S"
       KeySchema:
         - AttributeName: "key"
           KeyType: "HASH"
         - AttributeName: "humanValue"
-            KeyType: "RANGE"
+          KeyType: "RANGE"
       BillingMode: "PAY_PER_REQUEST"
       TableName: "constants"
 

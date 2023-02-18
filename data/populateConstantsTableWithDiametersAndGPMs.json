@@ -1,0 +1,139 @@
+{
+  "constants": [
+    {
+      "PutRequest": {
+        "Item": {
+          "key": { "S": "diameter" },
+          "humanValue": { "S": "1.5 Inches" },
+          "computerValue": { "S": "1.5" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "key": { "S": "diameter" },
+          "humanValue": { "S": "1.75 Inches" },
+          "computerValue": { "S": "1.75" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "key": { "S": "diameter" },
+          "humanValue": { "S": "2 Inches" },
+          "computerValue": { "S": "2" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "key": { "S": "diameter" },
+          "humanValue": { "S": "2.5 Inches" },
+          "computerValue": { "S": "2.5" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "key": { "S": "diameter" },
+          "humanValue": { "S": "3 Inches" },
+          "computerValue": { "S": "3" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "key": { "S": "gpm" },
+          "humanValue": { "S": "50 GPM" },
+          "computerValue": { "S": "50" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "key": { "S": "gpm" },
+          "humanValue": { "S": "100 GPM" },
+          "computerValue": { "S": "100" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "key": { "S": "gpm" },
+          "humanValue": { "S": "150 GPM" },
+          "computerValue": { "S": "150" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "key": { "S": "gpm" },
+          "humanValue": { "S": "200 GPM" },
+          "computerValue": { "S": "200" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "key": { "S": "gpm" },
+          "humanValue": { "S": "250 GPM" },
+          "computerValue": { "S": "250" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "key": { "S": "gpm" },
+          "humanValue": { "S": "300 GPM" },
+          "computerValue": { "S": "300" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "key": { "S": "gpm" },
+          "humanValue": { "S": "350 GPM" },
+          "computerValue": { "S": "350" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "key": { "S": "gpm" },
+          "humanValue": { "S": "400 GPM" },
+          "computerValue": { "S": "400" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "key": { "S": "gpm" },
+          "humanValue": { "S": "450 GPM" },
+          "computerValue": { "S": "450" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "key": { "S": "gpm" },
+          "humanValue": { "S": "500 GPM" },
+          "computerValue": { "S": "500" }
+        }
+      }
+    }
+  ]
+}
