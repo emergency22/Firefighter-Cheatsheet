@@ -4,7 +4,9 @@
       "PutRequest": {
         "Item": {
           "key": { "S": "color" },
-          "value": { "S": "White" }
+          "humanValue": { "S": "White" },
+          "computerValue": { "S": "White" }
+
         }
       }
     },
@@ -12,7 +14,8 @@
       "PutRequest": {
         "Item": {
           "key": { "S": "color" },
-          "value": { "S": "Green" }
+          "humanValue": { "S": "Green" },
+          "computerValue": { "S": "Green" }
         }
       }
     },
@@ -20,7 +23,8 @@
       "PutRequest": {
         "Item": {
           "key": { "S": "color" },
-          "value": { "S": "Red" }
+          "humanValue": { "S": "Red" },
+          "computerValue": { "S": "Red" }
         }
       }
     },
@@ -28,7 +32,8 @@
       "PutRequest": {
         "Item": {
           "key": { "S": "color" },
-          "value": { "S": "Yellow" }
+          "humanValue": { "S": "Yellow" },
+          "computerValue": { "S": "Yellow" }
         }
       }
     },
@@ -36,7 +41,8 @@
       "PutRequest": {
         "Item": {
           "key": { "S": "color" },
-          "value": { "S": "Orange" }
+          "humanValue": { "S": "Orange" },
+          "computerValue": { "S": "Orange" }
         }
       }
     },
@@ -44,7 +50,8 @@
       "PutRequest": {
         "Item": {
           "key": { "S": "color" },
-          "value": { "S": "Blue" }
+          "humanValue": { "S": "Blue" },
+          "computerValue": { "S": "Blue" }
         }
       }
     },
@@ -52,7 +59,8 @@
       "PutRequest": {
         "Item": {
           "key": { "S": "color" },
-          "value": { "S": "Purple" }
+          "humanValue": { "S": "Purple" },
+          "computerValue": { "S": "Purple" }
         }
       }
     },
@@ -60,7 +68,8 @@
       "PutRequest": {
         "Item": {
           "key": { "S": "color" },
-          "value": { "S": "Brown" }
+          "humanValue": { "S": "Brown" },
+          "computerValue": { "S": "Brown" }
         }
       }
     },
@@ -68,7 +77,8 @@
       "PutRequest": {
         "Item": {
           "key": { "S": "color" },
-          "value": { "S": "Black" }
+          "humanValue": { "S": "Black" },
+          "computerValue": { "S": "Black" }
         }
       }
     },
@@ -76,7 +86,8 @@
       "PutRequest": {
         "Item": {
           "key": { "S": "length" },
-          "value": { "S": "50 Feet" }
+          "humanValue": { "S": "50 Feet" },
+          "computerValue": { "S": "50" }
         }
       }
     },
@@ -84,7 +95,8 @@
       "PutRequest": {
         "Item": {
           "key": { "S": "length" },
-          "value": { "S": "100 Feet" }
+          "humanValue": { "S": "100 Feet" },
+          "computerValue": { "S": "100" }
         }
       }
     },
@@ -92,7 +104,8 @@
       "PutRequest": {
         "Item": {
           "key": { "S": "length" },
-          "value": { "S": "150 Feet" }
+          "humanValue": { "S": "150 Feet" },
+          "computerValue": { "S": "150" }
         }
       }
     },
@@ -100,7 +113,8 @@
       "PutRequest": {
         "Item": {
           "key": { "S": "length" },
-          "value": { "S": "200 Feet" }
+          "humanValue": { "S": "200 Feet" },
+          "computerValue": { "S": "200" }
         }
       }
     },
@@ -108,7 +122,8 @@
       "PutRequest": {
         "Item": {
           "key": { "S": "length" },
-          "value": { "S": "250 Feet" }
+          "humanValue": { "S": "250 Feet" },
+          "computerValue": { "S": "250" }
         }
       }
     },
@@ -116,7 +131,8 @@
       "PutRequest": {
         "Item": {
           "key": { "S": "length" },
-          "value": { "S": "300 Feet" }
+          "humanValue": { "S": "300 Feet" },
+          "computerValue": { "S": "300" }
         }
       }
     },
@@ -124,7 +140,8 @@
       "PutRequest": {
         "Item": {
           "key": { "S": "length" },
-          "value": { "S": "350 Feet" }
+          "humanValue": { "S": "350 Feet" },
+          "computerValue": { "S": "350" }
         }
       }
     },
@@ -132,7 +149,8 @@
       "PutRequest": {
         "Item": {
           "key": { "S": "length" },
-          "value": { "S": "400 Feet" }
+          "humanValue": { "S": "400 Feet" },
+          "computerValue": { "S": "400" }
         }
       }
     },
@@ -140,7 +158,8 @@
       "PutRequest": {
         "Item": {
           "key": { "S": "length" },
-          "value": { "S": "450 Feet" }
+          "humanValue": { "S": "450 Feet" },
+          "computerValue": { "S": "450" }
         }
       }
     },
@@ -148,7 +167,8 @@
       "PutRequest": {
         "Item": {
           "key": { "S": "length" },
-          "value": { "S": "500 Feet" }
+          "humanValue": { "S": "500 Feet" },
+          "computerValue": { "S": "500" }
         }
       }
     },
@@ -156,7 +176,8 @@
       "PutRequest": {
         "Item": {
           "key": { "S": "diameter" },
-          "value": { "S": "1.5 Inches" }
+          "humanValue": { "S": "1.5 Inches" },
+          "computerValue": { "S": "1.5" }
         }
       }
     },
@@ -164,7 +185,8 @@
       "PutRequest": {
         "Item": {
           "key": { "S": "diameter" },
-          "value": { "S": "1.75 Inches" }
+          "humanValue": { "S": "1.75 Inches" },
+          "computerValue": { "S": "1.75" }
         }
       }
     },
@@ -172,7 +194,8 @@
       "PutRequest": {
         "Item": {
           "key": { "S": "2 Inches" },
-          "value": { "S": "2.5 Inches" }
+          "humanValue": { "S": "2.5 Inches" },
+          "computerValue": { "S": "2.5" }
         }
       }
     },
@@ -180,23 +203,98 @@
       "PutRequest": {
         "Item": {
           "key": { "S": "diameter" },
-          "value": { "S": "Orange" }
+          "humanValue": { "S": "3 Inches" },
+          "computerValue": { "S": "3" }
         }
       }
     },
     {
       "PutRequest": {
         "Item": {
-          "key": { "S": "diameter" },
-          "value": { "S": "Orange" }
+          "key": { "S": "gpm" },
+          "humanValue": { "S": "50 GPM" },
+          "computerValue": { "S": "50" }
         }
       }
     },
     {
       "PutRequest": {
         "Item": {
-          "key": { "S": "diameter" },
-          "value": { "S": "Orange" }
+          "key": { "S": "gpm" },
+          "humanValue": { "S": "100 GPM" },
+          "computerValue": { "S": "100" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "key": { "S": "gpm" },
+          "humanValue": { "S": "150 GPM" },
+          "computerValue": { "S": "150" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "key": { "S": "gpm" },
+          "humanValue": { "S": "200 GPM" },
+          "computerValue": { "S": "200" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "key": { "S": "gpm" },
+          "humanValue": { "S": "250 GPM" },
+          "computerValue": { "S": "250" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "key": { "S": "gpm" },
+          "humanValue": { "S": "300 GPM" },
+          "computerValue": { "S": "300" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "key": { "S": "gpm" },
+          "humanValue": { "S": "350 GPM" },
+          "computerValue": { "S": "350" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "key": { "S": "gpm" },
+          "humanValue": { "S": "400 GPM" },
+          "computerValue": { "S": "400" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "key": { "S": "gpm" },
+          "humanValue": { "S": "450 GPM" },
+          "computerValue": { "S": "450" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "key": { "S": "gpm" },
+          "humanValue": { "S": "500 GPM" },
+          "computerValue": { "S": "500" }
         }
       }
     }
