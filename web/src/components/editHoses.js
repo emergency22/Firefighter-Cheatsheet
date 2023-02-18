@@ -28,15 +28,15 @@ export default class EditHoses {
         const hoseList = apparatus.hoseList;
 
         var currentHoseLocation = "currentHoseLocation";
-        var currentHoseId = "currentHoseId";
+        // var currentHoseId = "currentHoseId";
         var currentHoseLocations = [];
-        var currentHoseIds = [];
+        // var currentHoseIds = [];
 
         for (var i=0; i < hoseList.length; i++) {
 
             let iString = i.toString();
             currentHoseLocation += iString;
-            currentHoseId += iString;
+            // currentHoseId += iString;
 
             var currentHose = hoseList[i];
             if (currentHose != null) {
@@ -63,23 +63,25 @@ export default class EditHoses {
                 // " PSI" +
                 "<span>" +
                     `<div class='delButton' id='${currentHoseLocation}'>X</div>` +
-                `</span><div class='editHoses' id='${currentHoseId}'>` +
+                // `</span><div class='editHoses' id='${currentHoseId}'>` +
+                `</span><div class='editHoses'>` +
+
                 // `Calculate pump discharge pressure for ${color} ${name}` + "</div></li>";
-                `${pumpDischargePressure} PSI: ` + "</div></li>";
+                `${pumpDischargePressure} PSI on Fog Nozzle` + "</div></li>";
 
 
                 document.getElementById('theDisplayArea').innerHTML += apparatusHoseInfo;
                 
                 currentHoseLocations.push(currentHoseLocation);
-                currentHoseIds.push(currentHoseId);
+                // currentHoseIds.push(currentHoseId);
 
                 currentHoseLocation = "currentLocation";   //reset variable for the next loop
-                currentHoseId = "currentHoseId";  //reset variable for the next loop;
+                // currentHoseId = "currentHoseId";  //reset variable for the next loop;
             }
         }
         for (var i=0; i < hoseList.length; i++) {
             var thisCurrentHoseLocation = currentHoseLocations[i];
-            var thisCurrentHose = currentHoseIds[i];
+            // var thisCurrentHose = currentHoseIds[i];
             var hoseIndexNumber = i;
 
             this.createDeleteHoseButton(thisCurrentHoseLocation, fireDept, apparatusTypeAndNumber, hoseIndexNumber);
