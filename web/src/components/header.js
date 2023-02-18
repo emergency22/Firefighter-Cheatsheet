@@ -167,6 +167,7 @@ export default class Header extends BindingClass {
 
 
     displayAddApparatusMenu() {
+        document.getElementById('addApparatusForm').innerHTML = "";
         (document.getElementById('addApparatusForm').innerHTML += "<form class='addAppForm' id='addAppForm'>" +
             "<label for='fireDept'>Add an apparatus: </label>" +
             "<input type='text' id='fireDept' placeHolder='Fire Department' style='width: 200px' required>" +
@@ -187,6 +188,7 @@ export default class Header extends BindingClass {
             await this.client.addApparatus(inputFireDept, inputApparatusTypeAndNumber);
 
             await this.displayApparatus();
+            addApparatusForm.reset();
         });
     }
 
