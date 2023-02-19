@@ -113,7 +113,7 @@ export default class Header extends BindingClass {
         displayArea.classList.remove('hidden');
         
         document.getElementById('theDisplayArea').innerHTML = "";
-        const apparatusList = await this.client.getApparatus();     //may want to set apparatusList in the datastore later. dunno.
+        const apparatusList = await this.client.getApparatus();
         if (apparatusList.length == 0) {
             document.getElementById('theDisplayArea').innerHTML = "No apparatus exist for this account. Add an apparatus below."
         }
