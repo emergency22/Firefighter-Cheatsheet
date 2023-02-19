@@ -81,6 +81,8 @@ _The design will include a front end created with HTML, CSS, and Javascript and 
 
 `HoseModel` (String name[primary key], String color, int length, Double hoseDiameter, int waterQuantityInGallons, int pumpDischargePressure)
 
+'ConstantModel' (String key[primary key], String humanValue[sort key], String computerValue)
+
 ## 6.2. _GetApparatus Endpoint_
 
 _Name: GetApparatus_ <br>
@@ -89,6 +91,9 @@ _HTTP Method: GET_  <br>
 _Path: /apparatus_ <br>
 _Request Body: empty_ <br>
 _Errors: "ERROR. Cannot obtain apparatus."_ <br>
+
+Example:
+<img src="../resources/images/getApparatusAPI.PNG">
 
 ## 6.3 _DeleteApparatus Endpoint_
 
@@ -107,8 +112,6 @@ _HTTP Method: POST_ <br>
 _Path: /apparatus <br>
 _Request Body: fireDept, apparatusTypeAndNumber_<br>
 _Errors: "ERROR: Cannot add apparatus."_ <br>
-
-<img src="../resources/images/postAddApparatus.PNG">
 
 ## 6.5 _GetIndividualApparatus Endpoint_
 
@@ -137,14 +140,14 @@ _Path: /apparatus/hose_ <br>
 _Request Body: fireDept, apparatusTypeAndNumber, name, color, length, diameter, gallons_ <br>
 _Errors: "ERROR: Cannot save hose."_ <br>
 
-## 6.8 _CalculatePSI Endpoint_
+## 6.8 _GetConstants Endpoint_
 
-_Name: CalculatePSI_ <br>
-_Description: While logged in, the user will be able to calculate a PSI/Pump Discharge Pressure for a particular Hose. This will be accomplished via a PUT request to update the Apparatus Table, based on userName, apparatusTypeAndNumber, and hoseIndexNumber._ <br>
-_HTTP Method: PUT_ <br>
-_Path: /apparatus/hose/calculate_ <br>
-_Request Body: fireDept, apparatusTypeAndNumber, hoseIndexNumber_ <br>
-_Errors: "ERROR: Cannot calculate PSI."_ <br>
+_Name: GetConstants_ <br>
+_Description: While logged in, webpage will be able to populate dropdowns with constant data. This will be accomplished via a GET request to update the Constants Table._ <br>
+_HTTP Method: GET_ <br>
+_Path: /constants_ <br>
+_Request Body: empty_ <br>
+_Errors: "ERROR: Cannot get constants."_ <br>
 
 # 7. Tables
 
@@ -174,16 +177,3 @@ All webpages will be dynamically loaded via Javascript methods. However, there w
 -A page to add and delete apparatus.
 -A page to add and delete hoses for each individual apparatus.
 -A cheat sheet page that shows a simplified version of the Apparatus and Hose data.
-<img src="../resources/images/webpages.PNG">
-
-Index.html
-<img src="../resources/images/index.png">
-
-EditApparatus.html
-<img src="../resources/images/editApparatus.png">
-
-EditHoses.html
-<img src="../resources/images/editHoses.png">
-
-Cheatsheet.html
-<img src="../resources/images/cheatSheet.png">
