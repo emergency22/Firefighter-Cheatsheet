@@ -1,6 +1,10 @@
 package com.nashss.se.firefightercheatsheetservice.Dynamodb.models;
 
-import com.amazonaws.services.dynamodbv2.datamodeling.*;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBRangeKey;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
+
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 
@@ -48,6 +52,7 @@ public class Constant {
         this.humanValue = humanValue;
     }
 
+    @DynamoDBAttribute(attributeName = "computerValue")
     public String getComputerValue() {
         return computerValue;
     }
@@ -59,10 +64,15 @@ public class Constant {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Constant)) return false;
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Constant)) {
+            return false;
+        }
         Constant constant = (Constant) o;
-        return Objects.equals(key, constant.key) && Objects.equals(humanValue, constant.humanValue) && Objects.equals(computerValue, constant.computerValue);
+        return Objects.equals(key, constant.key) && Objects.equals(humanValue, constant.humanValue) &&
+                Objects.equals(computerValue, constant.computerValue);
     }
 
     @Override

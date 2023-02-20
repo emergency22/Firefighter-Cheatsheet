@@ -29,8 +29,7 @@ public class DeleteApparatusLambda extends LambdaActivityRunner<DeleteApparatusR
         String actualEmail = email.getUserName();
 
         return super.runActivity(
-            () -> input.fromPath(path ->
-            {
+            () -> input.fromPath(path -> {
                 try {
                     return DeleteApparatusRequest.builder()
                             .withUserName(actualEmail)

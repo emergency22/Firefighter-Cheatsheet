@@ -1,13 +1,5 @@
 package com.nashss.se.firefightercheatsheetservice.Models;
 
-import com.nashss.se.firefightercheatsheetservice.Dynamodb.models.Hose;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-
-import static com.nashss.se.firefightercheatsheetservice.Utils.CollectionUtils.copyToList;
-
 public class ConstantModel {
     private final String key;
     private final String humanValue;
