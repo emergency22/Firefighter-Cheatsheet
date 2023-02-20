@@ -1,4 +1,4 @@
-package test.java.com.nashss.se.firefightercheatsheetservice.Dynamodb;
+package com.nashss.se.firefightercheatsheetservice.Dynamodb;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBQueryExpression;
 import com.amazonaws.services.dynamodbv2.datamodeling.PaginatedQueryList;
