@@ -156,6 +156,12 @@ public class ApparatusDaoTest {
         when(dynamoDBMapper.query(eq(Apparatus.class), any())).thenReturn(queryList);
         when(queryList.get(0)).thenReturn(apparatus);
 
+        Coefficient coefficient = new Coefficient();
+        coefficient.setHoseDiameter(diameter);
+        coefficient.setCoefficient(24.0);
+
+        when(dynamoDBMapper.load(any())).thenReturn(coefficient);
+
         //WHEN
         List<Apparatus> result = apparatusDao.addHose(fireDept, apparatusTypeAndNumber, name, color,
                 length, diameter, gallons);
@@ -164,6 +170,7 @@ public class ApparatusDaoTest {
         assertEquals(fireDept, result.get(0).getFireDept());
         assertEquals(color, result.get(0).getHoseList().get(0).getColor());
         assertEquals(1, result.get(0).getHoseList().size());
+        assertEquals(190, result.get(0).getHoseList().get(0).getPumpDischargePressure());
     }
 
 }
