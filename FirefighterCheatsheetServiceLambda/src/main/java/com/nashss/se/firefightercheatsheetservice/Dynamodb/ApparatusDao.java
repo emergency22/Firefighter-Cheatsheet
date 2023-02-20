@@ -1,16 +1,27 @@
 package com.nashss.se.firefightercheatsheetservice.Dynamodb;
 
-import com.amazonaws.services.dynamodbv2.datamodeling.*;
 import com.nashss.se.firefightercheatsheetservice.Dynamodb.models.Apparatus;
 import com.nashss.se.firefightercheatsheetservice.Dynamodb.models.Coefficient;
 import com.nashss.se.firefightercheatsheetservice.Dynamodb.models.Constant;
 import com.nashss.se.firefightercheatsheetservice.Dynamodb.models.Hose;
-import com.nashss.se.firefightercheatsheetservice.Exceptions.*;
+import com.nashss.se.firefightercheatsheetservice.Exceptions.ApparatusListNotFoundException;
+import com.nashss.se.firefightercheatsheetservice.Exceptions.ApparatusNotFoundException;
+import com.nashss.se.firefightercheatsheetservice.Exceptions.CannotAddApparatusException;
+import com.nashss.se.firefightercheatsheetservice.Exceptions.CannotAddHoseException;
+import com.nashss.se.firefightercheatsheetservice.Exceptions.CannotDeleteHoseException;
+import com.nashss.se.firefightercheatsheetservice.Exceptions.ConstantsNotFoundException;
+import com.nashss.se.firefightercheatsheetservice.Exceptions.IndividualApparatusNotFoundException;
 import com.nashss.se.firefightercheatsheetservice.Metrics.MetricsConstants;
 import com.nashss.se.firefightercheatsheetservice.Metrics.MetricsPublisher;
 import com.nashss.se.firefightercheatsheetservice.Utils.FrictionLossCalculator;
 
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBQueryExpression;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBScanExpression;
+import com.amazonaws.services.dynamodbv2.datamodeling.PaginatedQueryList;
+import com.amazonaws.services.dynamodbv2.datamodeling.PaginatedScanList;
 import com.amazonaws.services.dynamodbv2.model.AttributeValue;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

@@ -73,6 +73,12 @@ public class ModelConverter {
         }
     }
 
+    /**
+     * Converts a list of Constants to a list of ConstantModels.
+     *
+     * @param constantList The Constant to convert to ConstantModels
+     * @return The converted list of ConstantModels
+     */
     public List<ConstantModel> toConstantsModelList(List<Constant> constantList) {
         log.info("ModelConverter: toConstantsModelList method has run");
         List<ConstantModel> constantModels = new ArrayList<>();
@@ -83,6 +89,12 @@ public class ModelConverter {
         return constantModels;
     }
 
+    /**
+     * Converts a provided Constant into a ConstantModel.
+     *
+     * @param constant the constant to convert
+     * @return the converted ConstantModel
+     */
     public ConstantModel toConstantModel(Constant constant) {
         log.info("ModelConverter: toConstantModel method has run");
 
