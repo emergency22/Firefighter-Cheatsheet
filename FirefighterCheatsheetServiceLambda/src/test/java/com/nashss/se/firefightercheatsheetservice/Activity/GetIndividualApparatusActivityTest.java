@@ -1,4 +1,4 @@
-package test.java.com.nashss.se.firefightercheatsheetservice.Activity;
+package com.nashss.se.firefightercheatsheetservice.Activity;
 
 import com.nashss.se.firefightercheatsheetservice.Activity.GetIndividualApparatusActivity;
 import com.nashss.se.firefightercheatsheetservice.Activity.Requests.GetIndividualApparatusRequest;
