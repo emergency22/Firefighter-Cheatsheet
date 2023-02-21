@@ -95,9 +95,9 @@ export default class EditHoses {
     displayAddHoseMenu(fireDept, apparatusTypeAndNumber) {
         (document.getElementById('addHoseFormMain').innerHTML += "<form class='addHoseForm' id='addHoseForm'>" +
             "<label for='fireDept'>Add a hose: </label>" +
-            "<input type='text' id='name' placeHolder='Name of Hose' style='width: 200px' required>" +
+            " &nbsp &nbsp <input type='text' id='name' placeHolder='Name of Hose' style='width: 200px' required>" +
 
-            `       
+            `  &nbsp &nbsp      
             <select id='colorSelector' name='colorSelector' required>
                 <option value="">Color</option>
                 <option value="White">White</option>
@@ -112,7 +112,7 @@ export default class EditHoses {
             </select>
            ` +
 
-            `       
+            `  &nbsp &nbsp      
             <select id='lengthSelector' name='lengthSelector' required>
                 <option value="">Length in Feet</option>
                 <option value="50">50 Feet</option>
@@ -128,7 +128,7 @@ export default class EditHoses {
             </select>
             ` +
 
-            `
+            ` &nbsp &nbsp
             <select id='diameterSelector' name='diameterSelector' required>
                 <option value="">Hose Diameter</option>
                 <option value="1.5">1.5 Inches</option>
@@ -139,7 +139,7 @@ export default class EditHoses {
             </select>
             ` +
 
-            `       
+            `  &nbsp &nbsp     
             <select id='gpmSelector' name='gpmSelector' required>
                 <option value="">Gallons Per Minute</option>
                 <option value="50">50 GPM</option>
@@ -155,7 +155,7 @@ export default class EditHoses {
             </select>
             ` +
 
-            "<input type='submit' style='font-weight:bold' value='Add Hose'></form>"
+            " &nbsp  &nbsp <input type='submit' style='font-weight:bold' value='Add Hose'></form>"
         );
             this.addHoseFormSubmitter(fireDept, apparatusTypeAndNumber);
     }
