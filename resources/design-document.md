@@ -1,6 +1,8 @@
+<center><img src="../web/static_assets/images/logo_transparent.png" width="300" height="300"> </center>
+
 # Design Document
 
-## _Firefighter Cheatsheet_ Design
+## _Firefighter Cheatsheet Design_
 
 ## 0. Glossary
 
@@ -15,11 +17,11 @@ _**Pump Panel:** The area of an apparatus which a driver/engineer controls the f
 
 ## 1. Problem Statement
 
+<img src="../resources/images/hosesAndPumpPanel.jpg" width="500" height="400">
+
 _Firefighters need to pump hoses at certain pump pressures in order to deliver an optimal amount of water to fight fires. Often, firefighters may not know or have forgotten the correct pump discharge pressure to utilize for each hose. This service will allow firefighters to enter apparatus and hoses and calculate the correct pump discharge pressure for each hose, thus making a “cheat sheet” to utilize when they need it most. A firefighter can then print the information as needed._
 
 ## 2. Top Questions to Resolve in Review
-
-_List the most important questions you have about your design, or things that you are still debating internally that you might like help working through._
 
 1. What sorts of requests to make (GET vs POST, etc) and when to request them as the application is developed.
 2. The overall structure and flow of data.
@@ -31,17 +33,17 @@ _This is where we work backwards from the customer and define what our customers
 
 U1. _As a Firefighter Cheatsheet customer, I want to `be able to make an account` when I `access the website`. The benefit will be the saving of data to a particular user._
 
-U2. _As a Firefighter Cheatsheet customer, I want to `be able to add apparatus` when I `am logged in`. The benefit will be the saving of apparatus to the user account._
+U2. _As a Firefighter Cheatsheet customer, I want to `see apparatus associated with my account` when I `log in`. The benefit will be the viewing of apparatus data to a particular user._
 
-U3. _As a Firefighter Cheatsheet customer, I want to `delete an apparatus ` when I `am logged in`. The benefit will be the ability to delete unnecessary data._
+U3. _As a Firefighter Cheatsheet customer, I want to `be able to add apparatus` when I `am logged in`. The benefit will be the saving of apparatus to the user account._
 
-U4. _As a Firefighter Cheatsheet customer, I want to `add corresponding hoses to each apparatus` when I `am logged in`. The benefit will be the saving of hoses for each apparatus._
+U4. _As a Firefighter Cheatsheet customer, I want to `delete an apparatus ` when I `am logged in`. The benefit will be the ability to delete unnecessary data._
 
-U5. _As a Firefighter Cheatsheet customer, I want to `delete a specific hose` when I `am logged in`. The benefit will be the ability to delete unnecessary data._
+U5. _As a Firefighter Cheatsheet customer, I want to `add corresponding hoses to each apparatus` when I `am logged in`. The benefit will be the saving of hoses for each apparatus._
 
-U6. _As a Firefighter Cheatsheet customer, I want to `be able to calculate pump discharge pressures` when I `click a button`. The benefit will be to make complicated calculations_
+U6. _As a Firefighter Cheatsheet customer, I want to `delete a specific hose` when I `am logged in`. The benefit will be the ability to delete unnecessary data._
 
-U7. _As a Firefighter Cheatsheet customer, I want to `calculate a pump discharge pressure (PSI) for each hose` when I `click a button`. The benefit will be the ability to save the pump discharge pressure for later viewing._
+U7. _As a Firefighter Cheatsheet customer, I want to `be able to calculate pump discharge pressures (PSI)` when I `add a hose`. The benefit will be to make complicated calculations as hoses are added._
 
 U8. _As a Firefighter Cheatsheet customer, I wast to `be able to see a neat, tidy version of hose pump discharge pressures for each Apparatus and hose` when I `click a button to see my cheat sheet`. The benefit will be the ability to print a simple, tidy version of the cheatsheet for later use._
 
@@ -65,7 +67,7 @@ _This design will provide the user with a cheatsheet that can be later utilized 
 
 _This design scope will not include additional calculations such as supply lines or more complex calculations involving water flow through appliances or hose sizes beyond those handled within the design._
 
-_As time allows, additional features such as the addition of a deck gun pump discharge pressure or radio frequencies may be added._
+_Additional features such as the addition of a deck gun pump discharge pressure, radio frequencies, or other criteria are also outside the scope._
 
 # 5. Proposed Architecture Overview
 
@@ -81,7 +83,7 @@ _The design will include a front end created with HTML, CSS, and Javascript and 
 
 `HoseModel` (String name[primary key], String color, int length, Double hoseDiameter, int waterQuantityInGallons, int pumpDischargePressure)
 
-'ConstantModel' (String key[primary key], String humanValue[sort key], String computerValue)
+`ConstantModel` (String key[primary key], String humanValue[sort key], String computerValue)
 
 ## 6.2. _GetApparatus Endpoint_
 
@@ -134,7 +136,7 @@ _Errors: "ERROR: Cannot delete hoses."_ <br>
 ## 6.7 _AddHose Endpoint_
 
 _Name: AddHose_ <br>
-_Description: While logged in the user will be able to enter in a Hose with particular values and save the hose to the particular Apparatus. This will be accomplished via a PUT request to an Apparatus Table, based on userName and apparatusTypeAndNumber._ <br>
+_Description: While logged in the user will be able to enter in a Hose with particular values and save the hose to the particular Apparatus. A pump discharge pressure (PSI) will also be automatically added to the hose record. This will be accomplished via a PUT request to an Apparatus Table, based on userName and apparatusTypeAndNumber. A load from the Coefficient table will also be utilized._ <br>
 _HTTP Method: POST_ <br>
 _Path: /apparatus/hose_ <br>
 _Request Body: fireDept, apparatusTypeAndNumber, name, color, length, diameter, gallons_ <br>
@@ -166,8 +168,12 @@ Additional data: <br>
 _fireDept: The fire department associated with this particular apparatus._ <br> 
 _List of Hose: A list of hoses associated with this particular apparatus._ <br>
 
+**Constants Table:** key will be the Primary Key and humanValue will be the Sort Key. <br>
+Additional data: <br>
+_computerValue: A computer-readable version of humanValue._ <br>
+_The keys will consist of Color, Diameter, Length, and Gallons Per Minute._
+
 _A GlobalSecondaryIndex will also be utilized, based on the Apparatus Table and named "FireDeptAndAppTypeNumIndex". This will allow a user to view a particular Apparatus based on fireDept (Hash Key) and apparatusTypeAndNumber(Sort Key)._
-_A GlobalSecondaryIndex will also be utilized, based on the Apparatus Table, to allow a user to view all Apparatus for a particular Fire Department. This will utilize the String 'fire dept' in the Apparatus table as a Sort Key._
 
 # 8. Pages
 

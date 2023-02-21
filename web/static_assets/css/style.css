@@ -46,7 +46,7 @@ html {
   color: white;
   position: absolute;
   top: 4.5em;
-  right: 20%;
+  right: 3%;
   opacity: 95%;
   margin-top: -45px;
   z-index: 1000;
@@ -64,7 +64,7 @@ html {
   color: white;
   position: absolute;
   top: 4.5em;
-  right: 3%;
+  right: 18%;
   opacity: 95%;
   margin-top: -45px;
   z-index: 1000;
@@ -171,7 +171,7 @@ ul li span{
 }
 
 .addHoseForm{
-  width: 800px;
+  width: 950px;
   color: black;
   font-size: large;
   font-weight: bold;
