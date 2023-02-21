@@ -1,5 +1,4 @@
 import FirefighterCheatsheetClient from '../api/firefighterCheatsheetClient';
-import ConstantsPopulator from '../components/constantsPopulator';
 
 /**
  * The editHoses component for the website.
@@ -8,7 +7,6 @@ export default class EditHoses {
     constructor() {
 
         this.client = new FirefighterCheatsheetClient();
-        this.constantsPopulator = new ConstantsPopulator();
     }
 
     /**
@@ -101,29 +99,65 @@ export default class EditHoses {
 
             `  &nbsp &nbsp      
             <select id='colorSelector' name='colorSelector' required>
-            <option value="">Color</option>
+                <option value="">Color</option>
+                <option value="White">White</option>
+                <option value="Green">Green</option>
+                <option value="Red">Red</option>
+                <option value="Yellow">Yellow</option>
+                <option value="Orange">Orange</option>
+                <option value="Blue">Blue</option>
+                <option value="Purple">Purple</option>
+                <option value="Brown">Brown</option>
+                <option value="Black">Black</option>
             </select>
            ` +
 
             `  &nbsp &nbsp      
             <select id='lengthSelector' name='lengthSelector' required>
+                <option value="">Length in Feet</option>
+                <option value="50">50 Feet</option>
+                <option value="100">100 Feet</option>
+                <option value="150">150 Feet</option>
+                <option value="200">200 Feet</option>
+                <option value="250">250 Feet</option>
+                <option value="300">300 Feet</option>
+                <option value="350">350 Feet</option>
+                <option value="400">400 Feet</option>
+                <option value="450">450 Feet</option>
+                <option value="500">500 Feet</option>
             </select>
             ` +
 
             ` &nbsp &nbsp
             <select id='diameterSelector' name='diameterSelector' required>
+                <option value="">Hose Diameter</option>
+                <option value="1.5">1.5 Inches</option>
+                <option value="1.75">1.75 Inches</option>
+                <option value="2">2 Inches</option>
+                <option value="2.5">2.5 Inches</option>
+                <option value="3">3 Inches</option>
             </select>
             ` +
 
             `  &nbsp &nbsp     
             <select id='gpmSelector' name='gpmSelector' required>
+                <option value="">Gallons Per Minute</option>
+                <option value="50">50 GPM</option>
+                <option value="100">100 GPM</option>
+                <option value="150">150 GPM</option>
+                <option value="200">200 GPM</option>
+                <option value="250">250 GPM</option>
+                <option value="300">300 GPM</option>
+                <option value="350">350 GPM</option>
+                <option value="400">400 GPM</option>
+                <option value="450">450 GPM</option>
+                <option value="500">500 GPM</option>
             </select>
             ` +
 
             " &nbsp  &nbsp <input type='submit' style='font-weight:bold' value='Add Hose'></form>"
         );
             this.addHoseFormSubmitter(fireDept, apparatusTypeAndNumber);
-            this.constantsPopulator.populateAll();
     }
 
     addHoseFormSubmitter(fireDept, apparatusTypeAndNumber) {
@@ -141,5 +175,6 @@ export default class EditHoses {
             await this.displayHoses(fireDept, apparatusTypeAndNumber);
         });
     }
+
 
 }
