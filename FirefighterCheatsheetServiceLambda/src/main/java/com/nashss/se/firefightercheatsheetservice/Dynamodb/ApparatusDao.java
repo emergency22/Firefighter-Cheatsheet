@@ -267,8 +267,8 @@ public class ApparatusDao {
         coefficientClass.setHoseDiameter(diameter);
         Coefficient coefficientFromTable = dynamoDbMapper.load(coefficientClass);
         Double doubleCoefficientFromTable = coefficientFromTable.getCoefficient();
-        FrictionLossCalculator calculator = new FrictionLossCalculator(doubleCoefficientFromTable, length, gallons);
-        Integer calculatedPSI = calculator.calculateFrictionLoss();
+        Integer calculatedPSI = FrictionLossCalculator.calculateFrictionLoss(doubleCoefficientFromTable,
+                length, gallons);
         hoseToAdd.setPumpDischargePressure(calculatedPSI);
 
         hoseListFromGSI.add(hoseToAdd);

@@ -1,6 +1,5 @@
 package com.nashss.se.firefightercheatsheetservice.Activity;
 
-import com.nashss.se.firefightercheatsheetservice.Activity.AddApparatusActivity;
 import com.nashss.se.firefightercheatsheetservice.Activity.Requests.AddApparatusRequest;
 import com.nashss.se.firefightercheatsheetservice.Activity.Results.AddApparatusResult;
 import com.nashss.se.firefightercheatsheetservice.Dynamodb.ApparatusDao;
