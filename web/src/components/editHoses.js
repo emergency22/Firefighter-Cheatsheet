@@ -107,16 +107,19 @@ export default class EditHoses {
 
             `  &nbsp &nbsp      
             <select id='lengthSelector' name='lengthSelector' required>
+            <option value="">Hose Length</option>
             </select>
             ` +
 
             ` &nbsp &nbsp
             <select id='diameterSelector' name='diameterSelector' required>
+            <option value="">Hose Diameter</option>
             </select>
             ` +
 
             `  &nbsp &nbsp     
             <select id='gpmSelector' name='gpmSelector' required>
+            <option value="">GPM</option>
             </select>
             ` +
 
