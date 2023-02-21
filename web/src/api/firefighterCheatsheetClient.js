@@ -157,7 +157,7 @@ export default class MusicPlaylistClient extends BindingClass {
 
     async addHose(fireDept, apparatusTypeAndNumber, name, color, length, diameter, gallons) {
         try {
-            const token = await this.getTokenOrThrow("Only authenticated users can make delete hose requests.");
+            const token = await this.getTokenOrThrow("Only authenticated users can make add hose requests.");
             const response = await this.axiosClient.put(`apparatus/hose`, {
                 fireDept: fireDept,
                 apparatusTypeAndNumber: apparatusTypeAndNumber,
@@ -172,6 +172,20 @@ export default class MusicPlaylistClient extends BindingClass {
                 }
             });
             return response.data.apparatusModel;
+        } catch (error) {
+            this.handleError(error, errorCallback)
+        }
+    }
+
+    async getConstants() {
+        try {
+            const token = await this.getTokenOrThrow("Only authenticated users can make get constants requests.");
+            const response = await this.axiosClient.get(`constants`, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+            return response.data.constantModelList;
         } catch (error) {
             this.handleError(error, errorCallback)
         }
