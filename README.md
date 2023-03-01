@@ -40,14 +40,12 @@ I learned a lot and feel much more comfortable with Javascript, CSS, and HTML, a
 <img alt="Cloudwatch" src="https://img.shields.io/badge/-AWS%20Cloudwatch-red"></a>
   
 ---
-<!--
+
 ## View This Project
 
- [![Youtube Video](resources/images/youtube.PNG)](https://www.youtube.com/embed/dHkNxV84Lhk)
+ [![Youtube Video](resources/images/yt_image.JPG)](https://youtu.be/FYJvZrxUK0c)
 
-<p>View this project: <a href="https://youtu.be/dHkNxV84Lhk"><b>here<b></a>.</p>
-
--->
+<p>View this project: <a href="https://youtu.be/FYJvZrxUK0c"><b>here<b></a>.</p>
 
 ---
 
